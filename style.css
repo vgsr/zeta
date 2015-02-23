@@ -425,7 +425,7 @@ body {
 
 .site-header,
 .site-branding {
-	background-color: rgba(2,144,7,.8);
+	background-color: rgba(2, 144, 7, .8);
 	color: #fff;
 }
 
@@ -434,6 +434,15 @@ body {
 	width: 100%;
 	height: 35px;
 	z-index: 499; /* Beneath the admin bar. */
+}
+
+.site-header a,
+.site-header a:visited,
+.site-header a:hover,
+.site-header a:focus,
+.site-header a:active {
+	color: #fff;
+	text-decoration: none;
 }
 
 .site-branding {
@@ -451,16 +460,7 @@ body {
 		bottom: -17px;
 		width: 100%;
 		height: 17px;
-		background-color: rgba(122,229,42,.8);
-	}
-
-	.site-branding a,
-	.site-branding a:visited,
-	.site-branding a:hover,
-	.site-branding a:focus,
-	.site-branding a:active {
-		color: #fff;
-		text-decoration: none;
+		background-color: rgba(122, 229, 42, .8);
 	}
 
 	.site-branding .site-title {
@@ -597,9 +597,8 @@ a:active {
 --------------------------------------------------------------*/
 .main-navigation {
 	clear: both;
-	display: block;
-	float: left;
-	width: 100%;
+	position: absolute;
+	right: 35px;
 }
 
 .main-navigation ul {
@@ -615,14 +614,14 @@ a:active {
 
 .main-navigation a {
 	display: block;
+	padding: 7px 17px;
 	text-decoration: none;
 }
 
 .main-navigation ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	float: left;
 	position: absolute;
-	top: 1.5em;
+	top: 35px;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 	left: -999em;
 	z-index: 99999;
 }
@@ -632,15 +631,16 @@ a:active {
 	top: 0;
 }
 
-.main-navigation ul ul a {
-	width: 200px;
-}
+	.main-navigation ul ul a {
+		width: 200px;
+		padding: 10px 17px;
+	}
 
 .main-navigation ul ul li {
-
 }
 
 .main-navigation li:hover > a {
+	background-color: rgba(35, 115, 38, 1);
 }
 
 .main-navigation ul ul :hover > a {
@@ -651,6 +651,7 @@ a:active {
 
 .main-navigation ul li:hover > ul {
 	left: auto;
+	background-color: rgba(35, 115, 38, 1);
 }
 
 .main-navigation ul ul li:hover > ul {
@@ -660,6 +661,7 @@ a:active {
 .main-navigation .current_page_item > a,
 .main-navigation .current-menu-item > a,
 .main-navigation .current_page_ancestor > a {
+	background-color: rgba(35, 115, 38, 1);
 }
 
 /* Small menu. */
