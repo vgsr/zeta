@@ -1,6 +1,6 @@
 <?php
 /**
- * @package zeta
+ * @package Zeta
  */
 ?>
 

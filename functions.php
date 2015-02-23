@@ -2,7 +2,7 @@
 /**
  * zeta functions and definitions
  *
- * @package zeta
+ * @package Zeta
  */
 
 /**

@@ -2,7 +2,7 @@
 /**
  * The template for displaying all single posts.
  *
- * @package zeta
+ * @package Zeta
  */
 
 get_header(); ?>

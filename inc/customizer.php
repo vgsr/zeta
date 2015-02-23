@@ -2,7 +2,7 @@
 /**
  * zeta Theme Customizer
  *
- * @package zeta
+ * @package Zeta
  */
 
 /**

@@ -12,7 +12,7 @@
 	<?php endif; // End header image check. ?>
 
  *
- * @package zeta
+ * @package Zeta
  */
 
 /**
