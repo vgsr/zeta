@@ -286,7 +286,7 @@ function zeta_header_slider() {
 	// Define image count
 	$img_count = $slides = count( $images ); ?>
 
-	<div class="slider">
+	<div class="slider flexslider">
 		<ul class="slides">
 			<?php foreach ( $images as $i => $image ) : 
 
@@ -313,22 +313,24 @@ function zeta_header_slider() {
 
 		<?php if ( $slides > 1 ) : ?>
 
-		<ul class="slider-handles" style="z-index: <?php echo $img_count + 1; ?>;">
-			<li class="slider-prev">
-				<label for="header-slider-prev" class="screen-reader-text"><?php _e( 'Previous Slide', 'zeta' ); ?></label>
-				<button id="header-slider-prev" class="prev handle"></button>
-			</li>
-			<li class="slider-next">
-				<label for="header-slider-next" class="screen-reader-text"><?php _e( 'Next Slide', 'zeta' ); ?></label>
-				<button id="header-slider-next" class="next handle"></button>
-			</li>
-		</ul>
+		<script>
+			jQuery(document).ready( function( $ ) {
+				$( '.flexslider' ).flexslider({
+					controlNav: false
+				});
+			});
+		</script>
 
-		<?php endif; ?>
+		<?php 
+
+			// Flexslider
+			wp_enqueue_script( 'flexslider' );
+
+			// Ensure Dashicons font is loaded
+			wp_enqueue_style( 'dashicons' );
+
+		endif; ?>
 	</div>
 
 	<?php
-
-	// Ensure Dashicons font is loaded
-	wp_enqueue_style( 'dashicons' );
 }

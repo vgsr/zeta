@@ -109,6 +109,9 @@ function zeta_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	// Flexslider
+	wp_register_script( 'flexslider', get_template_directory_uri() . '/js/jquery.flexslider.min.js', array( 'jquery' ), '2.3.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'zeta_scripts' );
 
