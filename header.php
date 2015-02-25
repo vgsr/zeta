@@ -33,4 +33,8 @@
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 
+	<div id="header-aside">
+		<?php zeta_header_slider(); ?>
+	</div><!-- #header-aside -->
+
 	<div id="content" class="site-content">

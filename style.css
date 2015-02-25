@@ -432,11 +432,13 @@ body {
 }
 
 .site-header {
+	position: absolute;
 	width: 100%;
-	background-color: rgba(2, 144, 7, .8);
 	padding: 15px 0;
+	background-color: rgba(2, 144, 7, .8);
 	color: #fff;
 	font-size: 1.2rem;
+	z-index: 499; /* Beneath the admin bar. */
 }
 
 .site-header a,
@@ -471,6 +473,90 @@ body {
 		display: none;
 	}
 
+#header-aside {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 42vh; /* Viewport height */
+}
+
+	#header-aside .slides {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+		#header-aside .slides .slide {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+
+			#header-aside .slides .slide-inner {
+				width: 100%;
+				height: 100%;
+				background-size: cover;
+				background-position: center;
+			}
+
+	#header-aside .slider-handles {
+		position: absolute;
+		right: 35px;
+		bottom: 20px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+		#header-aside .slider-handles > * {
+			float: left;
+			margin: 0 0 0 10px;
+		}
+
+		#header-aside .slider-handles .handle {
+			width: 35px;
+			height: 35px;
+			padding: 0;
+			background: transparent;
+			border: 3px solid #fff;
+			border-radius: 50%;
+			box-shadow: none;
+			color: #fff;
+			text-shadow: none;
+		}
+
+			#header-aside .slider-handles .handle:hover {
+				border-color: #e1e1e1;
+				color: #e1e1e1;
+			}
+
+			#header-aside .slider-handles .handle:focus,
+			#header-aside .slider-handles .handle:active {
+				border-color: #999;
+				color: #999;
+				outline: none;
+			}
+
+			#header-aside .slider-handles .handle:before {
+				position: relative;
+				float: left;
+				font: 400 20px/1 dashicons;
+				speak: none;
+				padding: 4px 0;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+
+			#header-aside .slider-handles .prev.handle:before {
+				content: '\f341';
+				padding-left: 3px;
+			}
+
+			#header-aside .slider-handles .next.handle:before {
+				content: '\f345';
+				padding-left: 6px;
+			}
+
 #content {
 	float: right;
 	width: 100%;
@@ -484,9 +570,13 @@ body {
 		border-bottom: 1px dashed #ddd;
 	}
 
-		#secondary > *:last-child {
-			border: none;
-		}
+	#primary .site-main > *:first-child {
+		padding-top: 70px;
+	}
+
+	#secondary > *:last-child {
+		border: none;
+	}
 
 #colophon {
 	background-color: #efefef;
@@ -501,7 +591,6 @@ body {
 		position: fixed;
 		height: 35px;
 		font-size: .8rem;
-		z-index: 499; /* Beneath the admin bar. */
 	}
 
 	.site-branding {
@@ -544,6 +633,25 @@ body {
 }
 
 @media screen and (min-width: 741px) {
+	#header-aside {
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 42%;
+		height: auto;
+	}
+
+		#header-aside .slider-handles {
+			right: auto;
+			left: 35px;
+			bottom: 35px;
+		}
+
+			#header-aside .slider-handles > * {
+				margin: 0 10px 0 0;
+			}
+
 	#content {
 		width: 58%;
 		border-left: 1px solid #efefef;
@@ -556,6 +664,10 @@ body {
 }
 
 @media screen and (min-width: 1120px) {
+	#header-aside {
+		width: calc( 100% - 640px );
+	}
+
 	#content {
 		width: 640px;
 	}

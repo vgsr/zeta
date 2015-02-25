@@ -264,3 +264,71 @@ function zeta_category_transient_flusher() {
 }
 add_action( 'edit_category', 'zeta_category_transient_flusher' );
 add_action( 'save_post',     'zeta_category_transient_flusher' );
+
+/**
+ * Display the header slider
+ *
+ * @since 1.0.0
+ *
+ * @uses wp_enqueue_style()
+ */
+function zeta_header_slider() {
+
+	$images = array();
+
+	// Get default slider images
+	if ( empty( $images ) ) {
+		foreach ( array( 'benches.jpg', 'bridge.jpg', 'desktop.jpg', 'downtown.jpg', 'tools.jpg' ) as $file ) {
+			$images[] = array( 'file' => get_template_directory_uri() . '/images/headers/' . $file );
+		}
+	} 
+
+	// Define image count
+	$img_count = $slides = count( $images ); ?>
+
+	<div class="slider">
+		<ul class="slides">
+			<?php foreach ( $images as $i => $image ) : 
+
+				// Skip missing image
+				if ( ! isset( $image['file'] ) || empty( $image['file'] ) ) {
+					$slides -= 1;
+					continue;
+				}
+
+				// Define image element tag. Use anchor when a link is provided
+				$el = isset( $image['href'] ) ? 'a' : 'div'; 
+
+			?><li class="slide" style="z-index: <?php echo $img_count - $i; ?>;">
+				<<?php echo $el; ?> class="slide-inner" style="background-image: url('<?php echo esc_attr( $image['file'] ); ?>');"<?php
+
+					// Add link to the element
+					if ( 'a' === $el ) {
+						echo ' href="' . esc_attr( $image['href'] ) . '"';
+					} ?>>
+				</<?php echo $el; ?>>
+			</li>
+			<?php endforeach; ?>
+		</ul>
+
+		<?php if ( $slides > 1 ) : ?>
+
+		<ul class="slider-handles" style="z-index: <?php echo $img_count + 1; ?>;">
+			<li class="slider-prev">
+				<label for="header-slider-prev" class="screen-reader-text"><?php _e( 'Previous Slide', 'zeta' ); ?></label>
+				<button id="header-slider-prev" class="prev handle"></button>
+			</li>
+			<li class="slider-next">
+				<label for="header-slider-next" class="screen-reader-text"><?php _e( 'Next Slide', 'zeta' ); ?></label>
+				<button id="header-slider-next" class="next handle"></button>
+			</li>
+		</ul>
+
+		<?php endif; ?>
+	</div>
+
+	<?php
+
+	// Ensure Dashicons font is loaded
+	wp_enqueue_style( 'dashicons' );
+}
