@@ -286,7 +286,7 @@ function zeta_header_slider() {
 	// Define image count
 	$img_count = $slides = count( $images ); ?>
 
-	<div class="slider flexslider">
+	<div class="slider flexslider loading">
 		<ul class="slides">
 			<?php foreach ( $images as $i => $image ) : 
 
@@ -316,7 +316,10 @@ function zeta_header_slider() {
 		<script>
 			jQuery(document).ready( function( $ ) {
 				$( '.flexslider' ).flexslider({
-					controlNav: false
+					controlNav: false,
+					start: function( slider ) {
+						slider.removeClass( 'loading' );
+					}
 				});
 			});
 		</script>
