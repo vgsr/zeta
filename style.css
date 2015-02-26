@@ -428,43 +428,56 @@ body {
 #page {
 	float: left;
 	width: 100%;
-	background-color: #f1f1f1;
+	background-color: #f9f9f9;
 }
 
 .site-header {
-	position: absolute;
+	position: relative;
+	float: left;
 	width: 100%;
-	padding: 15px 0;
-	background-color: rgba(2, 144, 7, .8);
+	padding: 0;
 	color: #fff;
 	font-size: 1.2rem;
 	z-index: 499; /* Beneath the admin bar. */
 }
 
-.site-header a,
-.site-header a:visited,
-.site-header a:hover,
-.site-header a:focus,
-.site-header a:active {
-	color: #fff;
-	text-decoration: none;
-}
+	.site-header a,
+	.site-header a:visited,
+	.site-header a:hover,
+	.site-header a:focus,
+	.site-header a:active {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	.site-header .nav-menu a,
+	.site-header .nav-menu a:visited,
+	.site-header .nav-menu a:hover,
+	.site-header .nav-menu a:focus,
+	.site-header .nav-menu a:active {
+		color: #404040;
+	}
 
 	.site-branding {
-		padding: 0 35px;
+		position: absolute;
+		width: 100%;
+		padding: 15px 35px;
+		background-color: rgba(2, 144, 7, .8);
 	}
 
 	.site-branding .site-title {
 		margin: 0;
+		font-size: 1.3em;
 	}
 
 		.site-branding .site-title a {
+			display: block;
 			background: url( 'images/logo-wit.png' ) no-repeat;
-			background-size: 46px;
-			width: 46px;
-			height: 46px;
-			padding-left: 56px;
-			line-height: 46px;
+			background-size: 32px;
+			width: 32px;
+			height: 32px;
+			line-height: 32px;
+			padding-left: 48px;
 		}
 
 	.site-branding .site-description {
@@ -481,6 +494,7 @@ body {
 }
 
 	#header-aside .slider {
+		position: relative;
 		width: 100%;
 		height: 100%;
 	}
@@ -507,7 +521,10 @@ body {
 				width: 100%;
 				height: 100%;
 				display: block;
-				background-size: cover;
+				-webkit-background-size: cover;
+				-moz-background-size:    cover;
+				-o-background-size:      cover;
+				background-size:         cover;
 				background-position: center;
 			}
 
@@ -641,11 +658,60 @@ body {
 	float: right;
 }
 
+@media screen and (min-width: 561px) {
+	.site-branding {
+		padding: 25px 35px;
+	}
+
+		.site-branding .site-title {
+			font-size: 2em;
+		}
+
+		.site-branding .site-title a {
+			background-size: 46px;
+			width: 46px;
+			height: 46px;
+			padding-left: 68px;
+			line-height: 46px;
+		}
+
+	#header-aside {
+		height: 72vh;
+	}
+
+	.menu-toggled #header-aside {
+		padding: 0 35px;
+	}
+
+		.menu-toggled #header-aside .slider {
+			border-bottom: 1px solid #efefef;
+		}
+
+	#content {
+		padding: 0 35px 35px;
+		background-color: transparent;
+	}
+
+		#primary .site-main > *,
+		#secondary > * {
+			background-color: #fff;
+		}
+}
+
 @media screen and (min-width: 741px) {
 	.site-header {
 		position: fixed;
 		height: 35px;
 		font-size: .8rem;
+		background-color: rgba(2, 144, 7, .8);
+	}
+
+	.site-header .nav-menu a,
+	.site-header .nav-menu a:visited,
+	.site-header .nav-menu a:hover,
+	.site-header .nav-menu a:focus,
+	.site-header .nav-menu a:active {
+		color: #fff;
 	}
 
 	.site-branding {
@@ -654,7 +720,6 @@ body {
 		left: 35px;
 		width: 104px;
 		padding: 17px;
-		background-color: rgba(2, 144, 7, .8);
 	}
 
 		.site-branding:after {
@@ -693,7 +758,16 @@ body {
 		bottom: 0;
 		width: 42%;
 		height: auto;
+		padding: 0;
 	}
+
+		.menu-toggled #header-aside {
+			padding: 0;
+		}
+
+			.menu-toggled #header-aside .slider {
+				border: 0;
+			}
 
 		#header-aside .slides .slide-inner .slide-details {
 			padding: 0 35px 105px;
@@ -712,16 +786,23 @@ body {
 
 	#content {
 		width: 58%;
+		padding: 0;
+		background-color: #fff;
 		border-left: 1px solid #efefef;
 	}
 
-		#primary .site-main > *:first-child {
-			padding-top: 70px;
-		}
+			#primary .site-main > *,
+			#secondary > * {
+				background-color: transparent;
+			}
 
-		#primary .site-main p {
-			font-size: 1.25em;
-		}
+			#primary .site-main > *:first-child {
+				padding-top: 70px;
+			}
+
+			#primary .site-main p {
+				font-size: 1.25em;
+			}
 
 	#colophon {
 		margin-left: 42%;
@@ -851,28 +932,51 @@ a:active {
 --------------------------------------------------------------*/
 .main-navigation {
 	clear: both;
-	position: relative;
+}
+
+.main-navigation .nav-menu {
+	display: none;
+	float: left;
+	margin-top: 62px; /* Below .site-branding */
+	padding: 35px;
+	background-color: #fff;
+}
+
+.menu-toggled .main-navigation .nav-menu {
+	display: block;
 }
 
 .main-navigation ul {
+	display: none;
 	list-style: none;
 	margin: 0;
-	padding-left: 0;
+	width: 100%;
+	padding: 25px 35px;
 }
 
 .main-navigation li {
-	float: left;
 	position: relative;
+	width: 100%;
+	float: left;
+	border-top: 1px solid #f1f1f1;
+}
+
+	.main-navigation ul.menu > li:last-child {
+		border-bottom: 1px solid #f1f1f1;
+	}
+
+.main-navigation li:hover > a {
+	text-decoration: underline;
 }
 
 .main-navigation a {
 	display: block;
-	padding: 7px 17px;
+	padding: 10px 0;
 	text-decoration: none;
 }
 
 .main-navigation ul.menu > li > a {
-	height: 35px;
+	height: auto;
 }
 
 .main-navigation ul ul {
@@ -893,10 +997,6 @@ a:active {
 	}
 
 .main-navigation ul ul li {
-}
-
-.main-navigation li:hover > a {
-	background-color: rgba(35, 115, 38, 1);
 }
 
 .main-navigation ul ul :hover > a {
@@ -927,33 +1027,34 @@ a:active {
 .main-navigation .current_page_item > a,
 .main-navigation .current-menu-item > a,
 .main-navigation .current_page_ancestor > a {
-	background-color: rgba(35, 115, 38, 1);
+	font-weight: bold;
 }
 
 /* Small menu. */
 .menu-toggle {
-	display: block;
 	position: absolute;
-	right: 0;
-	height: 46px;
-	padding: 7px 12px;
+	right: 35px;
+	top: 15px;
+	width: 32px;
+	height: 32px;
+	display: block;
+	padding: 5px;
 	background-color: transparent;
 	box-shadow: none;
-	border: none;
 	border-radius: 0;
 	color: #fff;
 	text-shadow: none;
-	line-height: 2em;
+	line-height: 32px;
+	border: 1px solid rgba(255, 255, 255, .3);
 }
 
 	.menu-toggle:before {
 		content: "\f333"; /* dashicons-menu */
 		display: inline-block;
-		width: 36px;
-		height: 36px;
-		margin-right: 8px;
-		font-size: 36px;
-		line-height: 36px;
+		width: 20px;
+		height: 20px;
+		font-size: 20px;
+		line-height: 20px;
 		font-family: dashicons;
 		text-decoration: inherit;
 		font-weight: 400;
@@ -966,34 +1067,96 @@ a:active {
 	}
 
 	.menu-toggle:hover,
-	.main-navigation.toggled .menu-toggle {
-		background-color: rgba(35, 115, 38, 1);
+	.menu-toggle:focus,
+	.menu-toggled .main-navigation .menu-toggle {
 		box-shadow: none;
-		border: none;
 	}
 
-@media screen and (min-width: 601px) {
+		.menu-toggled .main-navigation .menu-toggle:before {
+			content: '\f335'; /* dashicons-no-alt */
+		}
+
+@media screen and (min-width: 561px) {
+	.main-navigation {
+		padding: 0 35px;
+	}
+
+		.main-navigation .nav-menu {
+			margin-top: 96px;
+			padding: 35px 46px;
+		}
+
+		/* Small menu. */
+		.menu-toggle {
+			top: 25px;
+			width: 46px;
+			height: 46px;
+			padding: 13px;
+			line-height: 46px;
+		}
+
+			.menu-toggle:before {
+				content: "\f333"; /* dashicons-menu */
+				width: 20px;
+				height: 20px;
+				font-size: 20px;
+				line-height: 20px;
+			}
+
+}
+
+@media screen and (min-width: 741px) {
 	.main-navigation {
 		position: absolute;
 		right: 35px;
 		top: 0;
+		padding: 0;
 	}
 
-	.menu-toggle,
-	.main-navigation.toggled .nav-menu {
-		display: none;
-	}
-
-		.menu-toggle:before {
-			width: 20px;
-			height: 20px;
-			font-size: 20px;
-			line-height: 1;
+		.main-navigation .nav-menu {
+			display: block;
+			float: right;
+			margin: 0;
+			padding: 0;
+			background-color: transparent;
 		}
+
+		.menu-toggle {
+			display: none;
+		}
+
+	.main-navigation a {
+		padding: 7px 17px;
+	}
 
 	.main-navigation ul {
 		display: block;
+		border: none;
+		width: auto;
+		padding: 0;
+		background-color: transparent;
 	}
+
+		.main-navigation li {
+			width: auto;
+			border: none;
+		}
+
+		.main-navigation li:hover > a {
+			background-color: rgba(35, 115, 38, 1);
+			text-decoration: none;
+		}
+
+		.main-navigation ul.menu > li > a {
+			height: 35px;
+		}
+
+	.main-navigation .current_page_item > a,
+	.main-navigation .current-menu-item > a,
+	.main-navigation .current_page_ancestor > a {
+		background-color: rgba(35, 115, 38, 1);
+	}
+
 }
 
 .site-main .comment-navigation,

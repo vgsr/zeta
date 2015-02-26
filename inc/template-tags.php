@@ -319,9 +319,7 @@ function zeta_header_slider() {
 	if ( empty( $images ) ) {
 		foreach ( array( 'benches.jpg', 'bridge.jpg', 'desktop.jpg', 'downtown.jpg', 'tools.jpg' ) as $file ) {
 			$images[] = array( 
-				'src'   => get_template_directory_uri() . '/images/headers/' . $file, 
-				'href'  => home_url( '/' ),
-				'title' => $file,
+				'src' => get_template_directory_uri() . '/images/headers/' . $file, 
 			);
 		}
 	}
@@ -510,9 +508,6 @@ function zeta_header_slider() {
 
 			// Flexslider
 			wp_enqueue_script( 'flexslider' );
-
-			// Ensure Dashicons font is loaded
-			wp_enqueue_style( 'dashicons' );
 
 		endif; ?>
 	</div>
