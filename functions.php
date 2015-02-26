@@ -96,13 +96,72 @@ function zeta_widgets_init() {
 }
 add_action( 'widgets_init', 'zeta_widgets_init' );
 
+if ( ! function_exists( 'zeta_fonts_url' ) ) :
+/**
+ * Register Google fonts for Zeta.
+ *
+ * @since 1.0.0
+ *
+ * @return string Google fonts URL for the theme.
+ */
+function zeta_fonts_url() {
+	$fonts_url = '';
+	$fonts     = array();
+	$subsets   = 'latin,latin-ext';
+
+	/*
+	 * Translators: If there are characters in your language that are not supported
+	 * by Lato, translate this to 'off'. Do not translate into your own language.
+	 */
+	if ( 'off' !== _x( 'on', 'Noto Sans font: on or off', 'zeta' ) ) {
+		$fonts[] = 'Montserrat:400italic,700italic,400,700';
+	}
+
+	/*
+	 * Translators: If there are characters in your language that are not supported
+	 * by PT Serif, translate this to 'off'. Do not translate into your own language.
+	 */
+	if ( 'off' !== _x( 'on', 'Noto Serif font: on or off', 'zeta' ) ) {
+		$fonts[] = 'PT Serif:400italic,700italic,400,700';
+	}
+
+	/*
+	 * Translators: To add an additional character subset specific to your language,
+	 * translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language.
+	 */
+	$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'zeta' );
+
+	if ( 'cyrillic' == $subset ) {
+		$subsets .= ',cyrillic,cyrillic-ext';
+	} elseif ( 'greek' == $subset ) {
+		$subsets .= ',greek,greek-ext';
+	} elseif ( 'devanagari' == $subset ) {
+		$subsets .= ',devanagari';
+	} elseif ( 'vietnamese' == $subset ) {
+		$subsets .= ',vietnamese';
+	}
+
+	if ( $fonts ) {
+		$fonts_url = add_query_arg( array(
+			'family' => urlencode( implode( '|', $fonts ) ),
+			'subset' => urlencode( $subsets ),
+		), '//fonts.googleapis.com/css' );
+	}
+
+	return $fonts_url;
+}
+endif;
+
 /**
  * Enqueue scripts and styles.
  */
 function zeta_scripts() {
 	wp_enqueue_style( 'zeta-style', get_stylesheet_uri() );
 
-	// Dashicons for small menu icons
+	// Add custom fonts, used in the main stylesheet.
+	wp_enqueue_style( 'zeta-fonts', zeta_fonts_url(), array(), null );
+
+	// Add Dashicons for small menu
 	wp_enqueue_style( 'dashicons' );
 
 	// Navigation menu for small screens

@@ -48,7 +48,7 @@
 1.0 Normalize
 --------------------------------------------------------------*/
 html {
-	font-family: Georgia, Times, serif;
+	font-family: 'PT Serif', Georgia, Times, serif;
 	letter-spacing: .02em;
 	font-size: 16px;
 	-webkit-text-size-adjust: 100%;
@@ -279,12 +279,20 @@ textarea {
 	line-height: 1.5;
 }
 
+button,
+input,
+select,
+textarea {
+	font-family: 'Montserrat', Arial, sans-serif;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
+	font-family: 'Montserrat', Arial, sans-serif;
 	clear: both;
 }
 
@@ -484,6 +492,7 @@ body {
 		font-size: 0.9em;
 		font-weight: normal;
 		display: none;
+		font-family: Georgia, Times, serif;
 	}
 
 #header-aside {
@@ -511,6 +520,7 @@ body {
 			position: absolute;
 			width: 100%;
 			height: 100%;
+			font-family: 'Montserrat', Arial, sans-serif;
 		}
 
 			#header-aside .slider.loading .slides .slide:first-child {
@@ -538,7 +548,7 @@ body {
 				}
 
 				#header-aside .slides .slide-inner .slide-details h2 {
-					font-size: 1.8em;
+					font-size: 2.2em;
 					margin-bottom: 0;
 				}
 
@@ -688,8 +698,12 @@ body {
 		}
 
 	#content {
-		padding: 0 35px 35px;
+		padding: 35px;
 		background-color: transparent;
+	}
+
+	.menu-toggled #content {
+		padding: 0 35px 35px;
 	}
 
 		#primary .site-main > *,
@@ -789,6 +803,10 @@ body {
 		padding: 0;
 		background-color: #fff;
 		border-left: 1px solid #efefef;
+	}
+
+	.menu-toggled #content {
+		padding: 0;
 	}
 
 			#primary .site-main > *,
@@ -1155,6 +1173,7 @@ a:active {
 	.main-navigation .current-menu-item > a,
 	.main-navigation .current_page_ancestor > a {
 		background-color: rgba(35, 115, 38, 1);
+		font-weight: normal;
 	}
 
 }
@@ -1272,8 +1291,9 @@ a:active {
 	margin: 0 0 1.5em;
 }
 
-/* Make sure select elements fit in widgets. */
-.widget select {
+/* Make sure select elements and search boxes fit in widgets. */
+.widget select,
+.widget input[type="search"] {
 	max-width: 100%;
 }
 
@@ -1309,12 +1329,47 @@ a:active {
 .page-content,
 .entry-content,
 .entry-summary {
-	margin: 1.5em 0 0;
+	margin: 0.5em 0 0;
 }
 
 .page-links {
 	clear: both;
 	margin: 0 0 1.5em;
+}
+
+.entry-title {
+	margin: 0;
+}
+
+	.entry-title a {
+		color: #404040;
+		text-decoration: none;
+	}
+
+.entry-meta,
+.entry-footer {
+	margin-bottom: .5em;
+	font-family: 'Montserrat', Arial, sans-serif;
+	text-transform: uppercase;
+	font-size: .75em;
+	color: #999;
+}
+
+	.entry-meta a,
+	.entry-meta a:visited,
+	.entry-footer a,
+	.entry-footer a:visited {
+		color: #999;
+	}
+
+	.entry-footer > *:not(:first-child):before {
+		content: '|';
+		margin: 0 10px;
+	}
+
+.widget-title {
+	margin: 0;
+	font-size: 1.5em;
 }
 
 /*--------------------------------------------------------------

@@ -288,8 +288,11 @@ function zeta_header_slider() {
 	if ( is_singular() ) {
 		$post_id = get_queried_object_id();
 
-		// Treat galleries differently
+		// Treat galleries differently?
 		if ( has_post_format( $post_id ) && 'gallery' == get_post_format( $post_id ) ) {
+
+			// Get all attached images of the loop's posts
+			$images = array_filter( wp_list_pluck( (array) get_attached_media( 'image', $post_id ), 'ID' ) );
 
 		// Default post object
 		} else {
