@@ -274,41 +274,220 @@ add_action( 'save_post',     'zeta_category_transient_flusher' );
  */
 function zeta_header_slider() {
 
+	/**
+	 * Images typically are served as arrays containing the following elements
+	 *  - src    The image source to display as background
+	 *  - post_id Optional. The image's linked post ID.
+	 *  - href    Optional. The image anchor url. Defaults to the post permalink
+	 *  - title   Optional. The title of the image/post. Defaults to the post title or the image's title.
+	 *  - byline  Optional. The contents for the subtitle of the image/post. Requires a value for the `title` param
+	 */
 	$images = array();
 
-	// Get default slider images
+	// The current post object
+	if ( is_singular() ) {
+		$post_id = get_queried_object_id();
+
+		// Treat galleries differently
+		if ( has_post_format( $post_id ) && 'gallery' == get_post_format( $post_id ) ) {
+
+		// Default post object
+		} else {
+
+			// Get all attached images of the loop's posts
+			$images = array_filter( wp_list_pluck( (array) get_attached_media( 'image', $post_id ), 'ID' ) );
+		}
+
+	// Posts collection
+	} elseif ( ( is_home() || is_archive() || is_search() ) && have_posts() ) {
+		global $wp_query;
+
+		// Get all queried post IDs
+		$images = wp_list_pluck( $wp_query->posts, 'ID' );
+
+	// Front page
+	} elseif ( is_front_page() ) {
+
+		// What to do here? Latest posts, featured posts, front page gallery?
+		$query = new WP_Query( array( 'posts_per_page' => 5, 'fields' => 'ids' ) );
+
+		// Get the five latest post IDs
+		$images = $query->query();
+	}
+
+	// When no images were found, get the default slider images
 	if ( empty( $images ) ) {
 		foreach ( array( 'benches.jpg', 'bridge.jpg', 'desktop.jpg', 'downtown.jpg', 'tools.jpg' ) as $file ) {
-			$images[] = array( 'file' => get_template_directory_uri() . '/images/headers/' . $file );
+			$images[] = array( 
+				'src'   => get_template_directory_uri() . '/images/headers/' . $file, 
+				'href'  => home_url( '/' ),
+				'title' => $file,
+			);
 		}
-	} 
+	}
 
 	// Define image count
-	$img_count = $slides = count( $images ); ?>
+	$img_count = count( $images );
+	$slides    = 0; ?>
 
 	<div class="slider flexslider loading">
 		<ul class="slides">
-			<?php foreach ( $images as $i => $image ) : 
+			<?php foreach ( $images as $i => $data ) : 
 
-				// Skip missing image
-				if ( ! isset( $image['file'] ) || empty( $image['file'] ) ) {
-					$slides -= 1;
-					continue;
+				// Handle post IDs
+				if ( is_numeric( $data ) ) {
+					$post = get_post( (int) $data );
+					if ( ! $post )
+						continue;
+
+					// Check the post type
+					switch ( $post->post_type ) {
+
+						// Media
+						case 'attachment' :
+							$data = array( 'src' => $post->ID );
+							break;
+
+						// Other
+						default :
+							$data = array( 'post_id' => $post->ID );
+							break;
+					}
 				}
 
-				// Define image element tag. Use anchor when a link is provided
-				$el = isset( $image['href'] ) ? 'a' : 'div'; 
+				// Fill data variables
+				$data = wp_parse_args( (array) $data, array(
+					'post_id' => false,
+					'src'     => false,
+					'href'    => false,
+					'title'   => false,
+					'byline'  => false
+				) );
 
-			?><li class="slide" style="z-index: <?php echo $img_count - $i; ?>;">
-				<<?php echo $el; ?> class="slide-inner" style="background-image: url('<?php echo esc_attr( $image['file'] ); ?>');"<?php
+				// Handle post data. Not when already there.
+				if ( ! empty( $data['post_id'] ) && get_queried_object_id() !== $data['post_id'] ) {
+					$post_id = $data['post_id'];
 
-					// Add link to the element
-					if ( 'a' === $el ) {
-						echo ' href="' . esc_attr( $image['href'] ) . '"';
-					} ?>>
-				</<?php echo $el; ?>>
-			</li>
-			<?php endforeach; ?>
+					// Find an image for the post
+					if ( empty( $data['src'] ) ) {
+						$atts = array();
+
+						// Get the post's featured image
+						if ( has_post_thumbnail( $post_id ) ) {
+							$atts = array( get_post_thumbnail_id( $post_id ) );
+
+						// Get the post's attached images
+						} elseif ( ( $atts = get_attached_media( 'image', $post_id ) ) && ! empty( $atts ) ) {
+							$atts = wp_list_pluck( $atts, 'ID' );
+						}
+
+						// Find the first post's image that can be used
+						foreach ( $atts as $att_id ) {
+							$image = wp_get_attachment_image_src( (int) $att_id, 'full' );
+
+							// Require image to be at least 1600px wide
+							if ( 1600 <= (int) $image[1] ) {
+								// Find or create an image size that is closest to 1600px wide?
+								$data['src'] = $image[0];
+
+							// Image is too small: skip slide
+							} else {
+								continue;
+							}
+						}
+
+						// Still no image found: skip slide
+						if ( empty( $data['src'] ) ) {
+							continue;
+						}
+					}
+
+					// Get post permalink
+					$data['href'] = get_permalink( $post_id );
+
+					// Get post title
+					$data['title'] = get_the_title( $post_id );
+
+					// Get post details
+					$data['byline'] = sprintf( __( 'Posted by %s', 'zeta' ), get_post_field( 'post_author', $post_id ) );
+				}
+
+				// Image is missing: skip slide
+				if ( empty( $data['src'] ) ) {
+					continue;
+
+				// Attachment ID provided
+				} elseif ( is_numeric( $data['src'] ) ) {
+					$att_id =  (int) $data['src'];
+					$image  = wp_get_attachment_image_src( $att_id, 'full' );
+
+					// Require image to be at least 1600px wide
+					if ( 1600 <= (int) $image[1] ) {
+						// Find or create an image size that is closest to 1600px wide?
+						$data['src'] = $image[0];
+
+					// Image is too small: skip slide
+					} else {
+						continue;
+					}
+
+					$metadata = wp_get_attachment_metadata( $att_id );
+
+					// Get original image link
+					if ( apply_filters( 'zeta_header_image_use_image_url', false, $att_id ) ) {
+						$upload_dir = wp_upload_dir();
+						$data['href'] = trailingslashit( $upload_dir['baseurl'] ) . $metadata['file'];
+					}
+
+					// Get attachment title
+					if ( apply_filters( 'zeta_header_image_use_image_title', false, $att_id ) 
+						&& ( $att_title = get_the_title( $att_id ) ) && ! empty( $att_title ) ) {
+						$data['title'] = $att_title;
+					}
+
+					// Get attachment details
+					if ( apply_filters( 'zeta_header_image_use_image_credits', false, $att_id ) 
+						&& ! empty( $metadata['image_meta']['credit'] ) ) {
+						$data['byline'] = sprintf( __( 'Created by %s', 'zeta' ), $metadata['image_meta']['credit'] );
+					}
+				}
+
+			// Start slide
+			?><li class="slide" style="z-index: <?php echo $img_count - $i; ?>;"><?php
+
+				// Define image container tag. Use anchor when a link is provided
+				$tag = ! empty( $data['href'] ) ? 'a' : 'div'; 
+
+				// Start image container
+				$el = '<' . $tag . ' class="slide-inner" style="background-image: url(' . esc_attr( $data['src'] ) . ');"';
+
+				// Add link to the element
+				if ( 'a' === $tag ) {
+					$el .= ' href="' . esc_attr( $data['href'] ) . '"';
+				}
+				$el .= '>';
+
+				// Handle titles
+				if ( ! empty( $data['title'] ) ) {
+					$el .= '<header class="slide-details"><h2>' . $data['title'] . '</h2>';
+
+					// Append byline
+					if ( ! empty( $data['byline'] ) ) {
+						$el .= '<span class="byline">' . $data['byline'] . '</span>';
+					}
+
+					$el .= '</header>';
+				}
+
+				// Close image container
+				$el .= '</' . $tag . '>';
+
+				// Filter and display slide content
+				echo apply_filters( 'zeta_header_slider_slide', $el, $data, $tag, $i );
+
+			// End slide
+			?></li>
+			<?php $slides++; endforeach; ?>
 		</ul>
 
 		<?php if ( $slides > 1 ) : ?>
@@ -318,6 +497,9 @@ function zeta_header_slider() {
 				$( '.flexslider' ).flexslider({
 					controlNav: false,
 					start: function( slider ) {
+
+						// The loading class prevents a white flash on slider start
+						// see https://github.com/woothemes/FlexSlider/issues/848#issuecomment-42573918
 						slider.removeClass( 'loading' );
 					}
 				});

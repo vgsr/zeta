@@ -506,9 +506,39 @@ body {
 			#header-aside .slides .slide-inner {
 				width: 100%;
 				height: 100%;
+				display: block;
 				background-size: cover;
 				background-position: center;
 			}
+
+				#header-aside .slides .slide-inner .slide-details {
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					width: 100%;
+					padding: 0 130px 20px 35px;
+					text-shadow: 0px 2px rgba(0, 0, 0, .15);
+				}
+
+				#header-aside .slides .slide-inner .slide-details h2 {
+					font-size: 1.8em;
+					margin-bottom: 0;
+				}
+
+				#header-aside .slides a.slide-inner:focus .slide-details {
+					color: #e1e1e1;
+				}
+
+				#header-aside .slides .slide-inner .slide-details,
+				#header-aside .slides a.slide-inner:hover .slide-details,
+				#header-aside .slides a.slide-inner:active .slide-details,
+				#header-aside .slides a.slide-inner:visited .slide-details {
+					color: #fff;
+				}
+
+				#header-aside .slides a.slide-inner:hover .slide-details h2 {
+					text-decoration: underline;
+				}
 
 	#header-aside .flex-direction-nav {
 		position: absolute;
@@ -522,8 +552,11 @@ body {
 
 		#header-aside .flex-direction-nav > * {
 			float: left;
-			margin: 0 0 0 10px;
 		}
+
+			#header-aside .flex-direction-nav > *:first-child {
+				margin-right: 10px;
+			}
 
 		#header-aside .flex-direction-nav a {
 			width: 35px;
@@ -655,22 +688,27 @@ body {
 
 	#header-aside {
 		position: fixed;
-		top: 0;
+		top: 31px; /* Just 1px under the admin bar. */
 		left: 0;
 		bottom: 0;
 		width: 42%;
 		height: auto;
 	}
 
+		#header-aside .slides .slide-inner .slide-details {
+			padding: 0 35px 105px;
+			width: 50%;
+		}
+
+		#header-aside .loading .slides .slide-inner .slide-details {
+			padding-bottom: 35px;
+		}
+
 		#header-aside .flex-direction-nav {
 			right: auto;
 			left: 35px;
 			bottom: 35px;
 		}
-
-			#header-aside .flex-direction-nav > * {
-				margin: 0 10px 0 0;
-			}
 
 	#content {
 		width: 58%;
@@ -679,6 +717,10 @@ body {
 
 		#primary .site-main > *:first-child {
 			padding-top: 70px;
+		}
+
+		#primary .site-main p {
+			font-size: 1.25em;
 		}
 
 	#colophon {
