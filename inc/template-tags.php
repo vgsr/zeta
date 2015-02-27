@@ -331,7 +331,7 @@ function zeta_header_slider() {
 	}
 
 	// Walk all images
-	foreach ( array_values( $images ) as $i => $args ) : 
+	foreach ( array_values( $images ) as $args ) : 
 		$slide = '';
 
 		// Handle post IDs
@@ -484,7 +484,7 @@ function zeta_header_slider() {
 		$slide .= '</' . $tag . '>';
 
 		// Filter and add slide content to the slides collection
-		$slides[] = apply_filters( 'zeta_header_slider_slide', $slide, $args, $tag, $i );
+		$slides[] = apply_filters( 'zeta_header_slider_slide', $slide, $args, $tag, count( $slides ) );
 
 	endforeach; 
 
