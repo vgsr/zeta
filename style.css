@@ -647,6 +647,7 @@ body {
 	float: right;
 	width: 100%;
 	background-color: #fff;
+	font-size: 1.1em;
 }
 
 	#primary .site-main > *,
@@ -816,10 +817,6 @@ body {
 
 			#primary .site-main > *:first-child {
 				padding-top: 70px;
-			}
-
-			#primary .site-main p {
-				font-size: 1.25em;
 			}
 
 	#colophon {
@@ -1337,11 +1334,14 @@ a:active {
 	margin: 0 0 1.5em;
 }
 
-.entry-title {
+.entry-title,
+.page-title,
+.comments-title {
 	margin: 0;
 }
 
-	.entry-title a {
+	.entry-title a,
+	.page-title a {
 		color: #404040;
 		text-decoration: none;
 	}
@@ -1360,6 +1360,15 @@ a:active {
 	.entry-footer a,
 	.entry-footer a:visited {
 		color: #999;
+		text-decoration: none;
+		border-bottom: 1px solid rgba(191, 38, 105, .3);
+	}
+
+	.entry-meta a:hover,
+	.entry-footer a:hover {
+		color: #fff;
+		background-color: rgba(191, 38, 105, .8);
+		border-color: rgba(191, 38, 105, .8);
 	}
 
 	.entry-footer > *:not(:first-child):before {
@@ -1383,6 +1392,21 @@ a:active {
 /*--------------------------------------------------------------
 10.3 Comments
 --------------------------------------------------------------*/
+#comments ol {
+	margin: 1.5em 0 0 0;
+	padding: 0 0 0 47px; /* avatar size + 15px margin */
+	list-style: none;
+}
+
+	.comment-body {
+		position: relative;
+	}
+
+		.comment-body .avatar {
+			position: absolute;
+			right: calc( 100% + 15px );
+		}
+
 .comment-content a {
 	word-wrap: break-word;
 }
