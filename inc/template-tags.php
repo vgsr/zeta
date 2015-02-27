@@ -282,7 +282,10 @@ function zeta_header_slider() {
 	 *  - title   Optional. The title of the image/post. Defaults to the post title or the image's title.
 	 *  - byline  Optional. The contents for the subtitle of the image/post. Requires a value for the `title` param
 	 */
+
+	// Define images and slides collection
 	$images = array();
+	$slides = array();
 
 	// The current post object
 	if ( is_singular() ) {
@@ -327,171 +330,176 @@ function zeta_header_slider() {
 		}
 	}
 
-	// Define image count
-	$img_count = count( $images );
-	$slides    = 0; ?>
+	// Walk all images
+	foreach ( array_values( $images ) as $i => $args ) : 
+		$slide = '';
 
-	<div class="slider flexslider loading">
-		<ul class="slides">
-			<?php foreach ( $images as $i => $data ) : 
+		// Handle post IDs
+		if ( is_numeric( $args ) ) {
+			$post = get_post( (int) $args );
+			if ( ! $post )
+				continue;
 
-				// Handle post IDs
-				if ( is_numeric( $data ) ) {
-					$post = get_post( (int) $data );
-					if ( ! $post )
-						continue;
+			// Check the post type
+			switch ( $post->post_type ) {
 
-					// Check the post type
-					switch ( $post->post_type ) {
+				// Media
+				case 'attachment' :
+					$args = array( 'src' => $post->ID );
+					break;
 
-						// Media
-						case 'attachment' :
-							$data = array( 'src' => $post->ID );
-							break;
+				// Other
+				default :
+					$args = array( 'post_id' => $post->ID );
+					break;
+			}
+		}
 
-						// Other
-						default :
-							$data = array( 'post_id' => $post->ID );
-							break;
-					}
+		// Fill data variables
+		$args = wp_parse_args( (array) $args, array(
+			'post_id' => false,
+			'src'     => false,
+			'href'    => false,
+			'title'   => false,
+			'byline'  => false
+		) );
+
+		// Get post data. Not when we're already there.
+		if ( ! empty( $args['post_id'] ) && get_queried_object_id() !== $args['post_id'] ) {
+			$post_id = $args['post_id'];
+
+			// Find an image for the post
+			if ( empty( $args['src'] ) ) {
+				$atts = array();
+
+				// Get the post's featured image
+				if ( has_post_thumbnail( $post_id ) ) {
+					$atts = array( get_post_thumbnail_id( $post_id ) );
+
+				// Get the post's attached images
+				} elseif ( ( $atts = get_attached_media( 'image', $post_id ) ) && ! empty( $atts ) ) {
+					$atts = wp_list_pluck( $atts, 'ID' );
 				}
 
-				// Fill data variables
-				$data = wp_parse_args( (array) $data, array(
-					'post_id' => false,
-					'src'     => false,
-					'href'    => false,
-					'title'   => false,
-					'byline'  => false
-				) );
-
-				// Handle post data. Not when already there.
-				if ( ! empty( $data['post_id'] ) && get_queried_object_id() !== $data['post_id'] ) {
-					$post_id = $data['post_id'];
-
-					// Find an image for the post
-					if ( empty( $data['src'] ) ) {
-						$atts = array();
-
-						// Get the post's featured image
-						if ( has_post_thumbnail( $post_id ) ) {
-							$atts = array( get_post_thumbnail_id( $post_id ) );
-
-						// Get the post's attached images
-						} elseif ( ( $atts = get_attached_media( 'image', $post_id ) ) && ! empty( $atts ) ) {
-							$atts = wp_list_pluck( $atts, 'ID' );
-						}
-
-						// Find the first post's image that can be used
-						foreach ( $atts as $att_id ) {
-							$image = wp_get_attachment_image_src( (int) $att_id, 'full' );
-
-							// Require image to be at least 1600px wide
-							if ( 1600 <= (int) $image[1] ) {
-								// Find or create an image size that is closest to 1600px wide?
-								$data['src'] = $image[0];
-
-							// Image is too small: skip slide
-							} else {
-								continue;
-							}
-						}
-
-						// Still no image found: skip slide
-						if ( empty( $data['src'] ) ) {
-							continue;
-						}
-					}
-
-					// Get post permalink
-					$data['href'] = get_permalink( $post_id );
-
-					// Get post title
-					$data['title'] = get_the_title( $post_id );
-
-					// Get post details
-					$data['byline'] = sprintf( __( 'Posted by %s', 'zeta' ), get_post_field( 'post_author', $post_id ) );
-				}
-
-				// Image is missing: skip slide
-				if ( empty( $data['src'] ) ) {
-					continue;
-
-				// Attachment ID provided
-				} elseif ( is_numeric( $data['src'] ) ) {
-					$att_id =  (int) $data['src'];
-					$image  = wp_get_attachment_image_src( $att_id, 'full' );
+				// Find the first post's image that can be used
+				foreach ( $atts as $att_id ) {
+					$image = wp_get_attachment_image_src( (int) $att_id, 'full' );
 
 					// Require image to be at least 1600px wide
 					if ( 1600 <= (int) $image[1] ) {
 						// Find or create an image size that is closest to 1600px wide?
-						$data['src'] = $image[0];
+						$args['src'] = $image[0];
 
 					// Image is too small: skip slide
 					} else {
 						continue;
 					}
-
-					$metadata = wp_get_attachment_metadata( $att_id );
-
-					// Get original image link
-					if ( apply_filters( 'zeta_header_image_use_image_url', false, $att_id ) ) {
-						$upload_dir = wp_upload_dir();
-						$data['href'] = trailingslashit( $upload_dir['baseurl'] ) . $metadata['file'];
-					}
-
-					// Get attachment title
-					if ( apply_filters( 'zeta_header_image_use_image_title', false, $att_id ) 
-						&& ( $att_title = get_the_title( $att_id ) ) && ! empty( $att_title ) ) {
-						$data['title'] = $att_title;
-					}
-
-					// Get attachment details
-					if ( apply_filters( 'zeta_header_image_use_image_credits', false, $att_id ) 
-						&& ! empty( $metadata['image_meta']['credit'] ) ) {
-						$data['byline'] = sprintf( __( 'Created by %s', 'zeta' ), $metadata['image_meta']['credit'] );
-					}
 				}
 
-			// Start slide
-			?><li class="slide" style="z-index: <?php echo $img_count - $i; ?>;"><?php
-
-				// Define image container tag. Use anchor when a link is provided
-				$tag = ! empty( $data['href'] ) ? 'a' : 'div'; 
-
-				// Start image container
-				$el = '<' . $tag . ' class="slide-inner" style="background-image: url(' . esc_attr( $data['src'] ) . ');"';
-
-				// Add link to the element
-				if ( 'a' === $tag ) {
-					$el .= ' href="' . esc_attr( $data['href'] ) . '"';
+				// Still no image found: skip slide
+				if ( empty( $args['src'] ) ) {
+					continue;
 				}
-				$el .= '>';
+			}
 
-				// Handle titles
-				if ( ! empty( $data['title'] ) ) {
-					$el .= '<header class="slide-details"><h2>' . $data['title'] . '</h2>';
+			// Get post permalink
+			$args['href'] = get_permalink( $post_id );
 
-					// Append byline
-					if ( ! empty( $data['byline'] ) ) {
-						$el .= '<span class="byline">' . $data['byline'] . '</span>';
-					}
+			// Get post title
+			$args['title'] = get_the_title( $post_id );
 
-					$el .= '</header>';
-				}
+			// Get post details
+			$args['byline'] = sprintf( __( 'Posted by %s', 'zeta' ), get_post_field( 'post_author', $post_id ) );
+		}
 
-				// Close image container
-				$el .= '</' . $tag . '>';
+		// Image is missing: skip slide
+		if ( empty( $args['src'] ) ) {
+			continue;
 
-				// Filter and display slide content
-				echo apply_filters( 'zeta_header_slider_slide', $el, $data, $tag, $i );
+		// Attachment ID provided
+		} elseif ( is_numeric( $args['src'] ) ) {
+			$att_id =  (int) $args['src'];
+			$image  = wp_get_attachment_image_src( $att_id, 'full' );
 
-			// End slide
-			?></li>
-			<?php $slides++; endforeach; ?>
+			// Require image to be at least 1600px wide
+			if ( 1600 <= (int) $image[1] ) {
+				// Find or create an image size that is closest to 1600px wide?
+				$args['src'] = $image[0];
+
+			// Image is too small: skip slide
+			} else {
+				continue;
+			}
+
+			$metadata = wp_get_attachment_metadata( $att_id );
+
+			// Get original image link
+			if ( apply_filters( 'zeta_header_image_use_image_url', false, $att_id ) ) {
+				$upload_dir = wp_upload_dir();
+				$args['href'] = trailingslashit( $upload_dir['baseurl'] ) . $metadata['file'];
+			}
+
+			// Get attachment title
+			if ( apply_filters( 'zeta_header_image_use_image_title', false, $att_id ) 
+				&& ( $att_title = get_the_title( $att_id ) ) && ! empty( $att_title ) ) {
+				$args['title'] = $att_title;
+			}
+
+			// Get attachment details
+			if ( apply_filters( 'zeta_header_image_use_image_credits', false, $att_id ) 
+				&& ! empty( $metadata['image_meta']['credit'] ) ) {
+				$args['byline'] = sprintf( __( 'Created by %s', 'zeta' ), $metadata['image_meta']['credit'] );
+			}
+		}
+
+		/**
+		 * If we made it untill here, let's start the slide
+		 */
+
+		// Define image container tag. Use anchor when a link is provided
+		$tag = ! empty( $args['href'] ) ? 'a' : 'div'; 
+
+		// Start image container
+		$slide = '<' . $tag . ' class="slide-inner" style="background-image: url(' . esc_attr( $args['src'] ) . ');"';
+
+		// Add link to the element
+		if ( 'a' === $tag ) {
+			$slide .= ' href="' . esc_attr( $args['href'] ) . '"';
+		}
+		$slide .= '>';
+
+		// Handle titles
+		if ( ! empty( $args['title'] ) ) {
+			$slide .= '<header class="slide-details"><h2>' . $args['title'] . '</h2>';
+
+			// Append byline
+			if ( ! empty( $args['byline'] ) ) {
+				$slide .= '<span class="byline">' . $args['byline'] . '</span>';
+			}
+
+			$slide .= '</header>';
+		}
+
+		// Close image container
+		$slide .= '</' . $tag . '>';
+
+		// Filter and add slide content to the slides collection
+		$slides[] = apply_filters( 'zeta_header_slider_slide', $slide, $args, $tag, $i );
+
+	endforeach; 
+
+	// Filter all header slides
+	$slides      = apply_filters( 'zeta_header_slider_slides', $slides ); 
+	$slide_count = count( $slides ); ?>
+
+	<div class="slider flexslider loading">
+		<ul class="slides">
+			<?php foreach ( array_values( $slides ) as $i => $slide ) : 
+			?><li class="slide" style="z-index: <?php echo $slide_count - $i; ?>;"><?php echo $slide; ?></li>
+			<?php endforeach; ?>
 		</ul>
 
-		<?php if ( $slides > 1 ) : ?>
+		<?php if ( $slide_count > 1 ) : ?>
 
 		<script>
 			jQuery(document).ready( function( $ ) {
