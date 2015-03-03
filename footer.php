@@ -12,9 +12,9 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'zeta' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'zeta' ), 'WordPress' ); ?></a>
+			<?php printf( __( 'Built with %s', 'zeta' ), '<a href="http://wordpress.org/">WordPress</a>' ); ?>
 			<span class="sep"> | </span>
-			<?php printf( __( 'Theme: %1$s by %2$s.', 'zeta' ), 'zeta', '<a href="http://underscores.me/" rel="designer">Underscores.me</a>' ); ?>
+			<?php printf( __( 'Theme: %1$s by %2$s.', 'zeta' ), 'Zeta', '<a href="https://github.com/vgsr/" rel="designer">MMC</a>' ); ?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

@@ -385,9 +385,9 @@ function zeta_header_slider() {
 				foreach ( $atts as $att_id ) {
 					$image = wp_get_attachment_image_src( (int) $att_id, 'full' );
 
-					// Require image to be at least 1600px wide
-					if ( 1600 <= (int) $image[1] ) {
-						// Find or create an image size that is closest to 1600px wide?
+					// Require image to be at least 1600 x 900
+					if ( 1600 <= (int) $image[1] && 900 <= (int) $image[2] ) {
+						// Find or create an image size that is closest to 1600 x 900?
 						$args['src'] = $image[0];
 
 					// Image is too small: skip slide
@@ -409,7 +409,8 @@ function zeta_header_slider() {
 			$args['title'] = get_the_title( $post_id );
 
 			// Get post details
-			$args['byline'] = sprintf( __( 'Posted by %s', 'zeta' ), get_post_field( 'post_author', $post_id ) );
+			$author = get_user_by( 'id', get_post_field( 'post_author', $post_id ) );
+			$args['byline'] = sprintf( __( 'Posted by %s', 'zeta' ), $author->display_name );
 		}
 
 		// Image is missing: skip slide
@@ -453,7 +454,7 @@ function zeta_header_slider() {
 		}
 
 		/**
-		 * If we made it untill here, let's start the slide
+		 * If we made it so far, let's build the slide
 		 */
 
 		// Define image container tag. Use anchor when a link is provided
