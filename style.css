@@ -1149,6 +1149,8 @@ a:active {
 
 	.main-navigation a {
 		padding: 7px 17px;
+		-webkit-transition: background-color .15s ease-in;
+		transition: background-color .15s ease-in;
 	}
 
 	.main-navigation ul {
@@ -1164,13 +1166,13 @@ a:active {
 			border: none;
 		}
 
+		.main-navigation ul.nav-menu > li > a {
+			height: 35px;
+		}
+
 		.main-navigation li:hover > a {
 			background-color: rgba(35, 115, 38, 1);
 			text-decoration: none;
-		}
-
-		.main-navigation ul.nav-menu > li > a {
-			height: 35px;
 		}
 
 	.main-navigation .current_page_item > a,
@@ -1499,7 +1501,7 @@ object {
 12.2 Galleries
 --------------------------------------------------------------*/
 .gallery {
-	margin-bottom: 1.5em;
+	margin-top: 1.5em;
 }
 
 .gallery-item {
@@ -1507,6 +1509,13 @@ object {
 	text-align: center;
 	vertical-align: top;
 	width: 100%;
+	margin: 0;
+	padding: 0 3px 3px 0;
+}
+
+.gallery-item a,
+.gallery-item a img {
+	float: left;
 }
 
 .gallery-columns-2 .gallery-item {

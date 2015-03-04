@@ -270,7 +270,19 @@ add_action( 'save_post',     'zeta_category_transient_flusher' );
  *
  * @since 1.0.0
  *
- * @uses wp_enqueue_style()
+ * @uses is_singular()
+ * @uses get_queried_object_id()
+ * @uses has_post_thumbnail()
+ * @uses get_post_thumbnail_id()
+ * @uses has_shortcode()
+ * @uses get_post_gallery_images()
+ * @uses zeta_get_attachment_id_from_url()
+ * @uses get_attached_media()
+ * @uses zeta_header_slider_get_image_dims()
+ * @uses get_attachment_metadata()
+ * @uses apply_filters() Calls 'zeta_header_slider_slide'
+ * @uses apply_filters() Calls 'zeta_header_slider_slides'
+ * @uses wp_enqueue_script()
  */
 function zeta_header_slider() {
 
@@ -284,24 +296,45 @@ function zeta_header_slider() {
 	 */
 
 	// Define images and slides collection
-	$images = array();
-	$slides = array();
+	$images = $slides = array();
 
 	// The current post object
 	if ( is_singular() ) {
-		$post_id = get_queried_object_id();
+		$post = get_queried_object();
 
-		// Treat galleries differently?
-		if ( has_post_format( $post_id ) && 'gallery' == get_post_format( $post_id ) ) {
+		// Get the main image: the post thumbnail
+		if ( has_post_thumbnail( $post->ID ) ) {
+			$images[] = get_post_thumbnail_id( $post->ID );
+		}
 
-			// Get all attached images of the loop's posts
-			$images = array_filter( wp_list_pluck( (array) get_attached_media( 'image', $post_id ), 'ID' ) );
+		// Get the first gallery's images
+		if ( has_shortcode( get_post( $post->ID )->post_content, 'gallery' ) ) {
+			foreach ( get_post_gallery_images( $post->ID ) as $image_url ) {
+				if ( $image_att_id = zeta_get_attachment_id_from_url( $image_url ) ) {
+					$images[] = $image_att_id;
+				}
+			}
 
-		// Default post object
+		// Default to attached images
 		} else {
+			$images += array_filter( wp_list_pluck( (array) get_attached_media( 'image', $post->ID ), 'ID' ) );
 
-			// Get all attached images of the loop's posts
-			$images = array_filter( wp_list_pluck( (array) get_attached_media( 'image', $post_id ), 'ID' ) );
+			// Get embedded images
+			$embedded = get_media_embedded_in_content( $post->post_content, 'img' );
+			if ( ! empty( $embedded ) ) {
+				$doc = new DOMDocument();
+				foreach ( $embedded as $embedded_image ) {
+					$doc->loadHTML( $embedded_image );
+					foreach ( $doc->getElementsByTagName( 'img' ) as $tag ) {
+						$img_src = $tag->getAttribute( 'src' );
+						if ( $image_att_id = zeta_get_attachment_id_from_url( $img_src ) ) {
+							$images[] = $image_att_id;
+						} else {
+							$images[] = array( 'src' => $img_src );
+						}
+					}
+				}
+			}
 		}
 
 	// Posts collection
@@ -314,30 +347,24 @@ function zeta_header_slider() {
 	// Front page
 	} elseif ( is_front_page() ) {
 
-		// What to do here? Latest posts, featured posts, front page gallery?
-		$query = new WP_Query( array( 'posts_per_page' => 5, 'fields' => 'ids' ) );
+		// What to do here? Latest posts that have featured images, featured posts, custom front page gallery?
+		$query = new WP_Query( array( 
+			'posts_per_page' => 5, 
+			'fields'         => 'ids',
+			'meta_key'       => '_thumbnail_id',
+			'meta_compare'   => 'EXISTS',
+		) );
 
 		// Get the five latest post IDs
 		$images = $query->query();
 	}
 
-	// When no images were found, get the default slider images
-	if ( empty( $images ) ) {
-		foreach ( array( 'benches.jpg', 'bridge.jpg', 'desktop.jpg', 'downtown.jpg', 'tools.jpg' ) as $file ) {
-			$images[] = array( 
-				'src' => get_template_directory_uri() . '/images/headers/' . $file, 
-			);
-		}
-	}
-
 	// Walk all images
-	foreach ( array_values( $images ) as $args ) : 
-		$slide = '';
+	foreach ( array_unique( array_values( $images ) ) as $args ) {
 
 		// Handle post IDs
 		if ( is_numeric( $args ) ) {
-			$post = get_post( (int) $args );
-			if ( ! $post )
+			if ( ! $post = get_post( (int) $args ) )
 				continue;
 
 			// Check the post type
@@ -355,7 +382,7 @@ function zeta_header_slider() {
 			}
 		}
 
-		// Fill data variables
+		// Fill slide variables
 		$args = wp_parse_args( (array) $args, array(
 			'post_id' => false,
 			'src'     => false,
@@ -364,70 +391,84 @@ function zeta_header_slider() {
 			'byline'  => false
 		) );
 
-		// Get post data. Not when we're already there.
+		// For a single slide: get post data. Not when we're already there.
 		if ( ! empty( $args['post_id'] ) && get_queried_object_id() !== $args['post_id'] ) {
-			$post_id = $args['post_id'];
+			if ( ! $post = get_post( $args['post_id'] ) )
+				continue;
 
-			// Find an image for the post
+			// Find a single image for this slide
 			if ( empty( $args['src'] ) ) {
-				$atts = array();
+				$src = false;
 
-				// Get the post's featured image
-				if ( has_post_thumbnail( $post_id ) ) {
-					$atts = array( get_post_thumbnail_id( $post_id ) );
+				do {
 
-				// Get the post's attached images
-				} elseif ( ( $atts = get_attached_media( 'image', $post_id ) ) && ! empty( $atts ) ) {
-					$atts = wp_list_pluck( $atts, 'ID' );
-				}
+					// Get the post's featured image
+					if ( has_post_thumbnail( $post->ID ) && ( $src = zeta_header_slider_check_image_dims( get_post_thumbnail_id( $post->ID ) ) ) )
+						break;
 
-				// Find the first post's image that can be used
-				foreach ( $atts as $att_id ) {
-					$image = wp_get_attachment_image_src( (int) $att_id, 'full' );
-
-					// Require image to be at least 1600 x 900
-					if ( 1600 <= (int) $image[1] && 900 <= (int) $image[2] ) {
-						// Find or create an image size that is closest to 1600 x 900?
-						$args['src'] = $image[0];
-
-					// Image is too small: skip slide
-					} else {
-						continue;
+					// Get the post's first gallery's first image
+					if ( has_shortcode( $post->post_content, 'gallery' ) ) {
+						foreach ( get_post_gallery_images( $post ) as $image_url ) {
+							if ( $src = zeta_header_slider_check_image_dims( zeta_get_attachment_id_from_url( $image_url ) ) )
+								break 2;
+						}
 					}
-				}
 
-				// Still no image found: skip slide
-				if ( empty( $args['src'] ) ) {
+					// Get the post's first attached image
+					if ( ( $imgs = get_attached_media( 'image', $post->ID ) ) && ! empty( $imgs ) ) {
+						foreach ( wp_list_pluck( $imgs, 'ID' ) as $att_id ) {
+							if ( $src = zeta_header_slider_check_image_dims( $att_id ) )
+								break 2;
+						}
+					}
+
+					// Get the post's first embedded image
+					if ( ( $imgs = get_media_embedded_in_content( $post->post_content, 'img' ) ) && ! empty( $imgs ) ) {
+						$doc = new DOMDocument();
+						foreach ( $imgs as $embedded_image ) {
+							$doc->loadHTML( $embedded_image );
+							foreach ( $doc->getElementsByTagName( 'img' ) as $tag ) {
+								$img_src = $tag->getAttribute( 'src' );
+								if ( $att_id = zeta_get_attachment_id_from_url( $img_src ) ) {
+									$img_src = $att_id;
+								}
+								if ( $src = zeta_header_slider_check_image_dims( $img_src ) )
+									break 3;
+								// if ( $src = zeta_header_slider_check_image_dims( zeta_get_attachment_id_from_url( $img_src ) ) )
+								// 	break 3;
+							}
+						}
+					}
+
+				} while ( 0 );
+
+				// Image found? Keep it. Else skip slide
+				if ( $src ) {
+					$args['src'] = $src;
+				} else {
 					continue;
 				}
 			}
 
 			// Get post permalink
-			$args['href'] = get_permalink( $post_id );
+			$args['href'] = get_permalink( $post->ID );
 
 			// Get post title
-			$args['title'] = get_the_title( $post_id );
+			$args['title'] = get_the_title( $post->ID );
 
 			// Get post details
-			$author = get_user_by( 'id', get_post_field( 'post_author', $post_id ) );
-			$args['byline'] = sprintf( __( 'Posted by %s', 'zeta' ), $author->display_name );
+			$args['byline'] = sprintf( __( 'Posted on %s', 'zeta' ), get_the_date( '', $post->ID ) );
 		}
 
-		// Image is missing: skip slide
-		if ( empty( $args['src'] ) ) {
-			continue;
+		// Attachment ID provided instead of image url
+		if ( is_numeric( $args['src'] ) ) {
+			$att_id = (int) $args['src'];
 
-		// Attachment ID provided
-		} elseif ( is_numeric( $args['src'] ) ) {
-			$att_id =  (int) $args['src'];
-			$image  = wp_get_attachment_image_src( $att_id, 'full' );
+			// Get correct image size's url
+			if ( $src = zeta_header_slider_check_image_dims( $att_id ) ) {
+				$args['src'] = $src;
 
-			// Require image to be at least 1600px wide
-			if ( 1600 <= (int) $image[1] ) {
-				// Find or create an image size that is closest to 1600px wide?
-				$args['src'] = $image[0];
-
-			// Image is too small: skip slide
+			// Image is too small, so skip slide
 			} else {
 				continue;
 			}
@@ -451,11 +492,32 @@ function zeta_header_slider() {
 				&& ! empty( $metadata['image_meta']['credit'] ) ) {
 				$args['byline'] = sprintf( __( 'Created by %s', 'zeta' ), $metadata['image_meta']['credit'] );
 			}
+
+		// Image is missing, so skip slide
+		} elseif ( empty( $args['src'] ) ) {
+			continue;
 		}
 
-		/**
-		 * If we made it so far, let's build the slide
-		 */
+		// If we made it this far, add to slides collection
+		$slides[] = $args;
+	}
+
+	// When no valid images were found, get the default slider images
+	if ( empty( $slides ) ) {
+		$defaults = array( 'benches.jpg', 'bridge.jpg', 'desktop.jpg', 'downtown.jpg', 'tools.jpg' );
+		$default  = array_rand( $defaults ); 
+		$slides[] = array( 
+			'post_id' => false,
+			'src'     => get_template_directory_uri() . '/images/headers/' . $defaults[ $default ],
+			'href'    => false,
+			'title'   => false,
+			'byline'  => false,
+		);
+	}
+
+	// Build the slides
+	foreach ( $slides as $i => $args ) {
+		$slide = '';
 
 		// Define image container tag. Use anchor when a link is provided
 		$tag = ! empty( $args['href'] ) ? 'a' : 'div'; 
@@ -485,9 +547,8 @@ function zeta_header_slider() {
 		$slide .= '</' . $tag . '>';
 
 		// Filter and add slide content to the slides collection
-		$slides[] = apply_filters( 'zeta_header_slider_slide', $slide, $args, $tag, count( $slides ) );
-
-	endforeach; 
+		$slides[ $i ] = apply_filters( 'zeta_header_slider_slide', $slide, $args, $tag, $i );
+	}
 
 	// Filter all header slides
 	$slides      = apply_filters( 'zeta_header_slider_slides', $slides ); 
@@ -518,11 +579,51 @@ function zeta_header_slider() {
 
 		<?php 
 
-			// Flexslider
+			// Enqueue flexslider script
 			wp_enqueue_script( 'flexslider' );
 
 		endif; ?>
 	</div>
 
 	<?php
+}
+
+/**
+ * Return whether the given image can be used
+ *
+ * @since 1.0.0
+ *
+ * @uses wp_get_attachment_image_src()
+ * 
+ * @param int|string $image Attachment ID or image source
+ * @return string|bool Image src if it can be used, false if not
+ */
+function zeta_header_slider_check_image_dims( $image_id ) {
+
+	// Treat as attachment ID
+	if ( is_numeric( $image_id ) ) {
+		$image = wp_get_attachment_image_src( $image_id, 'full' );
+
+	// Try to find it remotely
+	} else {
+		$image = getimagesize( $image_id );
+
+		// Transform details setup when image was found
+		if ( $image ) {
+			$image[2] = $image[1];
+			$image[1] = $image[0];
+			$image[0] = $image_id;
+		}
+	}
+
+	// Require image to be at least 1200 x 900
+	if ( $image && 1200 <= (int) $image[1] && 900 <= (int) $image[2] ) {
+
+		// Should we find or create an image size that is closest to 1200 x 900 instead of full?
+		return $image[0];
+
+	// Image not found or is too small
+	} else {
+		return false;
+	}
 }
