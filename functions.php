@@ -9,7 +9,7 @@
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) ) {
-	$content_width = 640; /* pixels */
+	$content_width = 569; /* pixels */
 }
 
 if ( ! function_exists( 'zeta_setup' ) ) :
@@ -46,7 +46,7 @@ function zeta_setup() {
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
-	//add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
@@ -69,14 +69,27 @@ function zeta_setup() {
 		'aside', 'image', 'video', 'quote', 'link',
 	) );
 
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'zeta_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
+	/**
+	 * Register theme image sizes
+	 */
+	zeta_add_image_sizes();
 }
 endif; // zeta_setup
 add_action( 'after_setup_theme', 'zeta_setup' );
+
+/**
+ * Regirster additional image sizes
+ *
+ * @since 1.0.0
+ */
+function zeta_add_image_sizes() {
+
+	// Default featured image size
+	set_post_thumbnail_size( 300, 300 );
+
+	// Header slider image size
+	add_image_size( 'zeta-header-slider', 1200, 900 );
+}
 
 /**
  * Register widget area.
