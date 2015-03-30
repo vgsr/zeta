@@ -86,6 +86,7 @@ endif;
  * @uses zeta_get_attachment_id_from_url()
  * @uses get_attached_media()
  * @uses get_media_embedded_in_content()
+ * @uses zeta_check_image_size()
  * @uses apply_filters() Calls 'zeta_get_post_images'
  * 
  * @param int|object $post Post ID or post object
@@ -172,6 +173,10 @@ function zeta_get_post_images( $post, $size = '' ) {
  * Return the first image associated with the given post
  *
  * @since 1.0.0
+ *
+ * @uses zeta_get_post_images()
+ * @uses zeta_check_image_size()
+ * @uses apply_filters() Calls 'zeta_get_first_post_image'
  * 
  * @param int|object $post Post ID or post object
  * @param string|array $size Optional. Required image size. If empty any image
