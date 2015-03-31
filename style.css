@@ -446,6 +446,7 @@ body {
 	color: #fff;
 	font-size: 1.2rem;
 	z-index: 499; /* Beneath the admin bar. */
+	background-color: rgba(2, 144, 7, .8);
 }
 
 	.site-header a,
@@ -461,7 +462,6 @@ body {
 		position: absolute;
 		width: 100%;
 		padding: 15px 35px;
-		background-color: rgba(2, 144, 7, .8);
 	}
 
 	.site-branding .site-title {
@@ -490,7 +490,7 @@ body {
 	position: relative;
 	float: left;
 	width: 100%;
-	height: 48vh; /* Viewport height */
+	height: 33vh; /* Viewport height */
 }
 
 	#header-aside .slider {
@@ -680,7 +680,7 @@ body {
 		}
 
 	#header-aside {
-		height: 58vh;
+		height: 43vh;
 	}
 
 	.menu-toggled #header-aside {
@@ -725,7 +725,8 @@ body {
 		top: 35px;
 		left: 35px;
 		width: 104px;
-		padding: 17px;
+		padding: 0;
+		background-color: rgba(2, 144, 7, .8);
 	}
 
 		.site-branding:after {
@@ -745,17 +746,43 @@ body {
 			.site-branding .site-title a {
 				display: block;
 				background-size: 70px;
-				width: 70px;
-				height: 70px;
+				background-position: 17px 17px;
+				width: 104px;
+				height: 175px;
 				padding: 0;
 				text-indent: -99999px;
 			}
 
 		.site-branding .site-description {
-			margin: 17px 0 0;
-			text-align: center;
+			position: absolute;
 			display: block;
+			top: 87px;
+			margin: 0;
+			padding: 0;
 		}
+
+		.site-branding .site-description a {
+			display: block;
+			width: 104px;
+			padding: 17px;
+			text-align: center;
+		}
+
+	.site-header:hover,
+	.site-header:hover .site-branding {
+		background-color: rgba(51, 165, 55, 1);
+	}
+
+	.site-header:hover .site-branding:after {
+		background-color: rgba(122, 229, 42, 1);
+	}
+
+	.site-header,
+	.site-header .site-branding,
+	.site-header .site-branding:after {
+		-webkit-transition: background-color .3s ease-in;
+		transition: background-color .3s ease-in;
+	}
 
 	#header-aside {
 		position: fixed;
@@ -765,6 +792,10 @@ body {
 		width: 42%;
 		height: auto;
 		padding: 0;
+	}
+
+	body.admin-bar #header-aside {
+		top: 32px;
 	}
 
 		.menu-toggled #header-aside {
@@ -939,6 +970,7 @@ a:active {
 --------------------------------------------------------------*/
 .main-navigation {
 	clear: both;
+	margin-bottom: 62px;
 }
 
 .main-navigation .nav-menu {
@@ -996,7 +1028,6 @@ a:active {
 .main-navigation ul ul {
 	position: absolute;
 	top: 35px;
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 	left: -999em;
 	z-index: 99999;
 }
@@ -1093,6 +1124,7 @@ a:active {
 @media screen and (min-width: 561px) {
 	.main-navigation {
 		padding: 0 35px;
+		margin-bottom: 96px;
 	}
 
 		.main-navigation .nav-menu {
@@ -1116,7 +1148,6 @@ a:active {
 				font-size: 20px;
 				line-height: 20px;
 			}
-
 }
 
 @media screen and (min-width: 741px) {
@@ -1132,12 +1163,14 @@ a:active {
 		position: absolute;
 		right: 35px;
 		top: 0;
+		margin: 0;
 		padding: 0;
 	}
 
 		.main-navigation .nav-menu {
 			display: block;
 			float: right;
+			height: 35px;
 			margin: 0;
 			padding: 0;
 			background-color: transparent;
