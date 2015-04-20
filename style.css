@@ -748,13 +748,12 @@ body {
 				background-size: 70px;
 				background-position: 17px 17px;
 				width: 104px;
-				height: 175px;
+				height: 104px;
 				padding: 0;
 				text-indent: -99999px;
 			}
 
 		.site-branding .site-description {
-			position: absolute;
 			display: block;
 			top: 87px;
 			margin: 0;
@@ -764,7 +763,7 @@ body {
 		.site-branding .site-description a {
 			display: block;
 			width: 104px;
-			padding: 17px;
+			padding: 0 17px 17px;
 			text-align: center;
 		}
 
