@@ -292,7 +292,7 @@ function zeta_header_slider() {
 	// Define images, posts, and slides collection
 	$images = $posts = $slides = array();
 
-	// Setup the slider's required image dimensions
+	// Define the slider's required image dimensions
 	$image_size = 'zeta-header-slider';
 
 	//
@@ -315,8 +315,8 @@ function zeta_header_slider() {
 			$images[] = zeta_get_first_post_image( $post_id, $image_size );
 		}
 
-	// This is the front page
-	} elseif ( is_front_page() ) {
+	// This is the front page or a not-found page
+	} elseif ( is_front_page() || is_404() ) {
 
 		// What to do here? Latest posts that have featured images, featured posts, custom front page gallery?
 		// The five latest posts that have featured images
@@ -495,3 +495,52 @@ function zeta_header_slider() {
 
 	<?php
 }
+
+/**
+ * Append a slide with a map
+ *
+ * @since 1.0.0
+ *
+ * @uses array $slides
+ * @return array
+ */
+function zeta_map_slide( $slides ) {
+
+	// The Mapbox details
+	$mapbox_user  = 'mmcievgsr';
+	$mapbox_token = 'pk.eyJ1IjoibW1jaWV2Z3NyIiwiYSI6ImFGbkd0R3cifQ.TMV3FZNQ3aBGmYaQ0MuT5Q';
+	$mapbox_map   = 'ljkn6i7o';
+
+	// Define the map's coordinates
+	$zoom  = 15;
+	$xtile = 51.915;
+	$ytile = 4.440;
+
+	// Open Street Map
+	ob_start(); ?>
+
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.6/mapbox.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.6/mapbox.css' rel='stylesheet' />
+	<div id="the-map" class="slide-inner"></div>
+
+	<script>
+		L.mapbox.accessToken = '<?php echo $mapbox_token; ?>';
+		var map = L.mapbox.map( 'the-map', <?php echo "'$mapbox_user.$mapbox_map'"; ?>, {
+		    	zoomControl: false
+		    }).setView( <?php echo "[ $xtile, $ytile ], $zoom"; ?> ),
+		    layer = L.mapbox.featureLayer().addTo( map );
+		
+		// Add data points
+		layer.setGeoJSON( [<?php echo file_get_contents( get_template_directory_uri() . '/js/demo.geojson' ); ?>] );
+
+		// Redraw zoom control
+		new L.Control.Zoom({ position: 'bottomleft' }).addTo( map );
+	</script>
+
+	<?php
+
+	$slides = array( ob_get_clean() );
+
+	return $slides;
+}
+// add_filter( 'zeta_header_slider_slides', 'zeta_map_slide' );

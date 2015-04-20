@@ -177,6 +177,11 @@ function zeta_scripts() {
 	// Add Dashicons for small menu
 	wp_enqueue_style( 'dashicons' );
 
+	// BuddyPress
+	if ( function_exists( 'buddypress' ) && is_buddypress() ) {
+		wp_enqueue_style( 'zeta-buddypress', get_template_directory_uri() . '/css/buddypress.css', array( 'buddypress' ) );
+	}
+
 	// Navigation menu for small screens
 	wp_enqueue_script( 'zeta-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 

@@ -1199,6 +1199,10 @@ a:active {
 			border: none;
 		}
 
+		.main-navigation ul.nav-menu > li:last-child {
+			border-bottom: none;
+		}
+
 		.main-navigation ul.nav-menu > li > a {
 			height: 35px;
 		}

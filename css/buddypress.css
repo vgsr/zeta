@@ -1,0 +1,75 @@
+/**
+ * BuddyPress Styles
+ *
+ * @package Zeta
+ * @subpackage BuddyPress
+ */
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+1.0 Members
+	1.1 User Profile
+	1.2 My Profile
+2.0 Groups
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+1.0 Members
+--------------------------------------------------------------*/
+.bp-user .bp_members {
+	position: relative;
+}
+
+/*--------------------------------------------------------------
+1.1 User Profile
+--------------------------------------------------------------*/
+.bp-user .bp_members .entry-header,
+.bp-user .bp_members .item-header {
+	padding-left: 59px;
+}
+
+.bp-user #item-header-avatar {
+	position: absolute;
+	top: 64px;
+	left: -82px;
+	padding: 6px;
+	background: #fff;
+}
+
+.bp-user #item-header-avatar a {
+	display: block;
+	margin: 0;
+	padding: 0;
+	width: 150px;
+	height: 150px;
+	position: relative;
+}
+
+.bp-user #item-header-avatar,
+.bp-user #item-header-avatar img.avatar {
+	border-radius: 50%;
+}
+
+/*--------------------------------------------------------------
+1.1 My Profile
+--------------------------------------------------------------*/
+
+.bp-user.my-account #item-header-avatar a:after {
+	content: '\f107'; /* dashicons-admin-tools */
+	position: absolute;
+	top: 0;
+	width: 150px;
+	height: 150px;
+	font: 50px/50px dashicons;
+	padding: calc( 50% - 25px );
+	color: #333;
+	background: #fff;
+	opacity: 0;
+	transition: opacity .2s ease-in;
+	border-radius: 50%;
+}
+
+	.bp-user.my-account #item-header-avatar a:hover:after {
+		opacity: .5;
+	}
