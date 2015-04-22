@@ -18,37 +18,92 @@
 1.0 Members
 --------------------------------------------------------------*/
 .bp-user .bp_members {
-	position: relative;
 }
 
 /*--------------------------------------------------------------
 1.1 User Profile
 --------------------------------------------------------------*/
-.bp-user .bp_members .entry-header,
-.bp-user .bp_members .item-header {
-	padding-left: 59px;
+.bp-user .bp_members .entry-header {
 }
 
-.bp-user #item-header-avatar {
+.bp-user #item-header {
 	position: absolute;
-	top: 64px;
-	left: -82px;
-	padding: 6px;
-	background: #fff;
+	top: -100px;
+	right: 0;
+	width: 100%;
+	font-size: 15px;
+	color: #fff;
+	text-align: center;
+	z-index: 100;
 }
 
 .bp-user #item-header-avatar a {
-	display: block;
-	margin: 0;
-	padding: 0;
-	width: 150px;
-	height: 150px;
 	position: relative;
+	display: inline-block;
+	width: 130px;
+	height: 130px;
+	padding: 5px;
+	background-color: #fff;
 }
 
-.bp-user #item-header-avatar,
+.bp-user #item-header-avatar a,
 .bp-user #item-header-avatar img.avatar {
 	border-radius: 50%;
+}
+
+@media screen and (min-width: 561px) {
+	.bp-user #item-header-avatar a {
+		width: 160px;
+		height: 160px;
+	}
+}
+
+@media screen and (min-width: 741px) {
+	.bp-user #item-header {
+		position: fixed;
+		top: calc( 81px + 35px );
+		right: calc( 58% + 35px );
+		width: calc( 42% - 174px - 35px );
+		max-width: 160px;
+		text-align: center;
+	}
+
+	.bp-user #item-header-avatar {
+		width: 100%;
+		position: relative;
+		margin-bottom: 20px;
+	}
+
+		.bp-user #item-header-avatar:before {
+			content: '';
+			display: block;
+			padding-top: 100%; /* 1:1 ratio */
+		}
+
+	.bp-user #item-header-avatar a {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+	}
+}
+
+/** WP admin bar -14px height */
+@media screen and (min-width: 783px) {
+	.bp-user #item-header {
+		top: calc( 67px + 35px );
+	}
+}
+
+@media screen and (min-width: 1120px) {
+	.bp-user #item-header {
+		right: calc( 640px + 35px );
+		width: 160px;
+		text-align: center;
+	}
 }
 
 /*--------------------------------------------------------------
@@ -56,20 +111,22 @@
 --------------------------------------------------------------*/
 
 .bp-user.my-account #item-header-avatar a:after {
-	content: '\f107'; /* dashicons-admin-tools */
+	content: '\f464'; /* dashicons-edit */
+	background: rgba(51, 165, 55, 1);
 	position: absolute;
-	top: 0;
-	width: 150px;
-	height: 150px;
-	font: 50px/50px dashicons;
-	padding: calc( 50% - 25px );
-	color: #333;
-	background: #fff;
+	top: calc( 50% - 25px );
+	left: calc( 50% - 25px );
+	width: 50px;
+	height: 50px;
+	padding: 10px;
+	border-radius: 50%;
+	font: 30px/30px dashicons;
+	color: #fff;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, .5);
 	opacity: 0;
 	transition: opacity .2s ease-in;
-	border-radius: 50%;
 }
 
 	.bp-user.my-account #item-header-avatar a:hover:after {
-		opacity: .5;
+		opacity: 1;
 	}
