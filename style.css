@@ -472,7 +472,7 @@ body {
 
 		.site-branding .site-title a {
 			display: block;
-			background: url( 'images/logo-wit.png' ) no-repeat;
+			background: url(images/logo-wit.png) no-repeat;
 			background-size: 32px;
 			width: 32px;
 			height: 32px;
@@ -636,6 +636,7 @@ body {
 			}
 
 #content {
+	position: relative;
 	float: right;
 	width: 100%;
 	background-color: #fff;
@@ -685,7 +686,6 @@ body {
 	}
 
 	.menu-toggled #header-aside {
-		padding: 0 35px;
 		height: calc( 58vh - 50px );
 	}
 
@@ -698,14 +698,10 @@ body {
 		background-color: transparent;
 	}
 
-	.menu-toggled #content {
-		padding: 0 35px 35px;
+	#primary .site-main > *,
+	#secondary > * {
+		background-color: #fff;
 	}
-
-		#primary .site-main > *,
-		#secondary > * {
-			background-color: #fff;
-		}
 }
 
 @media screen and (min-width: 741px) {
@@ -1123,7 +1119,6 @@ a:active {
 
 @media screen and (min-width: 561px) {
 	.main-navigation {
-		padding: 0 35px;
 		margin-bottom: 96px;
 	}
 
