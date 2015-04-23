@@ -566,7 +566,14 @@ body {
 		padding: 0;
 		list-style: none;
 		z-index: 499;
+		opacity: 0;
+		-webkit-transition: opacity .2s ease-in;
+		transition: opacity .2s ease-in;
 	}
+
+		#header-aside:hover .flex-direction-nav {
+			opacity: 1;
+		}
 
 		#header-aside .flex-direction-nav > * {
 			float: left;
