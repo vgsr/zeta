@@ -8,22 +8,102 @@
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-1.0 Members
-	1.1 User Profile
-	1.2 My Profile
-2.0 Groups
+1.0 Navigation
+2.0 Members
+	2.1 User Profile
+	2.2 My Profile
+3.0 Groups
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-1.0 Members
+1.0 Navigation
 --------------------------------------------------------------*/
-.bp-user .bp_members {
+.buddypress .item-list-tabs {
+	position: relative;
+	float: left;
+	width: 100%;
+	font-family: 'Montserrat', Arial, sans-serif;
 }
 
+.buddypress .item-list-tabs ul {
+	float: left;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: .9em;
+}
+
+	.buddypress .item-list-tabs ul li {
+		display: inline-block;
+		float: left;
+	}
+
+	.buddypress .item-list-tabs ul li.current {
+		background-color: #fff;
+	}
+
+	.buddypress .item-list-tabs ul li a {
+		float: left;
+		position: relative;
+		padding: 8px 18px;
+		text-decoration: none;
+		color: #b0b0b0;
+	}
+
+		.buddypress .item-list-tabs ul li:not(.current):hover a {
+			background-color: #f4f4f4;
+			color: #707070;
+		}
+
+		.buddypress .item-list-tabs ul li.current a {
+			color: #404040;
+		}
+
+			.buddypress .item-list-tabs ul li a span.count {
+				display: none; /* Hide counts */
+			}
+
+.buddypress .item-list-tabs#object-nav ul {
+	background-color: #eee;
+	border: 1px solid #eee;
+}
+
+.buddypress .item-list-tabs#subnav {
+	margin-bottom: 70px;
+}
+
+	.buddypress .item-list-tabs#subnav:after {
+		content: '';
+		position: absolute;
+		bottom: -35px;
+		left: -35px;
+		width: calc( 100% + 70px );
+		border-bottom: 1px dashed #ddd;
+	}
+
+	.buddypress .item-list-tabs#subnav ul {
+		border: 1px solid #eee;
+		border-top: 0;
+	}
+
+	.buddypress .item-list-tabs#subnav ul li:not(.current):hover a {
+		background-color: #fff;
+	}
+
 /*--------------------------------------------------------------
-1.1 User Profile
+2.0 Members
 --------------------------------------------------------------*/
-.bp-user .bp_members .entry-header {
+
+/*--------------------------------------------------------------
+2.1 User Profile
+--------------------------------------------------------------*/
+.bp-user .entry-header {
+	display: none;
+}
+
+.bp-user .entry-content {
+	margin-top: 0;
 }
 
 .bp-user #item-header {
@@ -31,10 +111,16 @@
 	top: -100px;
 	right: 0;
 	width: 100%;
+	padding: 0 35px;
 	font-size: 15px;
 	color: #fff;
 	text-align: center;
 	z-index: 100;
+}
+
+.bp-user #item-header-avatar {
+	float: left;
+	margin: 0 20px 0 0;
 }
 
 .bp-user #item-header-avatar a {
@@ -51,6 +137,11 @@
 	border-radius: 50%;
 }
 
+.bp-user #item-header-content {
+	float: left;
+	text-align: left;
+}
+
 @media screen and (min-width: 561px) {
 	.bp-user #item-header-avatar a {
 		width: 160px;
@@ -61,17 +152,22 @@
 @media screen and (min-width: 741px) {
 	.bp-user #item-header {
 		position: fixed;
-		top: calc( 81px + 35px );
+		top: calc( 35px + 35px );
 		right: calc( 58% + 35px );
 		width: calc( 42% - 174px - 35px );
+		padding: 0;
 		max-width: 160px;
 		text-align: center;
+	}
+
+	.admin-bar.bp-user #item-header {
+		top: calc( 81px + 35px );
 	}
 
 	.bp-user #item-header-avatar {
 		width: 100%;
 		position: relative;
-		margin-bottom: 20px;
+		margin: 0 0 20px 0;
 	}
 
 		.bp-user #item-header-avatar:before {
@@ -89,11 +185,15 @@
 		width: 100%;
 		height: auto;
 	}
+
+	.bp-user #item-header-content {
+		text-align: inherit;
+	}
 }
 
 /** WP admin bar -14px height */
 @media screen and (min-width: 783px) {
-	.bp-user #item-header {
+	.admin-bar.bp-user #item-header {
 		top: calc( 67px + 35px );
 	}
 }
@@ -107,10 +207,10 @@
 }
 
 /*--------------------------------------------------------------
-1.1 My Profile
+2.2 My Profile
 --------------------------------------------------------------*/
 
-.bp-user.my-account #item-header-avatar a:after {
+.my-account #item-header-avatar a:after {
 	content: '\f464'; /* dashicons-edit */
 	background: rgba(51, 165, 55, 1);
 	position: absolute;
@@ -127,6 +227,10 @@
 	transition: opacity .2s ease-in;
 }
 
-	.bp-user.my-account #item-header-avatar a:hover:after {
+	.my-account #item-header-avatar a:hover:after {
 		opacity: 1;
+	}
+
+	.my-account #item-header-avatar a:active:after {
+		background: #333;
 	}

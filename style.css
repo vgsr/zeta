@@ -446,7 +446,7 @@ body {
 	padding: 0;
 	color: #fff;
 	font-size: 1.2rem;
-	z-index: 499; /* Beneath the admin bar. */
+	z-index: 499; /* Below the admin bar. */
 	background-color: rgba(2, 144, 7, .8);
 }
 
