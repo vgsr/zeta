@@ -18,14 +18,16 @@
 /*--------------------------------------------------------------
 1.0 Navigation
 --------------------------------------------------------------*/
-.buddypress .item-list-tabs {
+.buddypress .item-list-tabs,
+.buddypress .button-nav {
 	position: relative;
 	float: left;
 	width: 100%;
 	font-family: 'Montserrat', Arial, sans-serif;
 }
 
-.buddypress .item-list-tabs ul {
+.buddypress .item-list-tabs ul,
+.buddypress .button-nav {
 	float: left;
 	width: 100%;
 	margin: 0;
@@ -34,16 +36,25 @@
 	font-size: .9em;
 }
 
-	.buddypress .item-list-tabs ul li {
+	.buddypress .item-list-tabs ul li,
+	.buddypress .button-nav li {
 		display: inline-block;
 		float: left;
 	}
 
-	.buddypress .item-list-tabs ul li.current {
+	.buddypress .item-list-tabs ul li.current,
+	.buddypress .button-nav li.current {
 		background-color: #fff;
 	}
 
-	.buddypress .item-list-tabs ul li a {
+	.buddypress .item-list-tabs ul li.filter {
+		float: right;
+		padding: 8px 0px 8px 10px;
+		color: #b0b0b0;
+	}
+
+	.buddypress .item-list-tabs ul li a,
+	.buddypress .button-nav li a {
 		float: left;
 		position: relative;
 		padding: 8px 18px;
@@ -51,12 +62,14 @@
 		color: #b0b0b0;
 	}
 
-		.buddypress .item-list-tabs ul li:not(.current):hover a {
+		.buddypress .item-list-tabs ul li:not(.current):hover a,
+		.buddypress .button-nav li:not(.current):hover a {
 			background-color: #f4f4f4;
 			color: #707070;
 		}
 
-		.buddypress .item-list-tabs ul li.current a {
+		.buddypress .item-list-tabs ul li.current a,
+		.buddypress .button-nav li.current a {
 			color: #404040;
 		}
 
@@ -64,9 +77,14 @@
 				display: none; /* Hide counts */
 			}
 
+.buddypress .item-list-tabs#object-nav ul,
+.buddypress .button-nav {
+	background-color: #efefef;
+	border: 1px solid #efefef;
+}
+
 .buddypress .item-list-tabs#object-nav ul {
-	background-color: #eee;
-	border: 1px solid #eee;
+	border-bottom-width: 0;
 }
 
 .buddypress .item-list-tabs#subnav {
@@ -83,13 +101,18 @@
 	}
 
 	.buddypress .item-list-tabs#subnav ul {
-		border: 1px solid #eee;
+		padding: 0 8px;
+		border: 1px solid #efefef;
 		border-top: 0;
 	}
 
-	.buddypress .item-list-tabs#subnav ul li:not(.current):hover a {
-		background-color: #fff;
-	}
+		.buddypress .item-list-tabs#subnav ul li a {
+			padding: 8px 10px;
+		}
+
+			.buddypress .item-list-tabs#subnav ul li:not(.current):hover a {
+				background-color: #fff;
+			}
 
 /*--------------------------------------------------------------
 2.0 Members
