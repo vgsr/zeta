@@ -490,7 +490,7 @@ body {
 	position: relative;
 	float: left;
 	width: 100%;
-	height: 33vh; /* Viewport height */
+	height: 250px;
 }
 
 	#header-aside .slider {
@@ -646,12 +646,16 @@ body {
 	#secondary > * {
 		margin: 0;
 		padding: 35px;
-		border-bottom: 1px dashed #ddd;
 	}
 
-	#secondary > *:last-child {
-		border: none;
-	}
+		#primary .site-main > :not(:last-child),
+		#secondary > :not(:last-child) {
+			border-bottom: 1px dashed #ddd;
+		}
+
+		#secondary > :first-child {
+			border-top: 1px dashed #ddd;
+		}
 
 #colophon {
 	background-color: #efefef;
@@ -681,7 +685,7 @@ body {
 		}
 
 	#header-aside {
-		height: 43vh;
+		height: 350px;
 	}
 
 	.menu-toggled #header-aside {
@@ -972,7 +976,6 @@ a:active {
 	display: none;
 	float: left;
 	margin-top: 62px; /* Below .site-branding */
-	padding: 35px;
 	background-color: #fff;
 }
 
@@ -1003,11 +1006,10 @@ a:active {
 	position: relative;
 	width: 100%;
 	float: left;
-	border-top: 1px solid #f1f1f1;
 }
 
-	.main-navigation ul.nav-menu > li:last-child {
-		border-bottom: 1px solid #f1f1f1;
+	.main-navigation li:not(:first-child) {
+		border-top: 1px solid #f1f1f1;
 	}
 
 .main-navigation a {
@@ -1123,7 +1125,6 @@ a:active {
 
 		.main-navigation .nav-menu {
 			margin-top: 96px;
-			padding: 35px 46px;
 		}
 
 		/* Small menu. */
@@ -1190,11 +1191,10 @@ a:active {
 
 		.main-navigation li {
 			width: auto;
-			border: none;
 		}
 
-		.main-navigation ul.nav-menu > li:last-child {
-			border-bottom: none;
+		.main-navigation li:not(:first-child) {
+			border: none;
 		}
 
 		.main-navigation ul.nav-menu > li > a {
