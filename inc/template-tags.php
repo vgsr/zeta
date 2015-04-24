@@ -473,7 +473,9 @@ function zeta_header_slider() {
 
 		<script>
 			jQuery(document).ready( function( $ ) {
-				$( '.flexslider' ).flexslider({
+
+				// Define slider and get the slider object
+				var slider = $( '.flexslider' ).flexslider({
 					controlNav: false,
 					start: function( slider ) {
 
@@ -481,6 +483,25 @@ function zeta_header_slider() {
 						// see https://github.com/woothemes/FlexSlider/issues/848#issuecomment-42573918
 						slider.removeClass( 'loading' );
 					}
+				}).data( 'flexslider' );
+
+				// Link gallery thumbs to slides
+				var $galleryItems = $( '.entry-content .gallery-item a' );
+				$galleryItems.on( 'click', function( e ) {
+
+					// Get the position of the selected thumb
+					// NOTE: Here we assume two things. 1) All gallery items have 
+					// corresponding slides, which means the thumbs' orginals are 
+					// large enough for the slider AND 2) No other non-gallery-image 
+					// slides exist in the slider. Meaning: gallery thumbs and slides
+					// are a perfect 1-on-1 match.
+					var target = $galleryItems.index( $(this) );
+
+					// Show the targeted slide
+					slider.flexAnimate( target, true );
+
+					// Prevent linking
+					e.preventDefault();
 				});
 			});
 		</script>

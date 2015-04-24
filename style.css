@@ -1563,15 +1563,40 @@ object {
 		right: 0;
 		bottom: 0;
 		left: 0;
-		background-color: rgba(255, 255, 255, .2);
-		opacity: 0;
-		-webkit-transition: opacity .2s ease-in;
-		transition: opacity .2s ease-in;
+		background-color: rgba(255, 255, 255, .15);
 	}
 
-		.gallery-item a:hover:before {
+	.gallery-item a:after {
+		content: '\f177'; /* dashicons-visibility */
+		position: absolute;
+		top: calc( 50% - 25px );
+		left: calc( 50% - 25px );
+		width: 50px;
+		height: 50px;
+		padding: 10px;
+		background: rgba(51, 165, 55, 1);
+		border-radius: 50%;
+		font: 30px/30px dashicons;
+		color: #fff;
+		box-shadow: 0px 0px 4px rgba(0, 0, 0, .5);
+	}
+
+		.gallery-item a:before,
+		.gallery-item a:after {
+			opacity: 0;
+			-webkit-transition: opacity .2s ease-in;
+			transition: opacity .2s ease-in;
+		}
+
+		.gallery-item a:hover:before,
+		.gallery-item a:hover:after {
 			opacity: 1;
 		}
+
+		.gallery-item a:active:after {
+			background: #333;
+		}
+
 
 .gallery-columns-2 .gallery-item {
 	max-width: 50%;

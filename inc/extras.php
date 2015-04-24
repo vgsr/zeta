@@ -75,13 +75,30 @@ endif;
  */
 
 /**
+ * Return whether the given post contains a gallery
+ *
+ * @since 1.0.0
+ *
+ * @uses has_shortcode()
+ * 
+ * @param int|WP_Post $post_id Optional. Post ID or object. Defaults to current post
+ * @return bool Post contains a gallery
+ */
+function zeta_has_post_gallery( $post_id = 0 ) {
+	if ( ! $post = get_post( $post_id ) )
+		return false;
+
+	return has_shortcode( $post->post_content, 'gallery' );
+}
+
+/**
  * Return all images associated with the given post
  *
  * @since 1.0.0
  *
  * @uses has_post_thumbnail()
  * @uses get_post_thumbnail_id()
- * @uses has_shortcode()
+ * @uses zeta_has_post_gallery()
  * @uses get_post_galleries_images()
  * @uses zeta_get_attachment_id_from_url()
  * @uses get_attached_media()
@@ -106,7 +123,7 @@ function zeta_get_post_images( $post, $size = '' ) {
 	}
 
 	// 2. Galleries
-	if ( has_shortcode( $post->post_content, 'gallery' ) ) {
+	if ( zeta_has_post_gallery( $post ) ) {
 
 		// Walk all post's galleries
 		foreach ( get_post_galleries_images( $post->ID ) as $srcs ) {
