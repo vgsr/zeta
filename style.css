@@ -695,10 +695,6 @@ body {
 		height: 350px;
 	}
 
-	.menu-toggled #header-aside {
-		height: calc( 58vh - 50px );
-	}
-
 		.menu-toggled #header-aside .slider {
 			border-bottom: 1px solid #efefef;
 		}
