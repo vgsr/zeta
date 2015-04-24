@@ -2,14 +2,14 @@
  * Theme Name: Zeta
  * Theme URI: https://github.com/vgsr/zeta
  * Author: Laurens Offereins
- * Author URI: https://github.com/lmoffereins;
+ * Author URI: https://github.com/lmoffereins
  * Description: The online presence of VGSR reimagined. This second installment of VGSR WordPress themes focuses on images and readability, for all screen sizes. A large screen area is reserved to present the best of VGSR imagery, while a single white content column gives easy focus on the important message, and nothing more. It's time to shine.
  * Version: 0.1.2
  * License: GNU General Public License v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: zeta
  * Tags: vgsr, green, white, fixed-layout, responsive-layout, custom-background, custom-header, custom-menu, featured-images, flexible-header, post-formats, translation-ready
- * GitHub Theme URI: vgsr/zeta;
+ * GitHub Theme URI: vgsr/zeta
  * 
  * This theme, like WordPress, is licensed under the GPL.
  * Use it to make something cool, have fun, and share what you've learned with others.
@@ -1555,6 +1555,27 @@ object {
 .gallery-item a img {
 	float: left;
 }
+
+.gallery-item a {
+	position: relative;
+}
+
+	.gallery-item a:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-color: rgba(255, 255, 255, .2);
+		opacity: 0;
+		-webkit-transition: opacity .2s ease-in;
+		transition: opacity .2s ease-in;
+	}
+
+		.gallery-item a:hover:before {
+			opacity: 1;
+		}
 
 .gallery-columns-2 .gallery-item {
 	max-width: 50%;
