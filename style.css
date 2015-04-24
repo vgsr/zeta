@@ -770,20 +770,20 @@ body {
 			text-align: center;
 		}
 
+	.site-header,
+	.site-header .site-branding,
+	.site-header .site-branding:after {
+		-webkit-transition: background-color .3s ease-in;
+		transition: background-color .3s ease-in;
+	}
+
 	.site-header:hover,
 	.site-header:hover .site-branding {
 		background-color: rgba(51, 165, 55, 1);
 	}
 
 	.site-header:hover .site-branding:after {
-		background-color: rgba(122, 229, 42, 1);
-	}
-
-	.site-header,
-	.site-header .site-branding,
-	.site-header .site-branding:after {
-		-webkit-transition: background-color .3s ease-in;
-		transition: background-color .3s ease-in;
+		background-color: rgba(147, 233, 83, 1);
 	}
 
 	#header-aside {
