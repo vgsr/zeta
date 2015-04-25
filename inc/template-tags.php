@@ -485,6 +485,8 @@ function zeta_header_slider() {
 					}
 				}).data( 'flexslider' );
 
+				<?php if ( is_singular() ) : ?>
+
 				// Link gallery thumbs to slides
 				var $galleryItems = $( '.entry-content .gallery-item a' );
 				$galleryItems.on( 'click', function( e ) {
@@ -503,6 +505,8 @@ function zeta_header_slider() {
 					// Prevent linking
 					e.preventDefault();
 				});
+
+				<?php endif; ?>
 			});
 		</script>
 
