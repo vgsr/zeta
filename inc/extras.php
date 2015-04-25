@@ -205,6 +205,7 @@ function zeta_get_first_post_image( $post, $size = '' ) {
 		return false;
 
 	$images = zeta_get_post_images( $post );
+	$image  = false;
 
 	// Require by image size
 	if ( $size ) {
