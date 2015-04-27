@@ -278,7 +278,19 @@ function zeta_tools_nav() {
 	<div class="tools-nav-container">
 		<ul class="tools-nav">
 		<?php foreach ( $tools as $tool_id => $tool ) {
-			printf( '<li class="%1$s-toggle" data-tool="%1$s"><a href="%3$s"><span class="screen-reader-text">%2$s</span></a></li>', esc_attr( $tool_id ), esc_html( $tool['label'] ), esc_url( $tool['url'] ) );
+			$tool_id = esc_attr( $tool_id );
+
+			$class = "$tool_id-toggle";
+			if ( isset( $tool['class'] ) ) {
+				$class .= ' ' . trim( esc_attr( $tool['class'] ) );
+			}
+
+			printf( '<li class="%1$s" data-tool="%2$s"><a href="%3$s"><span class="screen-reader-text">%4$s</span></a></li>', 
+				$class, 
+				$tool_id, 
+				esc_url( $tool['url'] ), 
+				esc_html( $tool['label'] ) 
+			);
 		} ?>
 		</ul>
 	</div>
@@ -314,6 +326,8 @@ function zeta_tools() {
 				if ( ! is_user_logged_in() ) : ?>
 
 				<form name="wp-login-form" id="wp-login-widget-form" class="standard-form" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
+					<input type="hidden" name="redirect_to" value="<?php echo ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
+
 					<label for="wp-login-widget-user-login"><?php _e( 'Username', 'zeta' ); ?></label>
 					<input type="text" name="log" id="wp-login-widget-user-login" class="input" value="" placeholder="<?php esc_attr_e( 'Username', 'zeta' ); ?>" />
 
@@ -363,6 +377,7 @@ function zeta_tools() {
 			'login'  => array(
 				'label' => is_user_logged_in() ? __( 'Log Out', 'zeta' ) : __( 'Log In', 'zeta' ),
 				'url'   => is_user_logged_in() ? wp_logout_url( $_SERVER['REQUEST_URI'] ) : wp_login_url( $_SERVER['REQUEST_URI'] ),
+				'class' => is_user_logged_in() ? 'no-toggle' : '',
 			)
 		) );
 	}

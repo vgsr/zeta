@@ -48,7 +48,7 @@
  */
 ( function( $ ) {
 	var $body = $( 'body' ),
-	    $toolsNav = $body.find( '.tools-nav li' ),
+	    $toolsNav = $body.find( '.tools-nav li:not(.no-toggle)' ),
 	    $toolsContainer = $body.find( '#site-tools' );
 
 	$toolsNav.each( function() {
@@ -70,7 +70,7 @@
 						.siblings()
 							.hide()
 							.end()
-						.find( 'input, textarea' )
+						.find( 'input[type!="hidden"], textarea' )
 							.first()
 								.focus();
 				}
@@ -79,7 +79,7 @@
 				$body.addClass( 'tools-toggled' );
 				$nav.addClass( 'toggled' );
 				$tool.show()
-					.find( 'input, textarea' )
+					.find( 'input[type!="hidden"], textarea' )
 						.first()
 							.focus();
 			}
