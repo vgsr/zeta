@@ -229,7 +229,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="search"] {
 	-webkit-appearance: textfield;
-	box-sizing: content-box;
+	box-sizing: border-box;
 }
 
 input[type="search"]::-webkit-search-cancel-button,
@@ -486,6 +486,17 @@ body {
 		font-family: Georgia, Times, serif;
 	}
 
+#site-tools {
+	float: left;
+	width: 100%;
+}
+
+	#site-tools .site-tool {
+		display: none;
+		padding: 35px;
+		background-color: #f9f9f9;
+	}
+
 #header-aside {
 	position: relative;
 	float: left;
@@ -719,7 +730,7 @@ body {
 		background-color: rgba(2, 144, 7, .8);
 	}
 
-	body.admin-bar .site-header {
+	.admin-bar .site-header {
 		top: auto;
 	}
 
@@ -786,6 +797,21 @@ body {
 		background-color: rgba(147, 233, 83, 1);
 	}
 
+	#site-tools {
+		display: none;
+		float: right;
+		width: 58%;
+		margin-left: 42%;
+		background-color: #fff;
+		border-left: 1px solid #efefef;
+		border-bottom: 1px dashed #ddd;
+		padding-top: 35px;
+	}
+
+		.tools-toggled #site-tools {
+			display: block;
+		}
+
 	#header-aside {
 		position: fixed;
 		top: 0;
@@ -826,22 +852,22 @@ body {
 
 	#content {
 		width: 58%;
-		padding: 0;
+		padding: 35px 0 0 0;
 		background-color: #fff;
 		border-left: 1px solid #efefef;
 	}
 
 	.menu-toggled #content {
-		padding: 0;
+		padding: 35px 0 0 0;
+	}
+
+	.tools-toggled #content {
+		padding-top: 0;
 	}
 
 			#primary .site-main > *,
 			#secondary > * {
 				background-color: transparent;
-			}
-
-			#primary .site-main > *:first-child {
-				padding-top: 70px;
 			}
 
 	#colophon {
@@ -851,6 +877,11 @@ body {
 }
 
 @media screen and (min-width: 1120px) {
+	#site-tools {
+		width: 640px;
+		margin-left: calc( 100% - 640px );
+	}
+
 	#header-aside {
 		width: calc( 100% - 640px );
 	}
@@ -912,8 +943,10 @@ input[type="password"],
 input[type="search"],
 textarea {
 	color: #666;
-	border: 1px solid #ccc;
-	border-radius: 3px;
+	border: 1px solid #eee;
+	border-radius: 0px;
+	padding: 6px 10px;
+	width: 100%;
 }
 
 input[type="text"]:focus,
@@ -923,19 +956,6 @@ input[type="password"]:focus,
 input[type="search"]:focus,
 textarea:focus {
 	color: #111;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"] {
-	padding: 3px;
-}
-
-textarea {
-	padding-left: 3px;
-	width: 100%;
 }
 
 /*--------------------------------------------------------------
@@ -1165,6 +1185,10 @@ a:active {
 		padding: 0;
 	}
 
+		.main-navigation > div {
+			float: left;
+		}
+
 		.main-navigation .nav-menu {
 			display: block;
 			float: right;
@@ -1216,6 +1240,37 @@ a:active {
 		font-weight: normal;
 	}
 
+	.tools-nav a {
+		padding: 0 5px;
+		line-height: 33px;
+		text-align: center;
+	}
+
+		.tools-nav li.toggled a,
+		.tools-nav li.toggled:hover a {
+			background-color: #f9f9f9;
+			color: #404040;
+		}
+
+		.tools-nav a:before {
+			display: block;
+			width: 35px;
+			height: 35px;
+			font-family: dashicons;
+			font-size: 1.5em;
+		}
+
+		.tools-nav .search-toggle a:before {
+			content: '\f179';
+		}
+
+		.tools-nav .login-toggle a:before {
+			content: '\f160';
+		}
+
+			.logged-in .tools-nav .login-toggle a:before {
+				content: '\f310';
+			}
 }
 
 .site-main .comment-navigation,
@@ -1344,7 +1399,11 @@ a:active {
 }
 
 /* Search widget. */
-.widget_search .search-submit {
+input.search-field {
+	width: 100%;
+}
+
+input.search-submit {
 	display: none;
 }
 

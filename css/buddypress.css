@@ -214,7 +214,7 @@
 	}
 }
 
-/** WP admin bar -14px height */
+/** Admin bar -14px height */
 @media screen and (min-width: 783px) {
 	.admin-bar.bp-user #item-header {
 		top: calc( 67px + 35px );

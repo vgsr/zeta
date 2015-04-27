@@ -266,6 +266,108 @@ add_action( 'edit_category', 'zeta_category_transient_flusher' );
 add_action( 'save_post',     'zeta_category_transient_flusher' );
 
 /**
+ * Display collection of site tools for in the site header
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_get_site_tools()
+ */
+function zeta_tools_nav() {
+	$tools = zeta_get_site_tools(); ?>
+
+	<div class="tools-nav-container">
+		<ul class="tools-nav">
+		<?php foreach ( $tools as $tool_id => $tool ) {
+			printf( '<li class="%1$s-toggle" data-tool="%1$s"><a href="%3$s"><span class="screen-reader-text">%2$s</span></a></li>', esc_attr( $tool_id ), esc_html( $tool['label'] ), esc_url( $tool['url'] ) );
+		} ?>
+		</ul>
+	</div>
+
+	<?php
+}
+
+/**
+ * Display the tools content
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_get_site_tools()
+ * @uses the_widget()
+ * @uses do_action() Calls 'site_{$tool_id}_tool_content'
+ */
+function zeta_tools() {
+	$tools = zeta_get_site_tools();
+
+	foreach ( $tools as $tool_id => $tool ) {
+		printf( '<div id="site-tool-%1$s" class="site-tool">', esc_attr( $tool_id ) );
+		switch ( $tool_id ) {
+
+			// Search form
+			case 'search' :
+				the_widget( 'WP_Widget_Search', array(), array( 'before_widget' => '', 'after_widget' => '' ) );
+				break;
+
+			// Login form
+			case 'login' :
+
+				// Only for logging in
+				if ( ! is_user_logged_in() ) : ?>
+
+				<form name="wp-login-form" id="wp-login-widget-form" class="standard-form" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
+					<label for="wp-login-widget-user-login"><?php _e( 'Username', 'zeta' ); ?></label>
+					<input type="text" name="log" id="wp-login-widget-user-login" class="input" value="" placeholder="<?php esc_attr_e( 'Username', 'zeta' ); ?>" />
+
+					<label for="wp-login-widget-user-pass"><?php _e( 'Password', 'zeta' ); ?></label>
+					<input type="password" name="pwd" id="wp-login-widget-user-pass" class="input" value="" placeholder="<?php esc_attr_e( 'Password', 'zeta' ); ?>" />
+
+					<div class="forgetmenot"><label><input name="rememberme" type="checkbox" id="wp-login-widget-rememberme" value="forever" /> <?php _e( 'Remember Me', 'zeta' ); ?></label></div>
+
+					<input type="submit" name="wp-submit" id="wp-login-widget-submit" value="<?php esc_attr_e( 'Log In', 'zeta' ); ?>" />
+
+					<?php if ( function_exists( 'buddypress' ) && bp_get_signup_allowed() ) : ?>
+						<span class="wp-login-widget-register-link"><?php printf( __( '<a href="%s" title="Register for a new account">Register</a>', 'zeta' ), bp_get_signup_page() ); ?></span>
+					<?php endif; ?>
+				</form>
+
+				<?php endif;
+
+				break;
+
+			// Custom tool
+			default :
+				do_action( "site_{$tool_id}_tool_content" );
+				break;
+		}
+		echo '</div>';
+	}
+}
+
+	/**
+	 * Return the registered site tools
+	 * 
+	 * @since 1.0.0
+	 * 
+	 * @uses apply_filters() Calls 'site_tools'
+	 * @uses is_user_logged_in()
+	 * @uses wp_logout_url()
+	 * @uses wp_login_url()
+	 *
+	 * @return array Site tools collection
+	 */
+	function zeta_get_site_tools() {
+		return (array) apply_filters( 'site_tools', array(
+			'search' => array(
+				'label' => __( 'Search the site', 'zeta' ),
+				'url'   => '#',
+			),
+			'login'  => array(
+				'label' => is_user_logged_in() ? __( 'Log Out', 'zeta' ) : __( 'Log In', 'zeta' ),
+				'url'   => is_user_logged_in() ? wp_logout_url( $_SERVER['REQUEST_URI'] ) : wp_login_url( $_SERVER['REQUEST_URI'] ),
+			)
+		) );
+	}
+
+/**
  * Display the header slider
  *
  * @since 1.0.0
@@ -303,7 +405,7 @@ function zeta_header_slider() {
 	if ( is_singular() ) {
 		$images = zeta_get_post_images( get_queried_object(), $image_size );
 
-	// This is a posts collection
+	// This is a post collection
 	} elseif ( ( is_home() || is_archive() || is_search() ) && have_posts() ) {
 		global $wp_query;
 		$posts = wp_list_pluck( $wp_query->posts, 'ID' );

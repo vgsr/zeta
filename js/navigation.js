@@ -42,3 +42,47 @@
 		}
 	};
 } )();
+
+/**
+ * Handles toggling the tools elements for all screens.
+ */
+( function( $ ) {
+	var $body = $( 'body' ),
+	    $toolsNav = $body.find( '.tools-nav li' ),
+	    $toolsContainer = $body.find( '#site-tools' );
+
+	$toolsNav.each( function() {
+		var $nav = $(this),
+		    $tool = $toolsContainer.find( '#site-tool-' + $nav.data( 'tool' ) );
+
+		$nav.on( 'click', 'a', function( e ) {
+			e.preventDefault();
+
+			if ( $body.hasClass( 'tools-toggled' ) ) {
+				$toolsNav.removeClass( 'toggled' );
+
+				if ( $tool.is( ':visible' ) ) {
+					$body.removeClass( 'tools-toggled' );
+					$tool.hide();
+				} else {
+					$nav.addClass( 'toggled' );
+					$tool.show()
+						.siblings()
+							.hide()
+							.end()
+						.find( 'input, textarea' )
+							.first()
+								.focus();
+				}
+
+			} else {
+				$body.addClass( 'tools-toggled' );
+				$nav.addClass( 'toggled' );
+				$tool.show()
+					.find( 'input, textarea' )
+						.first()
+							.focus();
+			}
+		});
+	});
+} )( jQuery );

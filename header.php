@@ -30,8 +30,13 @@
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Menu', 'zeta' ); ?></button>
 			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+			<?php zeta_tools_nav(); ?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
+
+	<div id="site-tools">
+		<?php zeta_tools(); ?>
+	</div>
 
 	<div id="header-aside">
 		<?php zeta_header_slider(); ?>
