@@ -287,6 +287,7 @@ function zeta_tools_nav() {
 			}
 			if ( ! $toggled && isset( $tool['toggle'] ) && $tool['toggle'] ) {
 				$class[] = 'toggled';
+				$toggled = true;
 			}
 
 			printf( '<li class="%1$s" data-tool="%2$s"><a href="%3$s"><span class="screen-reader-text">%4$s</span></a></li>', 
@@ -319,6 +320,7 @@ function zeta_tools() {
 		$style = '';
 		if ( ! $toggled && isset( $tool['toggle'] ) && $tool['toggle'] ) {
 			$style = ' style="display:block;"';
+			$toggled = true;
 		}
 
 		printf( '<div id="site-tool-%1$s" class="site-tool" %2$s>', esc_attr( $tool_id ), $style );
