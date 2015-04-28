@@ -19,6 +19,11 @@ function zeta_body_classes( $classes ) {
 		$classes[] = 'group-blog';
 	}
 
+	// Toggle search tool for search pages
+	if ( is_search() ) {
+		$classes[] = 'tools-toggled';
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', 'zeta_body_classes' );

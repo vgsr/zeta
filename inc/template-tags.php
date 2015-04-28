@@ -273,22 +273,26 @@ add_action( 'save_post',     'zeta_category_transient_flusher' );
  * @uses zeta_get_site_tools()
  */
 function zeta_tools_nav() {
-	$tools = zeta_get_site_tools(); ?>
+	$tools   = zeta_get_site_tools(); 
+	$toggled = false; ?>
 
 	<div class="tools-nav-container">
 		<ul class="tools-nav">
 		<?php foreach ( $tools as $tool_id => $tool ) {
 			$tool_id = esc_attr( $tool_id );
 
-			$class = "$tool_id-toggle";
+			$class = array( "$tool_id-toggle" );
 			if ( isset( $tool['class'] ) ) {
-				$class .= ' ' . trim( esc_attr( $tool['class'] ) );
+				$class[] = trim( esc_attr( $tool['class'] ) );
+			}
+			if ( ! $toggled && isset( $tool['toggle'] ) && $tool['toggle'] ) {
+				$class[] = 'toggled';
 			}
 
 			printf( '<li class="%1$s" data-tool="%2$s"><a href="%3$s"><span class="screen-reader-text">%4$s</span></a></li>', 
-				$class, 
-				$tool_id, 
-				esc_url( $tool['url'] ), 
+				implode( ' ', $class ),
+				$tool_id,
+				esc_url( $tool['url'] ),
 				esc_html( $tool['label'] ) 
 			);
 		} ?>
@@ -308,10 +312,17 @@ function zeta_tools_nav() {
  * @uses do_action() Calls 'site_{$tool_id}_tool_content'
  */
 function zeta_tools() {
-	$tools = zeta_get_site_tools();
+	$tools   = zeta_get_site_tools();
+	$toggled = false;
 
 	foreach ( $tools as $tool_id => $tool ) {
-		printf( '<div id="site-tool-%1$s" class="site-tool">', esc_attr( $tool_id ) );
+		$style = '';
+		if ( ! $toggled && isset( $tool['toggle'] ) && $tool['toggle'] ) {
+			$style = ' style="display:block;"';
+		}
+
+		printf( '<div id="site-tool-%1$s" class="site-tool" %2$s>', esc_attr( $tool_id ), $style );
+
 		switch ( $tool_id ) {
 
 			// Search form
@@ -371,13 +382,14 @@ function zeta_tools() {
 	function zeta_get_site_tools() {
 		return (array) apply_filters( 'site_tools', array(
 			'search' => array(
-				'label' => __( 'Search the site', 'zeta' ),
-				'url'   => '#',
+				'label'  => __( 'Search the site', 'zeta' ),
+				'url'    => '#',
+				'toggle' => is_search()
 			),
 			'login'  => array(
-				'label' => is_user_logged_in() ? __( 'Log Out', 'zeta' ) : __( 'Log In', 'zeta' ),
-				'url'   => is_user_logged_in() ? wp_logout_url( $_SERVER['REQUEST_URI'] ) : wp_login_url( $_SERVER['REQUEST_URI'] ),
-				'class' => is_user_logged_in() ? 'no-toggle' : '',
+				'label'  => is_user_logged_in() ? __( 'Log Out', 'zeta' ) : __( 'Log In', 'zeta' ),
+				'url'    => is_user_logged_in() ? wp_logout_url( $_SERVER['REQUEST_URI'] ) : wp_login_url( $_SERVER['REQUEST_URI'] ),
+				'class'  => is_user_logged_in() ? 'no-toggle' : '',
 			)
 		) );
 	}
