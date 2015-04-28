@@ -856,8 +856,7 @@ body {
 			}
 
 		#header-aside .slides .slide-inner .slide-details {
-			padding: 0 35px 105px;
-			width: 50%;
+			padding: 0 150px 35px 35px;
 		}
 
 		#header-aside .loading .slides .slide-inner .slide-details {
@@ -865,8 +864,6 @@ body {
 		}
 
 		#header-aside .flex-direction-nav {
-			right: auto;
-			left: 35px;
 			bottom: 35px;
 		}
 
