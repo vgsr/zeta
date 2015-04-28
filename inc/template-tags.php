@@ -487,7 +487,11 @@ function zeta_header_slider() {
 			$slide['post_id'] = $post->ID;
 			$slide['href']    = get_permalink( $post->ID );
 			$slide['title']   = get_the_title( $post->ID );
-			$slide['byline']  = sprintf( __( 'Posted on %s', 'zeta' ), get_the_date( '', $post->ID ) );
+
+			// 'Posted on' only for posts
+			if ( 'post' == $post->post_type ) {
+				$slide['byline']  = sprintf( __( 'Posted on %s', 'zeta' ), get_the_date( '', $post->ID ) );
+			}
 		}
 
 		// Get data from the image attachment
