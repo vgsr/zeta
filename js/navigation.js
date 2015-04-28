@@ -52,7 +52,7 @@
 	    $toolsContainer = $body.find( '#site-tools' );
 
 	$toolsNav.each( function() {
-		var $nav = $(this),
+		var $nav  = $(this),
 		    $tool = $toolsContainer.find( '#site-tool-' + $nav.data( 'tool' ) );
 
 		$nav.on( 'click', 'a', function( e ) {
