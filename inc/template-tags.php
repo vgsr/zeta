@@ -424,7 +424,7 @@ function zeta_header_slider() {
 	$images = $posts = $slides = array();
 
 	// Define the slider's required image dimensions
-	$image_size = 'zeta-header-slider';
+	$image_size = array( 1200, 900 );
 
 	//
 	// Get images (and posts) of the current page

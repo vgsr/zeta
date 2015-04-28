@@ -171,6 +171,9 @@ function zeta_get_post_images( $post, $size = '' ) {
 	// 4. Attached images
 	// $collection += array_filter( wp_list_pluck( (array) get_attached_media( 'image', $post->ID ), 'ID' ) );
 
+	// Filter image collection
+	$collection = apply_filters( 'zeta_get_post_images', $collection, $post, $size );
+
 	// Make collection contain only unique images
 	$collection = array_unique( $collection );
 
@@ -187,9 +190,53 @@ function zeta_get_post_images( $post, $size = '' ) {
 		$collection = array_values( $collection );
 	}
 
-	// Filter image collection and return
-	return apply_filters( 'zeta_get_post_images', $collection, $post, $size );
+	return $collection;
 }
+
+	/**
+	 * Add connected images to the current post's image collection
+	 *
+	 * @since 1.0.0
+	 * 
+	 * @param array $images
+	 * @param WP_Post $post The current post
+	 * @param string|array $size
+	 * @return array Post images. Ids or image paths
+	 */
+	function zeta_p2p_post_images( $images, $post, $size ) {
+
+		// Bail when P2P is not active
+		if ( ! did_action( 'p2p_init' ) )
+			return $images;
+
+		// BP user profile
+		if ( function_exists( 'buddypress' ) && bp_is_user_profile() ) {
+			$connected_item  = bp_displayed_user_id();
+			$connection_type = 'user';
+
+		// Posts
+		} else {
+			$connected_item  = $post->ID;
+			$connection_type = $post->post_type;
+		}
+
+		// Tagged images
+		if ( $tagged = new WP_Query( array(
+			'fields'          => 'ids',
+			'connected_type'  => $connection_type . '_media',
+			'connected_items' => $connected_item,
+			'post_mime_type'  => 'image',
+			'posts_per_page'  => 5,
+			'orderby'         => 'rand'
+		) ) ) {
+			foreach ( $tagged->posts as $post_id ) {
+				$images[] = $post_id;
+			}
+		}
+
+		return $images;
+	}
+	add_filter( 'zeta_get_post_images', 'zeta_p2p_post_images', 10, 3 );
 
 /**
  * Return the first image associated with the given post
@@ -265,6 +312,8 @@ function zeta_get_attachment_id_from_url( $attachment_url ) {
  *
  * @since 1.0.0
  *
+ * @uses zeta_get_image_size()
+ * @uses zeta_get_larger_image_sizes()
  * @uses wp_get_attachment_image_src()
  * 
  * @param int|string $image Attachment ID or image src
@@ -274,12 +323,17 @@ function zeta_get_attachment_id_from_url( $attachment_url ) {
  */
 function zeta_check_image_size( $image, $size = 'medium' ) {
 
-	// Treat as attachment ID
-	if ( is_numeric( $image ) ) {
-		$_image = wp_get_attachment_image_src( $image, $size );
-
-	// Try to find it remotely
+	// Get the requested image size's dimensions
+	if ( ! is_array( $size ) ) {
+		$dims = zeta_get_image_size( $size );
 	} else {
+		$dims = array( 'width' => (int) $size[0], 'height' => (int) $size[1] );
+	}
+
+	// An image location
+	if ( ! is_numeric( $image ) ) {
+
+		// Try to find the image (remotely)
 		$_image = getimagesize( $image );
 
 		// Transform details order when image was found
@@ -287,26 +341,30 @@ function zeta_check_image_size( $image, $size = 'medium' ) {
 			$_image[2] = $_image[1];
 			$_image[1] = $_image[0];
 			$_image[0] = $image;
-		}
-	}
 
-	// Match image data with required size
-	if ( $_image ) {
-
-		// Get images size values
-		if ( ! array( $size ) ) {
-			$size = zeta_get_image_size( $size );
-
-		// Map numeric dimensions
-		} else {
-			$size = array( 'width' => (int) $size[0], 'height' => (int) $size[1] );
+			// Return the image's src when it is large enough
+			if ( $dims['width'] <= (int) $_image[1] && $dims['height'] <= (int) $_image[2] ) {
+				return $_image[0];
+			}
 		}
 
-		// Compare sizes
-		if ( $size['width'] <= (int) $_image[1] && $size['height'] <= (int) $_image[2] ) {
+	// An attachment ID
+	} else {
 
-			// Return the image's src
-			return $_image[0];
+		// Walk all larger image sizes
+		foreach ( array_keys( array_reverse( zeta_get_larger_image_sizes( $size ), true ) ) as $size ) {
+
+			// Get attachment
+			$_image = wp_get_attachment_image_src( $image, $size );
+
+			// Match image data with required size
+			if ( $_image ) {
+
+				// Return the image's src when it is large enough
+				if ( $dims['width'] <= (int) $_image[1] && $dims['height'] <= (int) $_image[2] ) {
+					return $_image[0];
+				}
+			}
 		}
 	}
 
@@ -327,12 +385,48 @@ function zeta_check_image_size( $image, $size = 'medium' ) {
 function zeta_get_image_size( $size ) {
 	$sizes = zeta_get_image_sizes();
 
-	// Get only 1 size if found
+	// Get only 1 size when found
 	if ( isset( $sizes[ $size ] ) ) {
 		return $sizes[ $size ];
 	} else {
 		return false;
 	}
+}
+
+/**
+ * Return the image sizes that contain at least the given size's dimensions
+ *
+ * @since 1.0.0
+ * 
+ * @param string|array $size Image size
+ * @return array Larger image sizes
+ */
+function zeta_get_larger_image_sizes( $size ) {
+	$sizes = zeta_get_image_sizes();
+
+	// Get the size's numbers
+	if ( is_string( $size ) ) {
+		if ( isset( $sizes[ $size ] ) ) {
+			$size = array( $sizes[ $size ]['width'], $sizes[ $size ]['height'] );
+		}
+	}
+
+	// Walk the available sizes
+	foreach ( $sizes as $k => $_size ) {
+
+		// Remove smaller sizes
+		if ( $_size['width'] < $size[0] || $_size['height'] < $size[1] ) {
+			unset( $sizes[ $k ] );
+		}
+	}
+
+	// Order to size, largest to smallest
+	uasort( $sizes, 'zeta_image_size_cmp' );
+
+	// Append 'full' original image size
+	$sizes['full'] = array( 'width' => 9999, 'height' => 9999, 'crop' => false );
+
+	return $sizes;
 }
 
 	/**
@@ -347,10 +441,10 @@ function zeta_get_image_size( $size ) {
 		global $_wp_additional_image_sizes;
 
 		$sizes = array();
-		$get_intermediate_image_sizes = get_intermediate_image_sizes();
+		$intermediate_image_sizes = get_intermediate_image_sizes();
 
 		// Create the full array with sizes and crop details
-		foreach( $get_intermediate_image_sizes as $_size ) {
+		foreach( $intermediate_image_sizes as $_size ) {
 			if ( in_array( $_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
 				$sizes[ $_size ]['width']  = get_option( $_size . '_size_w' );
 				$sizes[ $_size ]['height'] = get_option( $_size . '_size_h' );
@@ -367,6 +461,27 @@ function zeta_get_image_size( $size ) {
 
 		return $sizes;
 	}
+
+/**
+ * Sort image sizes, largest to smallest
+ *
+ * @since 1.0.0
+ * 
+ * @param array $a
+ * @param array $b
+ * @return int Compare value
+ */
+function zeta_image_size_cmp( $a, $b ) {
+	if ( $a['width'] > $b['width'] ) {
+		if ( $a['height'] > $b['height'] ) {
+			return 1;
+		} else {
+			return -1;
+		}
+	} else {
+		return -1;
+	}
+}
 
 /**
  * Modify the allowed media types to search for in content

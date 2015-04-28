@@ -88,7 +88,7 @@ function zeta_add_image_sizes() {
 	set_post_thumbnail_size( 300, 300 );
 
 	// Header slider image size
-	add_image_size( 'zeta-header-slider', 1200, 900 );
+	add_image_size( 'zeta-header-slider', 9999, 900 );
 }
 
 /**
