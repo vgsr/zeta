@@ -19,8 +19,8 @@ function zeta_body_classes( $classes ) {
 		$classes[] = 'group-blog';
 	}
 
-	// Toggle search tool for search pages
-	if ( is_search() ) {
+	// Open tools container for tools with default toggle status
+	if ( wp_list_filter( zeta_get_site_tools(), array( 'toggle' => true ) ) ) {
 		$classes[] = 'tools-toggled';
 	}
 

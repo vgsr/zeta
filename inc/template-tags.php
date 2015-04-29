@@ -386,7 +386,7 @@ function zeta_tools() {
 			'search' => array(
 				'label'  => __( 'Search the site', 'zeta' ),
 				'url'    => '#',
-				'toggle' => is_search()
+				'toggle' => is_search() || is_404()
 			),
 			'login'  => array(
 				'label'  => is_user_logged_in() ? __( 'Log Out', 'zeta' ) : __( 'Log In', 'zeta' ),
@@ -410,7 +410,6 @@ function zeta_tools() {
  * @uses wp_enqueue_script()
  */
 function zeta_header_slider() {
-
 	/**
 	 * Images typically are served as arrays containing the following elements
 	 *  - src    The image source to display as background
