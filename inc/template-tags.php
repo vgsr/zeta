@@ -452,14 +452,14 @@ function zeta_header_slider() {
 		// The five latest posts that have featured images
 		$query = new WP_Query( array( 
 			'posts_per_page' => 5,
-			'post_type'      => 'post',
 			'fields'         => 'ids',
+			'post_type'      => 'post',
 			'meta_key'       => '_thumbnail_id',
 			'meta_compare'   => 'EXISTS',
 		) );
 
 		// Get the post IDs from the query
-		$posts = $query->query();
+		$posts = $query->posts;
 
 		// Walk all found posts
 		foreach ( $posts as $post_id ) {
