@@ -9,7 +9,8 @@
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 1.0 Navigation
-2.0 Members
+2.0 Items
+3.0 Members
 	2.1 User Profile
 	2.2 My Profile
 3.0 Groups
@@ -18,16 +19,16 @@
 /*--------------------------------------------------------------
 1.0 Navigation
 --------------------------------------------------------------*/
-.buddypress .item-list-tabs,
-.buddypress .button-nav {
+#buddypress .item-list-tabs,
+#buddypress .button-nav {
 	position: relative;
 	float: left;
 	width: 100%;
 	font-family: 'Montserrat', Arial, sans-serif;
 }
 
-.buddypress .item-list-tabs ul,
-.buddypress .button-nav {
+#buddypress .item-list-tabs ul,
+#buddypress .button-nav {
 	float: left;
 	width: 100%;
 	margin: 0;
@@ -36,25 +37,25 @@
 	font-size: .9em;
 }
 
-	.buddypress .item-list-tabs ul li,
-	.buddypress .button-nav li {
+	#buddypress .item-list-tabs ul li,
+	#buddypress .button-nav li {
 		display: inline-block;
 		float: left;
 	}
 
-	.buddypress .item-list-tabs ul li.current,
-	.buddypress .button-nav li.current {
+	#buddypress .item-list-tabs ul li.current,
+	#buddypress .button-nav li.current {
 		background-color: #fff;
 	}
 
-	.buddypress .item-list-tabs ul li.filter {
+	#buddypress .item-list-tabs ul li.filter {
 		float: right;
 		padding: 8px 0px 8px 10px;
 		color: #b0b0b0;
 	}
 
-	.buddypress .item-list-tabs ul li a,
-	.buddypress .button-nav li a {
+	#buddypress .item-list-tabs ul li a,
+	#buddypress .button-nav li a {
 		float: left;
 		position: relative;
 		padding: 8px 18px;
@@ -62,36 +63,36 @@
 		color: #b0b0b0;
 	}
 
-		.buddypress .item-list-tabs ul li:not(.current):hover a,
-		.buddypress .button-nav li:not(.current):hover a {
+		#buddypress .item-list-tabs ul li:not(.current):hover a,
+		#buddypress .button-nav li:not(.current):hover a {
 			background-color: #f4f4f4;
 			color: #707070;
 		}
 
-		.buddypress .item-list-tabs ul li.current a,
-		.buddypress .button-nav li.current a {
+		#buddypress .item-list-tabs ul li.current a,
+		#buddypress .button-nav li.current a {
 			color: #404040;
 		}
 
-			.buddypress .item-list-tabs ul li a span.count {
+			#buddypress .item-list-tabs ul li a span.count {
 				display: none; /* Hide counts */
 			}
 
-.buddypress .item-list-tabs#object-nav ul,
-.buddypress .button-nav {
+#buddypress .item-list-tabs#object-nav ul,
+#buddypress .button-nav {
 	background-color: #efefef;
 	border: 1px solid #efefef;
 }
 
-.buddypress .item-list-tabs#object-nav ul {
+#buddypress .item-list-tabs#object-nav ul {
 	border-bottom-width: 0;
 }
 
-.buddypress .item-list-tabs#subnav {
-	margin-bottom: 70px;
+#buddypress .item-list-tabs#subnav {
+	margin-bottom: 71px;
 }
 
-	.buddypress .item-list-tabs#subnav:after {
+	#buddypress .item-list-tabs#subnav:after {
 		content: '';
 		position: absolute;
 		bottom: -35px;
@@ -100,140 +101,181 @@
 		border-bottom: 1px dashed #ddd;
 	}
 
-	.buddypress .item-list-tabs#subnav ul {
+	#buddypress .item-list-tabs#subnav ul {
 		padding: 0 8px;
 		border: 1px solid #efefef;
 		border-top: 0;
 	}
 
-		.buddypress .item-list-tabs#subnav ul li a {
+		#buddypress .item-list-tabs#subnav ul li a {
 			padding: 8px 10px;
 		}
 
-			.buddypress .item-list-tabs#subnav ul li:not(.current):hover a {
+			#buddypress .item-list-tabs#subnav ul li:not(.current):hover a {
 				background-color: #fff;
 			}
 
-/*--------------------------------------------------------------
-2.0 Members
---------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
-2.1 User Profile
---------------------------------------------------------------*/
-.bp-user .entry-header {
-	display: none;
+#buddypress .item-list-tabs#subnav + div {
+	float: left;
+	width: 100%;
 }
 
-.bp-user .entry-content {
-	margin-top: 0;
+	#buddypress .item-list-tabs#subnav + div > * {
+		float: left;
+		width: 100%;
+		margin: 0 0 1.5em 0;
+	}
+
+		#buddypress .item-list-tabs#subnav + div > *:last-child {
+			margin: 0;
+		}
+
+		#buddypress .item-list-tabs#subnav + div > * > * {
+			float: left;
+			width: 100%;
+			margin: 0 0 1.5em 0;
+		}
+
+		#buddypress .item-list-tabs#subnav + div > * > *:last-child {
+			margin-bottom: 0;
+		}
+
+/*--------------------------------------------------------------
+2.0 Items
+--------------------------------------------------------------*/
+body.buddypress .entry-header {
+	float: left;
+	width: 100%;
+	text-align: center;
 }
 
-.bp-user #item-header {
+	body.buddypress .entry-header .entry-title {
+		margin: 0 0 35px 0;
+	}
+
+#buddypress #item-header {
+	float: left;
+	width: 100%;
+	padding: 0;
+	font-size: 15px;
+}
+
+#buddypress #item-header-avatar {
 	position: absolute;
 	top: -100px;
-	right: 0;
+	left: 0;
 	width: 100%;
-	padding: 0 35px;
-	font-size: 15px;
-	color: #fff;
+	margin: 0;
 	text-align: center;
-	z-index: 100;
+	z-index: 10;
 }
 
-.bp-user #item-header-avatar {
-	float: left;
-	margin: 0 20px 0 0;
-}
+	#buddypress #item-header-avatar a {
+		position: relative;
+		display: inline-block;
+		width: 130px;
+		height: 130px;
+		padding: 5px;
+		background-color: #fff;
+	}
 
-.bp-user #item-header-avatar a {
-	position: relative;
-	display: inline-block;
-	width: 130px;
-	height: 130px;
-	padding: 5px;
-	background-color: #fff;
-}
+	#buddypress #item-header-avatar a,
+	#buddypress #item-header-avatar img.avatar {
+		border-radius: 50%;
+	}
 
-.bp-user #item-header-avatar a,
-.bp-user #item-header-avatar img.avatar {
-	border-radius: 50%;
-}
-
-.bp-user #item-header-content {
+#buddypress #item-header-content {
 	float: left;
 	text-align: left;
 }
 
+	#buddypress #item-header-content .activity {
+		display: none;
+	}
+
+table td.label {
+	width: 40%;
+	padding-right: 15px;
+}
+
+table td.data {
+	width: 60%;
+	padding-right: 15px;
+}
+
 @media screen and (min-width: 561px) {
-	.bp-user #item-header-avatar a {
+	#buddypress #item-header-avatar a {
 		width: 160px;
 		height: 160px;
 	}
 }
 
 @media screen and (min-width: 741px) {
-	.bp-user #item-header {
-		position: fixed;
-		top: calc( 35px + 35px );
-		right: calc( 58% + 35px );
-		width: calc( 42% - 174px - 35px );
-		padding: 0;
-		max-width: 160px;
-		text-align: center;
+	body.buddypress .entry-header {
+		padding-left: 25px;
+		text-align: left;
 	}
 
-	.admin-bar.bp-user #item-header {
-		top: calc( 81px + 35px );
+	#buddypress #item-header-avatar {
+		top: 70px;
+		left: -110px;
+		width: auto;
+		margin: 0;
 	}
 
-	.bp-user #item-header-avatar {
+	#buddypress #item-header-content {
 		width: 100%;
-		position: relative;
-		margin: 0 0 20px 0;
-	}
-
-		.bp-user #item-header-avatar:before {
-			content: '';
-			display: block;
-			padding-top: 100%; /* 1:1 ratio */
-		}
-
-	.bp-user #item-header-avatar a {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: auto;
-	}
-
-	.bp-user #item-header-content {
-		text-align: inherit;
-	}
-}
-
-/** Admin bar -14px height */
-@media screen and (min-width: 783px) {
-	.admin-bar.bp-user #item-header {
-		top: calc( 67px + 35px );
 	}
 }
 
 @media screen and (min-width: 1120px) {
-	.bp-user #item-header {
+/*
+	#buddypress #item-header {
+		position: fixed;
+		top: calc( 35px + 35px );
 		right: calc( 640px + 35px );
 		width: 160px;
-		text-align: center;
+		padding: 0;
+		color: #fff;
 	}
+
+	body.admin-bar #buddypress #item-header {
+		top: calc( 81px + 35px );
+	}
+
+	#buddypress #item-header-avatar {
+		position: relative;
+		left: auto;
+		width: 100%;
+		margin: 0 0 20px 0;
+	}
+
+		#buddypress #item-header-avatar + #item-header-content {
+			padding-left: 0;
+			min-height: auto;
+		}
+*/
 }
 
 /*--------------------------------------------------------------
-2.2 My Profile
+3.0 Members
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+3.1 User Profile
+--------------------------------------------------------------*/
+body.bp-user #header-aside .flex-direction-nav {
+	display: none; /* Hide slider controls for member pages */
+}
+
+body.bp-user .entry-content {
+	margin-top: 0;
+}
+
+/*--------------------------------------------------------------
+3.2 My Profile
 --------------------------------------------------------------*/
 
-.my-account #item-header-avatar a:after {
+body.my-account #item-header-avatar a:after {
 	content: '\f464'; /* dashicons-edit */
 	background: rgba(51, 165, 55, 1);
 	position: absolute;
@@ -251,10 +293,49 @@
 	transition: opacity .2s ease-in;
 }
 
-	.my-account #item-header-avatar a:hover:after {
+	body.my-account #item-header-avatar a:hover:after {
 		opacity: 1;
 	}
 
-	.my-account #item-header-avatar a:active:after {
+	body.my-account #item-header-avatar a:active:after {
 		background: #333;
 	}
+
+/*--------------------------------------------------------------
+3.3 Profile Edit
+--------------------------------------------------------------*/
+body.profile-edit .editfield {
+	width: 100%;
+}
+
+	body.profile-edit .editfield label:first-child {
+		display: block;
+		float: left;
+		width: 40%;
+		padding-right: 15px;
+	}
+
+	body.profile-edit .editfield label ~ * {
+		display: block;
+		float: left;
+		width: 60%;
+		margin-left: 40%;
+	}
+
+		body.profile-edit .editfield label ~ *:not(:last-child) {
+			margin-bottom: 5px;
+		}
+
+	body.profile-edit .editfield label:first-child + * {
+		margin-left: 0;
+	}
+
+		body.profile-edit .editfield .radio label + div label {
+			float: left;
+			width: 100%;
+		}
+
+		body.profile-edit .editfield .checkbox input,
+		body.profile-edit .editfield .radio input {
+			margin-right: 10px;
+		}

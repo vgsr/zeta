@@ -116,7 +116,7 @@ function zeta_has_post_gallery( $post_id = 0 ) {
  *                            or as an array with width|height values.
  * @return array Collection of attachment IDs and/or image urls
  */
-function zeta_get_post_images( $post, $size = '' ) {
+function zeta_get_post_images( $post, $size = false ) {
 	if ( ! $post = get_post( $post ) )
 		return array();
 
@@ -210,7 +210,7 @@ function zeta_get_post_images( $post, $size = '' ) {
 			return $images;
 
 		// BP user profile
-		if ( function_exists( 'buddypress' ) && bp_is_user_profile() ) {
+		if ( function_exists( 'buddypress' ) && bp_is_user() ) {
 			$connected_item  = bp_displayed_user_id();
 			$connection_type = 'user';
 
