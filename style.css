@@ -1112,6 +1112,10 @@ input[type="radio"] {
 		color: rgba(51, 165, 55, 1);	
 	}
 
+*[role="search"] input[type="submit"] {
+	display: none;
+}
+
 /*--------------------------------------------------------------
 5.0 Navigation
 --------------------------------------------------------------*/
@@ -1630,10 +1634,6 @@ input.search-field {
 	width: 100%;
 }
 
-input.search-submit {
-	display: none;
-}
-
 /*--------------------------------------------------------------
 10.0 Content
 --------------------------------------------------------------*/
@@ -1670,14 +1670,17 @@ input.search-submit {
 }
 
 .entry-title,
+.item-title,
 .page-title,
 .comment-reply-title,
 .comments-title {
 	margin: 0;
 	line-height: 1.3em;
+	font-family: 'Montserrat', Arial, sans-serif;
 }
 
 	.entry-title a,
+	.item-title a,
 	.page-title a {
 		color: #404040;
 		text-decoration: none;

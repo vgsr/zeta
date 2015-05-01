@@ -193,15 +193,87 @@ body.buddypress .entry-header {
 		display: none;
 	}
 
-table td.label {
-	width: 40%;
-	padding-right: 15px;
+#buddypress .item-list {
+	list-style: none;
+	padding: 0;
 }
 
-table td.data {
-	width: 60%;
-	padding-right: 15px;
-}
+	#buddypress .item-list li {
+		position: relative;
+		float: left;
+		width: 100%;
+		padding: 50px 15px 15px;
+		margin: 50px 0 1em;
+		border: 1px solid #ddd;
+		font-size: 0.9em;
+	}
+
+	/* Two column list items, aim at > 180px */
+	@media screen and (min-width: 455px) and (max-width: 720px), (min-width: 773px) {
+		#buddypress .item-list li {
+			width: 49%;
+		}
+
+			#buddypress .item-list li:nth-child(2n - 1) {
+				margin-right: 2%;
+			}
+
+			#buddypress .item-list li:nth-child(2n + 1) {
+				clear: both;
+			}
+	}
+
+	/* Three column list items */
+	@media screen and (min-width: 720px) and (max-width: 740px), (min-width: 1060px) {
+		/* Correct 2-column */
+		#buddypress .item-list li:nth-child(2n - 1) {
+			margin-right: 0;
+		}
+
+		#buddypress .item-list li:nth-child(2n + 1) {
+			clear: none; 
+		}
+
+		/* Define 3-column */
+		#buddypress .item-list li {
+			width: 32%;
+		}
+
+			#buddypress .item-list li:nth-child(3n - 1) {
+				margin-left: 2%;
+				margin-right: 2%;
+			}
+
+			#buddypress .item-list li:nth-child(3n + 1) {
+				clear: both;
+			}
+	}
+
+			#buddypress .item-list li .item-avatar {
+				position: absolute;
+				top: -50px;
+				left: 0;
+				right: 0;
+				text-align: center;
+			}
+
+				#buddypress .item-list li .item-avatar a {
+					display: inline-block;
+					padding: 5px;
+					background-color: #fff;
+					border: 1px solid #ddd;
+					border-radius: 50%
+				}
+
+					#buddypress .item-list li .item-avatar a img {
+						float: left;
+						border-radius: 50%
+					}
+
+			#buddypress .item-list li .item-title {
+				text-align: center;
+				margin-bottom: 1em;
+			}
 
 @media screen and (min-width: 561px) {
 	#buddypress #item-header-avatar a {
@@ -263,12 +335,18 @@ table td.data {
 /*--------------------------------------------------------------
 3.1 User Profile
 --------------------------------------------------------------*/
-body.bp-user #header-aside .flex-direction-nav {
-	display: none; /* Hide slider controls for member pages */
-}
-
 body.bp-user .entry-content {
 	margin-top: 0;
+}
+
+table td.label {
+	width: 40%;
+	padding-right: 15px;
+}
+
+table td.data {
+	width: 60%;
+	padding-right: 15px;
 }
 
 /*--------------------------------------------------------------
@@ -339,3 +417,22 @@ body.profile-edit .editfield {
 		body.profile-edit .editfield .radio input {
 			margin-right: 10px;
 		}
+
+	body.profile-edit .editfield .datebox select {
+		width: 17%;
+		margin-bottom: 5px;
+		margin-left: 0;
+	}
+
+		body.profile-edit .editfield .datebox select:nth-of-type(2) {
+			width: 22%;
+			margin-left: 2%;
+			margin-right: 2%;
+		}
+
+	body.profile-edit .editfield .description {
+		margin-top: 0;
+		font-size: 0.9em;
+		font-style: italic;
+		color: #999;
+	}
