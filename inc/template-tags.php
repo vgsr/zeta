@@ -483,6 +483,7 @@ function zeta_header_slider() {
 		// Define slide details
 		$slide = array(
 			'post_id' => false,
+			'att_id'  => false,
 			'src'     => $image,
 			'href'    => false,
 			'title'   => false,
@@ -509,6 +510,7 @@ function zeta_header_slider() {
 
 		// Get data from the image attachment
 		if ( is_numeric( $image ) ) {
+			$slide['att_id'] = (int) $image;
 			$_image = wp_get_attachment_image_src( $image, $image_size );
 
 			// Skip slide when image isn't found
@@ -550,6 +552,7 @@ function zeta_header_slider() {
 		$default  = array_rand( $defaults ); 
 		$slides[] = array( 
 			'post_id' => false,
+			'att_id'  => false,
 			'src'     => get_template_directory_uri() . '/images/headers/' . $defaults[ $default ],
 			'href'    => false,
 			'title'   => false,
@@ -565,7 +568,7 @@ function zeta_header_slider() {
 		$tag = ! empty( $args['href'] ) ? 'a' : 'div'; 
 
 		// Start image container
-		$slide = '<' . $tag . ' class="slide-inner" style="background-image: url(' . esc_attr( $args['src'] ) . ');"';
+		$slide = '<' . $tag . ' class="slide-inner" style="background-image: url(' . esc_url( $args['src'] ) . ');"';
 
 		// Add link to the element
 		if ( 'a' === $tag ) {
@@ -573,16 +576,21 @@ function zeta_header_slider() {
 		}
 		$slide .= '>';
 
-		// Handle titles
-		if ( ! empty( $args['title'] ) ) {
-			$slide .= '<header class="slide-details"><h2>' . $args['title'] . '</h2>';
+		// Handle post/image title
+		if ( $args['title'] ) {
+			$slide .= '<header class="slide-details"><h2>' . esc_html( $args['title'] ) . '</h2>';
 
 			// Append byline
-			if ( ! empty( $args['byline'] ) ) {
-				$slide .= '<span class="byline">' . $args['byline'] . '</span>';
+			if ( $args['byline'] ) {
+				$slide .= '<span class="byline">' . esc_html( $args['byline'] ) . '</span>';
 			}
 
 			$slide .= '</header>';
+		}
+
+		// Display image's associated users
+		if ( $args['att_id'] ) {
+			$slide .= zeta_media_users( $args['att_id'], false );
 		}
 
 		// Close image container
@@ -703,3 +711,55 @@ function zeta_map_slide( $slides ) {
 	return $slides;
 }
 // add_filter( 'zeta_header_slider_slides', 'zeta_map_slide' );
+
+/**
+ * Display or return the media item's associated users
+ *
+ * @since 1.0.0
+ *
+ * @uses bp_member_permalink()
+ * @uses bp_member_name()
+ * @uses bp_member_avatar()
+ * 
+ * @param int $post_id Attachment ID
+ * @param bool $echo Optional. Whether to output the content
+ */
+function zeta_media_users( $post_id, $echo = true ) {
+
+	// Bail when BP or P2P is not active
+	if ( ! did_action( 'bp_init' ) || ! did_action( 'p2p_init' ) )
+		return;
+	
+	// Bail when no users are found
+	if ( ! $users = get_users( array(
+		'fields'          => 'ids',
+		'connected_type'  => 'user_media',
+		'connected_items' => $post_id,
+		'exclude'         => bp_displayed_user_id()
+	) ) )
+		return;
+
+	if ( ! $echo ) {
+		ob_start();
+	}
+
+	// Query associated members
+	if ( bp_has_members( array(
+		'type'    => '', // Order handled by vgsr plugin
+		'include' => $users,
+	) ) ) {
+		?>
+		<div class="media-users">
+			<ul>
+			<?php while ( bp_members() ) : bp_the_member(); ?>
+				<li><a href="<?php echo esc_url( bp_get_member_permalink() ); ?>" data-title="<?php echo esc_attr( bp_get_member_name() ); ?>"><?php bp_member_avatar(); ?></a></li>
+			<?php endwhile; ?>
+			</ul>
+		</div>
+		<?php
+	}
+
+	if ( ! $echo ) {
+		return ob_get_clean();
+	}
+}
