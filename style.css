@@ -442,34 +442,36 @@ table {
 		padding: 10px 0;
 	}
 
-	table tr:not(.alt):not(.odd):before {
-		content: none;
-	}
-
+	table tr th,
 	table tr td {
 		position: relative;
-		word-wrap: break-word;
-		vertical-align: top;
 		padding: 10px 0;
+		text-align: left;
+		vertical-align: top;
+		word-wrap: break-word;
 		z-index: 0;
 	}
 
-		table tr:not(.alt):not(.odd) td:before {
+	table tr th {
+		font-family: 'Montserrat', Arial, sans-serif
+	}
+
+		table tr:nth-of-type(2n - 1) td:before {
 			position: absolute;
 			content: '';
 			top: 0;
-			right: -35px;
+			right: 0;
 			bottom: 0;
-			left: -35px;
+			left: 0;
 			background-color: #f9f9f9;
 			z-index: -1;
 		}
 
-		table tr:not(.alt):not(.odd) td:first-child:before {
+		table tr:nth-of-type(2n - 1) td:first-child:before {
 			left: -35px;
 		}
 
-		table tr:not(.alt):not(.odd) td:last-child:before {
+		table tr:nth-of-type(2n - 1) td:last-child:before {
 			right: -35px;
 		}
 
@@ -1800,7 +1802,7 @@ input.search-field {
 	.entry-footer a:visited {
 		color: #999;
 		text-decoration: none;
-		border-bottom: 1px solid rgba(191, 38, 105, .3);
+		border-bottom: 1px solid rgba(153, 153, 153, .3);
 	}
 
 	#colophon a,

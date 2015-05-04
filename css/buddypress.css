@@ -8,13 +8,27 @@
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
+0.0 General
 1.0 Navigation
 2.0 Items
+	2.1 Directories
+	2.2 Single item
 3.0 Members
 	2.1 User Profile
 	2.2 My Profile
 3.0 Groups
 --------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+0.0 General
+--------------------------------------------------------------*/
+body.buddypress .entry-footer {
+	margin: 0;
+}
+
+#buddypress #message p:first-child {
+	margin-top: 0;
+}
 
 /*--------------------------------------------------------------
 1.0 Navigation
@@ -35,6 +49,12 @@
 	padding: 0;
 	list-style: none;
 	font-size: .9em;
+	background-color: #efefef;
+	border: 1px solid #efefef;
+}
+
+#buddypress .item-list-tabs ul {
+	border-bottom-width: 0;
 }
 
 	#buddypress .item-list-tabs ul li,
@@ -44,15 +64,54 @@
 	}
 
 	#buddypress .item-list-tabs ul li.current,
-	#buddypress .button-nav li.current {
+	#buddypress .item-list-tabs ul li.selected,
+	#buddypress .button-nav li.current,
+	#buddypress .button-nav li.selected {
 		background-color: #fff;
 	}
 
+	#buddypress .item-list-tabs ul li[role="search"] {
+		margin: 0 0 -1px 0;
+	}
+
+		#buddypress .item-list-tabs ul li:first-child[role="search"] {
+			margin-left: -9px;
+		}
+
+		#buddypress .item-list-tabs ul li[role="search"] input[type="text"] {
+			padding: 8px 18px;
+		}
+
+		#buddypress .item-list-tabs ul li[role="search"] input[type="text"]:not(:focus) {
+			border-top: none;
+			border-color: #efefef;
+			border-right-color: transparent;
+			box-shadow: none;
+		}
+
+		#buddypress .item-list-tabs ul li[role="search"] input[type="text"]:focus {
+			margin-top: -1px;
+		}
+
 	#buddypress .item-list-tabs ul li.filter {
 		float: right;
-		padding: 8px 0px 8px 10px;
+		padding: 0 0 0 10px;
+		margin: -1px -9px -1px 0;
 		color: #b0b0b0;
 	}
+
+		#buddypress .item-list-tabs ul li.filter select {
+			width: auto;
+			padding: 9px 10px 10px;
+			margin-left: 5px;
+		}
+
+		/* Blend in with the environment */
+		#buddypress .item-list-tabs ul li.filter select:not(:focus) {
+			border-color: #efefef;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
 
 	#buddypress .item-list-tabs ul li a,
 	#buddypress .button-nav li a {
@@ -63,30 +122,22 @@
 		color: #b0b0b0;
 	}
 
-		#buddypress .item-list-tabs ul li:not(.current):hover a,
-		#buddypress .button-nav li:not(.current):hover a {
+		#buddypress .item-list-tabs ul li:not(.current):not(.selected):hover a,
+		#buddypress .button-nav li:not(.current):not(.selected):hover a {
 			background-color: #f4f4f4;
 			color: #707070;
 		}
 
 		#buddypress .item-list-tabs ul li.current a,
-		#buddypress .button-nav li.current a {
+		#buddypress .item-list-tabs ul li.selected a,
+		#buddypress .button-nav li.current a,
+		#buddypress .button-nav li.selected a {
 			color: #404040;
 		}
 
 			#buddypress .item-list-tabs ul li a span.count {
 				display: none; /* Hide counts */
 			}
-
-#buddypress .item-list-tabs#object-nav ul,
-#buddypress .button-nav {
-	background-color: #efefef;
-	border: 1px solid #efefef;
-}
-
-#buddypress .item-list-tabs#object-nav ul {
-	border-bottom-width: 0;
-}
 
 #buddypress .item-list-tabs#subnav {
 	margin-bottom: 71px;
@@ -103,8 +154,8 @@
 
 	#buddypress .item-list-tabs#subnav ul {
 		padding: 0 8px;
-		border: 1px solid #efefef;
-		border-top: 0;
+		background-color: transparent;
+		border-width: 0 1px 1px;
 	}
 
 		#buddypress .item-list-tabs#subnav ul li a {
@@ -117,6 +168,70 @@
 
 /*--------------------------------------------------------------
 2.0 Items
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+2.1 Directories
+--------------------------------------------------------------*/
+#buddypress .dir-search {
+	position: relative;
+	z-index: 1;
+}
+
+	#buddypress .dir-search input {
+		margin-bottom: -1px;
+	}
+
+	#buddypress .dir-search input:not(:focus) {
+		border-color: #efefef;
+	}
+
+#buddypress .pagination {
+	font-family: 'Montserrat', Arial, sans-serif;
+}
+
+	#buddypress .pagination .pag-count {
+		float: left;
+	}
+
+	#buddypress .pagination .pagination-links {
+		float: right;
+	}
+
+		#buddypress .pagination .pagination-links .page-numbers {
+			text-decoration: none;
+			color: #404040;
+		}
+
+			#buddypress .pagination .pagination-links .page-numbers:hover {
+				color: #999;
+			}
+
+		#buddypress .pagination .pagination-links .page-numbers.current {
+			position: relative;
+			display: inline-block;
+			width: 26px;
+			height: 26px;
+			color: #fff;
+			margin-top: -2.5px;
+			padding: 2px 0;
+			text-align: center;
+			z-index: 0;
+		}
+
+			#buddypress .pagination .pagination-links .page-numbers.current:before {
+				content: '';
+				position: absolute;
+				top: 2.5px;
+				left: calc( 50% - 13px );
+				width: 26px;
+				height: 26px;
+				background-color: rgba(51, 165, 55, 1);
+				border-radius: 50%;
+				z-index: -1;
+			}
+
+/*--------------------------------------------------------------
+2.2 Single item
 --------------------------------------------------------------*/
 body.buddypress .entry-header {
 	float: left;
@@ -171,6 +286,7 @@ body.buddypress .entry-header {
 #buddypress .item-list {
 	list-style: none;
 	padding: 0;
+	margin: 0 0 1.5em 0;
 }
 
 	#buddypress .item-list li {
@@ -200,7 +316,9 @@ body.buddypress .entry-header {
 
 	/* Three column list items, at least 180px width each */
 	@media screen and (min-width: 720px) and (max-width: 740px), (min-width: 1060px) {
+
 		/* Correct 2-column */
+
 		#buddypress .item-list li:nth-child(2n - 1) {
 			margin-right: 0;
 		}
@@ -210,6 +328,7 @@ body.buddypress .entry-header {
 		}
 
 		/* Define 3-column */
+
 		#buddypress .item-list li {
 			width: 32%;
 		}
@@ -222,6 +341,44 @@ body.buddypress .entry-header {
 			#buddypress .item-list li:nth-child(3n + 1) {
 				clear: both;
 			}
+
+		/* Account for unsymmetric list endings (rows of 3) */
+
+		/* Missing 2: move center > right */
+		#buddypress .item-list li:nth-child(3n - 1):nth-last-child(3n) { 
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		/* Missing 2: move left > center */
+		#buddypress .item-list li:nth-child(3n - 2):nth-last-child(3n - 2) { 
+			clear: none;
+			margin-left: 2%;
+			margin-right: 2%;
+		}
+
+		/* Missing 2: move right > left */
+		#buddypress .item-list li:nth-child(3n):nth-last-child(3n - 1) { 
+			clear: both;
+		}
+
+		#buddypress .item-list li:nth-last-child(3n - 2):nth-child(1), /* Missing 2: first 1/2 */
+		#buddypress .item-list li:nth-last-child(2):nth-child(3n),
+		#buddypress .item-list li:nth-last-child(2):nth-child(3n - 2) {
+			width: 49%;
+			clear: both;
+			margin-left: 0;
+			margin-right: 2%;
+		}
+
+		#buddypress .item-list li:nth-last-child(3n):nth-child(2), /* Missing 2: second 1/2 */
+		#buddypress .item-list li:nth-last-child(1):nth-child(3n - 2),
+		#buddypress .item-list li:nth-last-child(1):nth-child(3n - 1) {
+			width: 49%;
+			clear: none; 
+			margin-left: 0;
+			margin-right: 0;
+		}
 	}
 
 			#buddypress .item-list li .item-avatar {
@@ -234,9 +391,8 @@ body.buddypress .entry-header {
 
 				#buddypress .item-list li .item-avatar a {
 					display: inline-block;
-					padding: 5px;
+					padding: 10px;
 					background-color: #fff;
-					border: 1px solid #ddd;
 					border-radius: 50%
 				}
 
@@ -248,6 +404,10 @@ body.buddypress .entry-header {
 			#buddypress .item-list li .item-title {
 				text-align: center;
 				margin-bottom: 1em;
+			}
+
+			#buddypress .item-list li .item-meta {
+				word-wrap: break-word;
 			}
 
 @media screen and (min-width: 561px) {
@@ -305,29 +465,29 @@ body.buddypress .entry-header {
 }
 
 #buddypress .profile,
+#buddypress .groups,
 #buddypress .dir-list {
 	float: left;
 	width: 100%;
 }
 
-	#buddypress .profile > *,
-	#buddypress .dir-list > * {
+	#buddypress .bp-widget,
+	#buddypress .bp-widget > *,
+	#buddypress .profile   > *,
+	#buddypress .profile   > * > *,
+	#buddypress .groups    > *,
+	#buddypress .dir-list  > * {
 		float: left;
 		width: 100%;
 		margin: 0 0 1.5em 0;
 	}
 
-		#buddypress .profile > *:last-child {
-			margin: 0;
-		}
-
-		#buddypress .profile > * > * {
-			float: left;
-			width: 100%;
-			margin: 0 0 1.5em 0;
-		}
-
-		#buddypress .profile > * > *:last-child {
+		#buddypress .bp-widget:last-child,
+		#buddypress .bp-widget > *:last-child,
+		#buddypress .profile   > *:last-child,
+		#buddypress .profile   > * > *:last-child,
+		#buddypress .groups    > *:last-child,
+		#buddypress .dir-list  > *:last-child {
 			margin-bottom: 0;
 		}
 
@@ -341,15 +501,39 @@ body.bp-user .entry-content {
 	margin-top: 0;
 }
 
-table td.label {
-	width: 40%;
+#buddypress table td {
 	padding-right: 15px;
 }
 
-table td.data {
-	width: 60%;
-	padding-right: 15px;
+#buddypress table td:last-child {
+	padding-right: 0;
 }
+
+#buddypress table td.label {
+	width: 40%;
+}
+
+#buddypress table td.data {
+	width: 60%;
+}
+
+	#buddypress .notification-settings th.icon,
+	#buddypress .notification-settings td:first-child {
+		display: none;
+	}
+
+	#buddypress .notification-settings td:nth-child(2):before {
+		margin-left: -35px;
+	}
+
+	#buddypress .notification-settings th.yes,
+	#buddypress .notification-settings td.yes,
+	#buddypress .notification-settings th.no,
+	#buddypress .notification-settings td.no {
+		width: 15%;
+		text-align: center;
+		padding-right: 0;
+	}
 
 /*--------------------------------------------------------------
 3.2 My Profile
