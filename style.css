@@ -483,14 +483,23 @@ table {
 3.1 Layout
 --------------------------------------------------------------*/
 
-body {
-
-}
-
 #page {
 	float: left;
 	width: 100%;
 	background-color: #f9f9f9;
+	min-height: 100vh;
+
+	/* Flexbox. Not for IE8/9 */
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: column;
+}
+
+body.admin-bar #page {
+	min-height: calc( 100vh - 46px );
 }
 
 .site-header {
@@ -736,6 +745,7 @@ body {
 	width: 100%;
 	background-color: #fff;
 	font-size: 1.1em;
+	flex: 1;
 }
 
 	#primary .site-main > *,
@@ -800,6 +810,11 @@ body {
 }
 
 @media screen and (min-width: 741px) {
+	#page {
+		padding-top: 35px;
+		background-color: #fff;
+	}
+
 	.site-header {
 		position: fixed;
 		top: 0;
@@ -809,7 +824,7 @@ body {
 	}
 
 	body.admin-bar .site-header {
-		top: auto;
+		top: 32px;
 	}
 
 	.site-branding {
@@ -878,12 +893,9 @@ body {
 	#site-tools {
 		display: none;
 		float: right;
-		width: 58%;
-		margin-left: 42%;
 		background-color: #fff;
 		border-left: 1px solid #efefef;
 		border-bottom: 1px dashed #ddd;
-		padding-top: 35px;
 	}
 
 		.tools-toggled #site-tools {
@@ -1016,48 +1028,40 @@ body {
 		}
 
 	#content {
-		width: 58%;
-		padding: 35px 0 0 0;
-		background-color: #fff;
+		padding: 0;
 		border-left: 1px solid #efefef;
 	}
 
-	.menu-toggled #content {
-		padding: 35px 0 0 0;
-	}
+		#primary .site-main > *,
+		#secondary > * {
+			background-color: transparent;
+		}
 
-	.tools-toggled #content {
-		padding-top: 0;
-	}
-
-			#primary .site-main > *,
-			#secondary > * {
-				background-color: transparent;
-			}
-
+	#site-tools,
+	#content,
 	#colophon {
-		margin-left: 42%;
 		width: 58%;
+		margin-left: 42%;
+	}
+}
+
+/* WP admin bar shrinks 46px > 32px */
+@media screen and (min-width: 783px) {
+	body.admin-bar #page {
+		min-height: calc( 100vh - 32px );
 	}
 }
 
 @media screen and (min-width: 1120px) {
-	#site-tools {
-		width: 640px;
-		margin-left: calc( 100% - 640px );
-	}
-
 	#header-aside {
 		width: calc( 100% - 640px );
 	}
 
-	#content {
-		width: 640px;
-	}
-
+	#site-tools,
+	#content,
 	#colophon {
-		margin-left: calc( 100% - 640px );
 		width: 640px;
+		margin-left: calc( 100% - 640px );
 	}
 }
 
