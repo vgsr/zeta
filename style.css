@@ -750,7 +750,20 @@ body.admin-bar #page {
 	background-color: #fff;
 	font-size: 1.1em;
 	flex: 1;
+
+	/* Flex the inner content */
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: column;
 }
+
+	/* Push #secondary (widgets) to bottom of the screen */
+	#primary {
+		flex: 1;
+	}
 
 	#primary .site-main > *,
 	#secondary > * {
