@@ -23,7 +23,7 @@
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
 
-	<footer class="entry-footer">
-		<?php zeta_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	<footer class="entry-footer"><?php 
+		zeta_entry_footer(); 
+	?></footer><!-- .entry-footer -->
 </article><!-- #post-## -->

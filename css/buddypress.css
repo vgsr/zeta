@@ -22,10 +22,6 @@
 /*--------------------------------------------------------------
 0.0 General
 --------------------------------------------------------------*/
-body.buddypress .entry-footer {
-	margin: 0;
-}
-
 #buddypress #message p:first-child {
 	margin-top: 0;
 }

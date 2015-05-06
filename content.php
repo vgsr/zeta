@@ -32,7 +32,7 @@
 		?>
 	</div><!-- .entry-content -->
 
-	<footer class="entry-footer">
-		<?php zeta_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	<footer class="entry-footer"><?php 
+		zeta_entry_footer(); 
+	?></footer><!-- .entry-footer -->
 </article><!-- #post-## -->
