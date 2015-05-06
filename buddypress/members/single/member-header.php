@@ -21,13 +21,13 @@
 
 <div id="item-header-content">
 
-	<!-- <h1 class="entry-title"><?php the_title(); ?></h1> -->
+	<h2 class="entry-title"><?php the_title(); ?></h2>
 
-	<?php if ( bp_is_active( 'activity' ) && bp_activity_do_mentions() ) : ?>
-		<h2 class="user-nicename">@<?php bp_displayed_user_mentionname(); ?></h2>
+	<?php if ( bp_activity_do_mentions() ) : // && bp_is_active( 'activity' ) ?>
+		<span class="user-nicename">@<?php bp_displayed_user_mentionname(); ?></span>
 	<?php endif; ?>
 
-	<span class="activity"><?php bp_last_activity( bp_displayed_user_id() ); ?></span>
+	<!-- <span class="activity"><?php bp_last_activity( bp_displayed_user_id() ); ?></span> -->
 
 	<?php do_action( 'bp_before_member_header_meta' ); ?>
 

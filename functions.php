@@ -202,6 +202,38 @@ add_action( 'wp_enqueue_scripts', 'zeta_scripts' );
 //require get_template_directory() . '/inc/custom-header.php';
 
 /**
+ * Add additional inline styles.
+ *
+ * @since Zeta 1.0.0
+ *
+ * @see wp_add_inline_style()
+ */
+function zeta_inline_styles() {
+
+	// Post navigation description
+	$css = '
+		.comment-navigation .nav-previous a:before, .posts-navigation .nav-previous a:before, .post-navigation .nav-previous a:before { content: "' . __( 'Previous', 'zeta' ) . '"; }
+		.comment-navigation .nav-next a:before, .posts-navigation .nav-next a:before, .post-navigation .nav-next a:before { content: "'             . __( 'Next',     'zeta' ) . '"; }
+	';
+
+	wp_add_inline_style( 'zeta-style', $css );
+}
+add_action( 'wp_enqueue_scripts', 'zeta_inline_styles' );
+
+/**
+ * Add a `screen-reader-text` class to the search form's submit button.
+ *
+ * @since Zeta 1.0.0
+ *
+ * @param string $html Search form HTML.
+ * @return string Modified search form HTML.
+ */
+function zeta_search_form_modify( $html ) {
+	return str_replace( 'class="search-submit"', 'class="search-submit screen-reader-text"', $html );
+}
+add_filter( 'get_search_form', 'zeta_search_form_modify' );
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
