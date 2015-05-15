@@ -37,7 +37,7 @@
 	#buddypress .bp-widget,
 	#buddypress .bp-widget     > *,
 	#buddypress .profile       > *,
-	#buddypress .profile       > * > *,
+	#buddypress .profile       > *:not(p) > *,
 	#buddypress .groups        > *,
 	#buddypress .dir-list      > *,
 	#buddypress .standard-form > * {
@@ -49,7 +49,7 @@
 		#buddypress .bp-widget:last-child,
 		#buddypress .bp-widget     > *:last-child,
 		#buddypress .profile       > *:last-child,
-		#buddypress .profile       > * > *:last-child,
+		#buddypress .profile       > *:not(p) > *:last-child,
 		#buddypress .groups        > *:last-child,
 		#buddypress .dir-list      > *:last-child,
 		#buddypress .standard-form > *:last-child {
