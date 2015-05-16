@@ -75,9 +75,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	add_action( 'wp_head', 'zeta_render_title' );
 endif;
 
-/**
- * Media
- */
+/** Media ******************************************************************/
 
 /**
  * Return whether the given post contains a gallery
@@ -501,3 +499,85 @@ function zeta_get_media_embedded_in_content_allowed( $types ) {
 	return $types;
 }
 add_filter( 'get_media_embedded_in_content_allowed', 'zeta_get_media_embedded_in_content_allowed' );
+
+/** Widgets ****************************************************************/
+
+/**
+ * Modify the widget's form options
+ *
+ * @since 0.1.0
+ * 
+ * @uses WP_Widget::get_field_name()
+ * 
+ * @param WP_Widget $widget
+ * @param string $return Form output markup
+ * @param array $instance Widget settings
+ */
+function zeta_widget_fullwidth_form( $widget, $return, $instance ) { ?>
+
+	<h4><?php esc_html_e( 'Theme Settings', 'zeta' ); ?></h4>
+
+	<?php // Output the full-width checkbox
+	printf( '<p><label><input id="%1$s" type="checkbox" name="%2$s" value="1" %3$s /> %4$s</label></p>',
+		$widget->get_field_id( 'zeta_full_width' ),
+		$widget->get_field_name( 'zeta-full-width' ),
+		checked( isset( $instance['zeta-full-width'] ) && $instance['zeta-full-width'], true, false ),
+		__( 'Use the full content width for this widget.', 'zeta' )
+	);
+}
+add_action( 'in_widget_form', 'zeta_widget_fullwidth_form', 50, 3 );
+
+/**
+ * Modify the widget's updated settings
+ *
+ * @since 0.1.0
+ * 
+ * @param array $instance Widget settings
+ * @param array $new_instance
+ * @param array $old_instance
+ * @param WP_Widget $widget
+ * @return array Widget settings
+ */
+function zeta_widget_fullwidth_update( $instance, $new_instance, $old_instance, $widget ) {
+
+	// Update (un)checked setting
+	if ( isset( $new_instance['zeta-full-width'] ) ) {
+		$instance['zeta-full-width'] = true;
+	} else {
+		unset( $instance['zeta-full-width'] );
+	}
+
+	return $instance;
+}
+add_filter( 'widget_update_callback', 'zeta_widget_fullwidth_update', 10, 4 );
+
+/**
+ * Modify the widget's display params
+ *
+ * @since 0.1.0
+ *
+ * @uses WP_Widget::get_settings()
+ * 
+ * @param array $params Widget's sidebar params
+ * @return array Widget params
+ */
+function zeta_widget_fullwidth_display( $params ) {
+
+	// Bail when in the admin or in the Customizer
+	if ( ! is_admin() && ! is_customize_preview() ) {
+		global $wp_registered_widgets;
+
+		$settings = $wp_registered_widgets[ $params[0]['widget_id'] ]['callback'][0]->get_settings();
+		if ( $settings ) {
+			$widget_settings = $settings[ $params[1]['number'] ];
+
+			// Add 'full-width' class when widget is marked full width
+			if ( isset( $widget_settings['zeta-full-width'] ) && $widget_settings['zeta-full-width'] ) {
+				$params[0]['before_widget'] = str_replace( 'class="', 'class="full-width ', $params[0]['before_widget'] );
+			}
+		}
+	}
+
+	return $params;
+}
+add_filter( 'dynamic_sidebar_params', 'zeta_widget_fullwidth_display' );
