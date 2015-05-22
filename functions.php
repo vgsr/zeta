@@ -210,10 +210,35 @@ add_action( 'wp_enqueue_scripts', 'zeta_scripts' );
  */
 function zeta_inline_styles() {
 
-	// Post navigation description
+	// Define prev/next labels
+	$prev = __( 'Previous', 'zeta' );
+	$next = __( 'Next',     'zeta' );
+
+	// Comment/Posts navigation description
 	$css = '
-		.comment-navigation .nav-previous a:before, .posts-navigation .nav-previous a:before, .post-navigation .nav-previous a:before { content: "' . __( 'Previous', 'zeta' ) . '"; }
-		.comment-navigation .nav-next a:before, .posts-navigation .nav-next a:before, .post-navigation .nav-next a:before { content: "'             . __( 'Next',     'zeta' ) . '"; }
+		.comment-navigation .nav-previous a:before, .posts-navigation .nav-previous a:before { content: "' . $prev . '"; }
+		.comment-navigation .nav-next a:before, .posts-navigation .nav-next a:before { content: "'         . $next . '"; }
+	';
+
+	// Consider VGSR Entity
+	if ( function_exists( 'vgsr_entity' ) ) {
+		$entity = vgsr_entity();
+
+		// Besturen
+		if ( isset( $entity->bestuur ) ) {
+			if ( is_singular( $entity->bestuur->type ) ) {
+
+				// Define labels for single Bestuur
+				$prev = $entity->bestuur->get_season( get_adjacent_post( false, '', true  ) );
+				$next = $entity->bestuur->get_season( get_adjacent_post( false, '', false ) );
+			}
+		}
+	}
+
+	// Post navigation description
+	$css .= '
+		.post-navigation .nav-previous a:before { content: "' . $prev . '"; }
+		.post-navigation .nav-next a:before { content: "'     . $next . '"; }
 	';
 
 	wp_add_inline_style( 'zeta-style', $css );
