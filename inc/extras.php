@@ -500,12 +500,159 @@ function zeta_get_media_embedded_in_content_allowed( $types ) {
 }
 add_filter( 'get_media_embedded_in_content_allowed', 'zeta_get_media_embedded_in_content_allowed' );
 
+/** Search *****************************************************************/
+
+/**
+ * Append a context filter element to the search form
+ *
+ * @since 1.0.0
+ *
+ * @uses get_post_type()
+ * @uses get_post_type_object()
+ * @uses post_type_exists()
+ * @uses is_buddypress()
+ * @uses is_user_vgsr()
+ * @uses apply_filters() Calls 'zeta_search_contexts'
+ * @uses is_search()
+ * 
+ * @param string $form Search form markup
+ * @return string Search form markup
+ */
+function zeta_search_context_select( $form ) {
+	$contexts = array();
+
+	// Get the requested context
+	$_context = isset( $_GET['context'] ) ? $_GET['context'] : false;
+
+	// Current post's post type
+	if ( $post_type = get_post_type() ) {
+		$contexts[ $post_type ] = get_post_type_object( $post_type )->labels->name;
+	}
+
+	// Make requested post type context available
+	if ( $_context && post_type_exists( $_context ) ) {
+		$contexts[ $_context ] = get_post_type_object( $_context )->labels->name;
+	}
+
+	// Consider BuddyPress 
+	if ( function_exists( 'buddypress' ) ) {
+
+		// Remove the post type (page) context
+		if ( is_buddypress() ) {
+			unset( $contexts[ $post_type ] );
+		}
+
+		// Search members
+		if ( function_exists( 'vgsr' ) && is_user_vgsr() ) {
+			$contexts['bp-members'] = __( 'Members', 'zeta' );
+		}
+
+		// Search groups
+		if ( bp_is_active( 'groups' ) ) {
+			$contexts['bp-groups'] = __( 'Groups', 'zeta' );
+		}
+	}
+
+	$contexts = (array) apply_filters( 'zeta_search_contexts', $contexts );
+
+	// Setup <select> element with available contexts
+	if ( ! empty( $contexts ) ) {
+		$options = "\t<option>" . _x( 'All', 'Search context', 'zeta' ) . '</option>';
+		foreach ( $contexts as $context => $label ) {
+			$options .= sprintf( "\t<option value=\"%s\" %s>%s</option>", esc_attr( $context ), selected( ( is_search() && $context === $_context ), true, false ), esc_html( $label ) );
+		}
+
+		// Append element to the form
+		$form = str_replace( '</form>', '<select class="zeta-search-context" name="context">' . $options .'</select></form>', $form );
+
+		// Add a context-aware form class
+		$form = str_replace( 'class="search-form', 'class="search-form with-context', $form );
+		$form = str_replace( 'class="searchform',  'class="searchform with-context',  $form );
+	}
+
+	return $form;
+}
+add_filter( 'get_search_form', 'zeta_search_context_select' );
+
+/**
+ * Handle search context specific redirectioning
+ *
+ * @since 1.0.0
+ *
+ * @uses is_search()
+ * @uses bp_core_get_directory_page_ids()
+ * @uses is_user_vgsr()
+ * @uses get_permalink()
+ * @uses apply_filters() Calls 'zeta_search_context_location'
+ * @uses wp_safe_redirect()
+ */
+function zeta_search_context_location() {
+
+	// Bail when this is not a search request and no context is provided
+	if ( ! is_search() || ! isset( $_GET['context'] ) )
+		return;
+
+	$location = false;
+	$context  = esc_attr( $_GET['context'] );
+	$s        = esc_attr( $_GET['s'] );
+
+	if ( function_exists( 'buddypress' ) ) {
+		$page_ids = bp_core_get_directory_page_ids( 'all' );
+	}
+
+	switch ( $context ) {
+		case 'bp-members' :
+			if ( function_exists( 'buddypress' ) && function_exists( 'vgsr' ) && is_user_vgsr() ) {
+				$location = add_query_arg( 's', $s, get_permalink( $page_ids['members'] ) ); // Members index page
+			}
+			break;
+		case 'bp-groups' :
+			if ( function_exists( 'buddypress' ) && bp_is_active( 'groups' ) ) {
+				$location = add_query_arg( 's', $s, get_permalink( $page_ids['groups'] ) ); // Groups index page
+			}
+			break;
+		default :
+			$location = apply_filters( 'zeta_search_context_location', $location, $context, $s );
+			break;
+	}
+
+	// Redirect to valid location
+	if ( $location ) {
+		wp_safe_redirect( esc_url_raw( $location ) );
+	}
+}
+add_action( 'template_redirect', 'zeta_search_context_location' );
+
+/**
+ * Handle search context specific redirectioning
+ *
+ * @since 1.0.0
+ *
+ * @uses WP_Query::is_main_query()
+ * @uses WP_Query::is_search()
+ * @uses post_type_exists()
+ *
+ * @param WP_Query $query The query
+ */
+function zeta_search_context_parse_query( $query ) {
+
+	// Bail when this is not the main query and a search request and no context is provided
+	if ( ! $query->is_main_query() || ! $query->is_search() || ! isset( $_GET['context'] ) )
+		return;
+
+	// Set the post type query var when given as context
+	if ( post_type_exists( esc_attr( $_GET['context'] ) ) ) {
+		$query->query_vars[ 'post_type' ] = esc_attr( $_GET['context'] );
+	}
+}
+add_action( 'parse_query', 'zeta_search_context_parse_query' );
+
 /** Widgets ****************************************************************/
 
 /**
  * Modify the widget's form options
  *
- * @since 0.1.0
+ * @since 1.0.0
  * 
  * @uses WP_Widget::get_field_name()
  * 
@@ -530,7 +677,7 @@ add_action( 'in_widget_form', 'zeta_widget_form', 50, 3 );
 /**
  * Modify the widget's updated settings
  *
- * @since 0.1.0
+ * @since 1.0.0
  * 
  * @param array $instance Widget settings
  * @param array $new_instance
@@ -554,7 +701,7 @@ add_filter( 'widget_update_callback', 'zeta_widget_update', 10, 4 );
 /**
  * Modify the widget's display params
  *
- * @since 0.1.0
+ * @since 1.0.0
  *
  * @uses WP_Widget::get_settings()
  * 

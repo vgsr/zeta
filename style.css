@@ -1698,6 +1698,21 @@ input[type="radio"] {
 	display: none;
 }
 
+.search-form.with-context input[type="search"] {
+	display: block;
+	float: left;
+	width: 75%;
+}
+
+.search-form.with-context select.zeta-search-context {
+	display: block;
+	float: left;
+	width: 25%;
+	padding: 7.5px 10px; /* Chrome: 7.5px; FF: 6.5px; IE11: 5px; */
+	border-left: 0;
+	color: #a9a9a9;
+}
+
 /*--------------------------------------------------------------
 6.0 Accessibility
 --------------------------------------------------------------*/
