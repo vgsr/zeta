@@ -833,10 +833,14 @@ body.admin-bar #page {
 		background-color: transparent;
 	}
 
-	#primary .site-main > *,
-	#secondary > * {
-		background-color: #fff;
-	}
+		#secondary {
+			background-color: #fff;
+		}
+
+		#primary .site-main > *,
+		#secondary > * {
+			background-color: #fff;
+		}
 }
 
 @media screen and (min-width: 741px) {
@@ -1109,18 +1113,16 @@ body.admin-bar #page {
 /*--------------------------------------------------------------
 4.1 Links
 --------------------------------------------------------------*/
-a {
-	color: #404040;
-}
-
+a,
 a:visited {
 	color: #404040;
+	text-decoration: none;
 }
 
 a:hover,
 a:focus,
 a:active {
-	color: rgba(191, 38, 105, .8);
+	color: #404040;
 }
 
 a:focus {
@@ -1130,6 +1132,7 @@ a:focus {
 a:hover,
 a:active {
 	outline: 0;
+	text-decoration: underline;
 }
 
 /*--------------------------------------------------------------
@@ -1525,6 +1528,15 @@ a:active {
 		font-family: 'Montserrat', Arial, sans-serif;
 	}
 
+		.comment-navigation .nav-previous a:hover:before,
+		.posts-navigation .nav-previous a:hover:before,
+		.post-navigation .nav-previous a:hover:before,
+		.comment-navigation .nav-next a:hover:before,
+		.posts-navigation .nav-next a:hover:before,
+		.post-navigation .nav-next a:hover:before {
+			color: #aaa;
+		}
+
 /*--------------------------------------------------------------
 5.0 Forms
 --------------------------------------------------------------*/
@@ -1787,6 +1799,11 @@ aside.widget {
 		padding: 0;
 	}
 
+	aside.widget li.current-menu-item a {
+		color: #404040;
+		text-decoration: underline;
+	}
+
 /* Make sure select elements and search boxes fit in widgets. */
 aside.widget select,
 aside.widget input[type="search"] {
@@ -1796,6 +1813,26 @@ aside.widget input[type="search"] {
 /* Search widget. */
 input.search-field {
 	width: 100%;
+}
+
+/* A widget column is at least ( 640 - ( 35 * 4 ) ) / 3 = 490 / 3 = 163.33px width */
+@media screen and (min-width: 431.66px) and (max-width: 710px), (min-width: 764px) {
+	aside.widget ul:not(.sub-menu):not(.children) {
+		   -moz-column-count: 2;
+		-webkit-column-count: 2;
+		        column-count: 2;
+		   -moz-column-gap: 35px;
+		-webkit-column-gap: 35px;
+		        column-gap: 35px;
+	}
+}
+
+@media screen and (min-width: 710px) and (max-width: 740px), (min-width: 1120px) {
+	aside.widget.full-width ul:not(.sub-menu):not(.children) {
+		   -moz-column-count: 3;
+		-webkit-column-count: 3;
+		        column-count: 3;
+	}
 }
 
 @media screen and (min-width: 587px) and (max-width: 740px), (min-width: 881px) {
@@ -1811,45 +1848,61 @@ input.search-field {
 			border-top: 1px dashed #ddd;
 		}
 
-		aside.widget:nth-of-type(2n - 1),
-		aside.widget.full-width:nth-child(2n - 1) ~ aside.widget:nth-of-type(2n),
-		aside.widget.full-width:nth-child(2n) ~ aside.widget:nth-of-type(2n - 1) {
+		aside.widget:not(.full-width):nth-of-type(2n - 1),
+		aside.widget.full-width:nth-child(2n - 1) ~ aside.widget:not(.full-width):nth-of-type(2n) {
 			padding: 35px 17.5px 35px 35px;
 			clear: both;
 		}
 
-			aside.widget:nth-of-type(2n - 1):before,
-			aside.widget.full-width:nth-child(2n - 1) ~ aside.widget:nth-of-type(2n):before,
-			aside.widget.full-width:nth-child(2n) ~ aside.widget:nth-of-type(2n - 1):before {
+			aside.widget:before {
 				position: absolute;
-				content: '';
 				top: -1px;
 				left: 0;
 				width: 200%;
 				border-top: 1px dashed #ddd;
 			}
 
-		aside.widget:nth-of-type(2n),
-		aside.widget.full-width:nth-child(2n - 1) ~ aside.widget:nth-of-type(2n - 1),
-		aside.widget.full-width:nth-child(2n) ~ aside.widget:nth-of-type(2n) {
+			aside.widget:not(.full-width):nth-of-type(2n - 1):before,
+			aside.widget.full-width:nth-child(2n - 1) ~ aside.widget:not(.full-width):nth-of-type(2n):before {
+				content: '';
+			}
+
+		aside.widget:not(.full-width):nth-of-type(2n),
+		aside.widget.full-width:nth-child(2n - 1) ~ aside.widget:not(.full-width):nth-of-type(2n - 1) {
 			padding: 35px 35px 35px 17.5px;
 			clear: none;
 		}
 
 			aside.widget.full-width:before,
 			aside.widget:nth-of-type(2n):before,
-			aside.widget.full-width:nth-child(2n - 1) ~ aside.widget:nth-of-type(2n - 1):before,
+			aside.widget.full-width:nth-child(2n - 1) ~ aside.widget:nth-of-type(2n - 1):before {
+				content: none;
+			}
+
+		/* Declare the same, but later because of cascading effect */
+		aside.widget.full-width:nth-child(2n) ~ aside.widget:not(.full-width):nth-of-type(2n - 1) {
+			padding: 35px 17.5px 35px 35px;
+			clear: both;
+		}
+
+			aside.widget.full-width:nth-child(2n) ~ aside.widget:not(.full-width):nth-of-type(2n - 1):before {
+				content: '';
+			}
+
+		/* Declare the same, but later because of cascading effect */
+		aside.widget.full-width:nth-child(2n) ~ aside.widget:not(.full-width):nth-of-type(2n) {
+			padding: 35px 35px 35px 17.5px;
+			clear: none;
+		}
+
 			aside.widget.full-width:nth-child(2n) ~ aside.widget:nth-of-type(2n):before {
 				content: none;
 			}
 
-			aside.widget.full-width ul:not(.sub-menu) {
-				   -moz-column-count: 3;
-				-webkit-column-count: 3;
-				        column-count: 3;
-				   -moz-column-gap: 35px;
-				-webkit-column-gap: 35px;
-				        column-gap: 35px;
+			aside.widget:not(.full-width) ul:not(.sub-menu):not(.children) {
+				   -moz-column-count: 1;
+				-webkit-column-count: 1;
+				        column-count: 1;
 			}
 }
 
