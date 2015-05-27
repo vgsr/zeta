@@ -606,11 +606,13 @@ function zeta_search_context_location() {
 				$location = add_query_arg( 's', $s, get_permalink( $page_ids['members'] ) ); // Members index page
 			}
 			break;
+
 		case 'bp-groups' :
 			if ( function_exists( 'buddypress' ) && bp_is_active( 'groups' ) ) {
 				$location = add_query_arg( 's', $s, get_permalink( $page_ids['groups'] ) ); // Groups index page
 			}
 			break;
+
 		default :
 			$location = apply_filters( 'zeta_search_context_location', $location, $context, $s );
 			break;
@@ -714,10 +716,10 @@ function zeta_widget_display_params( $params ) {
 	if ( ! is_admin() ) {
 		global $wp_registered_widgets;
 
-		// Get this widget class's settings
+		// Get this widget object's settings
 		$widget_obj = $wp_registered_widgets[ $params[0]['widget_id'] ]['callback'][0];
-		$settings   = $widget_obj->get_settings();
 		$widget_nr  = $params[1]['number'];
+		$settings   = $widget_obj->get_settings();
 
 		if ( $settings && isset( $settings[ $widget_nr ] ) ) {
 			$widget = $settings[ $widget_nr ];
@@ -732,3 +734,56 @@ function zeta_widget_display_params( $params ) {
 	return $params;
 }
 add_filter( 'dynamic_sidebar_params', 'zeta_widget_display_params' );
+
+/**
+ * Return the count of a sidebar's widgets that have a given setting
+ *
+ * @since 1.0.0
+ *
+ * @uses wp_get_sidebars_widgets()
+ * 
+ * @param string $sidebar_id Sidebar ID
+ * @param string $key Setting key
+ * @param mixed $value Optional. The value to match. Defaults to checking
+ *                      for any value.
+ * @return int Widget count
+ */
+function zeta_count_widgets_with_setting( $sidebar_id, $key, $value = null ) {
+	global $wp_registered_widgets;
+
+	// Get all sidebars and their widgets
+	$sidebars = wp_get_sidebars_widgets();
+
+	// Bail when sidebar is not found
+	if ( ! isset( $sidebars[ $sidebar_id ] ) )
+		return false;
+
+	// Define local variable(s)
+	$count = 0;
+
+	// Walk the sidebar's widgets
+	foreach ( $sidebars[ $sidebar_id ] as $widget ) {
+
+		// Get this widget object's settings
+		$widget_obj = $wp_registered_widgets[ $widget ]['callback'][0];
+		$widget_nr  = $wp_registered_widgets[ $widget ]['params'][0]['number'];
+		$settings   = $widget_obj->get_settings();
+
+		if ( $settings && isset( $settings[ $widget_nr ] ) ) {
+			$widget = $settings[ $widget_nr ];
+
+			// Skip when setting is not found
+			if ( ! isset( $widget[ $key ] ) )
+				continue;
+
+			// Skip when value does not equal
+			if ( null !== $value && $value !== $widget[ $key ] )
+				continue;
+
+			// Increment
+			$count++;
+		}
+	}
+
+	return $count;
+}

@@ -207,31 +207,41 @@ add_action( 'wp_enqueue_scripts', 'zeta_scripts' );
  * @since Zeta 1.0.0
  *
  * @see wp_add_inline_style()
+ *
+ * @uses vgsr_entity()
+ * @uses is_singular()
+ * @uses wp_get_sidebars_widgets()
+ * @uses zeta_count_widgets_wit_setting()
  */
 function zeta_inline_styles() {
+
+	// Define local variable(s)
+	$css = '';
+
+	/**
+	 * Posts, Post & Comment Navigation
+	 */
 
 	// Define prev/next labels
 	$prev = __( 'Previous', 'zeta' );
 	$next = __( 'Next',     'zeta' );
 
 	// Comment/Posts navigation description
-	$css = '
+	$css .= '
 		.comment-navigation .nav-previous a:before, .posts-navigation .nav-previous a:before { content: "' . $prev . '"; }
 		.comment-navigation .nav-next a:before, .posts-navigation .nav-next a:before { content: "'         . $next . '"; }
 	';
 
-	// Consider VGSR Entity
+	// Consider VGSR Entity plugin
 	if ( function_exists( 'vgsr_entity' ) ) {
 		$entity = vgsr_entity();
 
 		// Besturen
-		if ( isset( $entity->bestuur ) ) {
-			if ( is_singular( $entity->bestuur->type ) ) {
+		if ( isset( $entity->bestuur ) && is_singular( $entity->bestuur->type ) ) {
 
-				// Define labels for single Bestuur
-				$prev = $entity->bestuur->get_season( get_adjacent_post( false, '', true  ) );
-				$next = $entity->bestuur->get_season( get_adjacent_post( false, '', false ) );
-			}
+			// Define labels for single Bestuur
+			$prev = $entity->bestuur->get_season( get_adjacent_post( false, '', true  ) );
+			$next = $entity->bestuur->get_season( get_adjacent_post( false, '', false ) );
 		}
 	}
 
@@ -240,6 +250,56 @@ function zeta_inline_styles() {
 		.post-navigation .nav-previous a:before { content: "' . $prev . '"; }
 		.post-navigation .nav-next a:before { content: "'     . $next . '"; }
 	';
+
+	/**
+	 * Widgets
+	 */
+
+	// Define the max count of full-width widgets in any sidebar
+	$widgets_count = 0;
+	foreach ( wp_get_sidebars_widgets() as $sidebar => $widgets ) {
+		$count = zeta_count_widgets_with_setting( $sidebar, 'zeta-full-width', true );
+		if ( $count > $widgets_count )
+			$widgets_count = $count;
+	}
+
+	// Define styles for widgets following multiple full-width widgets,
+	// since there is no :nth-of-class type selector available in CSS.
+	if ( $widgets_count > 2 ) {
+		$left = $right = $left_before = $right_before = $rep = '';
+
+		while ( $widgets_count > 1 ) {
+			$rep = str_repeat( ' ~ aside.full-width', $widgets_count - 1 );
+
+			// Widgets preceded by an odd number of full-width widgets
+			if ( 1 === $widgets_count % 2 ) {
+				$left         = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(even),\n" . $left;
+				$right        = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(odd),\n" . $right;
+				$left_before  = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(even):before,\n" . $left_before;
+				$right_before = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(odd):before,\n" . $right_before;
+
+			// Widgets preceded by an even number of full-width widgets
+			} else {
+				$left         = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(odd),\n" . $left;
+				$right        = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(even),\n" . $right;
+				$left_before  = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(odd):before,\n" . $left_before;
+				$right_before = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(even):before,\n" . $right_before;
+			}
+
+			$widgets_count--;
+		}
+
+		// Define styles
+		$left         = trim( $left,         ",\n" ) . " { padding: 35px 17.5px 35px 35px; clear: both; }\n";
+		$right        = trim( $right,        ",\n" ) . " { padding: 35px 35px 35px 17.5px; clear: none; }\n";
+		$left_before  = trim( $left_before,  ",\n" ) . " { content: ''; }\n";
+		$right_before = trim( $right_before, ",\n" ) . " { content: none; }\n";
+
+		// Append widget styles within media query. See style.css chapter 9.0
+		$css .= "
+		@media screen and (min-width: 587px) and (max-width: 740px), (min-width: 881px) {\n{$left}{$left_before}{$right}{$right_before}\t\t}
+		";
+	}
 
 	wp_add_inline_style( 'zeta-style', $css );
 }

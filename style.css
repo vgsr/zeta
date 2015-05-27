@@ -467,7 +467,7 @@ table {
 		font-family: 'Montserrat', Arial, sans-serif
 	}
 
-		table tbody tr:nth-of-type(2n - 1) td:before {
+		table tbody tr:nth-of-type(odd) td:before {
 			position: absolute;
 			content: '';
 			top: 0;
@@ -478,11 +478,11 @@ table {
 			z-index: -1;
 		}
 
-		table tbody tr:nth-of-type(2n - 1) td:first-child:before {
+		table tbody tr:nth-of-type(odd) td:first-child:before {
 			left: -35px;
 		}
 
-		table tbody tr:nth-of-type(2n - 1) td:last-child:before {
+		table tbody tr:nth-of-type(odd) td:last-child:before {
 			right: -35px;
 		}
 
@@ -775,17 +775,17 @@ body.admin-bar #page {
 	flex-direction: column;
 }
 
-	/* Push #secondary (widgets) to bottom of the screen */
-	#primary {
+	/* Push .widget-area to bottom of the screen */
+	.content-area {
 		flex: 1;
 	}
 
-	#primary .site-main > * {
+	.content-area .site-main > * {
 		margin: 0;
 		padding: 35px;
 	}
 
-		#primary .site-main > :not(:last-child) {
+		.content-area .site-main > :not(:last-child) {
 			border-bottom: 1px dashed #ddd;
 		}
 
@@ -833,14 +833,14 @@ body.admin-bar #page {
 		background-color: transparent;
 	}
 
-		#secondary {
+		.widget-area {
 			background-color: #fff;
 		}
 
-		#primary .site-main > *,
-		#secondary > * {
-			background-color: #fff;
-		}
+			.content-area .site-main > *,
+			.widget-area > * {
+				background-color: #fff;
+			}
 }
 
 @media screen and (min-width: 741px) {
@@ -1066,8 +1066,8 @@ body.admin-bar #page {
 		border-left: 1px solid #efefef;
 	}
 
-		#primary .site-main > *,
-		#secondary > * {
+		.content-area .site-main > *,
+		.widget-area > * {
 			background-color: transparent;
 		}
 
@@ -1489,7 +1489,7 @@ a:active {
 				line-height: inherit;
 			}
 
-	#primary {
+	.content-area {
 		position: relative;
 	}
 }
@@ -1497,7 +1497,6 @@ a:active {
 .site-main .comment-navigation,
 .site-main .posts-navigation,
 .site-main .post-navigation {
-	margin: 1.5em 0 0;
 	overflow: hidden;
 }
 
@@ -1800,7 +1799,7 @@ input[type="radio"] {
 /*--------------------------------------------------------------
 9.0 Widgets
 --------------------------------------------------------------*/
-aside.widget {
+.widget-area aside {
 	position: relative;
 	float: left;
 	width: 100%;
@@ -1808,20 +1807,20 @@ aside.widget {
 	border-top: 1px dashed #ddd;
 }
 
-	aside.widget ul {
+	.widget-area aside ul {
 		list-style: none;
 		margin-left: 0;
 		padding: 0;
 	}
 
-	aside.widget li.current-menu-item a {
+	.widget-area aside li.current-menu-item > a {
 		color: #404040;
 		text-decoration: underline;
 	}
 
 /* Make sure select elements and search boxes fit in widgets. */
-aside.widget select,
-aside.widget input[type="search"] {
+.widget-area aside select,
+.widget-area aside input[type="search"] {
 	max-width: 100%;
 }
 
@@ -1832,7 +1831,7 @@ input.search-field {
 
 /* A widget column is at least ( 640 - ( 35 * 4 ) ) / 3 = 490 / 3 = 163.33px width */
 @media screen and (min-width: 431.66px) and (max-width: 710px), (min-width: 764px) {
-	aside.widget ul:not(.sub-menu):not(.children) {
+	.widget-area aside ul:not(.sub-menu):not(.children) {
 		   -moz-column-count: 2;
 		-webkit-column-count: 2;
 		        column-count: 2;
@@ -1843,7 +1842,7 @@ input.search-field {
 }
 
 @media screen and (min-width: 710px) and (max-width: 740px), (min-width: 1120px) {
-	aside.widget.full-width ul:not(.sub-menu):not(.children) {
+	.widget-area aside.full-width ul:not(.sub-menu):not(.children) {
 		   -moz-column-count: 3;
 		-webkit-column-count: 3;
 		        column-count: 3;
@@ -1851,25 +1850,26 @@ input.search-field {
 }
 
 @media screen and (min-width: 587px) and (max-width: 740px), (min-width: 881px) {
-	aside.widget {
+	.widget-area aside {
 		width: 50%;
 		border: 0;
 	}
 
-		aside.widget.full-width {
+		.widget-area aside.full-width {
 			width: 100%;
 			padding: 35px;
 			clear: both;
 			border-top: 1px dashed #ddd;
 		}
 
-		aside.widget:not(.full-width):nth-of-type(2n - 1),
-		aside.widget.full-width:nth-child(2n - 1) ~ aside.widget:not(.full-width):nth-of-type(2n) {
+		/* Left widget column */
+		.widget-area aside:not(.full-width):nth-of-type(odd),
+		.widget-area aside.full-width + aside:not(.full-width):nth-of-type(even) {
 			padding: 35px 17.5px 35px 35px;
 			clear: both;
 		}
 
-			aside.widget:before {
+			.widget-area aside:before {
 				position: absolute;
 				top: -1px;
 				left: 0;
@@ -1877,44 +1877,25 @@ input.search-field {
 				border-top: 1px dashed #ddd;
 			}
 
-			aside.widget:not(.full-width):nth-of-type(2n - 1):before,
-			aside.widget.full-width:nth-child(2n - 1) ~ aside.widget:not(.full-width):nth-of-type(2n):before {
+			.widget-area aside:not(.full-width):nth-of-type(odd):before,
+			.widget-area aside.full-width + aside:not(.full-width):nth-of-type(even):before {
 				content: '';
 			}
 
-		aside.widget:not(.full-width):nth-of-type(2n),
-		aside.widget.full-width:nth-child(2n - 1) ~ aside.widget:not(.full-width):nth-of-type(2n - 1) {
+		/* Right widget column */
+		.widget-area aside:not(.full-width):nth-of-type(even),
+		.widget-area aside.full-width + aside:not(.full-width):nth-of-type(odd) {
 			padding: 35px 35px 35px 17.5px;
 			clear: none;
 		}
 
-			aside.widget.full-width:before,
-			aside.widget:nth-of-type(2n):before,
-			aside.widget.full-width:nth-child(2n - 1) ~ aside.widget:nth-of-type(2n - 1):before {
+			.widget-area aside.full-width:before,
+			.widget-area aside:nth-of-type(even):before,
+			.widget-area aside.full-width + aside:nth-of-type(odd):before {
 				content: none;
 			}
 
-		/* Declare the same, but later because of cascading effect */
-		aside.widget.full-width:nth-child(2n) ~ aside.widget:not(.full-width):nth-of-type(2n - 1) {
-			padding: 35px 17.5px 35px 35px;
-			clear: both;
-		}
-
-			aside.widget.full-width:nth-child(2n) ~ aside.widget:not(.full-width):nth-of-type(2n - 1):before {
-				content: '';
-			}
-
-		/* Declare the same, but later because of cascading effect */
-		aside.widget.full-width:nth-child(2n) ~ aside.widget:not(.full-width):nth-of-type(2n) {
-			padding: 35px 35px 35px 17.5px;
-			clear: none;
-		}
-
-			aside.widget.full-width:nth-child(2n) ~ aside.widget:nth-of-type(2n):before {
-				content: none;
-			}
-
-			aside.widget:not(.full-width) ul:not(.sub-menu):not(.children) {
+			.widget-area aside:not(.full-width) ul:not(.sub-menu):not(.children) {
 				   -moz-column-count: 1;
 				-webkit-column-count: 1;
 				        column-count: 1;
