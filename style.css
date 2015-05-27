@@ -1775,6 +1775,8 @@ input[type="radio"] {
 .clear:after,
 .entry-content:before,
 .entry-content:after,
+.widget-content:before,
+.widget-content:after,
 .comment-content:before,
 .comment-content:after,
 .site-header:before,
@@ -1789,6 +1791,7 @@ input[type="radio"] {
 
 .clear:after,
 .entry-content:after,
+.widget-content:after,
 .comment-content:after,
 .site-header:after,
 .site-content:after,
@@ -1864,7 +1867,7 @@ input.search-field {
 
 		/* Left widget column */
 		.widget-area aside:not(.full-width):nth-of-type(odd),
-		.widget-area aside.full-width + aside:not(.full-width):nth-of-type(even) {
+		.widget-area aside.full-width + aside:not(.full-width) {
 			padding: 35px 17.5px 35px 35px;
 			clear: both;
 		}
@@ -1878,20 +1881,18 @@ input.search-field {
 			}
 
 			.widget-area aside:not(.full-width):nth-of-type(odd):before,
-			.widget-area aside.full-width + aside:not(.full-width):nth-of-type(even):before {
+			.widget-area aside.full-width + aside:not(.full-width):before {
 				content: '';
 			}
 
 		/* Right widget column */
-		.widget-area aside:not(.full-width):nth-of-type(even),
-		.widget-area aside.full-width + aside:not(.full-width):nth-of-type(odd) {
+		.widget-area aside:not(.full-width):nth-of-type(even) {
 			padding: 35px 35px 35px 17.5px;
 			clear: none;
 		}
 
 			.widget-area aside.full-width:before,
-			.widget-area aside:nth-of-type(even):before,
-			.widget-area aside.full-width + aside:nth-of-type(odd):before {
+			.widget-area aside:nth-of-type(even):before {
 				content: none;
 			}
 

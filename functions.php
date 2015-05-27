@@ -103,8 +103,8 @@ function zeta_widgets_init() {
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
 	) );
 }
 add_action( 'widgets_init', 'zeta_widgets_init' );
@@ -273,17 +273,17 @@ function zeta_inline_styles() {
 
 			// Widgets preceded by an odd number of full-width widgets
 			if ( 1 === $widgets_count % 2 ) {
-				$left         = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(even),\n" . $left;
-				$right        = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(odd),\n" . $right;
-				$left_before  = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(even):before,\n" . $left_before;
-				$right_before = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(odd):before,\n" . $right_before;
+				$left         = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even),\n" . $left;
+				$right        = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd),\n" . $right;
+				$left_before  = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even):before,\n" . $left_before;
+				$right_before = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd):before,\n" . $right_before;
 
 			// Widgets preceded by an even number of full-width widgets
 			} else {
-				$left         = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(odd),\n" . $left;
-				$right        = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(even),\n" . $right;
-				$left_before  = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(odd):before,\n" . $left_before;
-				$right_before = "\t\t\t.widget-area aside.full-width{$rep} ~ aside:not(.full-width):nth-of-type(even):before,\n" . $right_before;
+				$left         = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd),\n" . $left;
+				$right        = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even),\n" . $right;
+				$left_before  = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd):before,\n" . $left_before;
+				$right_before = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even):before,\n" . $right_before;
 			}
 
 			$widgets_count--;
