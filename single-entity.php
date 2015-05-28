@@ -1,11 +1,9 @@
 <?php
 /**
- * The template for displaying all pages.
+ * The template for displaying all single entities from VGSR Entity.
  *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site will use a
- * different template.
+ * This template combines page.php's layout with additional post navigation 
+ * as is present in single.php.
  *
  * @package Zeta
  */
@@ -18,6 +16,8 @@ get_header(); ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 
 			<?php get_template_part( 'content', 'page' ); ?>
+
+			<?php the_post_navigation(); ?>
 
 			<?php
 				// If comments are open or we have at least one comment, load up the comment template
