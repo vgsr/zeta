@@ -235,36 +235,28 @@
 	}
 
 		#buddypress .pagination .pagination-links .page-numbers {
-			text-decoration: none;
+			position: relative;
+			display: block;
+			float: left;
+			height: 100%;
+			padding: 0 4px;
 			color: #404040;
+			text-align: center;
+			text-decoration: none;
 		}
 
-			#buddypress .pagination .pagination-links .page-numbers:hover {
+			#buddypress .pagination .pagination-links .page-numbers.dots {
+				padding: 0;
+			}
+
+			#buddypress .pagination .pagination-links .page-numbers:not(.dots):hover {
+				background-color: #f9f9f9;
 				color: #999;
 			}
 
-		#buddypress .pagination .pagination-links .page-numbers.current {
-			position: relative;
-			display: inline-block;
-			width: 26px;
-			height: 26px;
-			color: #fff;
-			margin-top: -2.5px;
-			padding: 2px 0;
-			text-align: center;
-			z-index: 0;
-		}
-
-			#buddypress .pagination .pagination-links .page-numbers.current:before {
-				content: '';
-				position: absolute;
-				top: 2.5px;
-				left: calc( 50% - 13px );
-				width: 26px;
-				height: 26px;
-				background-color: rgba(51, 165, 55, 1);
-				border-radius: 50%;
-				z-index: -1;
+			#buddypress .pagination .pagination-links .page-numbers.current,
+			#buddypress .pagination .pagination-links .page-numbers.current:hover {
+				background-color: #efefef;
 			}
 
 /*--------------------------------------------------------------
@@ -371,7 +363,7 @@ body.buddypress .entry-header {
 		width: 100%;
 		padding: 50px 15px 15px;
 		margin: 50px 0 1em;
-		border: 1px solid #ddd;
+		border: 1px solid #f4f4f4;
 		font-size: 0.9em;
 	}
 
