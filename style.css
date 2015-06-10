@@ -1143,25 +1143,25 @@ a:active {
 	margin-bottom: 62px;
 }
 
-.main-navigation .nav-menu {
+.main-navigation .menu {
 	display: none;
 	float: left;
 	margin-top: 62px; /* Below .site-branding */
 	background-color: #fff;
 }
 
-	.site-header .nav-menu a,
-	.site-header .nav-menu a:visited,
-	.site-header .nav-menu a:focus,
-	.site-header .nav-menu a:active {
+	.site-header .menu a,
+	.site-header .menu a:visited,
+	.site-header .menu a:focus,
+	.site-header .menu a:active {
 		color: #404040;
 	}
 
-	.site-header .nav-menu a:hover {
+	.site-header .menu a:hover {
 		color: rgba(60, 60, 60, .5);
 	}
 
-.menu-toggled .main-navigation .nav-menu {
+.menu-toggled .main-navigation .menu {
 	display: block;
 }
 
@@ -1179,7 +1179,7 @@ a:active {
 	float: left;
 }
 
-	.main-navigation .nav-menu li:not(:first-child) {
+	.main-navigation .menu li:not(:first-child) {
 		border-top: 1px solid #f1f1f1;
 	}
 
@@ -1189,7 +1189,7 @@ a:active {
 	text-decoration: none;
 }
 
-.main-navigation .nav-menu > li > a {
+.main-navigation .menu > li > a {
 	height: auto;
 }
 
@@ -1208,15 +1208,6 @@ a:active {
 	.main-navigation ul ul a {
 		width: 200px;
 	}
-
-.main-navigation ul ul li {
-}
-
-.main-navigation ul ul :hover > a {
-}
-
-.main-navigation ul ul a:hover {
-}
 
 .main-navigation ul li:hover > ul {
 	left: auto;
@@ -1357,7 +1348,7 @@ a:active {
 		margin-bottom: 96px;
 	}
 
-		.main-navigation .nav-menu {
+		.main-navigation .menu {
 			margin-top: 96px;
 		}
 
@@ -1392,11 +1383,11 @@ a:active {
 }
 
 @media screen and (min-width: 741px) {
-	.site-header .nav-menu a,
-	.site-header .nav-menu a:visited,
-	.site-header .nav-menu a:hover,
-	.site-header .nav-menu a:focus,
-	.site-header .nav-menu a:active {
+	.site-header .menu a,
+	.site-header .menu a:visited,
+	.site-header .menu a:hover,
+	.site-header .menu a:focus,
+	.site-header .menu a:active {
 		color: #fff;
 	}
 
@@ -1412,7 +1403,7 @@ a:active {
 			float: left;
 		}
 
-		.main-navigation .nav-menu {
+		.main-navigation .menu {
 			display: block;
 			float: right;
 			height: 35px;
@@ -1443,11 +1434,11 @@ a:active {
 			width: auto;
 		}
 
-		.main-navigation .nav-menu li:not(:first-child) {
+		.main-navigation .menu li:not(:first-child) {
 			border: none;
 		}
 
-		.main-navigation .nav-menu > li > a {
+		.main-navigation .menu > li > a {
 			height: 35px;
 		}
 
