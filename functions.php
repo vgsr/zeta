@@ -184,6 +184,10 @@ function zeta_scripts() {
 
 	// Navigation menu for small screens
 	wp_enqueue_script( 'zeta-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	wp_localize_script( 'zeta-navigation', 'screenReaderText', array(
+		'expand'   => '<span class="screen-reader-text">' . __( 'Expand child menu',   'zeta' ) . '</span>',
+		'collapse' => '<span class="screen-reader-text">' . __( 'Collapse child menu', 'zeta' ) . '</span>',
+	) );
 
 	wp_enqueue_script( 'zeta-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 

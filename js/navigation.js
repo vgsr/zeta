@@ -41,9 +41,38 @@
 			menu.setAttribute( 'aria-expanded', 'true' );
 		}
 	};
+
 } )();
 
 /**
+ * Navigation
+ *
+ * Handles toggling submenus for small screens.
+ * Code comes from TwentyFifteen.
+ */
+( function( $ ) {
+
+	// Add dropdown toggle that display child menu items.
+	$( '.main-navigation .menu-item-has-children > a' ).after( '<button class="dropdown-toggle" aria-expanded="false">' + screenReaderText.expand + '</button>' );
+
+	// Toggle buttons and submenu items with active children menu items.
+	$( '.main-navigation .current-menu-ancestor > button' ).addClass( 'toggle-on' );
+	$( '.main-navigation .current-menu-ancestor > .sub-menu' ).addClass( 'toggled-on' );
+
+	$( '.dropdown-toggle' ).click( function( e ) {
+		var _this = $( this );
+		e.preventDefault();
+		_this.toggleClass( 'toggle-on' );
+		_this.next( '.children, .sub-menu' ).toggleClass( 'toggled-on' );
+		_this.attr( 'aria-expanded', _this.attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
+		_this.html( _this.html() === screenReaderText.expand ? screenReaderText.collapse : screenReaderText.expand );
+	} );
+
+} )( jQuery );
+
+/**
+ * Tools
+ * 
  * Handles toggling the tools elements for all screens.
  */
 ( function( $ ) {
@@ -85,4 +114,5 @@
 			}
 		});
 	});
+
 } )( jQuery );

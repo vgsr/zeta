@@ -1141,6 +1141,7 @@ a:active {
 .main-navigation {
 	clear: both;
 	margin-bottom: 62px;
+	font-size: .8em;
 }
 
 .main-navigation .menu {
@@ -1179,7 +1180,8 @@ a:active {
 	float: left;
 }
 
-	.main-navigation .menu li:not(:first-child) {
+	.main-navigation .menu > li:not(:first-child),
+	.main-navigation .menu ul li {
 		border-top: 1px solid #f1f1f1;
 	}
 
@@ -1193,46 +1195,70 @@ a:active {
 	height: auto;
 }
 
-.main-navigation ul ul {
-	position: absolute;
-	top: 35px;
-	left: -999em;
-	z-index: 99999;
-}
-
-.main-navigation ul ul ul {
-	left: -999em;
-	top: 0;
-}
-
-	.main-navigation ul ul a {
-		width: 200px;
-	}
-
-.main-navigation ul li:hover > ul {
-	left: auto;
-	background-color: rgba(51, 165, 55, 1);
-}
-
-.main-navigation ul li.rtl:hover > ul {
-	right: 0;
-}
-
-.main-navigation ul ul li:hover > ul {
-	left: 100%;
-}
-
-.main-navigation ul li.rtl:hover > ul li:hover > ul,
-.main-navigation ul ul li.rtl:hover > ul {
-	right: 100%;
-	left: auto;
-}
-
 .main-navigation .current_page_item > a,
 .main-navigation .current-menu-item > a,
 .main-navigation .current_page_ancestor > a {
 	font-weight: bold;
 }
+
+.main-navigation .menu-item-has-children > a {
+	padding-right: 48px;
+}
+
+.main-navigation .menu-item-has-children ul.toggled-on {
+	display: block;
+	float: left;
+	padding: 0 0 0 35px;
+}
+
+.no-js .main-navigation ul ul {
+	display: block;
+}
+
+.dropdown-toggle {
+	position: absolute;
+	top: 5px;
+	right: 0;
+	background-color: transparent;
+	height: 32px;
+	width: 32px;
+	padding: 0;
+	border: 0;
+	text-transform: lowercase; /* Stop screen readers to read the text as capital letters */
+	box-shadow: none;
+}
+
+	.dropdown-toggle:after {
+		content: "\f347"; /* dashicons-arrow-down-alt2 */
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		font-size: 20px;
+		line-height: 20px;
+		font-family: dashicons;
+		text-decoration: inherit;
+		font-weight: 400;
+		font-style: normal;
+		vertical-align: top;
+		text-align: center;
+		-webkit-transition: color .1s ease-in 0;
+		transition: color .1s ease-in 0;
+		-webkit-font-smoothing: antialiased;
+	}
+
+.dropdown-toggle:hover,
+.dropdown-toggle:focus {
+	background-color: #efefef;
+	box-shadow: none;
+}
+
+.dropdown-toggle:focus {
+	outline: 1px solid #ddd;
+}
+
+	.dropdown-toggle.toggle-on:after {
+		content: "\f343"; /* dashicons-arrow-up-alt2 */
+	}
 
 /* Small menu. */
 .menu-toggle {
@@ -1346,6 +1372,7 @@ a:active {
 @media screen and (min-width: 561px) {
 	.main-navigation {
 		margin-bottom: 96px;
+		font-size: 1em;
 	}
 
 		.main-navigation .menu {
@@ -1361,13 +1388,10 @@ a:active {
 			line-height: 46px;
 		}
 
-			.menu-toggle:before {
-				content: "\f333"; /* dashicons-menu */
-				width: 20px;
-				height: 20px;
-				font-size: 20px;
-				line-height: 20px;
-			}
+		.dropdown-toggle {
+			height: 38px;
+			width: 38px;
+		}
 
 	.main-navigation ul.tools-nav {
 		top: 25px;
@@ -1430,28 +1454,77 @@ a:active {
 		background-color: transparent;
 	}
 
-		.main-navigation li {
-			width: auto;
+	.main-navigation li {
+		width: auto;
+	}
+
+	.main-navigation .menu li:not(:first-child),
+	.main-navigation .menu ul li {
+		border: none;
+	}
+
+	.main-navigation .menu > li > a {
+		height: 35px;
+	}
+
+	.main-navigation li:hover > a {
+		background-color: rgba(35, 115, 38, 1);
+		text-decoration: none;
 		}
 
-		.main-navigation .menu li:not(:first-child) {
-			border: none;
+	.main-navigation ul ul {
+		position: absolute;
+		top: 35px;
+		left: -999em;
+		z-index: 99999;
+	}
+
+	.main-navigation ul ul ul {
+		left: -999em;
+		top: 0;
+	}
+
+		.main-navigation ul ul a {
+			width: 200px;
 		}
 
-		.main-navigation .menu > li > a {
-			height: 35px;
-		}
+	.main-navigation ul li:hover > ul {
+		left: auto;
+		background-color: rgba(51, 165, 55, 1);
+	}
 
-		.main-navigation li:hover > a {
-			background-color: rgba(35, 115, 38, 1);
-			text-decoration: none;
-		}
+	.main-navigation ul li.rtl:hover > ul {
+		right: 0;
+	}
+
+	.main-navigation ul ul li:hover > ul {
+		left: 100%;
+	}
+
+	.main-navigation ul li.rtl:hover > ul li:hover > ul,
+	.main-navigation ul ul li.rtl:hover > ul {
+		right: 100%;
+		left: auto;
+	}
 
 	.main-navigation .current_page_item > a,
 	.main-navigation .current-menu-item > a,
 	.main-navigation .current_page_ancestor > a {
 		background-color: rgba(35, 115, 38, 1);
 		font-weight: normal;
+	}
+
+	.main-navigation .menu-item-has-children > a {
+		padding-right: 17px; /* 10px, 17px */
+	}
+
+	.main-navigation .menu-item-has-children ul.toggled-on {
+		float: none;
+		padding: 0;
+	}
+
+	.dropdown-toggle {
+		display: none;
 	}
 
 	.main-navigation ul.tools-nav {
