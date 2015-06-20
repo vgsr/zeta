@@ -466,7 +466,9 @@ body.buddypress .entry-header {
 
 					#buddypress .item-list li .item-avatar a img {
 						float: left;
-						border-radius: 50%
+						width: 80px;
+						height: 80px;
+						border-radius: 50%;
 					}
 
 			#buddypress .item-list li .item-title {
