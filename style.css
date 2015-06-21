@@ -764,7 +764,9 @@ body.admin-bar #page {
 	width: 100%;
 	background-color: #fff;
 	font-size: 1.1em;
-	flex: 1;
+
+	/* IE 10/11 workaround requires `flex-shrink: 0` and `flex-basis: auto` */
+	flex: 1 0 auto;
 
 	/* Flex the inner content */
 	display: -webkit-box;
@@ -775,9 +777,10 @@ body.admin-bar #page {
 	flex-direction: column;
 }
 
-	/* Push .widget-area to bottom of the screen */
+	/* Sticky footer: have the content take all the available screen space */
 	.content-area {
-		flex: 1;
+		/* IE 10/11 workaround requires `flex-shrink: 0` and `flex-basis: auto` */
+		flex: 1 0 auto;
 	}
 
 	.content-area .site-main > * {
