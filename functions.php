@@ -73,6 +73,13 @@ function zeta_setup() {
 	 * Register theme image sizes
 	 */
 	zeta_add_image_sizes();
+
+	/**
+	 * Load BuddyPress logic
+	 */
+	if ( function_exists( 'buddypress' ) ) {
+		require get_template_directory() . '/inc/buddypress.php';
+	}
 }
 endif; // zeta_setup
 add_action( 'after_setup_theme', 'zeta_setup' );
