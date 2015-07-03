@@ -591,6 +591,10 @@ body.my-account #item-header-avatar a:after {
 		background: #333;
 	}
 
+body.my-profile a.edit-field-group:before {
+	margin-top: 3px;
+}
+
 /*--------------------------------------------------------------
 3.3 Profile Edit
 --------------------------------------------------------------*/
