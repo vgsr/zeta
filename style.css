@@ -986,24 +986,10 @@ body.admin-bar #page {
 
 			#header-aside .media-users ul li {
 				float: left;
-				margin: 10px 10px 0 0;
+				width: 54px;
 				height: 54px;
-				/* Animation */
-				overflow: hidden;
-				padding-top: 54px;
-				opacity: 0;
-				-webkit-transition: all .25s ease-in;
-				transition: all .25s ease-in;
+				margin: 10px 10px 0 0;
 			}
-
-				#header-aside:hover .media-users ul li {
-					padding-top: 0;
-					opacity: 1;
-				}
-
-				#header-aside .media-users:hover ul li {
-					overflow: initial;
-				}
 
 				#header-aside .media-users ul li:last-child {
 					margin-right: 0;
@@ -1015,7 +1001,17 @@ body.admin-bar #page {
 					padding: 2px;
 					background-color: #fff;
 					border-radius: 50%;
+					/* Animation */
+					transform: scale(.85);
+					opacity: 0;
+					-webkit-transition: all .2s ease-in;
+					transition: all .2s ease-in;
 				}
+
+					#header-aside:hover .media-users ul li a {
+						transform: scale(1);
+						opacity: 1;
+					}
 
 					#header-aside .media-users ul li a img {
 						float: left;
