@@ -25,8 +25,8 @@ Yes! If your WordPress installation has multisite enabled, Zeta will totally wor
 
 = Quick Specs =
 
-1. The main content width is 570px.
-2. The sidebar width is also 570px. Widgets can be displayed half-width (default, 267.5px) or full-width.
+1. The main content width is 569px.
+2. The sidebar width is also 569px. Widgets can be displayed half-width (default, 267.5px) or full-width.
 3. Featured Images are 300px wide by 300px high.
 
 == Changelog ==
