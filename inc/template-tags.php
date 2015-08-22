@@ -473,15 +473,8 @@ function zeta_background_slider() {
 
 	// Default to Background Image(s)
 	if ( empty( $images ) ) {
-		$background = get_theme_mod( 'background_image' );
+		$images = get_theme_mod( 'background_image', array() );
 		if ( ! empty( $background ) ) {
-			foreach ( (array) $background as $image ) {
-				if ( $src = zeta_check_image_size( $image, $image_size ) ) {
-					$images[] = $src;
-				}
-			}
-
-			// Randomize
 			shuffle( $images );
 
 			// Get a single image when not rotating
