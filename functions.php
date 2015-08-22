@@ -78,8 +78,13 @@ function zeta_setup() {
 	 * Load BuddyPress logic
 	 */
 	if ( function_exists( 'buddypress' ) ) {
-		require get_template_directory() . '/inc/buddypress.php';
+		require( get_template_directory() . '/inc/buddypress.php' );
 	}
+
+	/**
+	 * Register theme classes
+	 */
+	require_once( get_template_directory() . '/inc/classes/class-zeta-walker-comment.php' );
 }
 endif; // zeta_setup
 add_action( 'after_setup_theme', 'zeta_setup' );
