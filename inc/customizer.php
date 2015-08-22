@@ -13,7 +13,42 @@
 function zeta_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+
+	/* Background Image */
+
+	// Include the control class
+	require_once( get_template_directory() . '/inc/classes/class-zeta-customize-multi-image-control.php' );
+
+	// Register the control class
+	$wp_customize->register_control_type( 'Zeta_Customize_Multi_Image_Control' );
+
+	// Add control section
+	$wp_customize->add_section( 'background_image', array(
+		'title'       => __( 'Default Background', 'zeta' ),
+		'description' => __( 'Select images that serve as a background fallback when the current page has no images or slides to show. By default a <em>single random</em> image will be used from the selected images. When you chose Rotate All Images, all images will be shown in the slider.', 'zeta' ),
+		'priority'    => 80
+	) );
+
+	// Add Images control setting
+	$wp_customize->add_setting( 'background_image', array( 'capability' => 'manage_options' ) );
+	$wp_customize->add_control( new Zeta_Customize_Multi_Image_Control( 
+		$wp_customize,
+		'background_image',
+		array(
+			'section'     => 'background_image',
+			'label'       => __( 'Background Image', 'zeta' ),
+			'min_width'   => 1200,
+			'min_height'  => 900
+		)
+	) );
+
+	// Add Rotate All checkbox control setting
+	$wp_customize->add_setting( 'background_image_rotate', array( 'capability' => 'manage_options' ) );
+	$wp_customize->add_control( 'background_image_rotate', array(
+		'label'   => __( 'Rotate All Images', 'zeta' ),
+		'section' => 'background_image',
+		'type'    => 'checkbox'
+	) );
 }
 add_action( 'customize_register', 'zeta_customize_register' );
 

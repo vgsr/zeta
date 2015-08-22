@@ -39,7 +39,7 @@
 	</div>
 
 	<div id="header-aside">
-		<?php zeta_header_slider(); ?>
+		<?php zeta_background_slider(); ?>
 	</div><!-- #header-aside -->
 
 	<div id="content" class="site-content">

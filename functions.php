@@ -100,7 +100,7 @@ function zeta_add_image_sizes() {
 	set_post_thumbnail_size( 300, 300 );
 
 	// Header slider image size
-	add_image_size( 'zeta-header-slider', 9999, 900 );
+	add_image_size( 'zeta-background-slider', 9999, 900 );
 }
 
 /**
@@ -181,13 +181,12 @@ endif;
  * Enqueue scripts and styles.
  */
 function zeta_scripts() {
-	wp_enqueue_style( 'zeta-style', get_stylesheet_uri(), array( 'tiled-gallery' ) );
+
+	// Load theme's main styles
+	wp_enqueue_style( 'zeta-style', get_stylesheet_uri(), array( 'tiled-gallery', 'dashicons' ) );
 
 	// Add custom fonts, used in the main stylesheet.
 	wp_enqueue_style( 'zeta-fonts', zeta_fonts_url(), array(), null );
-
-	// Add Dashicons for small menu
-	wp_enqueue_style( 'dashicons' );
 
 	// BuddyPress
 	if ( function_exists( 'buddypress' ) && is_buddypress() ) {
@@ -211,11 +210,6 @@ function zeta_scripts() {
 	wp_register_script( 'flexslider', get_template_directory_uri() . '/js/jquery.flexslider.min.js', array( 'jquery' ), '2.3.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'zeta_scripts' );
-
-/**
- * Implement the Custom Header feature.
- */
-//require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Add additional inline styles.
@@ -252,7 +246,7 @@ function zeta_inline_styles() {
 	if ( function_exists( 'vgsr_entity' ) ) {
 		$entity = vgsr_entity();
 
-		// Besturen
+		// We're on a Bestuur page
 		if ( isset( $entity->bestuur ) && is_singular( $entity->bestuur->type ) ) {
 
 			// Define labels for single Bestuur

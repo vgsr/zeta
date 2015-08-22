@@ -397,7 +397,7 @@ function zeta_tools() {
 	}
 
 /**
- * Display the header slider
+ * Display the background slider
  *
  * @since 1.0.0
  *
@@ -405,11 +405,11 @@ function zeta_tools() {
  * @uses get_queried_object()
  * @uses zeta_get_post_images()
  * @uses zeta_get_first_post_image()
- * @uses apply_filters() Calls 'zeta_header_slider_slide'
- * @uses apply_filters() Calls 'zeta_header_slider_slides'
+ * @uses apply_filters() Calls 'zeta_background_slider_slide'
+ * @uses apply_filters() Calls 'zeta_background_slider_slides'
  * @uses wp_enqueue_script()
  */
-function zeta_header_slider() {
+function zeta_background_slider() {
 	/**
 	 * Images typically are served as arrays containing the following elements
 	 *  - src    The image source to display as background
@@ -436,9 +436,9 @@ function zeta_header_slider() {
 	// This is a post collection
 	} elseif ( ( is_home() || is_archive() || is_search() ) && have_posts() ) {
 		global $wp_query;
-		$posts = wp_list_pluck( $wp_query->posts, 'ID' );
 
-		// Walk all found posts
+		// Walk all queried posts
+		$posts = wp_list_pluck( $wp_query->posts, 'ID' );
 		foreach ( $posts as $post_id ) {
 
 			// Get each post's first usable image
@@ -469,12 +469,34 @@ function zeta_header_slider() {
 		}
 	}
 
+	$images = array_filter( array_values( $images ) );
+
+	// Default to Background Image(s)
+	if ( empty( $images ) ) {
+		$background = get_theme_mod( 'background_image' );
+		if ( ! empty( $background ) ) {
+			foreach ( (array) $background as $image ) {
+				if ( $src = zeta_check_image_size( $image, $image_size ) ) {
+					$images[] = $src;
+				}
+			}
+
+			// Randomize
+			shuffle( $images );
+
+			// Get a single image when not rotating
+			if ( ! get_theme_mod( 'background_image_rotate' ) ) {
+				$images = array_slice( $images, 0, 1 );
+			}
+		}
+	}
+
 	//
 	// Process images with post data
 	// 
 
 	// Walk all found images
-	foreach ( array_values( $images ) as $i => $image ) {
+	foreach ( $images as $i => $image ) {
 
 		// Skip slide when there is no image
 		if ( ! $image )
@@ -523,19 +545,19 @@ function zeta_header_slider() {
 				$metadata = wp_get_attachment_metadata( $image );
 
 				// Get original image file link
-				if ( apply_filters( 'zeta_header_slider_image_url', false, $image ) ) {
+				if ( apply_filters( 'zeta_background_slider_image_url', false, $image ) ) {
 					$upload_dir = wp_upload_dir();
 					$slide['href'] = trailingslashit( $upload_dir['baseurl'] ) . $metadata['file'];
 				}
 
 				// Get attachment title
-				if ( apply_filters( 'zeta_header_slider_image_title', false, $image ) 
+				if ( apply_filters( 'zeta_background_slider_image_title', false, $image ) 
 					&& ( $att_title = get_the_title( $image ) ) && ! empty( $att_title ) ) {
 					$slide['title'] = $att_title;
 				}
 
 				// Get attachment details
-				if ( apply_filters( 'zeta_header_slider_image_credits', false, $image ) 
+				if ( apply_filters( 'zeta_background_slider_image_credits', false, $image ) 
 					&& ! empty( $metadata['image_meta']['credit'] ) ) {
 					$slide['byline'] = sprintf( __( 'Created by %s', 'zeta' ), $metadata['image_meta']['credit'] );
 				}
@@ -546,14 +568,12 @@ function zeta_header_slider() {
 		$slides[] = $slide;
 	}
 
-	// When no valid images were found, get the default slider images
+	// When no valid images were found, default to the theme's default background
 	if ( empty( $slides ) ) {
-		$defaults = array( 'benches.jpg', 'bridge.jpg', 'desktop.jpg', 'downtown.jpg', 'tools.jpg' );
-		$default  = array_rand( $defaults ); 
 		$slides[] = array( 
 			'post_id' => false,
 			'att_id'  => false,
-			'src'     => get_template_directory_uri() . '/images/headers/' . $defaults[ $default ],
+			'src'     => get_template_directory_uri() . '/images/default-background.jpg',
 			'href'    => false,
 			'title'   => false,
 			'byline'  => false,
@@ -597,11 +617,11 @@ function zeta_header_slider() {
 		$slide .= '</' . $tag . '>';
 
 		// Filter and add slide content to the slides collection
-		$slides[ $i ] = apply_filters( 'zeta_header_slider_slide', $slide, $args, $tag, $i );
+		$slides[ $i ] = apply_filters( 'zeta_background_slider_slide', $slide, $args, $tag, $i );
 	}
 
-	// Filter all header slides
-	$slides      = apply_filters( 'zeta_header_slider_slides', $slides ); 
+	// Filter all the slides
+	$slides      = apply_filters( 'zeta_background_slider_slides', $slides ); 
 	$slide_count = count( $slides ); ?>
 
 	<div class="slider flexslider loading">
@@ -710,7 +730,7 @@ function zeta_map_slide( $slides ) {
 
 	return $slides;
 }
-// add_filter( 'zeta_header_slider_slides', 'zeta_map_slide' );
+// add_filter( 'zeta_background_slider_slides', 'zeta_map_slide' );
 
 /**
  * Display or return the media item's associated users
