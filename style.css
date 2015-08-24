@@ -44,7 +44,7 @@
 	12.1 Captions
 	12.2 Galleries
 13.0 Plugins
-	13.1 column-shortcodes
+	13.1 Column Shortcodes
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -790,14 +790,16 @@ body.admin-bar #page {
 			text-align: center;
 		}
 
-#colophon {
-	background-color: #efefef;
+#colophon,
+#page ~ * /* Mimic it all below #page #colophon */ {
+	float: right;
+	width: 100%;
+	margin: 0;
 	padding: 15px 35px;
+	background-color: #efefef;
 	font-family: 'Montserrat', Arial, sans-serif;
 	text-transform: uppercase;
 	font-size: .75em;
-	width: 100%;
-	float: right;
 }
 
 @media screen and (min-width: 561px) {
@@ -1070,7 +1072,8 @@ body.admin-bar #page {
 
 	#site-tools,
 	#content,
-	#colophon {
+	#colophon,
+	#page ~ * /* Mimic it all below #page #colophon */ {
 		width: 58%;
 		margin-left: 42%;
 	}
@@ -1094,7 +1097,8 @@ body.admin-bar #page {
 
 	#site-tools,
 	#content,
-	#colophon {
+	#colophon,
+	#page ~ * /* Mimic it all below #page #colophon */ {
 		width: 640px;
 		margin-left: calc( 100% - 640px );
 	}
@@ -2328,7 +2332,7 @@ object {
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-13.1 Column Shortcodes (column-shortcodes)
+13.1 Column Shortcodes
 --------------------------------------------------------------*/
 
 #content .content-column {
