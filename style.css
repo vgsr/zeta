@@ -43,6 +43,8 @@
 12.0 Media
 	12.1 Captions
 	12.2 Galleries
+13.0 Plugins
+	13.1 column-shortcodes
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -2319,4 +2321,39 @@ object {
 
 .gallery-caption {
 	display: block;
+}
+
+/*--------------------------------------------------------------
+13.0 Plugins
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+13.1 Column Shortcodes (column-shortcodes)
+--------------------------------------------------------------*/
+
+#content .content-column {
+	margin-top: 1.5em;
+	padding: 0 17.5px;
+}
+
+	#content .content-column.full_width {
+		padding: 0;
+	}
+
+	#content p + .content-column,
+	#content .clear_column + .content-column {
+		padding-left: 0;
+	}
+
+	#content .content-column.last_column {
+		padding-right: 0;
+	}
+
+/* Breakpoint in the plugin: .entry-content { max-width: 444px; } */
+@media all and (max-width: 600px), (min-width: 741px) and (max-width: 904px) {
+	#content .content-column {
+		clear: both;
+		width: 100%;
+		padding: 0;
+	}
 }
