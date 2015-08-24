@@ -334,7 +334,7 @@ function zeta_check_image_size( $image, $size = 'medium' ) {
 	if ( ! is_numeric( $image ) ) {
 
 		// Try to find the image (remotely)
-		$_image = getimagesize( $image );
+		$_image = @getimagesize( $image );
 
 		// Transform details order when image was found
 		if ( $_image ) {
