@@ -312,7 +312,7 @@ function zeta_tools_nav() {
  * @uses the_widget()
  * @uses do_action() Calls 'site_{$tool_id}_tool_content'
  */
-function zeta_tools() {
+function zeta_tools_content() {
 	$tools   = zeta_get_site_tools();
 	$toggled = false;
 
@@ -374,24 +374,30 @@ function zeta_tools() {
 	 * 
 	 * @since 1.0.0
 	 * 
-	 * @uses apply_filters() Calls 'site_tools'
 	 * @uses is_user_logged_in()
+	 * @uses apply_filters() Calls 'site_tools'
 	 * @uses wp_logout_url()
 	 * @uses wp_login_url()
 	 *
 	 * @return array Site tools collection
 	 */
 	function zeta_get_site_tools() {
+		$loggedin = is_user_logged_in();
+
 		return (array) apply_filters( 'site_tools', array(
+
+			// Site search tool
 			'search' => array(
 				'label'  => __( 'Search the site', 'zeta' ),
 				'url'    => '#',
 				'toggle' => is_search() || is_404()
 			),
+
+			// Login/out tool
 			'login'  => array(
-				'label'  => is_user_logged_in() ? __( 'Log Out', 'zeta' ) : __( 'Log In', 'zeta' ),
-				'url'    => is_user_logged_in() ? wp_logout_url( $_SERVER['REQUEST_URI'] ) : wp_login_url( $_SERVER['REQUEST_URI'] ),
-				'class'  => is_user_logged_in() ? 'no-toggle' : '',
+				'label'  => $loggedin ? __( 'Log Out', 'zeta' ) : __( 'Log In', 'zeta' ),
+				'url'    => $loggedin ? wp_logout_url( $_SERVER['REQUEST_URI'] ) : wp_login_url( $_SERVER['REQUEST_URI'] ),
+				'class'  => $loggedin ? 'no-toggle' : '',
 			)
 		) );
 	}

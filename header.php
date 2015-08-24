@@ -35,7 +35,7 @@
 	</header><!-- #masthead -->
 
 	<div id="site-tools">
-		<?php zeta_tools(); ?>
+		<?php zeta_tools_content(); ?>
 	</div>
 
 	<div id="header-aside">

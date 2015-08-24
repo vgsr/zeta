@@ -195,6 +195,8 @@ function zeta_get_post_images( $post, $size = false ) {
 	 * Add connected images to the current post's image collection
 	 *
 	 * @since 1.0.0
+	 *
+	 * @todo Move this to a plugin
 	 * 
 	 * @param array $images
 	 * @param WP_Post $post The current post
@@ -548,7 +550,7 @@ function zeta_search_context_select( $form ) {
 		}
 
 		// Search groups
-		if ( bp_is_active( 'groups' ) ) {
+		if ( bp_is_active( 'groups' ) && 0 < groups_get_total_group_count() ) {
 			$contexts['bp-groups'] = __( 'Groups', 'zeta' );
 		}
 	}
@@ -575,7 +577,7 @@ function zeta_search_context_select( $form ) {
 add_filter( 'get_search_form', 'zeta_search_context_select' );
 
 /**
- * Handle search context specific redirectioning
+ * Redirect the search request to the context's specific results page
  *
  * @since 1.0.0
  *
@@ -583,10 +585,10 @@ add_filter( 'get_search_form', 'zeta_search_context_select' );
  * @uses bp_core_get_directory_page_ids()
  * @uses is_user_vgsr()
  * @uses get_permalink()
- * @uses apply_filters() Calls 'zeta_search_context_location'
+ * @uses apply_filters() Calls 'zeta_search_context_redirect'
  * @uses wp_safe_redirect()
  */
-function zeta_search_context_location() {
+function zeta_search_context_redirect() {
 
 	// Bail when this is not a search request and no context is provided
 	if ( ! is_search() || ! isset( $_GET['context'] ) )
@@ -614,7 +616,7 @@ function zeta_search_context_location() {
 			break;
 
 		default :
-			$location = apply_filters( 'zeta_search_context_location', $location, $context, $s );
+			$location = apply_filters( 'zeta_search_context_redirect', $location, $context, $s );
 			break;
 	}
 
@@ -623,7 +625,7 @@ function zeta_search_context_location() {
 		wp_safe_redirect( esc_url_raw( $location ) );
 	}
 }
-add_action( 'template_redirect', 'zeta_search_context_location' );
+add_action( 'template_redirect', 'zeta_search_context_redirect' );
 
 /**
  * Handle search context specific redirectioning
