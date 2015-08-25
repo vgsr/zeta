@@ -315,7 +315,10 @@ i {
 }
 
 blockquote {
-	margin: 0 1.5em;
+	margin: 0 1.5em 0 0;
+	padding-left: 1.5em;
+	border-left: 2px solid #ddd;
+	font-style: italic;
 }
 
 address {
@@ -387,8 +390,27 @@ q:after {
 
 blockquote,
 q {
-	quotes: "" "";
+	quotes: "„" "”";
 }
+
+blockquote p:before {
+	content: open-quote;
+}
+
+blockquote p:nth-last-child(2):after {
+	content: close-quote;
+}
+
+/* Assuming the last <p> holds the quote source */
+blockquote p ~ p:last-child {
+	font-style: normal;
+	margin-top: .5em;
+}
+
+	blockquote p ~ p:last-child:before {
+		content: '\2014';
+		margin: 0 10px 0 0;
+	}
 
 hr {
 	background-color: #ccc;
