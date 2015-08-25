@@ -483,8 +483,8 @@ function zeta_background_slider() {
 		if ( ! empty( $images ) ) {
 			shuffle( $images );
 
-			// Get a single image when not rotating
-			if ( ! get_theme_mod( 'background_image_rotate' ) ) {
+			// Get only a single image
+			if ( get_theme_mod( 'background_image_single' ) ) {
 				$images = array_slice( $images, 0, 1 );
 			}
 		}

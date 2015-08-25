@@ -25,7 +25,7 @@ function zeta_customize_register( $wp_customize ) {
 	// Add control section
 	$wp_customize->add_section( 'background_image', array(
 		'title'       => __( 'Default Background', 'zeta' ),
-		'description' => __( 'Select images that serve as a background fallback when the current page has no images or slides to show. By default a <em>single random</em> image will be used from the selected images. When you chose Rotate All Images, all images will be shown in the slider.', 'zeta' ),
+		'description' => __( 'Select images that serve as a background fallback when the current page has no images or slides to show. By default all selected images will be shown in the image slider in random order.', 'zeta' ),
 		'priority'    => 80
 	) );
 
@@ -43,9 +43,9 @@ function zeta_customize_register( $wp_customize ) {
 	) );
 
 	// Add Rotate All checkbox control setting
-	$wp_customize->add_setting( 'background_image_rotate', array( 'capability' => 'manage_options' ) );
-	$wp_customize->add_control( 'background_image_rotate', array(
-		'label'   => __( 'Rotate All Images', 'zeta' ),
+	$wp_customize->add_setting( 'background_image_single', array( 'capability' => 'manage_options' ) );
+	$wp_customize->add_control( 'background_image_single', array(
+		'label'   => __( 'Display only a single image', 'zeta' ),
 		'section' => 'background_image',
 		'type'    => 'checkbox'
 	) );

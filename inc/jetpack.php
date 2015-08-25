@@ -115,7 +115,7 @@ add_action( 'after_setup_theme', 'zeta_tiled_gallery' );
 function zeta_tiled_gallery_register_scripts() {
 	$tiled_url = trailingslashit( get_template_directory_uri() . '/inc/tiled-gallery' );
 	wp_register_script( 'tiled-gallery', $tiled_url . 'tiled-gallery/tiled-gallery.js', array( 'jquery' ) );
-	if( is_rtl() ) {
+	if ( is_rtl() ) {
 		wp_register_style( 'tiled-gallery', $tiled_url . 'tiled-gallery/rtl/tiled-gallery-rtl.css', array(), '2012-09-21' );
 	} else {
 		wp_register_style( 'tiled-gallery', $tiled_url . 'tiled-gallery/tiled-gallery.css', array(), '2012-09-21' );
