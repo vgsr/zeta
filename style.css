@@ -2085,7 +2085,7 @@ input.search-field {
 	}
 
 	.entry-footer > *:not(:first-child):before {
-		content: '\2022';
+		content: '\2022'; /* dot separator */
 		margin: 0 10px;
 	}
 
@@ -2172,7 +2172,7 @@ input.search-field {
 	}
 
 		.comment-actions span:not(:first-child):before {
-			content: '\2022';
+			content: '\2022'; /* dot separator */
 			margin: 0 10px;
 		}
 
@@ -2181,14 +2181,27 @@ input.search-field {
 	display: block;
 }
 
-#respond {
+.comment-list + #respond,
+.comment-list #respond {
 	margin-top: 1.5em;
+	border-top: 1px dashed #ddd;
+	padding-top: 1.5em;
 }
 
 	#respond input:not([type="submit"]) {
 		float: right;
 		width: 70%;
 	}
+
+	#cancel-comment-reply-link {
+		color: #aaa;
+	}
+
+		#cancel-comment-reply-link:before {
+			content: '\2022';
+			margin: 0 10px 0 5px;
+			display: inline-block;
+		}
 
 /*--------------------------------------------------------------
 11.0 Infinite scroll
