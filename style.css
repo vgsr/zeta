@@ -2131,12 +2131,13 @@ input.search-field {
 	.comment-actions {
 		font-family: 'Montserrat', Arial, sans-serif;
 		font-weight: normal;
-		color: #ddd;
+		color: #aaa;
 		font-size: .75em;
 	}
 
-		.comment-meta a {
-			color: #ddd;
+		.comment-meta a,
+		.comment-actions a {
+			color: #aaa;
 		}
 
 		.comment-meta a:hover,
@@ -2171,12 +2172,10 @@ input.search-field {
 	}
 
 		.comment-actions span:not(:first-child):before {
-			content: ' | ';
+			content: '\2022';
+			margin: 0 10px;
 		}
 
-			.comment-actions a {
-				color: #aaa;
-			}
 
 .bypostauthor {
 	display: block;
