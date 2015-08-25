@@ -109,12 +109,12 @@ function zeta_has_post_gallery( $post_id = 0 ) {
  * @uses zeta_check_image_size()
  * @uses apply_filters() Calls 'zeta_get_post_images'
  * 
- * @param int|object $post Post ID or post object
+ * @param int|object $post Optional. Post ID or post object. Defaults to the current post.
  * @param string|array $size Optional. Required image size as image size name
  *                            or as an array with width|height values.
  * @return array Collection of attachment IDs and/or image urls
  */
-function zeta_get_post_images( $post, $size = false ) {
+function zeta_get_post_images( $post = 0, $size = false ) {
 	if ( ! $post = get_post( $post ) )
 		return array();
 
@@ -247,12 +247,12 @@ function zeta_get_post_images( $post, $size = false ) {
  * @uses zeta_check_image_size()
  * @uses apply_filters() Calls 'zeta_get_first_post_image'
  * 
- * @param int|object $post Post ID or post object
+ * @param int|object $post Optional. Post ID or post object. Defaults to the current post.
  * @param string|array $size Optional. Required image size. If empty any image
  *                            is returned.
  * @return bool|int|string False when no image was found, attachment ID or image url
  */
-function zeta_get_first_post_image( $post, $size = '' ) {
+function zeta_get_first_post_image( $post = 0, $size = '' ) {
 	if ( ! $post = get_post( $post ) )
 		return false;
 
@@ -272,6 +272,60 @@ function zeta_get_first_post_image( $post, $size = '' ) {
 	}
 
 	return apply_filters( 'zeta_get_first_post_image', $image, $post, $size );
+}
+
+/**
+ * Return the attachment ids of a post's gallery shortcodes
+ *
+ * @since 1.0.0
+ *
+ * @uses get_post_galleries()
+ *
+ * @param int|WP_Post $post Optional. Post ID. Defaults to the current post
+ * @return array Attachment ids
+ */
+function zeta_get_post_galleries_attachment_ids( $post = 0 ) {
+	$galleries = get_post_galleries( $post, false );
+	$attachments = array();
+
+	if ( $galleries ) {
+		$attachments =
+			// Remove any blanks
+			array_filter(
+				// Check whether these are real attachments
+				array_map( 'zeta_is_post_attachment',
+					// Remove excess space
+					array_map( 'trim',
+						// Turn the single id list into an array
+						explode( ',',
+							// Combine the elements of multiple galleries
+							implode( ',',
+								// Get `ids` shortcode argument values
+								wp_list_pluck( $galleries, 'ids' )
+							)
+						)
+					)
+				)
+			);
+	}
+
+	return $attachments;
+}
+
+/**
+ * Return whether the post is an attachment
+ *
+ * @since 1.0.0
+ *
+ * @param int|WP_Post $post Optional. Post ID or object. Defaults to the current post.
+ * @return bool|int False if post is not an attachment, else the post ID.
+ */
+function zeta_is_post_attachment( $post = 0 ) {
+	if ( ! ( $post = get_post( $post ) ) || ( 'attachment' != $post->post_type ) ) {
+		return false;
+	} else {
+		return $post->ID;
+	}
 }
 
 /**

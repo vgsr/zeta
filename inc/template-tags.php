@@ -265,6 +265,27 @@ function zeta_category_transient_flusher() {
 add_action( 'edit_category', 'zeta_category_transient_flusher' );
 add_action( 'save_post',     'zeta_category_transient_flusher' );
 
+if ( ! function_exists( 'zeta_post_format_link' ) ) :
+/**
+ * Prints HTML for the post's post format link
+ *
+ * @since 1.0.0
+ *
+ * @uses get_post_format()
+ * @uses get_post_format_link()
+ * @uses get_post_format_string()
+ */
+function zeta_post_format_link() {
+	if ( $format = get_post_format() ) {
+		printf( '<span class="post-format %1$s"><a href="%2$s">%3$s</a></span>',
+			esc_attr( $format ),
+			get_post_format_link( $format ),
+			get_post_format_string( $format )
+		);
+	}
+}
+endif;
+
 /**
  * Display collection of site tools for in the site header
  *

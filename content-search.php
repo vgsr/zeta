@@ -12,7 +12,10 @@
 	<header class="entry-header">
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php zeta_posted_on(); ?>
+			<?php 
+				zeta_post_format_link();
+				zeta_posted_on(); 
+			?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 

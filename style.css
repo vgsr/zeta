@@ -2084,6 +2084,11 @@ input.search-field {
 		border-color: rgba(191, 38, 105, .8);
 	}
 
+	.entry-meta > *:not(:first-child):not(.byline):before {
+		content: '\2022'; /* dot separator */
+		margin: 0 5px;
+	}
+
 	.entry-footer > *:not(:first-child):before {
 		content: '\2022'; /* dot separator */
 		margin: 0 10px;
