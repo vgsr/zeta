@@ -2114,6 +2114,109 @@ input.search-field {
 			}
 }
 
+/**
+ * Sidebar on the side
+ *
+ * For pages with body.sidebar-side:
+ *  978    = 741 + 166.66 + ( 2 * 35 )
+ *         = ( 166.66 + ( 2 * 35 )) * 24.23%
+ *  1280   = ( 240 + ( 2 * 35 )) * 24.23%
+ */
+@media screen and (min-width: 978px) {
+	body.sidebar-side #header-aside {
+		width: calc( 100% - 58% - 24.23% );
+	}
+
+	body.sidebar-side #site-tools,
+	body.sidebar-side #content,
+	body.sidebar-side #colophon,
+	body.sidebar-side #page ~ p {
+		width: calc( 58% + 24.23% );
+		margin-left: calc( 100% - 58% - 24.23% );
+	}
+
+	body.sidebar-side #content {
+		display: block; /* unflex and float children */
+	}
+
+	body.sidebar-side .content-area {
+		float: left;
+		width: calc( ( 1 - ( 24.23 / ( 58 + 24.23 ))) * 100% );
+	}
+
+	body.sidebar-side.sidebar-left .content-area {
+		float: right;
+	}
+
+	body.sidebar-side .widget-area {
+		float: left;
+		width: calc( ( 24.23 / ( 58 + 24.23 )) * 100% );
+		display: block;
+		flex: none;
+		border-left: 1px dashed #ddd;
+	}
+
+	body.sidebar-side.sidebar-left .widget-area {
+		border-left: none;
+		border-right: 1px dashed #ddd;
+	}
+
+		body.sidebar-side .widget-area aside {
+			padding: 35px !important;
+			flex: none;
+		}
+
+		body.sidebar-side .widget-area aside:first-child {
+			border: none;
+		}
+
+			body.sidebar-side .widget-area aside.full-width ul {
+				   -moz-column-count: 1 !important;
+				-webkit-column-count: 1 !important;
+				        column-count: 1 !important;
+			}
+}
+
+@media screen and (min-width: 1122px) {
+	body.sidebar-side #header-aside {
+		width: calc( 100% - 640px - 24.23% );
+	}
+
+	body.sidebar-side #site-tools,
+	body.sidebar-side #content,
+	body.sidebar-side #colophon,
+	body.sidebar-side #page ~ p {
+		width: calc( 640px + 24.23% );
+		margin-left: calc( 100% - 640px - 24.23% );
+	}
+
+	body.sidebar-side .content-area {
+		width: 639px;
+	}
+
+	body.sidebar-side .widget-area {
+		width: calc( 100% - 639px );
+	}
+}
+
+@media screen and (min-width: 1301px) {
+	body.sidebar-side #header-aside {
+		width: calc( 100% - 640px - 310px );
+	}
+
+	body.sidebar-side #site-tools,
+	body.sidebar-side #content,
+	body.sidebar-side #colophon,
+	body.sidebar-side #page ~ p {
+		width: calc( 640px + 310px );
+		margin-left: calc( 100% - 640px - 310px );
+	}
+
+	body.sidebar-side .widget-area {
+		width: 310px;
+	}
+}
+
 /*--------------------------------------------------------------
 10.0 Content
 --------------------------------------------------------------*/
