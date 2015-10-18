@@ -229,14 +229,9 @@ class Zeta_Customize_Multi_Image_Control extends WP_Customize_Image_Control {
 	 * @return array Selected attachment ids
 	 */
 	public function get_current_attachments() {
-		$value = $this->value();
 		$attachments = array();
-		foreach ( (array) $value as $attachment_id ) {
-			if ( ! is_numeric( $attachment_id ) ) {
-				$attachments[] = attachment_url_to_postid( $attachment_id );
-			} else {
-				$attachments[] = $attachment_id;
-			}
+		foreach ( (array) $this->value() as $attachment_id ) {
+			$attachments[] = ! is_numeric( $attachment_id ) ? attachment_url_to_postid( $attachment_id ) : (int) $attachment_id;
 		}
 
 		return $attachments;
