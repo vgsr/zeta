@@ -661,7 +661,7 @@ body.home #header-aside {
 				-moz-background-size:    cover;
 				-o-background-size:      cover;
 				background-size:         cover;
-				background-position: center;
+				background-position: top center;
 			}
 
 				#header-aside .slides .slide-inner .slide-details {
