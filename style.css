@@ -624,6 +624,10 @@ body.home #header-aside {
 	height: auto;
 }
 
+	body.home.admin-bar #header-aside {
+		top: 108px;
+	}
+
 	#header-aside .slider {
 		position: relative;
 		width: 100%;
@@ -896,6 +900,10 @@ body.home #colophon {
 		height: auto;
 	}
 
+	body.home.admin-bar #header-aside {
+		top: 142px;
+	}
+
 		.menu-toggled #header-aside .slider {
 			border-bottom: 1px solid #efefef;
 		}
@@ -1013,7 +1021,13 @@ body.home #colophon {
 		top: 43px;
 		right: 8px;
 		width: 400px;
+		margin: 0;
 		border: none;
+		box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+	}
+
+	body.home.admin-bar #site-tools {
+		top: 89px;
 	}
 
 		.tools-toggled #site-tools {
@@ -1196,6 +1210,10 @@ body.home #colophon {
 
 	body.admin-bar .site-header {
 		top: 32px;
+	}
+
+	body.home.admin-bar #site-tools {
+		top: 75px;
 	}
 }
 
