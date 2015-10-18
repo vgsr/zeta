@@ -579,6 +579,7 @@ body.admin-bar #page {
 #site-tools {
 	float: left;
 	width: 100%;
+	z-index: 1;
 }
 
 	#site-tools .site-tool {
@@ -1007,8 +1008,20 @@ body.home #colophon {
 		border-bottom: 1px dashed #ddd;
 	}
 
+	body.home #site-tools {
+		position: absolute;
+		top: 43px;
+		right: 8px;
+		width: 400px;
+		border: none;
+	}
+
 		.tools-toggled #site-tools {
 			display: block;
+		}
+
+		body.home #site-tools .site-tool {
+			padding: 15px;
 		}
 
 	#header-aside {
@@ -1635,6 +1648,17 @@ a:active {
 		top: auto;
 		right: auto;
 	}
+
+		body.home .tools-nav .toggled:after {
+			content: '';
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			margin-left: -5px;
+			border-right: 5px solid transparent;
+			border-bottom: 8px solid #f9f9f9;
+			border-left: 5px solid transparent;
+		}
 
 		.tools-nav a {
 			width: auto;
