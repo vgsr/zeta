@@ -614,6 +614,15 @@ body.admin-bar #page {
 	height: 250px;
 }
 
+body.home #header-aside {
+	position: fixed;
+	top: 62px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: auto;
+}
+
 	#header-aside .slider {
 		position: relative;
 		width: 100%;
@@ -793,15 +802,38 @@ body.admin-bar #page {
 	flex-direction: column;
 }
 
+body.home #content {
+	width: 100%;
+	margin: 0 0 35px 0;
+	padding: 35px;
+	background-color: transparent;
+	pointer-events: none;
+	/* Vertically center */
+	align-items: center;
+	justify-content: center;
+}
+
 	/* Sticky footer: have the content take all the available screen space */
 	.content-area {
 		/* IE 10/11 workaround requires `flex-shrink: 0` and `flex-basis: auto` */
 		flex: 1 0 auto;
 	}
 
+	body.home .content-area {
+		flex: none;
+		max-width: 640px;
+		margin-top: 70px;
+		color: #fff;
+		pointer-events: auto;
+	}
+
 	.content-area .site-main > * {
 		margin: 0;
 		padding: 35px;
+	}
+
+	body.home .content-area .site-main > * {
+		padding: 0 35px;
 	}
 
 		.content-area .site-main > :not(:last-child) {
@@ -812,8 +844,17 @@ body.admin-bar #page {
 			text-align: center;
 		}
 
+		body.home .entry-title {
+			font-size: 5em;
+			text-shadow: 0 0 5px rgba( 0, 0, 0, .3 );
+		}
+
 #colophon,
-#page ~ p /* Mimic it all below #page #colophon */ {
+/*
+ * Also apply this to all <p> after #page #colophon,
+ * which are added at `do_action( 'wp_footer' )`.
+ */
+#page ~ p {
 	float: right;
 	width: 100%;
 	margin: 0;
@@ -822,6 +863,10 @@ body.admin-bar #page {
 	font-family: 'Montserrat', Arial, sans-serif;
 	text-transform: uppercase;
 	font-size: .75em;
+}
+
+body.home #colophon {
+	display: none;
 }
 
 @media screen and (min-width: 561px) {
@@ -845,6 +890,11 @@ body.admin-bar #page {
 		height: 280px;
 	}
 
+	body.home #header-aside {
+		top: 96px;
+		height: auto;
+	}
+
 		.menu-toggled #header-aside .slider {
 			border-bottom: 1px solid #efefef;
 		}
@@ -861,6 +911,10 @@ body.admin-bar #page {
 			.content-area .site-main > *,
 			.widget-area > * {
 				background-color: #fff;
+			}
+
+			body.home .content-area .site-main > * {
+				background-color: transparent;
 			}
 }
 
@@ -969,6 +1023,11 @@ body.admin-bar #page {
 
 	body.admin-bar #header-aside {
 		top: 32px;
+	}
+
+	body.home #header-aside {
+		top: 0;
+		width: 100%;
 	}
 
 		.menu-toggled #header-aside {
@@ -1083,6 +1142,13 @@ body.admin-bar #page {
 		border-left: 1px solid #efefef;
 	}
 
+	body.home #content {
+		width: 100%;
+		margin: 0;
+		padding: 35px 174px;
+		border: none;
+	}
+
 		.content-area .site-main > *,
 		.widget-area > * {
 			background-color: transparent;
@@ -1092,16 +1158,24 @@ body.admin-bar #page {
 			text-align: left;
 		}
 
+		body.home .entry-title {
+			text-align: center;
+		}
+
 	#site-tools,
 	#content,
 	#colophon,
-	#page ~ p /* Mimic it all below #page #colophon */ {
+	/*
+	 * Also apply this to all <p> after #page #colophon,
+	 * which are added at `do_action( 'wp_footer' )`.
+	 */
+	#page ~ p {
 		width: 58%;
 		margin-left: 42%;
 	}
 }
 
-/* WP admin bar shrinks 46px > 32px */
+/* WP Admin Bar shrinks 46px > 32px */
 @media screen and (min-width: 783px) {
 	body.admin-bar #page {
 		min-height: calc( 100vh - 32px );
@@ -1120,9 +1194,19 @@ body.admin-bar #page {
 	#site-tools,
 	#content,
 	#colophon,
-	#page ~ p /* Mimic it all below #page #colophon */ {
+	/*
+	 * Also apply this to all <p> after #page #colophon,
+	 * which are added at `do_action( 'wp_footer' )`.
+	 */
+	#page ~ p {
 		width: 640px;
 		margin-left: calc( 100% - 640px );
+	}
+
+	body.home #header-aside,
+	body.home #content {
+		width: 100%;
+		margin: 0;
 	}
 }
 
@@ -2017,6 +2101,36 @@ input.search-field {
 	margin: 0.5em 0 0;
 }
 
+body.home .entry-content {
+	margin: 0;
+}
+
+	body.home .entry-content p:first-child {
+		margin: 0;
+	}
+
+	body.home .entry-content a {
+		font-family: 'Montserrat', Arial, sans-serif;
+		text-transform: uppercase;
+		font-size: .75em;
+		margin: 0 5px 10px;
+		display: inline-block;
+		text-decoration: none;
+	}
+
+	body.home .entry-content a,
+	body.home .entry-content a:visited {
+		padding: 8px 12px;
+		color: #fff;
+		border: none;
+		background-color: rgba(191, 38, 105, .8);
+	}
+
+	body.home .entry-content a:hover,
+	body.home .entry-content a:hover {
+		background-color: rgba(191, 38, 105, 1);
+	}
+
 .page-links {
 	clear: both;
 	margin: 1.5em 0 0;
@@ -2050,6 +2164,10 @@ input.search-field {
 	text-transform: uppercase;
 	font-size: .75em;
 	color: #999;
+}
+
+body.home .entry-footer {
+	display: none;
 }
 
 	.entry-meta:not(:empty) {
