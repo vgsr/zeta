@@ -1048,7 +1048,8 @@ body.home #colophon {
 		padding: 0;
 	}
 
-	body.admin-bar #header-aside {
+	body.admin-bar #header-aside,
+	body.home.admin-bar #header-aside {
 		top: 32px;
 	}
 
