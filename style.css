@@ -832,6 +832,10 @@ body.home #content {
 		pointer-events: auto;
 	}
 
+	body.home.admin-bar .content-area {
+		margin-top: 24px; /* Correct for 46px Admin Bar */
+	}
+
 	.content-area .site-main > * {
 		margin: 0;
 		padding: 35px;
@@ -1215,6 +1219,10 @@ body.home #colophon {
 
 	body.home.admin-bar #site-tools {
 		top: 75px;
+	}
+
+	body.home.admin-bar .content-area {
+		margin-top: 38px; /* Correct for 32px Admin Bar */
 	}
 }
 
