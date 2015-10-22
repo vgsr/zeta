@@ -2125,39 +2125,39 @@ input.search-field {
 /**
  * Sidebar on the side
  *
- * For pages with body.sidebar-side:
+ * For pages with body.with-sidebar:
  *  978    = 741 + 166.66 + ( 2 * 35 )
  *         = ( 166.66 + ( 2 * 35 )) * 24.23%
  *  1280   = ( 240 + ( 2 * 35 )) * 24.23%
  */
 @media screen and (min-width: 978px) {
-	body.sidebar-side #header-aside {
+	body.with-sidebar #header-aside {
 		width: calc( 100% - 58% - 24.23% );
 	}
 
-	body.sidebar-side #site-tools,
-	body.sidebar-side #content,
-	body.sidebar-side #colophon,
-	body.sidebar-side #page ~ p {
+	body.with-sidebar #site-tools,
+	body.with-sidebar #content,
+	body.with-sidebar #colophon,
+	body.with-sidebar #page ~ p {
 		width: calc( 58% + 24.23% );
 		margin-left: calc( 100% - 58% - 24.23% );
 	}
 
-	body.sidebar-side #content {
+	body.with-sidebar #content {
 		flex-direction: row; /* content and widgets equal heights */
 	}
 
-	body.sidebar-side .content-area {
+	body.with-sidebar .content-area {
 		float: left;
 		width: calc( ( 1 - ( 24.23 / ( 58 + 24.23 ))) * 100% );
 	}
 
-	body.sidebar-side.sidebar-left .content-area {
+	body.with-sidebar.sidebar-content .content-area {
 		float: right; /* non-flexbox fallback */
 		order: 2; /* after .widget-area */
 	}
 
-	body.sidebar-side .widget-area {
+	body.with-sidebar .widget-area {
 		float: left;
 		width: calc( ( 24.23 / ( 58 + 24.23 )) * 100% );
 		display: block;
@@ -2165,22 +2165,22 @@ input.search-field {
 		border-left: 1px dashed #ddd;
 	}
 
-	body.sidebar-side.sidebar-left .widget-area {
+	body.with-sidebar.sidebar-content .widget-area {
 		border-left: none;
 		border-right: 1px dashed #ddd;
 		order: 1; /* before .content-area */
 	}
 
-		body.sidebar-side .widget-area aside {
+		body.with-sidebar .widget-area aside {
 			padding: 35px !important;
 			flex: none;
 		}
 
-		body.sidebar-side .widget-area aside:first-child {
+		body.with-sidebar .widget-area aside:first-child {
 			border: none;
 		}
 
-			body.sidebar-side .widget-area aside.full-width ul {
+			body.with-sidebar .widget-area aside.full-width ul {
 				   -moz-column-count: 1 !important;
 				-webkit-column-count: 1 !important;
 				        column-count: 1 !important;
@@ -2189,42 +2189,42 @@ input.search-field {
 
 /* Fully stretched .content-area */
 @media screen and (min-width: 1122px) {
-	body.sidebar-side #header-aside {
+	body.with-sidebar #header-aside {
 		width: calc( 100% - 640px - 24.23% );
 	}
 
-	body.sidebar-side #site-tools,
-	body.sidebar-side #content,
-	body.sidebar-side #colophon,
-	body.sidebar-side #page ~ p {
+	body.with-sidebar #site-tools,
+	body.with-sidebar #content,
+	body.with-sidebar #colophon,
+	body.with-sidebar #page ~ p {
 		width: calc( 640px + 24.23% );
 		margin-left: calc( 100% - 640px - 24.23% );
 	}
 
-	body.sidebar-side .content-area {
+	body.with-sidebar .content-area {
 		width: 639px;
 	}
 
-	body.sidebar-side .widget-area {
+	body.with-sidebar .widget-area {
 		width: calc( 100% - 639px );
 	}
 }
 
 /* Fully stretched .widget-area */
 @media screen and (min-width: 1301px) {
-	body.sidebar-side #header-aside {
+	body.with-sidebar #header-aside {
 		width: calc( 100% - 640px - 310px );
 	}
 
-	body.sidebar-side #site-tools,
-	body.sidebar-side #content,
-	body.sidebar-side #colophon,
-	body.sidebar-side #page ~ p {
+	body.with-sidebar #site-tools,
+	body.with-sidebar #content,
+	body.with-sidebar #colophon,
+	body.with-sidebar #page ~ p {
 		width: calc( 640px + 310px );
 		margin-left: calc( 100% - 640px - 310px );
 	}
 
-	body.sidebar-side .widget-area {
+	body.with-sidebar .widget-area {
 		width: 310px;
 	}
 }
