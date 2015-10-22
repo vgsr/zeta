@@ -2187,6 +2187,7 @@ input.search-field {
 			}
 }
 
+/* Fully stretched .content-area */
 @media screen and (min-width: 1122px) {
 	body.sidebar-side #header-aside {
 		width: calc( 100% - 640px - 24.23% );
@@ -2209,6 +2210,7 @@ input.search-field {
 	}
 }
 
+/* Fully stretched .widget-area */
 @media screen and (min-width: 1301px) {
 	body.sidebar-side #header-aside {
 		width: calc( 100% - 640px - 310px );
