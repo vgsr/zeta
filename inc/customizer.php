@@ -1,8 +1,10 @@
 <?php
+
 /**
- * zeta Theme Customizer
+ * Zeta Theme Customizer
  *
  * @package Zeta
+ * @subpackage Customizer
  */
 
 /**
@@ -14,13 +16,44 @@ function zeta_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
-	/* Background Image */
-
-	// Include the control class
+	// Include control classes
 	require_once( get_template_directory() . '/inc/classes/class-zeta-customize-multi-image-control.php' );
+	require_once( get_template_directory() . '/inc/classes/class-zeta-customize-image-radio-control.php' );
 
-	// Register the control class
+	// Register control classes
 	$wp_customize->register_control_type( 'Zeta_Customize_Multi_Image_Control' );
+	$wp_customize->register_control_type( 'Zeta_Customize_Image_Radio_Control' );
+
+	/* Theme Settings */
+
+	// Add control section
+	$wp_customize->add_section( 'theme_settings', array(
+		'title'       => __( 'Theme Settings', 'zeta' ),
+		'priority'    => 70
+	) );
+
+	// Default layout
+	$wp_customize->add_setting( 'default_layout', array( 
+		'capability' => 'edit_theme_options',
+		'default'    => 'single-column',
+		'transport'  => 'postMessage'
+	) );
+	$wp_customize->add_control( new Zeta_Customize_Image_Radio_Control(
+		$wp_customize,
+		'default_layout',
+		array(
+			'label'       => __( 'Default Layout', 'zeta' ),
+			'description' => __( 'This setting can be overridden on a per-page basis.', 'zeta' ),
+			'section'     => 'theme_settings',
+			'choices'     => array(
+				'sidebar-content' => __( 'Sidebar - Content', 'zeta' ),
+				'single-column'   => __( 'Single Column',     'zeta' ),
+				'content-sidebar' => __( 'Content - Sidebar', 'zeta' ),
+			),
+		)
+	) );
+
+	/* Background Image */
 
 	// Add control section
 	$wp_customize->add_section( 'background_image', array(
@@ -30,7 +63,7 @@ function zeta_customize_register( $wp_customize ) {
 	) );
 
 	// Add Images control setting
-	$wp_customize->add_setting( 'background_image', array( 'capability' => 'manage_options' ) );
+	$wp_customize->add_setting( 'background_image', array( 'capability' => 'edit_theme_options' ) );
 	$wp_customize->add_control( new Zeta_Customize_Multi_Image_Control( 
 		$wp_customize,
 		'background_image',
@@ -43,7 +76,7 @@ function zeta_customize_register( $wp_customize ) {
 	) );
 
 	// Add Rotate All checkbox control setting
-	$wp_customize->add_setting( 'background_image_single', array( 'capability' => 'manage_options' ) );
+	$wp_customize->add_setting( 'background_image_single', array( 'capability' => 'edit_theme_options' ) );
 	$wp_customize->add_control( 'background_image_single', array(
 		'label'   => __( 'Display only a single image', 'zeta' ),
 		'section' => 'background_image',

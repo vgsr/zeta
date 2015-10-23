@@ -9,8 +9,9 @@
 	var api = wp.customize,
 	    Select = wp.media.view.MediaFrame.Select,
 	    Library = wp.media.controller.Library,
-	    l10n = wp.media.view.l10n,
-	    ZetaMultiImage;
+	    l10n = wp.media.view.l10n;
+
+	/** Zeta Multi Image Control */
 
 	/**
 	 * A control for uploading gallery images
@@ -50,6 +51,7 @@
 		 * @uses ZetaMultiImageQuery
 		 */
 		initFrame: function() {
+
 			// Setup the media modal frame
 			this.frame = new ZetaMultiImageFrame({
 				button: {
@@ -85,12 +87,12 @@
 				],
 
 				// Send the current Control object along. This provides
-				// using the Control's parameters in the context of the
-				// media modal.
+				// for using the Control's parameters in the context of
+				// the media modal.
 				control: this 
 			});
 
-			// When a file is selected, run a callback
+			// When the selection is confirmed, run a callback
 			this.frame.on( 'select', this.select );
 		},
 
@@ -120,6 +122,7 @@
 			if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
 				return;
 			}
+
 			event.preventDefault();
 
 			// Clear the current selection
@@ -346,9 +349,40 @@
 		}
 	});
 
-	// Register control type
+	/** Zeta Image Radio Control */
+
+	/**
+	 * A control for selecting a radio through images
+	 *
+	 * @since 1.0.0
+	 * 
+	 * @class
+	 * @augments wp.customize.Control
+	 * @augments wp.customize.Class
+	 */
+	api.ZetaImageRadioControl = api.Control.extend({
+
+		/**
+		 * When the control's DOM structure is ready
+		 * set up the internal event bindings.
+		 *
+		 * @since 1.0.0
+		 */
+		ready: function() {
+			var control = this;
+
+			// Update the setting when changing the selection
+			this.container.on( 'change', 'input', function() {
+				control.setting.set( this.value );
+			});
+		}
+	});
+
+	/** Register Control Types */
+
 	$.extend( api.controlConstructor, {
-		zeta_multi_image: api.ZetaMultiImageControl
+		'zeta_multi_image': api.ZetaMultiImageControl,
+		'zeta_image_radio': api.ZetaImageRadioControl
 	});
 
 })( wp, jQuery );

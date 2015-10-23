@@ -24,6 +24,15 @@ function zeta_body_classes( $classes ) {
 		$classes[] = 'tools-toggled';
 	}
 
+	// Layout
+	$layout = get_theme_mod( 'default_layout' );
+	if ( ! is_front_page() && 'single-column' != $layout ) {
+		$classes[] = 'with-sidebar';
+		if ( 'sidebar-content' == $layout ) {
+			$classes[] = 'sidebar-content';
+		}
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', 'zeta_body_classes' );

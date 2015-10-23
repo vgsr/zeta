@@ -3,7 +3,7 @@
  *
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  *
- * global wp, jQuery, zetaCustomizeImageGallery
+ * global wp, jQuery
  */
 ( function( wp, $ ) {
 
@@ -16,6 +16,24 @@
 	wp.customize( 'blogdescription', function( value ) {
 		value.bind( function( to ) {
 			$( '.site-description a' ).text( to );
+		});
+	});
+
+	// Theme Settings: Default layout
+	wp.customize( 'default_layout', function( value ) {
+		value.bind( function( choice ) {
+			$body = $( 'body' );
+			switch ( choice ) {
+				case 'sidebar-content' :
+					$body.addClass( 'with-sidebar sidebar-content' );
+					break;
+				case 'content-sidebar' :
+					$body.removeClass( 'sidebar-content' ).addClass( 'with-sidebar' );
+					break;
+				case 'single-column' :
+					$body.removeClass( 'with-sidebar sidebar-content' );
+					break;
+			}
 		});
 	});
 
