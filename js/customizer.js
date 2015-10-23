@@ -23,6 +23,11 @@
 	wp.customize( 'default_layout', function( value ) {
 		value.bind( function( choice ) {
 			$body = $( 'body' );
+
+			// Bail when on the front page
+			if ( $body.hasClass( 'home' ) )
+				return;
+
 			switch ( choice ) {
 				case 'sidebar-content' :
 					$body.addClass( 'with-sidebar sidebar-content' );
