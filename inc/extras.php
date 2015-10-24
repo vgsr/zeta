@@ -24,11 +24,16 @@ function zeta_body_classes( $classes ) {
 		$classes[] = 'tools-toggled';
 	}
 
-	// Layout
-	$layout = get_theme_mod( 'default_layout' );
-	if ( ! is_front_page() && 'single-column' != $layout ) {
-		$classes[] = 'with-sidebar';
-		if ( 'sidebar-content' == $layout ) {
+	// Layout. Not for the Front Page or 404.
+	if ( ! is_front_page() && ! is_404() ) {
+		$layout = get_theme_mod( 'default_layout' );
+
+		if ( 'single-column' != $layout ) {
+			$classes[] = 'with-sidebar';
+		}
+
+		// Sidebar-Content. Not for BuddyPress
+		if ( 'sidebar-content' == $layout && ! is_buddypress() ) {
 			$classes[] = 'sidebar-content';
 		}
 	}
