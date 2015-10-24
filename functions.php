@@ -79,6 +79,19 @@ function zeta_setup() {
 	 */
 	if ( function_exists( 'buddypress' ) ) {
 		require( get_template_directory() . '/inc/buddypress.php' );
+	} else {
+		if ( ! function_exists( 'is_buddypress' ) ) :
+		/**
+		 * Provide a backup function when BuddyPress is not active
+		 *
+		 * @since 1.0.0
+		 *
+		 * @return bool False
+		 */
+		function is_buddypress() {
+			return false;
+		}
+		endif;
 	}
 
 	/**
