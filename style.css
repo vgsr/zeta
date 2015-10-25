@@ -2052,8 +2052,20 @@ input.search-field {
 	width: 100%;
 }
 
-/* A widget column is at least ( 640 - ( 35 * 4 ) ) / 3 = 490 / 3 = 163.33px width */
-@media screen and (min-width: 431.66px) and (max-width: 710px), (min-width: 764px) {
+/**
+ * Widget column width
+ *
+ * A widget column is at least 166.66px width. This follows from:
+ *  w = ( 640 fixed with - ( 35 * 2 ) mid column - ( 35 * 2 ) padding  ) / 3
+ *  w = 500 / 3
+ *  w = 166.66
+ *
+ * The other break points thus are:
+ *  438.32 =  ( 166.66 * 2 ) + ( 1 * 35 ) + ( 2 * 35 )
+ *  710    =  ( 166.66 * 3 ) + ( 2 * 35 ) + ( 2 * 70 )
+ *  758    = (( 166.66 * 2 ) + ( 1 * 35 ) + ( 2 * 35 )) * 58%
+ */
+@media screen and (min-width: 438.32px) and (max-width: 710px), (min-width: 758px) {
 	.widget-area aside ul:not(.sub-menu):not(.children) {
 		   -moz-column-count: 2;
 		-webkit-column-count: 2;
@@ -2071,50 +2083,38 @@ input.search-field {
 		        column-count: 3;
 	}
 }
-
 @media screen and (min-width: 587px) and (max-width: 740px), (min-width: 881px) {
+	.widget-area {
+		display: -webkit-flex;
+		display: flex;
+		flex-flow: row wrap;
+	}
+
 	.widget-area aside {
-		width: 50%;
-		border: 0;
+		float: none;
+		border-top: 1px dashed #ddd;
+		flex: 1;
+		flex-basis: 50%;
 	}
 
 		.widget-area aside.full-width {
-			width: 100%;
-			padding: 35px;
-			clear: both;
-			border-top: 1px dashed #ddd;
+			flex-basis: 100%;
 		}
 
 		/* Left widget column */
-		.widget-area aside:not(.full-width):nth-of-type(odd),
-		.widget-area aside.full-width + aside:not(.full-width) {
-			padding: 35px 17.5px 35px 35px;
+		.widget-area aside.full-width:nth-of-type(odd)  + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even),
+		.widget-area aside.full-width:nth-of-type(even) + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd),
+		.widget-area aside.full-width + aside:not(.full-width),
+		.widget-area aside:not(.full-width):nth-of-type(odd) {
 			clear: both;
 		}
 
-			.widget-area aside:before {
-				position: absolute;
-				top: -1px;
-				left: 0;
-				width: 200%;
-				border-top: 1px dashed #ddd;
-			}
-
-			.widget-area aside:not(.full-width):nth-of-type(odd):before,
-			.widget-area aside.full-width + aside:not(.full-width):before {
-				content: '';
-			}
-
 		/* Right widget column */
+		.widget-area aside.full-width:nth-of-type(odd)  + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd),
+		.widget-area aside.full-width:nth-of-type(even) + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even),
 		.widget-area aside:not(.full-width):nth-of-type(even) {
-			padding: 35px 35px 35px 17.5px;
 			clear: none;
 		}
-
-			.widget-area aside.full-width:before,
-			.widget-area aside:nth-of-type(even):before {
-				content: none;
-			}
 
 			.widget-area aside:not(.full-width) ul:not(.sub-menu):not(.children) {
 				   -moz-column-count: 1;

@@ -288,39 +288,27 @@ function zeta_inline_styles() {
 
 	// Define styles for widgets following multiple full-width widgets,
 	// since there is no :nth-of-class type selector available in CSS.
-	if ( $widgets_count > 2 ) {
+	if ( $widgets_count > 1 ) {
 		$left = $right = $left_before = $right_before = $rep = '';
 
 		while ( $widgets_count > 1 ) {
 			$rep = str_repeat( ' ~ aside.full-width', $widgets_count - 1 );
 
-			// Widgets preceded by an odd number of full-width widgets
-			if ( 1 === $widgets_count % 2 ) {
-				$left         = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even),\n" . $left;
-				$right        = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd),\n" . $right;
-				$left_before  = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even):before,\n" . $left_before;
-				$right_before = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd):before,\n" . $right_before;
-
-			// Widgets preceded by an even number of full-width widgets
-			} else {
-				$left         = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd),\n" . $left;
-				$right        = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even),\n" . $right;
-				$left_before  = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd):before,\n" . $left_before;
-				$right_before = "\t\t\t.widget-area aside.full-width{$rep} + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even):before,\n" . $right_before;
-			}
+			$left  = "\t\t\t.widget-area aside.full-width{$rep}:nth-of-type(odd)  ~ aside:not(.full-width):nth-of-type(even),\n" . $left;
+			$left  = "\t\t\t.widget-area aside.full-width{$rep}:nth-of-type(even) ~ aside:not(.full-width):nth-of-type(odd),\n"  . $left;
+			$right = "\t\t\t.widget-area aside.full-width{$rep}:nth-of-type(odd)  ~ aside:not(.full-width):nth-of-type(odd),\n"  . $right;
+			$right = "\t\t\t.widget-area aside.full-width{$rep}:nth-of-type(even) ~ aside:not(.full-width):nth-of-type(even),\n" . $right;
 
 			$widgets_count--;
 		}
 
 		// Define styles
-		$left         = trim( $left,         ",\n" ) . " { padding: 35px 17.5px 35px 35px; clear: both; }\n";
-		$right        = trim( $right,        ",\n" ) . " { padding: 35px 35px 35px 17.5px; clear: none; }\n";
-		$left_before  = trim( $left_before,  ",\n" ) . " { content: ''; }\n";
-		$right_before = trim( $right_before, ",\n" ) . " { content: none; }\n";
+		$left  = trim( $left,  ",\n" ) . " { clear: both; }\n";
+		$right = trim( $right, ",\n" ) . " { clear: none; }\n";
 
 		// Append widget styles within media query. See style.css chapter 9.0
 		$css .= "
-		@media screen and (min-width: 587px) and (max-width: 740px), (min-width: 881px) {\n{$left}{$left_before}{$right}{$right_before}\t\t}
+		@media screen and (min-width: 587px) and (max-width: 740px), (min-width: 881px) {\n{$left}{$right}\t\t}
 		";
 	}
 
