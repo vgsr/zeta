@@ -1,6 +1,7 @@
 <?php
+
 /**
- * The template for displaying all single entities from VGSR Entity.
+ * The template for displaying all single entities of VGSR Entity.
  *
  * This template combines page.php's layout with additional post navigation 
  * as is present in single.php.

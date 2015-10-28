@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The header for our theme.
  *
@@ -6,6 +7,7 @@
  *
  * @package Zeta
  */
+
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>

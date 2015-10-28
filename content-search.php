@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template part for displaying results in search pages.
  *
@@ -6,6 +7,7 @@
  *
  * @package Zeta
  */
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

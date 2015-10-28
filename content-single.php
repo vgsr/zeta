@@ -1,7 +1,11 @@
 <?php
+
 /**
+ * The template used for displaying post content in single.php
+ * 
  * @package Zeta
  */
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

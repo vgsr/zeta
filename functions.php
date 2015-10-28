@@ -1,6 +1,7 @@
 <?php
+
 /**
- * zeta functions and definitions
+ * Zeta functions and definitions
  *
  * @package Zeta
  */
