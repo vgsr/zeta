@@ -107,15 +107,24 @@ function zeta_entry_footer() {
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( __( ', ', 'zeta' ) );
 		if ( $categories_list && zeta_categorized_blog() ) {
-			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'zeta' ) . '</span>', $categories_list );
+			printf( '<span class="cat-links">' . __( 'Posted in %s', 'zeta' ) . '</span>', $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
 		$tags_list = get_the_tag_list( '', __( ', ', 'zeta' ) );
 		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'zeta' ) . '</span>', $tags_list );
+			printf( '<span class="tags-links">' . __( 'Tagged %s', 'zeta' ) . '</span>', $tags_list );
 		}
 	}
+
+	/**
+	 * Fires when printing the page's details in the footer
+	 *
+	 * Please wrap separate footer elements in `<span>`.
+	 *
+	 * @since 1.0.0
+	 */
+	do_action( 'zeta_entry_footer' );
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 		echo '<span class="comments-link">';
