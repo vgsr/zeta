@@ -501,6 +501,8 @@ function zeta_background_slider() {
 	// Default to Background Image(s)
 	if ( empty( $images ) ) {
 		$images = get_theme_mod( 'background_image', array() );
+		$posts = array();
+
 		if ( ! empty( $images ) ) {
 			shuffle( $images );
 
