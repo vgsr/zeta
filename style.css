@@ -2127,11 +2127,12 @@ input.search-field {
  * Sidebar on the side
  *
  * For pages with body.with-sidebar:
- *  978    = 741 + 166.66 + ( 2 * 35 )
- *         = ( 166.66 + ( 2 * 35 )) * 24.23%
+ *  998    ~ 741 + 166.66 + ( 2 * 35 ) + 18 for the scrollbar
+ *         ~ ( 166.66 + ( 2 * 35 )) * 24.23% + 18 for the scrollbar
+ *         = ( 104 + 2 * 35 ) * ( 100% - 24.23% - 58% ) + 18 for the scrollbar
  *  1280   = ( 240 + ( 2 * 35 )) * 24.23%
  */
-@media screen and (min-width: 978px) {
+@media screen and (min-width: 998px) {
 	body.with-sidebar #header-aside {
 		width: calc( 100% - 58% - 24.23% );
 	}
@@ -2150,7 +2151,7 @@ input.search-field {
 
 	body.with-sidebar .content-area {
 		float: left;
-		width: calc( ( 1 - ( 24.23 / ( 58 + 24.23 ))) * 100% );
+		width: calc( ( 58 / ( 58 + 24.23 )) * 100% );
 	}
 
 	body.with-sidebar.sidebar-content .content-area {
