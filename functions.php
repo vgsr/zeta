@@ -70,30 +70,16 @@ function zeta_setup() {
 		'gallery' // See content-gallery.php for the template part in The Loop
 	) );
 
-	/**
+	/*
 	 * Register theme image sizes
 	 */
 	zeta_add_image_sizes();
 
-	/**
-	 * Load BuddyPress logic
+	/*
+	 * Enable support for the Event Organiser plugin.
+	 * By adding theme support, we declare that this theme handles page templates.
 	 */
-	if ( function_exists( 'buddypress' ) ) {
-		require( get_template_directory() . '/inc/buddypress.php' );
-	} else {
-		if ( ! function_exists( 'is_buddypress' ) ) :
-		/**
-		 * Provide a backup function when BuddyPress is not active
-		 *
-		 * @since 1.0.0
-		 *
-		 * @return bool False
-		 */
-		function is_buddypress() {
-			return false;
-		}
-		endif;
-	}
+	add_theme_support( 'event-organiser' );
 
 	/**
 	 * Register theme classes
@@ -363,6 +349,8 @@ require( get_template_directory() . '/inc/extras.php' );
 require( get_template_directory() . '/inc/customizer.php' );
 
 /**
- * Load Jetpack compatibility file.
+ * Load plugin compatibility files.
  */
+require( get_template_directory() . '/inc/buddypress.php' );
+require( get_template_directory() . '/inc/event-organiser.php' );
 require( get_template_directory() . '/inc/jetpack.php' );

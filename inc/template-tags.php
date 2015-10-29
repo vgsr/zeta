@@ -102,8 +102,10 @@ if ( ! function_exists( 'zeta_entry_footer' ) ) :
  * Prints HTML with meta information for the categories, tags and comments.
  */
 function zeta_entry_footer() {
+
 	// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
+
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( __( ', ', 'zeta' ) );
 		if ( $categories_list && zeta_categorized_blog() ) {
@@ -294,6 +296,36 @@ function zeta_post_format_link() {
 	}
 }
 endif;
+
+/**
+ * Return whether there are more posts in the loop.
+ *
+ * Mimics `have_posts()`, but without the rewinding.
+ *
+ * @since 1.0.0
+ *
+ * @uses WP_Query
+ * @return bool Loop has posts
+ */
+function zeta_have_posts() {
+	global $wp_query;
+	return ( $wp_query->current_post + 1 < $wp_query->post_count );
+}
+
+/**
+ * Return whether the current post has any post content.
+ *
+ * @since 1.0.0
+ *
+ * @uses apply_filters() Calls 'the_content'
+ * @uses get_the_content()
+ *
+ * @return bool Post has content
+ */
+function zeta_has_content() {
+	$content = apply_filters( 'the_content', get_the_content() );
+	return ! empty( $content );
+}
 
 /**
  * Display collection of site tools for in the site header

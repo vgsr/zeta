@@ -44,7 +44,8 @@
 	12.1 Captions
 	12.2 Galleries
 13.0 Plugins
-	13.1 Column Shortcodes
+	13.1 Event Organiser
+	13.2 Column Shortcodes
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -2300,14 +2301,16 @@ body.home .entry-content {
 .item-title,
 .page-title,
 .comment-reply-title,
-.comments-title {
+.comments-title,
+.section-title {
 	margin: 0;
 	line-height: 1.3em;
 	font-family: 'Montserrat', Arial, sans-serif;
 	word-wrap: break-word;
 }
 	.entry-title,
-	.page-title {
+	.page-title,
+	.event-section.section-month > .section-header > .section-title {
 		font-size: 2em;
 	}
 
@@ -2649,7 +2652,84 @@ object {
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-13.1 Column Shortcodes
+13.1 Event Organiser :: wp-event-organiser.com
+--------------------------------------------------------------*/
+
+/* Archives */
+
+.event-section.section-month > .section-header {
+	padding-bottom: 35px;
+}
+
+.event-section.section-day {
+	display: flex;
+	flex-direction: row;
+}
+
+.event-section.section-day:not(:last-child) {
+	margin-bottom: 1.5em;
+}
+
+	.event-section.section-day .section-header {
+		width: 110px; /* arbitrarily */
+		flex: 1 0 auto;
+	}
+
+	.event-section .entry-title {
+		font-size: 1.3em;
+	}
+
+	.event-section .entry-content {
+		margin: 0;
+	}
+
+	/* When without post content */
+	.event-section .entry-header + .entry-footer {
+		margin-top: .5em;
+	}
+
+	.event-section .section-header + .event {
+		margin: 0;
+	}
+
+	.event-section .section-content {
+		width: calc( 100% - 110px );
+		padding-left: 35px;
+	}
+
+	.event-section .section-content .event {
+		margin-top: 1.5em 0 0;
+	}
+
+	.event-section .section-content .event:first-child {
+		margin: 0;
+	}
+
+/* Calendar view */
+
+.eo-calendar table tr:nth-child(odd) td.today,
+.eo-calendar table tr:nth-child(even) td.today:before {
+	background-color: #fff;
+	border: 1px dashed #ddd;
+}
+
+.eo-calendar table tr:nth-child(odd) td.today {
+	padding: 9px;
+}
+
+.eo-calendar table tr.event:nth-child(odd) td,
+.eo-calendar table tr.event:nth-child(even) td:before {
+	background-color: rgba(2, 144, 7, .8);
+}
+
+.eo-calendar table tr.event:nth-child(odd) td,
+.eo-calendar table tr.event:nth-child(even) td {
+	color: #fff;
+	font-weight: bold;
+}
+
+/*--------------------------------------------------------------
+13.2 Column Shortcodes
 --------------------------------------------------------------*/
 
 #content .content-column {
