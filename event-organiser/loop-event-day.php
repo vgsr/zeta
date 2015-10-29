@@ -13,7 +13,7 @@
 		<header class="section-header">
 			<h3 class="section-title">
 				<a href="<?php echo esc_url( zeta_event_organiser_get_archive_url() ); ?>">
-					<?php eo_the_start( _x( 'D j', 'Daily event section header', 'zeta' ) ); ?>
+					<?php eo_the_start( _x( 'D jS', 'Daily event section header', 'zeta' ) ); ?>
 				</a>
 			</h3>
 		</header>
