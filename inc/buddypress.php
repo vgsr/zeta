@@ -1,9 +1,24 @@
 <?php
+
 /**
  * BuddyPress template tags and filters for this theme.
  *
  * @package Zeta
+ * @subpackage BuddyPress
  */
+
+if ( ! function_exists( 'is_buddypress' ) ) :
+/**
+ * Provide a backup function when BuddyPress is not active
+ *
+ * @since 1.0.0
+ *
+ * @return bool False
+ */
+function is_buddypress() {
+	return false;
+}
+endif;
 
 /**
  * Display the displayed member's member type
