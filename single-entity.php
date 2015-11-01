@@ -3,10 +3,10 @@
 /**
  * The template for displaying all single entities of VGSR Entity.
  *
- * This template combines page.php's layout with additional post navigation 
- * as is present in single.php.
+ * This template combines page.php's layout with post navigation.
  *
  * @package Zeta
+ * @subpackage VGSR Entity
  */
 
 get_header(); ?>
