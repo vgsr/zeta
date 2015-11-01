@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Event Organiser template tags and filters for this theme.
- * 
+ * Event Organiser template tags and filters for this theme
+ *
  * @package Zeta
  * @subpackage Event Organiser
  */
@@ -30,7 +30,7 @@ function zeta_event_organiser_template_stack( $stack ) {
 add_filter( 'eventorganiser_template_stack', 'zeta_event_organiser_template_stack' );
 
 /**
- * Filter the page title for event pages
+ * Filter the document page title for event pages
  *
  * Available since WP 4.4.0 in `wp_get_document_title()`.
  *
@@ -133,9 +133,224 @@ function zeta_event_organiser_get_archive_url( $type = 'day', $date = null ) {
 		$date = date( $format, $date );
 	}
 
+	// Pass the `$date` as array elements to the native archive link getter
 	$url = call_user_func_array( 'eo_get_event_archive_link', explode( '-', $date ) );
 
 	return $url;
+}
+
+/**
+ * Display navigation to next/previous set of posts when applicable
+ *
+ * @see the_posts_navigation()
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_event_organiser_get_next_archive_link()
+ * @uses zeta_event_organiser_next_archive_link()
+ * @uses zeta_event_organiser_get_previous_archive_link()
+ * @uses zeta_event_organiser_previous_archive_link()
+ */
+function zeta_event_organiser_the_posts_navigation() {
+
+	// Find adjacent event archives
+	$archives = array(
+		'previous' => zeta_event_organiser_get_previous_archive_link(),
+		'next'     => zeta_event_organiser_get_next_archive_link(),
+	);
+
+	// Don't print empty markup if there's only one page and no adjacent archives
+	if ( $GLOBALS['wp_query']->max_num_pages < 2 && ! array_filter( $archives ) ) {
+		return;
+	}
+
+	/**
+	 * Determine how we navigate pages based on query order.
+	 * Descending order, so older events come next
+	 *
+	 * @see eventorganiser_sort_events()
+	 */
+	if ( ! empty( $GLOBALS['wp_query']->query_vars['orderby'] )
+		&& in_array( $GLOBALS['wp_query']->query_vars['orderby'], array( 'eventstart', 'eventend' ) )
+		&& 'DESC' == $GLOBALS['wp_query']->query_vars['order']
+	) {
+		$first  = 'next';
+		$second = 'previous';
+
+	// Ascending order, so newer events come next. This is the default order
+	} else {
+		$first  = 'previous';
+		$second = 'next';		
+	}
+
+	?>
+	<nav class="navigation posts-navigation" role="navigation">
+		<h2 class="screen-reader-text"><?php _e( 'Events navigation', 'zeta' ); ?></h2>
+		<div class="nav-links">
+
+			<?php if ( call_user_func( "get_{$first}_posts_link" ) ) : ?>
+			<div class="nav-previous"><?php call_user_func_array( "{$first}_posts_link", array( esc_html__( 'Older events', 'zeta' ) ) ); ?></div>
+			<?php elseif ( $archives[ $first ] ) : ?>
+			<div class="nav-previous"><?php echo $archives[ $first ]; ?></div>
+			<?php endif; ?>
+
+			<?php if ( call_user_func( "get_{$second}_posts_link" ) ) : ?>
+			<div class="nav-next"><?php call_user_func_array( "{$second}_posts_link", array( esc_html__( 'Newer events', 'zeta' ) ) ); ?></div>
+			<?php elseif ( $archives[ $second ] ) : ?>
+			<div class="nav-next"><?php echo $archives[ $second ]; ?></div>
+			<?php endif; ?>
+
+		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	<?php
+}
+
+/**
+ * Return the link of the next archive
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_event_organiser_get_adjacent_archive_link()
+ * @return string Archive link
+ */
+function zeta_event_organiser_get_next_archive_link() {
+	return zeta_event_organiser_get_adjacent_archive_link( false );
+}
+
+/**
+ * Return the link of the previous archive
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_event_organiser_get_adjacent_archive_link()
+ * @return string Archive link
+ */
+function zeta_event_organiser_get_previous_archive_link() {
+	return zeta_event_organiser_get_adjacent_archive_link( true );
+}
+
+/**
+ * Return the link of the previous archive of the same type.
+ *
+ * @since 1.0.0
+ *
+ * @uses eo_is_event_archive()
+ * @uses zeta_event_organiser_get_archive_url()
+ *
+ * @param bool $previous Optional. Whether to return the previous or next archive. Default true.
+ * @return string Archive link
+ */
+function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
+	global $wp_query;
+
+	// Bail when these are not event archives
+	if ( ! eo_is_event_archive() )
+		return;
+
+	$adjacent = $previous ? 'previous' : 'next';
+
+	// Find the first adjacent post following the current query
+	// and then serve that event's year/month/day event archive.
+	$qv = $wp_query->query_vars;
+	$qv['paged'] = false;
+	$qv['posts_per_page'] = 1;
+	$qv['ondate'] = false;
+	$qv['event_end_after'] = false;
+
+	/**
+	 * When querying in Event Organiser for events with {start|end}_{before|after}
+	 * dates, the given date is included in the resulting query. Hence, we need
+	 * to subtract|add a single day for previous|next date queries.
+	 */
+	if ( $previous ) {
+		$start_before = new DateTime( $wp_query->query_vars['event_end_after'] );
+		$start_before->modify( '-1 day' );
+
+		$qv['event_start_before'] = $start_before->format( 'Y-m-d H:i:s' );
+	} else {
+		$start_after = new DateTime( $wp_query->query_vars['event_start_before'] );
+		$start_after->modify( '+1 day' );
+
+		$qv['event_start_before'] = false;
+		$qv['event_start_after'] = $start_after->format( 'Y-m-d H:i:s' );
+	}
+
+	// Follow Event Organiser in defaulting to 'eventstart' order
+	if ( empty( $wp_query->query_vars['orderby'] ) ) {
+		$qv['orderby'] = 'eventstart';
+	}
+
+	if ( ! empty( $wp_query->query_vars['orderby'] )
+		&& in_array( $wp_query->query_vars['orderby'], array( 'eventstart', 'eventend' ) )
+		&& 'DESC' == $wp_query->query_vars['order']
+	) {
+		$qv['order'] = $previous ? 'ASC' : 'DESC';
+	} else {
+		$qv['order'] = $previous ? 'DESC' : 'ASC';
+	}
+
+	// An event was found
+	if ( ( $q = new WP_Query( $qv ) ) && $q->posts ) {
+
+		// Get the adjacent date
+		$date = strtotime( $q->posts[0]->StartDate );
+
+		// Define query vars for the archive pagination query
+		$archive = $wp_query->query_vars;
+		$archive['paged'] = false;
+
+		// Define adjacent archive link args
+		if ( eo_is_event_archive( 'year' ) ) {
+			$type = 'year';
+			$label = sprintf( esc_html_x( 'Events in %s', 'For yearly archives', 'zeta' ), date( 'Y', $date ) );
+
+			// Pagination query
+			$archive['ondate']             = date( 'Y', $date );
+			$archive['event_start_before'] = date( 'Y-12-31 00:00:00', $date );
+			$archive['event_end_after']    = date( 'Y-01-01 00:00:00', $date );
+
+		} elseif ( eo_is_event_archive( 'month' ) ) {
+			$type = 'month';
+			$label = sprintf( esc_html_x( 'Events in %s', 'For monthly archives', 'zeta' ), date( 'F', $date ) );
+
+			// Pagination query
+			$archive['ondate']             = date( 'Y/m', $date );
+			$archive['event_start_before'] = date( 'Y-m-t 00:00:00', $date );
+			$archive['event_end_after']    = date( 'Y-m-01 00:00:00', $date );
+
+		} elseif ( eo_is_event_archive( 'day' ) ) {
+			$type = 'day';
+			$label = sprintf( esc_html_x( 'Events on %s', 'For daily archives', 'zeta' ), date( get_option( 'date_format' ), $date ) );
+
+			// Pagination query
+			$archive['ondate']             = date( 'Y/m/d', $date );
+			$archive['event_start_before'] = date( 'Y-m-d 00:00:00', $date );
+			$archive['event_end_after']    = date( 'Y-m-d 00:00:00', $date );
+
+		// Default to daily archives
+		} else {
+			$type  = 'day';
+			$label = $previous ? esc_html__( 'Older events', 'zeta' ) : esc_html__( 'Newer events', 'zeta' );
+		}
+
+		$url = zeta_event_organiser_get_archive_url( $type, $date );
+
+		// Consider pagination for previous archives
+		if ( $previous && ( $pq = new WP_Query( $archive ) ) && $pq->max_num_pages > 1 ) {
+			$url = zeta_pagenum_link( $url, $pq->max_num_pages );
+		}
+
+		/**
+		 * Filter the anchor tag attributes for the next posts page link.
+		 *
+		 * @since 2.7.0 WordPress
+		 *
+		 * @param string $attributes Attributes for the anchor tag.
+		 */
+		$attr = apply_filters( "{$adjacent}_posts_link_attributes", '' );
+
+		return '<a href="' . esc_url( $url ) . "\" $attr>$label</a>";
+	}
 }
 
 /**

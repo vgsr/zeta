@@ -858,3 +858,85 @@ function zeta_count_widgets_with_setting( $sidebar_id, $key, $value = null ) {
 
 	return $count;
 }
+
+/** Links ******************************************************************/
+
+/**
+ * Append a 'paged' number to the given url
+ *
+ * @see get_pagenum_link()
+ *
+ * @since 1.0.0
+ *
+ * @param string $url The url to append to
+ * @param int $pagenum Optional. Page ID.
+ * @param bool $front Optional. Whether the link is for the frontend. Defaults to true.
+ * @param bool $escape Optional. Whether to escape the url before returning. Defaults to true.
+ * @return string The link url for the given page number.
+ */
+function zeta_pagenum_link( $url, $pagenum = 2, $front = true, $escape = true ) {
+	global $wp_rewrite;
+
+	$pagenum = (int) $pagenum;
+
+	// Strip domain
+	$url     = str_replace( home_url(), '', $url );
+	$request = remove_query_arg( 'paged', $url );
+
+	$home_root = parse_url(home_url());
+	$home_root = ( isset($home_root['path']) ) ? $home_root['path'] : '';
+	$home_root = preg_quote( $home_root, '|' );
+
+	$request = preg_replace('|^'. $home_root . '|i', '', $request);
+	$request = preg_replace('|^/+|', '', $request);
+
+	if ( !$wp_rewrite->using_permalinks() || ( is_admin() && ! $front ) ) {
+		$base = trailingslashit( get_bloginfo( 'url' ) );
+
+		if ( $pagenum > 1 ) {
+			$result = add_query_arg( 'paged', $pagenum, $base . $request );
+		} else {
+			$result = $base . $request;
+		}
+	} else {
+		$qs_regex = '|\?.*?$|';
+		preg_match( $qs_regex, $request, $qs_match );
+
+		if ( !empty( $qs_match[0] ) ) {
+			$query_string = $qs_match[0];
+			$request = preg_replace( $qs_regex, '', $request );
+		} else {
+			$query_string = '';
+		}
+
+		$request = preg_replace( "|$wp_rewrite->pagination_base/\d+/?$|", '', $request);
+		$request = preg_replace( '|^' . preg_quote( $wp_rewrite->index, '|' ) . '|i', '', $request);
+		$request = ltrim($request, '/');
+
+		$base = trailingslashit( get_bloginfo( 'url' ) );
+
+		if ( $wp_rewrite->using_index_permalinks() && ( $pagenum > 1 || '' != $request ) ) {
+			$base .= $wp_rewrite->index . '/';
+		}
+
+		if ( $pagenum > 1 ) {
+			$request = ( ( !empty( $request ) ) ? trailingslashit( $request ) : $request ) . user_trailingslashit( $wp_rewrite->pagination_base . "/" . $pagenum, 'paged' );
+		}
+
+		$result = $base . $request . $query_string;
+	}
+
+	/**
+	 * Filter the page number link for the current request.
+	 *
+	 * @since 2.5.0
+	 *
+	 * @param string $result The page number link.
+	 */
+	$result = apply_filters( 'get_pagenum_link', $result );
+
+	if ( $escape )
+		return esc_url( $result );
+	else
+		return esc_url_raw( $result );
+}
