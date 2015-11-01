@@ -364,10 +364,10 @@ function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
  *                                 post object. Defaults to 'next'.
  * @return bool Event is next of date type
  */
-function zeta_event_organiser_is_same( $type = '', $like = 'next' ) {
+function zeta_event_organiser_is_date_same( $type = '', $like = 'next' ) {
 	global $wp_query, $post;
 
-	// Define date statically
+	// Define query date statically
 	static $date = array( 'month' => 0, 'day' => 0 );
 
 	// Set initial date values of the most current post
@@ -409,7 +409,7 @@ function zeta_event_organiser_is_same( $type = '', $like = 'next' ) {
 
 			// When comparing months, update the 'day' date too.
 			if ( 'month' == $type ) {
-				$date[ 'day' ] = $compare;
+				$date['day'] = $compare;
 			}
 
 			$retval = false;

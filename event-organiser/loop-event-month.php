@@ -20,7 +20,7 @@
 
 		<?php eo_get_template_part( 'loop', 'event-day' ); ?>
 
-		<?php while ( zeta_have_posts() && zeta_event_organiser_is_same( 'month' ) ) : the_post(); ?>
+		<?php while ( zeta_have_posts() && zeta_event_organiser_is_date_same( 'month' ) ) : the_post(); ?>
 
 			<?php eo_get_template_part( 'loop', 'event-day' ); ?>
 
