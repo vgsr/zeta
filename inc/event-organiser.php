@@ -296,8 +296,8 @@ function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
 		$date = strtotime( $q->posts[0]->StartDate );
 
 		// Define query vars for the archive pagination query
-		$archive = $wp_query->query_vars;
-		$archive['paged'] = false;
+		$aqv = $wp_query->query_vars;
+		$aqv['paged'] = false;
 
 		// Define adjacent archive link args
 		if ( eo_is_event_archive( 'year' ) ) {
@@ -305,27 +305,27 @@ function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
 			$label = sprintf( esc_html_x( 'Events in %s', 'For yearly archives', 'zeta' ), date( 'Y', $date ) );
 
 			// Pagination query
-			$archive['ondate']             = date( 'Y', $date );
-			$archive['event_start_before'] = date( 'Y-12-31 00:00:00', $date );
-			$archive['event_end_after']    = date( 'Y-01-01 00:00:00', $date );
+			$aqv['ondate']             = date( 'Y', $date );
+			$aqv['event_start_before'] = date( 'Y-12-31 00:00:00', $date );
+			$aqv['event_end_after']    = date( 'Y-01-01 00:00:00', $date );
 
 		} elseif ( eo_is_event_archive( 'month' ) ) {
 			$type = 'month';
 			$label = sprintf( esc_html_x( 'Events in %s', 'For monthly archives', 'zeta' ), date( 'F', $date ) );
 
 			// Pagination query
-			$archive['ondate']             = date( 'Y/m', $date );
-			$archive['event_start_before'] = date( 'Y-m-t 00:00:00', $date );
-			$archive['event_end_after']    = date( 'Y-m-01 00:00:00', $date );
+			$aqv['ondate']             = date( 'Y/m', $date );
+			$aqv['event_start_before'] = date( 'Y-m-t 00:00:00', $date );
+			$aqv['event_end_after']    = date( 'Y-m-01 00:00:00', $date );
 
 		} elseif ( eo_is_event_archive( 'day' ) ) {
 			$type = 'day';
 			$label = sprintf( esc_html_x( 'Events on %s', 'For daily archives', 'zeta' ), date( get_option( 'date_format' ), $date ) );
 
 			// Pagination query
-			$archive['ondate']             = date( 'Y/m/d', $date );
-			$archive['event_start_before'] = date( 'Y-m-d 00:00:00', $date );
-			$archive['event_end_after']    = date( 'Y-m-d 00:00:00', $date );
+			$aqv['ondate']             = date( 'Y/m/d', $date );
+			$aqv['event_start_before'] = date( 'Y-m-d 00:00:00', $date );
+			$aqv['event_end_after']    = date( 'Y-m-d 00:00:00', $date );
 
 		// Default to daily archives
 		} else {
@@ -336,8 +336,8 @@ function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
 		$url = zeta_event_organiser_get_archive_url( $type, $date );
 
 		// Consider pagination for previous archives
-		if ( $previous && ( $pq = new WP_Query( $archive ) ) && $pq->max_num_pages > 1 ) {
-			$url = zeta_pagenum_link( $url, $pq->max_num_pages );
+		if ( $previous && ( $aq = new WP_Query( $aqv ) ) && $aq->max_num_pages > 1 ) {
+			$url = zeta_pagenum_link( $url, $aq->max_num_pages );
 		}
 
 		/**
