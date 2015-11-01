@@ -850,7 +850,8 @@ body.home #content {
 			border-bottom: 1px dashed #ddd;
 		}
 
-		.entry-title {
+		.entry-title,
+		.page-title {
 			text-align: center;
 		}
 
@@ -1187,7 +1188,8 @@ body.home #colophon {
 			background-color: transparent;
 		}
 
-		.entry-title {
+		.entry-title,
+		.page-title {
 			text-align: left;
 		}
 
@@ -2655,7 +2657,7 @@ object {
 13.1 Event Organiser :: wp-event-organiser.com
 --------------------------------------------------------------*/
 
-/* Archives */
+/* Event archives */
 
 .event-section.section-month > .section-header {
 	padding-bottom: 35px;
@@ -2666,7 +2668,7 @@ object {
 	flex-direction: row;
 }
 
-.event-section.section-day:not(:last-child) {
+.event-section.section-month .section-day:not(:last-child) {
 	margin-bottom: 1.5em;
 }
 
@@ -2703,6 +2705,10 @@ object {
 
 	.event-section .section-content .event:first-child {
 		margin: 0;
+	}
+
+	.event-section .section-content .entry-title {
+		text-align: left;
 	}
 
 /* Calendar view */
