@@ -55,6 +55,12 @@ add_filter( 'document_title_parts', 'zeta_event_organiser_page_title' );
  *
  * @since 1.0.0
  *
+ * @uses is_tax()
+ * @uses single_term_title()
+ * @uses is_post_type_archive()
+ * @uses eo_is_event_archive()
+ * @uses eo_get_event_archive_date()
+ *
  * @param string $title Archive title
  * @return string Archive title
  */
@@ -115,6 +121,7 @@ add_filter( 'get_the_archive_title', 'zeta_event_organiser_archive_title' );
  */
 function zeta_event_organiser_get_archive_url( $type = 'day', $date = null ) {
 
+	// Check the archive type
 	switch ( $type ) {
 		case 'year' :
 			$format = 'Y';
@@ -146,10 +153,12 @@ function zeta_event_organiser_get_archive_url( $type = 'day', $date = null ) {
  *
  * @since 1.0.0
  *
- * @uses zeta_event_organiser_get_next_archive_link()
- * @uses zeta_event_organiser_next_archive_link()
  * @uses zeta_event_organiser_get_previous_archive_link()
- * @uses zeta_event_organiser_previous_archive_link()
+ * @uses zeta_event_organiser_get_next_archive_link()
+ * @uses get_previous_posts_link()
+ * @uses previous_posts_link()
+ * @uses get_next_posts_link()
+ * @uses next_posts_link()
  */
 function zeta_event_organiser_the_posts_navigation() {
 
@@ -236,6 +245,8 @@ function zeta_event_organiser_get_previous_archive_link() {
  *
  * @uses eo_is_event_archive()
  * @uses zeta_event_organiser_get_archive_url()
+ * @uses zeta_pagenum_link()
+ * @uses apply_filters() Calls '{previous|next}_posts_link_attributes'
  *
  * @param bool $previous Optional. Whether to return the previous or next archive. Default true.
  * @return string Archive link
@@ -289,7 +300,7 @@ function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
 		$qv['order'] = $previous ? 'DESC' : 'ASC';
 	}
 
-	// An event was found
+	// An adjacent event was found
 	if ( ( $q = new WP_Query( $qv ) ) && $q->posts ) {
 
 		// Get the adjacent date
