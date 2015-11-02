@@ -407,24 +407,20 @@ function zeta_event_organiser_is_date_same( $type = '', $like = 'next' ) {
 		return false;
 	}
 
-	// When on an event archive page
-	if ( eo_is_event_archive() ) {
+	// Use event start date to compare dates
+	$compare = eo_get_the_start( 'U', $post->ID );
+	$map = array( 'month' => 'Y-m', 'day' => 'Y-m-d' );
 
-		// Use event start date to compare dates
-		$compare = eo_get_the_start( 'U', $post->ID );
-		$map = array( 'month' => 'Y-m', 'day' => 'Y-m-d' );
+	// Update the current date
+	if ( $compare && date( $map[ $type ], $date[ $type ] ) != date( $map[ $type ], $compare ) ) {
+		$date[ $type ] = $compare;
 
-		// Update the current date
-		if ( $compare && date( $map[ $type ], $date[ $type ] ) != date( $map[ $type ], $compare ) ) {
-			$date[ $type ] = $compare;
-
-			// When comparing months, update the 'day' date too.
-			if ( 'month' == $type ) {
-				$date['day'] = $compare;
-			}
-
-			$retval = false;
+		// When comparing months, update the 'day' date too.
+		if ( 'month' == $type ) {
+			$date['day'] = $compare;
 		}
+
+		$retval = false;
 	}
 
 	// Restore global variable
