@@ -551,6 +551,8 @@ function zeta_background_slider() {
 			if ( get_theme_mod( 'background_image_single' ) ) {
 				$images = array_slice( $images, 0, 1 );
 			}
+		} else {
+			$images = array();
 		}
 	}
 
@@ -636,7 +638,7 @@ function zeta_background_slider() {
 		$slides[] = array( 
 			'post_id' => false,
 			'att_id'  => false,
-			'src'     => get_template_directory_uri() . '/images/default-background.jpg',
+			'src'     => 'https://source.unsplash.com/random/1600x900/', // Unsplash API
 			'href'    => false,
 			'title'   => false,
 			'byline'  => false,
