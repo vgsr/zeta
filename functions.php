@@ -51,7 +51,8 @@ function zeta_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'zeta' ),
+		'primary' => __( 'Primary Menu',      'zeta' ),
+		'social'  => __( 'Social Links Menu', 'zeta' ),
 	) );
 
 	/*
@@ -64,6 +65,7 @@ function zeta_setup() {
 
 	/*
 	 * Enable support for Post Formats.
+	 *
 	 * See http://codex.wordpress.org/Post_Formats
 	 */
 	add_theme_support( 'post-formats', array(
@@ -71,15 +73,15 @@ function zeta_setup() {
 	) );
 
 	/*
-	 * Register theme image sizes
-	 */
-	zeta_add_image_sizes();
-
-	/*
 	 * Enable support for the Event Organiser plugin.
 	 * By adding theme support, we declare that this theme handles page templates.
 	 */
 	add_theme_support( 'event-organiser' );
+
+	/*
+	 * Register theme image sizes
+	 */
+	zeta_add_image_sizes();
 
 	/**
 	 * Register theme classes

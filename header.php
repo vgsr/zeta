@@ -34,8 +34,27 @@
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
+			<?php if ( has_nav_menu( 'social' ) ) : ?>
+				<?php
+					// Social links navigation menu.
+					wp_nav_menu( array(
+						'theme_location'  => 'social',
+						'depth'           => 1,
+						'container_class' => 'menu-social',
+						'link_before'     => '<span class="screen-reader-text">',
+						'link_after'      => '</span>',
+					) );
+				?>
+			<?php endif; ?>
+
 			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Menu', 'zeta' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+			<?php
+				// Primary navigation menu.
+				wp_nav_menu( array(
+					'theme_location'  => 'primary',
+					'container_class' => 'menu-primary',
+				) );
+			?>
 			<?php zeta_tools_nav(); ?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
