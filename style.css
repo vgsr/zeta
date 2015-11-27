@@ -935,14 +935,14 @@ body.home #colophon {
 
 @media screen and (min-width: 741px) {
 	#page {
-		padding-top: 35px;
+		padding-top: 45px;
 		background-color: #fff;
 	}
 
 	.site-header {
 		position: fixed;
 		top: 0;
-		height: 35px;
+		height: 45px;
 		font-size: .8rem;
 		background-color: rgba(2, 144, 7, .8);
 	}
@@ -953,7 +953,7 @@ body.home #colophon {
 
 	.site-branding {
 		position: absolute;
-		top: 35px;
+		top: 45px;
 		left: 35px;
 		width: 104px;
 		padding: 0;
@@ -977,9 +977,9 @@ body.home #colophon {
 			.site-branding .site-title a {
 				display: block;
 				background-size: 70px;
-				background-position: 17px 17px;
+				background-position: 17px 7px;
 				width: 104px;
-				height: 104px;
+				height: 94px;
 				padding: 0;
 				text-indent: -99999px;
 			}
@@ -1024,7 +1024,7 @@ body.home #colophon {
 
 	body.home #site-tools {
 		position: absolute;
-		top: 43px;
+		top: 53px;
 		right: 8px;
 		width: 400px;
 		margin: 0;
@@ -1033,7 +1033,7 @@ body.home #colophon {
 	}
 
 	body.home.admin-bar #site-tools {
-		top: 89px;
+		top: 99px;
 	}
 
 		.tools-toggled #site-tools {
@@ -1221,7 +1221,7 @@ body.home #colophon {
 	}
 
 	body.home.admin-bar #site-tools {
-		top: 75px;
+		top: 85px;
 	}
 
 	body.home.admin-bar .content-area {
@@ -1576,7 +1576,7 @@ a:active {
 		.main-navigation .menu {
 			display: block;
 			float: right;
-			height: 35px;
+			height: 45px;
 			margin: 0;
 			padding: 0;
 			background-color: transparent;
@@ -1610,7 +1610,9 @@ a:active {
 	}
 
 	.main-navigation .menu > li > a {
-		height: 35px;
+		height: 45px;
+		font-size: 1.1em;
+		line-height: 30px;
 	}
 
 	.main-navigation li:hover > a {
@@ -1620,7 +1622,7 @@ a:active {
 
 	.main-navigation ul ul {
 		position: absolute;
-		top: 35px;
+		top: 45px;
 		left: -999em;
 		z-index: 99999;
 	}
@@ -1692,10 +1694,10 @@ a:active {
 
 		.tools-nav a {
 			width: auto;
-			height: 35px;
+			height: 45px;
 			padding: 0 5px;
 			border: 0;
-			line-height: 33px;
+			line-height: 45px;
 		}
 
 		.tools-nav li:first-child a,
@@ -1705,7 +1707,7 @@ a:active {
 
 			.tools-nav a:before {
 				width: 35px;
-				height: 35px;
+				height: 45px;
 				font-size: 1.2rem;
 				line-height: inherit;
 			}
