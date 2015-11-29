@@ -298,6 +298,28 @@ function zeta_post_format_link() {
 endif;
 
 /**
+ * Return a modified version of the page menu as a nav menu fallback
+ *
+ * This should bring the HTML output of `wp_page_menu()` in sync with
+ * that of `wp_nav_menu()`.
+ *
+ * @since 1.0.0
+ *
+ * @uses wp_page_menu()
+ *
+ * @param array $args Menu arguments of `wp_nav_menu()`
+ * @return string Page menu
+ */
+function zeta_page_menu( $args ) {
+
+	// Define some forced arguments
+	$args['menu_class'] = $args['container_class'];
+	$args['before']     = '<ul class="menu">';
+
+	return wp_page_menu( $args );
+}
+
+/**
  * Return whether there are more posts in the loop.
  *
  * Mimics `have_posts()`, but without the rewinding.

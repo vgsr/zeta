@@ -53,6 +53,7 @@
 				wp_nav_menu( array(
 					'theme_location'  => 'primary',
 					'container_class' => 'menu-primary',
+					'fallback_cb'     => 'zeta_page_menu',
 				) );
 			?>
 			<?php zeta_tools_nav(); ?>

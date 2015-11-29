@@ -1322,16 +1322,16 @@ a:active {
 		color: rgba(60, 60, 60, .5);
 	}
 
-.menu-toggled .main-navigation .menu {
-	display: block;
-}
-
 .main-navigation ul {
 	display: none;
 	list-style: none;
 	margin: 0;
 	width: 100%;
 	padding: 25px 35px;
+}
+
+.menu-toggled .main-navigation .menu {
+	display: block;
 }
 
 .main-navigation li {
@@ -1362,11 +1362,13 @@ a:active {
 	font-weight: bold;
 }
 
-.main-navigation .menu-item-has-children > a {
+.main-navigation .menu-item-has-children > a,
+.main-navigation .page_item_has_children > a {
 	padding-right: 48px;
 }
 
-.main-navigation .menu-item-has-children ul.toggled-on {
+.main-navigation .menu-item-has-children ul.toggled-on,
+.main-navigation .page_item_has_children ul.toggled-on {
 	display: block;
 	float: left;
 	padding: 0 0 0 35px;

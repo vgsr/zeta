@@ -52,12 +52,15 @@
  */
 ( function( $ ) {
 
+	// Get the main navigation element
+	$nav = $( '.main-navigation' );
+
 	// Add dropdown toggle that display child menu items.
-	$( '.main-navigation .menu-item-has-children > a' ).after( '<button class="dropdown-toggle" aria-expanded="false">' + screenReaderText.expand + '</button>' );
+	$nav.find( '.menu-item-has-children > a, .page_item_has_children > a' ).after( '<button class="dropdown-toggle" aria-expanded="false">' + screenReaderText.expand + '</button>' );
 
 	// Toggle buttons and submenu items with active children menu items.
-	$( '.main-navigation .current-menu-ancestor > button' ).addClass( 'toggle-on' );
-	$( '.main-navigation .current-menu-ancestor > .sub-menu' ).addClass( 'toggled-on' );
+	$nav.find( '.current-menu-ancestor > button, .current_page_ancestor > button' ).addClass( 'toggle-on' );
+	$nav.find( '.current-menu-ancestor > .sub-menu, .current_page_ancestor > .children' ).addClass( 'toggled-on' );
 
 	$( '.dropdown-toggle' ).click( function( e ) {
 		var _this = $( this );
