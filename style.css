@@ -469,7 +469,7 @@ img {
 table {
 	float: left;
 	width: 100%;
-	margin: 0 0 1.5em;
+	margin: 1.5em 0 0;
 	table-layout: fixed;
 }
 
@@ -483,15 +483,11 @@ table {
 	table th,
 	table td {
 		position: relative;
-		padding: 10px 15px 10px 0;
+		padding: 10px 7.5px;
 		text-align: left;
 		vertical-align: top;
 		word-wrap: break-word;
 		z-index: 0;
-	}
-
-	table td:last-child {
-		padding-right: 0;
 	}
 
 	table th {
@@ -2874,27 +2870,84 @@ object {
 		text-align: left;
 	}
 
+/* List view */
+
+.event-list ul {
+	float: left;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+	.event-list .section-title {
+		line-height: 1.5em;
+	}
+
+	.event-list li.section-month {
+		float: left;
+		width: 100%;
+		margin-top: 1.5em;
+	}
+
+	.event-list ul.children {
+		margin-top: 0;
+	}
+
+	.event-list ul.children .children {
+		padding-left: 35px;
+	}
+
 /* Calendar view */
 
-.eo-calendar table tr:nth-child(odd) td.today,
-.eo-calendar table tr:nth-child(even) td.today:before {
-	background-color: #fff;
-	border: 1px dashed #ddd;
+.eo_widget_calendar {
+	float: left;
 }
 
-.eo-calendar table tr:nth-child(odd) td.today {
-	padding: 9px;
-}
-
-.eo-calendar table tr.event:nth-child(odd) td,
-.eo-calendar table tr.event:nth-child(even) td:before {
-	background-color: rgba(2, 144, 7, .8);
-}
-
-.eo-calendar table tr.event:nth-child(odd) td,
-.eo-calendar table tr.event:nth-child(even) td {
-	color: #fff;
+.eo_widget_calendar table caption,
+.eo_widget_calendar table tfoot a {
+	font-family: 'Montserrat', Arial, sans-serif;
 	font-weight: bold;
+}
+
+.eo_widget_calendar table th,
+.eo_widget_calendar table td {
+	text-align: center;
+}
+
+.eo_widget_calendar table td.event {
+	padding: 0;
+}
+
+.eo_widget_calendar table td.event a {
+	padding: 10px 7.5px;
+	display: block;
+	font-weight: bold;
+	background-color: rgba(2, 144, 7, .3);
+}
+
+	.eo_widget_calendar table td.event a:hover {
+		text-decoration: none;
+		background-color: rgba(2, 144, 7, .6);
+	}
+
+.eo_widget_calendar table tr:nth-child(odd) td.today:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.eo_widget_calendar table td.today {
+	color: #fff;
+}
+
+.eo_widget_calendar table tr:nth-child(even) td.today,
+.eo_widget_calendar table tr:nth-child(odd) td.today:after {
+	background-color: rgba(2, 144, 7, .8);
 }
 
 /*--------------------------------------------------------------
