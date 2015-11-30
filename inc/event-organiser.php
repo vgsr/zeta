@@ -87,15 +87,15 @@ function zeta_event_organiser_archive_title( $title ) {
 
 		// Year archives
 		if ( eo_is_event_archive( 'year' ) ) {
-			$title = sprintf( $title, eo_get_event_archive_date( _x( 'Y', 'Year event archives title', 'zeta' ) ) );
+			$title = sprintf( $title, eo_get_event_archive_date( _x( 'Y', 'Event archives title: Year', 'zeta' ) ) );
 
 		// Month archives
 		} elseif ( eo_is_event_archive( 'month' ) ) {
-			$title = sprintf( $title, eo_get_event_archive_date( _x( 'F Y', 'Month event archives title', 'zeta' ) ) );
+			$title = sprintf( $title, eo_get_event_archive_date( _x( 'F Y', 'Event archives title: Month', 'zeta' ) ) );
 
 		// Day archives
 		} elseif ( eo_is_event_archive( 'day' ) ) {
-			$title = sprintf( $title, eo_get_event_archive_date( _x( 'jS F Y', 'Day event archives title', 'zeta' ) ) );
+			$title = sprintf( $title, eo_get_event_archive_date( _x( 'jS F Y', 'Event archives title: Day', 'zeta' ) ) );
 
 		// Fallback
 		} else {
@@ -326,7 +326,7 @@ function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
 
 			// Pagination query
 			$aqv['ondate']             = date( 'Y/m', $date );
-			$aqv['event_start_before'] = date( 'Y-m-t 00:00:00', $date );
+			$aqv['event_start_before'] = date( 'Y-m-t 00:00:00',  $date );
 			$aqv['event_end_after']    = date( 'Y-m-01 00:00:00', $date );
 
 		} elseif ( eo_is_event_archive( 'day' ) ) {
@@ -365,69 +365,116 @@ function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
 }
 
 /**
- * Return whether the date of another event is the same as the current date type.
+ * Return whether the date of another event has the same year as the current event
  *
  * @since 1.0.0
  *
- * @param string $type Date type: 'month' or 'day'
- * @param string|int|WP_Post $like Which post to check. Either 'prev' or 'next', which results in
- *                                 the suggested post within the current loop, event post ID or 
- *                                 post object. Defaults to 'next'.
- * @return bool Event is next of date type
+ * @see zeta_event_organiser_is_date_same()
+ * @return bool Event has the same year
  */
-function zeta_event_organiser_is_date_same( $type = '', $like = 'next' ) {
-	global $wp_query, $post;
+function zeta_event_organiser_is_date_same_year( $query = false, $check = 'next' ) {
+	return zeta_event_organiser_is_date_same( 'Y', $query, $check );
+}
 
-	// Define query date statically
-	static $date = array( 'month' => 0, 'day' => 0 );
+/**
+ * Return whether the date of another event has the same month as the current event
+ *
+ * @since 1.0.0
+ *
+ * @see zeta_event_organiser_is_date_same()
+ * @return bool Event has the same month
+ */
+function zeta_event_organiser_is_date_same_month( $query = false, $check = 'next' ) {
+	return zeta_event_organiser_is_date_same( 'Y-m', $query, $check );
+}
 
-	// Set initial date values of the most current post
-	$date['month'] = $date['day'] = eo_get_the_start( 'U', $post->ID );
+/**
+ * Return whether the date of another event has the same day as the current event
+ *
+ * @since 1.0.0
+ *
+ * @see zeta_event_organiser_is_date_same()
+ * @return bool Event has the same day
+ */
+function zeta_event_organiser_is_date_same_day( $query = false, $check = 'next' ) {
+	return zeta_event_organiser_is_date_same( 'Y-m-d', $query, $check );
+}
 
-	// Bail when no post can be found
-	if ( ( 'next' == $like && ! zeta_have_posts() ) || ( 'prev' == $post && 0 == $wp_query->current_post ) ) {
-		return false;
-	}
+	/**
+	 * Return whether the date of another event is the same as the current date type.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @uses zeta_has_posts()
+	 * @uses eo_get_the_start()
+	 *
+	 * @param string             $format Date format. Used to check the date equality.
+	 * @param bool|WP_Query      $query  Optional. Query object. Defaults to main query global.
+	 * @param string|int|WP_Post $check  Optional. Which post to check against. Either 'prev'
+	 *                                   or 'next', which results in the suggested post within
+	 *                                   the current loop, event post ID or post object.
+	 *                                   Defaults to 'next'.
+	 * @return bool Event is of the same date format
+	 */
+	function zeta_event_organiser_is_date_same( $format = 'Y-m-d', $query = false, $check = 'next' ) {
 
-	// Keep global variable
-	$_post = $post;
-	$retval = true; // Assume we're in the same date
-
-	// Get the post to compare
-	if ( 'next' == $like ) {
-		$post = $wp_query->posts[ $wp_query->current_post + 1 ];
-	} elseif ( 'prev' == $like ) {
-		$post = $wp_query->posts[ $wp_query->current_post - 1 ];
-	} else {
-		$post = get_post( $like );
-	}
-
-	// Bail when the post type or type is invalid
-	if ( ! $post || 'event' != $post->post_type || ! in_array( $type, array( 'month', 'day' ) ) ) {
-		return false;
-	}
-
-	// Use event start date to compare dates
-	$compare = eo_get_the_start( 'U', $post->ID );
-	$map = array( 'month' => 'Y-m', 'day' => 'Y-m-d' );
-
-	// Update the current date
-	if ( $compare && date( $map[ $type ], $date[ $type ] ) != date( $map[ $type ], $compare ) ) {
-		$date[ $type ] = $compare;
-
-		// When comparing months, update the 'day' date too.
-		if ( 'month' == $type ) {
-			$date['day'] = $compare;
+		// Default the query context to the global main query
+		if ( ! $query || ! is_a( $query, 'WP_Query' ) ) {
+			$query = $GLOBALS['wp_query'];
 		}
 
-		$retval = false;
+		// Bail when this isn't an event query
+		if ( 'event' !== $query->query['post_type'] )
+			return false;
+
+		// Default to check the next query item
+		if ( ! $check ) {
+			$check = 'next';
+		}
+
+		// Bail when there are no next or previous posts in the query
+		if (   ( 'next' === $check && ! zeta_has_posts( $query ) )
+			|| ( 'prev' === $check && 0 === $query->current_post )
+		)
+			return false;
+
+		/**
+		 * To compare dates, we're using `eo_get_the_start()`, but it needs
+		 * to use the global `$post`. So we set it apart here to override it.
+		 */
+		$_post = $GLOBALS['post'];
+
+		// Use event start date from the post to compare from
+		$GLOBALS['post'] = $query->post;
+		$date1 = eo_get_the_start( $format, $query->post->ID );
+
+		// Get the post to compare to
+		if ( 'next' === $check ) {
+			$post2 = $query->posts[ $query->current_post + 1 ];
+		} elseif ( 'prev' === $check ) {
+			$post2 = $query->posts[ $query->current_post - 1 ];
+		} else {
+			$post2 = get_post( $check );
+		}
+
+		// Bail when a post wasn't found
+		if ( ! $post2 ) {
+			$GLOBALS['post'] = $_post;
+			return false;
+		}
+
+		// Use event start date from the post to compare to
+		$GLOBALS['post'] = $post2;
+		$date2 = eo_get_the_start( $format, $post2->ID );
+
+		// Restore the global `$post`
+		$GLOBALS['post'] = $_post;
+
+		// Check for equality in dates
+		$equal = ( $date1 === $date2 );
+
+		return $equal;
 	}
-
-	// Restore global variable
-	$post = $_post;
-
-	return (bool) $retval;
-}
 
 /**
  * Display the event's details in the entry footer
@@ -449,3 +496,51 @@ function zeta_event_organiser_entry_footer() {
 	}
 }
 add_action( 'zeta_entry_footer', 'zeta_event_organiser_entry_footer' );
+
+/** The Event Loop *********************************************************/
+
+/**
+ * Print the event loop id attribute
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_event_organiser_loop_arg()
+ */
+function zeta_event_organiser_loop_id() {
+	$id = zeta_event_organiser_loop_arg( 'id' );
+	if ( $id ) {
+		printf( ' id="%s"', esc_attr( $id ) );
+	}
+}
+
+/**
+ * Print the event loop class attribute
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_event_organiser_loop_arg()
+ */
+function zeta_event_organiser_loop_class() {
+	$class = zeta_event_organiser_loop_arg( 'class' );
+	if ( $class ) {
+		printf( ' class="%s"', esc_attr( $class ) );
+	}
+}
+
+/**
+ * Return the given argument from the current event loop
+ *
+ * @since 1.0.0
+ *
+ * @param string $arg Requested argument name
+ * @return mixed|null Requested argument value
+ */
+function zeta_event_organiser_loop_arg( $arg = '' ) {
+	global $eo_event_loop_args;
+
+	if ( isset( $eo_event_loop_args[ $arg ] ) ) {
+		return $eo_event_loop_args[ $arg ];
+	} else {
+		return null;
+	}
+}

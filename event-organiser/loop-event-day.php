@@ -22,7 +22,7 @@
 
 			<?php eo_get_template_part( 'loop', 'single-event' ); ?>
 
-			<?php while ( zeta_have_posts() && zeta_event_organiser_is_date_same( 'day' ) ) : the_post(); ?>
+			<?php while ( zeta_has_posts() && zeta_event_organiser_is_date_same_day() ) : the_post(); ?>
 
 			<?php eo_get_template_part( 'loop', 'single-event' ); ?>
 

@@ -326,12 +326,17 @@ function zeta_page_menu( $args ) {
  *
  * @since 1.0.0
  *
- * @uses WP_Query
+ * @param $query bool|WP_Query Optional. Defaults to the global main query
  * @return bool Loop has posts
  */
-function zeta_have_posts() {
-	global $wp_query;
-	return ( $wp_query->current_post + 1 < $wp_query->post_count );
+function zeta_has_posts( $query = false ) {
+
+	// Default to the global main query
+	if ( ! $query || ! is_a( $query, 'WP_Query' ) ) {
+		$query = $GLOBALS['wp_query'];
+	}
+
+	return ( $query->current_post + 1 < $query->post_count );
 }
 
 /**
