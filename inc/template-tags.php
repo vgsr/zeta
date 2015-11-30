@@ -312,9 +312,9 @@ endif;
  */
 function zeta_page_menu( $args ) {
 
-	// Define some forced arguments
+	// Force define arguments
+	$args['before']     = sprintf( '<ul class="%s">', $args['menu_class'] );
 	$args['menu_class'] = $args['container_class'];
-	$args['before']     = '<ul class="menu">';
 
 	return wp_page_menu( $args );
 }
