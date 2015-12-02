@@ -97,6 +97,30 @@ function zeta_posted_on() {
 }
 endif;
 
+if ( ! function_exists( 'zeta_entry_meta' ) ) :
+/**
+ * Prints HTML with meta information below the entry title.
+ */
+function zeta_entry_meta() {
+
+	// Posts
+	if ( 'post' == get_post_type() ) {
+		add_action( 'zeta_entry_meta', 'zeta_post_format_link', 8  );
+		add_action( 'zeta_entry_meta', 'zeta_posted_on',        12 );
+	}
+
+	/**
+	 * Fires when printing the page's meta in the header
+	 *
+	 * Please wrap separate footer elements in `<span>`.
+	 *
+	 * @since 1.0.0
+	 */
+	do_action( 'zeta_entry_meta' );
+}
+endif;
+
+
 if ( ! function_exists( 'zeta_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.

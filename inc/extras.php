@@ -328,6 +328,48 @@ function zeta_get_post_galleries_attachment_ids( $post = 0 ) {
 }
 
 /**
+ * Filter the content for a gallery post's excerpt
+ *
+ * @since 1.0.0
+ *
+ * @uses is_singular()
+ * @uses has_post_format()
+ * @uses zeta_get_post_galleries_attachment_ids()
+ */
+function zeta_gallery_post_excerpt( $content ) {
+
+	// Only when this is not a single view
+	if ( ! is_singular() && has_post_format( 'gallery' ) && $attachment_ids = zeta_get_post_galleries_attachment_ids() ) {
+
+		// Randomize the images
+		shuffle( $attachment_ids );
+
+		// Setup gallery shortcode with a preview of 6 images
+		$content = sprintf( '[gallery ids="%s"]', implode( ',', array_slice( $attachment_ids, 0, 6 ) ) );
+	}
+
+	return $content;
+}
+add_filter( 'the_content', 'zeta_gallery_post_excerpt', 8 );
+
+/**
+ * Display the gallery post's image count
+ *
+ * @since 1.0.0
+ *
+ * @uses has_post_format()
+ * @uses zeta_get_post_galleries_attachment_ids()
+ */
+function zeta_gallery_post_image_count() {
+
+	// When post has a gallery with images
+	if ( has_post_format( 'gallery' ) && $attachment_ids = zeta_get_post_galleries_attachment_ids() ) {
+		printf( '<span class="image-count">%s</span>', sprintf( _nx( '%d Image', '%d Images', count( $attachment_ids ), 'Gallery post-format image count', 'zeta' ), count( $attachment_ids ) ) );
+	}
+}
+add_action( 'zeta_entry_meta', 'zeta_gallery_post_image_count' );
+
+/**
  * Return whether the post is an attachment
  *
  * @since 1.0.0
