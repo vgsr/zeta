@@ -10,18 +10,17 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
+		<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
+
 		<div class="entry-meta">
-			<?php
-				zeta_post_format_link();
-				zeta_posted_on();
-			?>
+			<?php zeta_post_format_link(); ?>
 
 			<?php if ( $attachment_ids = zeta_get_post_galleries_attachment_ids() ) : ?>
 			<span class="image-count"><?php printf( _nx( '%d Image', '%d Images', count( $attachment_ids ), 'Gallery post-format image count', 'zeta' ), count( $attachment_ids ) ); ?></span>
 			<?php endif; ?>
-		</div><!-- .entry-meta -->
 
-		<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
+			<?php zeta_posted_on(); ?>
+		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
