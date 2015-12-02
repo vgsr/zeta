@@ -19,9 +19,9 @@
 		?></div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
-	<div class="entry-summary">
+	<div class="entry-content entry-summary">
 		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
+	</div><!-- .entry-content -->
 
 	<footer class="entry-footer"><?php 
 		zeta_entry_footer(); 

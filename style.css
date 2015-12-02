@@ -2417,10 +2417,23 @@ input.search-field {
 	display: inline;
 }
 
-.page-content,
-.entry-content,
-.entry-summary {
+.entry-content {
 	margin: 0.5em 0 0;
+}
+
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+	display: inline-block;
+	margin: 1.5em 0 0 0;
+}
+
+.entry-content ul,
+.entry-content ol {
+	margin-left: 0;
+	padding-left: 2em;
 }
 
 body.home .entry-content {
@@ -2667,7 +2680,6 @@ body.home .entry-footer {
 /*--------------------------------------------------------------
 12.0 Media
 --------------------------------------------------------------*/
-.page-content .wp-smiley,
 .entry-content .wp-smiley,
 .comment-content .wp-smiley {
 	border: none;
