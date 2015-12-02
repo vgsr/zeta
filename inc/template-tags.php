@@ -287,7 +287,7 @@ if ( ! function_exists( 'zeta_post_format_link' ) ) :
  * @uses get_post_format_string()
  */
 function zeta_post_format_link() {
-	if ( $format = get_post_format() ) {
+	if ( ( $format = get_post_format() ) && ! is_tax( 'post_format', "post-format-{$format}" ) ) {
 		printf( '<span class="post-format %1$s"><a href="%2$s">%3$s</a></span>',
 			esc_attr( $format ),
 			get_post_format_link( $format ),
