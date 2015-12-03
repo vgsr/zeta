@@ -2829,6 +2829,12 @@ object {
 13.1 Event Organiser :: wp-event-organiser.com
 --------------------------------------------------------------*/
 
+/* Single event */
+
+.entry-content .eo-venue-map {
+	z-index: 498; /* below site header */
+}
+
 /* Event archives */
 
 .event-section.section-month > .section-header {

@@ -214,6 +214,153 @@ function zeta_event_organiser_the_posts_navigation() {
 	<?php
 }
 
+if ( ! function_exists( 'get_adjacent_event' ) ) :
+/**
+ * Retreive adjacent event.
+ *
+ * Wraps {@see get_adjacent_post()} to return the correct event data.
+ *
+ * @since 1.0.0
+ *
+ * @param bool         $in_same_term   Optional. Whether post should be in a same taxonomy term.
+ * @param array|string $excluded_terms Optional. Array or comma-separated list of excluded term IDs.
+ * @param bool         $previous       Optional. Whether to retrieve previous post.
+ * @param string       $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'category'.
+ * @return null|string|WP_Post Post object if successful. Null if global $post is not set. Empty string if no corresponding post exists.
+ */
+function get_adjacent_event( $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
+
+	// Get the adjacent post
+	$adjacent = get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
+
+	if ( ! $adjacent )
+		return $adjacent;
+
+	// Get the adjacent occurrence of the adjacent event
+	$event = get_adjacent_occurrence( $adjacent->ID, $previous, eo_get_the_start( DATETIMEOBJ ) );
+
+	// Define the adjacent event
+	if ( $event ) {
+		$adjacent->event_id         = $event['occurrence_id'];
+		$adjacent->occurrence_id    = $event['occurrence_id'];
+		$adjacent->StartDate        = $event['start']->format( 'Y-m-d' );
+		$adjacent->StartTime        = $event['start']->format( 'H:i:s' );
+		$adjacent->EndDate          = $event['end']->format( 'Y-m-d' );
+		$adjacent->FinishTime       = $event['end']->format( 'H:i:s' );
+		$adjacent->event_occurrence = $event['event_occurrence'];
+	}
+
+	return $adjacent;
+}
+endif;
+
+if ( ! function_exists( 'get_adjacent_occurrence' ) ) :
+/**
+ * Retrieve adjacent event occurrence.
+ *
+ * @see eo_get_next_occurrence_of()
+ *
+ * @since 1.0.0
+ *
+ * @uses eo_get_blog_timezone()
+ *
+ * @param int $post_id Post ID
+ * @param bool $previous Optional. Wehther to retrieve previous occurrence.
+ * @param DateTime|string $event_date Optional. Date to compare to.
+ * @return bool|array Occurrence data if successful. False if no adjacent occurrence exists.
+ */
+function get_adjacent_occurrence( $post_id, $previous = true, $event_date = '' ) {
+	global $wpdb;
+
+	if ( ! $post_id )
+		return false;
+
+	$timezone = eo_get_blog_timezone();
+
+	// Default compare time to now
+	if ( ! $event_date ) {
+		$event_date = new DateTime( 'now', $timezone );
+	} elseif ( is_string( $event_date ) ) {
+		$event_date = new DateTime( $event_date, $timezone );
+	}
+
+	// Get date and time
+	$date  = $event_date->format( 'Y-m-d' );
+	$time  = $event_date->format( 'H:i:s' );
+
+	// Define operators
+	$op    = $previous ? '<'  : '>';
+	$opeq  = $previous ? '<=' : '>=';
+	$order = $previous ? 'DESC' : 'ASC';
+
+	// Define adjacent occurrence query
+	$sql = $wpdb->prepare( "SELECT event_id, StartDate, StartTime, EndDate, FinishTime, event_occurrence
+		FROM  {$wpdb->eo_events}
+		WHERE 1=1
+			AND {$wpdb->eo_events}.post_id = %d
+			AND (
+				  ( {$wpdb->eo_events}.StartDate $op %s ) OR
+				  ( {$wpdb->eo_events}.StartDate = %s AND {$wpdb->eo_events}.StartTime $opeq %s )
+				)
+		ORDER BY {$wpdb->eo_events}.StartDate $order, {$wpdb->eo_events}.StartTime $order
+		LIMIT 1",
+		$post_id, $date, $date, $time
+	);
+
+	if ( ! $event = $wpdb->get_row( $sql ) )
+		return false;
+
+	// Define occurrence data
+	$occurrence = array(
+		'occurrence_id'    => $event->event_id,
+		'start'            => new DateTime( "{$event->StartDate} {$event->StartTime}", $timezone ),
+		'end'              => new DateTime( "{$event->EndDate} {$event->FinishTime}",  $timezone ),
+		'event_occurrence' => $event->event_occurrence,
+	);
+
+	return $occurrence;
+}
+endif;
+
+/**
+ * Modify the label for the adjacent event navigation
+ *
+ * @since 1.0.0
+ *
+ * @param string $label Adjacent navigation label
+ * @return string Label
+ */
+function zeta_event_organiser_post_navigation_label( $label ) {
+
+	// When this is an event
+	if ( 'event' == get_post_type() ) {
+		global $wpdb;
+
+		$previous = ( 'zeta_previous_post_navigation_label' === current_filter() );
+		$adjacent = get_adjacent_event( false, '', $previous );
+
+		if ( $adjacent ) {
+			$date = new DateTime( "{$adjacent->StartDate} {$adjacent->StartTime}", eo_get_blog_timezone() );
+
+			// Occurs/red on the same day
+			if ( get_post()->StartDate === $adjacent->StartDate ) {
+				$label = $date->format( get_option( 'time_format' ) );
+
+			// It's an all-day event
+			} elseif ( eo_is_all_day( $adjacent->ID ) ) {
+				$label = $date->format( get_option( 'date_format' ) );
+
+			} else {
+				$label = $date->format( sprintf( _x( '%1$s \a\t %2$s', 'Adjacent post navigation label', 'zeta' ), get_option( 'date_format' ), get_option( 'time_format' ) ) );
+			}
+		}
+	}
+
+	return $label;
+}
+add_filter( 'zeta_previous_post_navigation_label', 'zeta_event_organiser_post_navigation_label' );
+add_filter( 'zeta_next_post_navigation_label',     'zeta_event_organiser_post_navigation_label' );
+
 /**
  * Return the link of the next archive
  *
@@ -477,6 +624,172 @@ function zeta_event_organiser_is_date_same_day( $query = false, $check = 'next' 
 	}
 
 /**
+ * Filter the post title for events
+ *
+ * @since 1.0.0
+ *
+ * @uses in_the_loop()
+ * @uses eo_is_event_archive()
+ * @uses eo_is_all_day()
+ * @uses eo_get_the_start()
+ *
+ * @param string $title Post title
+ * @return string Post title
+ */
+function zeta_event_organiser_event_title( $title ) {
+
+	// Show event time in event day archives
+	if ( in_the_loop() && eo_is_event_archive( 'day' ) ) {
+
+		// Not for all-day events
+		if ( ! eo_is_all_day() ) {
+			/* translators: 1. Event title 2. Event time */
+			$title = sprintf( __( '%2$s &mdash; %1$s', 'zeta' ), $title, eo_get_the_start( get_option( 'time_format' ) ) );
+		}
+	}
+
+	return $title;
+}
+add_filter( 'the_title', 'zeta_event_organiser_event_title' );
+
+/**
+ * Print the event's entry meta
+ *
+ * @since 1.0.0
+ *
+ * @uses eo_is_all_day()
+ * @uses eo_reoccurs()
+ * @uses eo_get_current_occurrence_of()
+ * @uses eo_get_next_occurrence_of()
+ * @uses eo_is_event_archive()
+ * @uses eo_get_event_archive_link()
+ * @uses eo_get_the_start()
+ * @uses human_time_diff()
+ * @uses eo_get_the_end()
+ * @uses eo_get_venue()
+ * @uses eo_get_venue_link()
+ * @uses eo_get_venue_name()
+ */
+function zeta_event_organiser_event_meta() {
+
+	// Show event meta for events
+	if ( 'event' == get_post_type() ) {
+
+		/* translators: 1. date format 2. time format. Please slash any other characters */
+		$format = eo_is_all_day() ? get_option( 'date_format' ) : sprintf( _x( '%1$s \a\t %2$s', 'Event meta date', 'zeta' ), get_option( 'date_format' ), get_option( 'time_format' ) );
+
+		// Is this a reoccuring event?
+		$reoccurs   = eo_reoccurs();
+		$occurrence = eo_get_current_occurrence_of();
+
+		// Fallback to the upcoming event
+		if ( ! $occurrence ) {
+			$occurrence = eo_get_next_occurrence_of();
+		}
+
+		// Event reoccurs
+		if ( $reoccurs ) {
+			printf( '<span class="event-reoccurs">%s</span>', __( 'Reoccurring', 'zeta' ) );
+		}
+
+		// Show the (next) start date and time - not on event archive pages
+		if ( ! eo_is_event_archive() ) {
+			printf( '<span class="event-start">%s</span>', $occurrence
+				? sprintf( '<a href="%s">%s</a>', call_user_func_array( 'eo_get_event_archive_link', explode( '-', $occurrence['start']->format( 'Y-m-d' ) ) ), $occurrence['start']->format( $format ) )
+				: ( ! $reoccurs ? sprintf( '<a href="%s">%s</a>', call_user_func_array( 'eo_get_event_archive_link', explode( '-', eo_get_the_start( 'Y-m-d' ) ) ), eo_get_the_start( $format ) ) : _x( 'Passed', 'Reoccuring event status', 'zeta' ) )
+			);
+		}
+
+		// Event duration
+		printf( '<span class="event-duration">%s</span>', human_time_diff(
+			  ( $occurrence ) ? $occurrence['start']->format( 'U' ) : eo_get_the_start( 'U' ),
+			( ( $occurrence ) ? $occurrence['end']->format  ( 'U' ) : eo_get_the_end  ( 'U' ) ) + 1 // Turns '24 hours' into '1 day'
+		) );
+
+		// Event venue
+		if ( eo_get_venue() ) {
+			/* translators: venue directive */
+			printf( '<span class="event-venue">%s</span>', sprintf( __( '@ <a href="%s">%s</a>', 'zeta' ), eo_get_venue_link(), eo_get_venue_name() ) );
+		}
+	}
+}
+add_action( 'zeta_entry_meta', 'zeta_event_organiser_event_meta' );
+
+/**
+ * Filter the post content for events
+ *
+ * @since 1.0.0
+ *
+ * @uses in_the_loop()
+ * @uses eo_get_venue()
+ * @uses eo_get_venue_map()
+ * @uses eo_reoccurs()
+ * @uses eo_is_all_day()
+ * @uses eo_get_event_archive_link()
+ * @uses eo_get_the_start()
+ *
+ * @uses WP_Query
+ *
+ * @param string $content Post content
+ * @return string Post content
+ */
+function zeta_event_organiser_event_content( $content ) {
+
+	// Filter content for single events
+	if ( in_the_loop() && 'event' == get_post_type() && is_singular() ) {
+
+		// Append event venue for events
+		if ( eo_get_venue() && $map = eo_get_venue_map( eo_get_venue(), array( 'width' => '100%' ) ) ) {
+			$content .= sprintf( '<div class="eo-event-venue-map">%s</div>', $map );
+		}
+
+		// Append upcoming dates
+		if ( eo_reoccurs() ) {
+
+			// Get all future occurrences of this event
+			if ( $future = new WP_Query( array(
+				'post_type'         => 'event',
+				'event_start_after' => 'today',
+				'posts_per_page'    => -1,
+				'event_series'      => get_the_ID(),
+				'group_events_by'   => 'occurrence',
+			) ) ) {
+
+				// There are more upcoming events
+				if ( $future->post_count > 1 ) {
+
+					/* translators: 1. date format 2. time format. Please slash any other characters */
+					$format = eo_is_all_day() ? get_option( 'date_format' ) : sprintf( _x( '%1$s \a\t %2$s', 'Upcoming events date', 'zeta' ), get_option( 'date_format' ), get_option( 'time_format' ) );
+
+					// Header
+					$content .= sprintf( '<h4>%s</h4>', __( 'Upcoming Dates', 'zeta' ) );
+					$content .= '<ul id="eo-upcoming-dates">';
+
+					while ( $future->have_posts() ) : $future->the_post();
+						$content .= sprintf( '<li><a href="%s">%s</a></li>', call_user_func_array( 'eo_get_event_archive_link', explode( '-', eo_get_the_start( 'Y-m-d' ) ) ), eo_get_the_start( $format ) );
+					endwhile;
+
+					$content .= '</ul>';
+
+					// Reset post query
+					wp_reset_postdata();
+
+					// Enqueue script to hide/show 5+ upcoming dates
+					wp_enqueue_script( 'eo_front' );
+
+				// No more upcoming events
+				} else {
+					$content .= sprintf( '<p><em>%s</em></p>', __( 'There are no more following occurrences scheduled of this event.', 'zeta' ) );
+				}
+			}
+		}
+	}
+
+	return $content;
+}
+add_filter( 'the_content', 'zeta_event_organiser_event_content' );
+
+/**
  * Display the event's details in the entry footer
  *
  * @since 1.0.0
@@ -491,7 +804,13 @@ function zeta_event_organiser_entry_footer() {
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_term_list( get_the_ID(), 'event-category', '', __( ', ', 'zeta' ) );
 		if ( $categories_list ) {
-			printf( '<span class="event-category-list">' . __( 'Posted in %s', 'zeta' ) . '</span>', $categories_list );
+			printf( '<span class="category-list">' . __( 'Posted in %s', 'zeta' ) . '</span>', $categories_list );
+		}
+
+		/* translators: used between list items, there is a space after the comma */
+		$tags_list = get_the_term_list( get_the_ID(), 'event-tag', '', __( ', ', 'zeta' ) );
+		if ( $tags_list ) {
+			printf( '<span class="tags-links">' . __( 'Tagged %s', 'zeta' ) . '</span>', $tags_list );
 		}
 	}
 }
