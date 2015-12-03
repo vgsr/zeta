@@ -2935,10 +2935,11 @@ object {
 }
 
 .eo_widget_calendar table td.event a {
-	padding: 10px 7.5px;
 	display: block;
-	font-weight: bold;
+	padding: 10px 7.5px;
 	background-color: rgba(2, 144, 7, .3);
+	font-weight: bold;
+	color: #fff;
 }
 
 	.eo_widget_calendar table td.event a:hover {
@@ -2956,7 +2957,8 @@ object {
 	z-index: -1;
 }
 
-.eo_widget_calendar table td.today {
+.eo_widget_calendar table td.today,
+.eo_widget_calendar table td.today.event a {
 	color: #fff;
 }
 
