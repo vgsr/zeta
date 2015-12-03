@@ -103,6 +103,11 @@ if ( ! function_exists( 'zeta_entry_meta' ) ) :
  */
 function zeta_entry_meta() {
 
+	// Search
+	if ( is_search() ) {
+		add_action( 'zeta_entry_meta', 'zeta_post_type', 6 );
+	}
+
 	// Posts
 	if ( 'post' == get_post_type() ) {
 		add_action( 'zeta_entry_meta', 'zeta_post_format_link', 8  );
@@ -318,6 +323,21 @@ function zeta_post_format_link() {
 			get_post_format_string( $format )
 		);
 	}
+}
+endif;
+
+if ( ! function_exists( 'zeta_post_type' ) ) :
+/**
+ * Prints HTML for the post's post type
+ *
+ * @since 1.0.0
+ *
+ * @uses get_post_type()
+ * @uses get_post_type_object()
+ */
+function zeta_post_type() {
+	$type = get_post_type();
+	printf( '<span class="post-type %1$s">%2$s</span>', $type, get_post_type_object( $type )->labels->singular_name );
 }
 endif;
 
