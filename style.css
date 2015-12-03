@@ -2896,6 +2896,7 @@ object {
 
 	.event-list .section-title {
 		line-height: 1.5em;
+		font-size: inherit;
 	}
 
 	.event-list li.section-month {
