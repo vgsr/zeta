@@ -11,7 +11,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<h1 class="entry-title">
+		<h2 class="entry-title">
 			<?php printf( '<a href="%s" rel="bookmark">%s</a>',
 				esc_url( get_permalink() ),
 				/* translators: 1. Event title 2. Event time */
@@ -20,7 +20,7 @@
 					eo_get_the_start( _x( 'g:i A', 'Event time title prefix', 'zeta' ) )
 				)
 			); ?>
-		</h1>
+		</h2>
 	</header><!-- .entry-header -->
 
 	<?php if ( zeta_has_content() ) : ?>

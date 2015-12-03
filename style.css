@@ -2481,6 +2481,7 @@ body.home .entry-content {
 	line-height: 1.3em;
 	font-family: 'Montserrat', Arial, sans-serif;
 	word-wrap: break-word;
+	font-weight: bold;
 }
 	.entry-title,
 	.page-title,
@@ -2848,7 +2849,8 @@ object {
 		flex: 1 0 auto;
 	}
 
-	.event-section .entry-title {
+	.event-section .entry-title,
+	.event-section .section-title {
 		font-size: 1.3em;
 	}
 

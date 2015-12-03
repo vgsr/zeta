@@ -11,11 +11,11 @@
 
 	<section class="event-section section-day">
 		<header class="section-header">
-			<h3 class="section-title">
+			<span class="section-title">
 				<a href="<?php echo esc_url( zeta_event_organiser_get_archive_url() ); ?>">
 					<?php eo_the_start( _x( 'D jS', 'Daily event section header', 'zeta' ) ); ?>
 				</a>
-			</h3>
+			</span>
 		</header>
 
 		<main class="section-content">

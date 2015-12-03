@@ -13,11 +13,11 @@ global $eo_event_loop;
 
 	<li class="event-section section-day">
 		<header class="section-header">
-			<h4 class="section-title">
+			<span class="section-title">
 				<a href="<?php echo esc_url( zeta_event_organiser_get_archive_url( 'day' ) ); ?>">
 					<?php eo_the_start( _x( 'D jS', 'Daily event section header', 'zeta' ) ); ?>
 				</a>
-			</h4>
+			</span>
 		</header>
 
 		<ul class="children">

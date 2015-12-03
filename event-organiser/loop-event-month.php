@@ -11,11 +11,11 @@
 
 	<section class="event-section section-month">
 		<header class="section-header">
-			<h2 class="section-title">
+			<span class="section-title">
 				<a href="<?php echo esc_url( zeta_event_organiser_get_archive_url( 'month' ) ); ?>">
 					<?php eo_the_start( _x( 'F', 'Monthly event section header', 'zeta' ) ); ?>
 				</a>
-			</h2>
+			</span>
 		</header>
 
 		<?php eo_get_template_part( 'loop', 'event-day' ); ?>
