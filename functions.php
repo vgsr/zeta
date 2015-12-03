@@ -257,6 +257,9 @@ function zeta_inline_styles() {
 		}
 	}
 
+	$prev = apply_filters( 'zeta_previous_post_navigation_label', $prev );
+	$next = apply_filters( 'zeta_next_post_navigation_label',     $next );
+
 	// Post navigation description
 	$css .= '
 		.post-navigation .nav-previous a:before { content: "' . $prev . '"; }
