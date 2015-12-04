@@ -7,18 +7,24 @@
  * @subpackage BuddyPress
  */
 
-if ( ! function_exists( 'is_buddypress' ) ) :
-/**
- * Provide a backup function when BuddyPress is not active
- *
- * @since 1.0.0
- *
- * @return bool False
- */
-function is_buddypress() {
-	return false;
+// Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
+
+// Bail when plugin is not active
+if ( ! function_exists( 'buddypress' ) ) {
+	/**
+	 * Provide a backup function when BuddyPress is not active
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return bool False
+	 */
+	function is_buddypress() {
+		return false;
+	}
+	
+	return;
 }
-endif;
 
 /**
  * Display the displayed member's member type

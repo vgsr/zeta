@@ -10,6 +10,10 @@
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
+// Bail when plugin is not active
+if ( ! defined( 'EVENT_ORGANISER_VER' ) )
+	return;
+
 /**
  * Filter the Event Organiser template stack to add ours
  *
