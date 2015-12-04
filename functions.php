@@ -244,26 +244,10 @@ function zeta_inline_styles() {
 		.comment-navigation .nav-next a:before, .posts-navigation .nav-next a:before { content: "'         . $next . '"; }
 	';
 
-	// Consider VGSR Entity plugin
-	if ( function_exists( 'vgsr_entity' ) ) {
-		$entity = vgsr_entity();
-
-		// We're on a Bestuur page
-		if ( isset( $entity->bestuur ) && is_singular( $entity->bestuur->type ) ) {
-
-			// Define labels for single Bestuur
-			$prev = $entity->bestuur->get_season( get_adjacent_post( false, '', true  ) );
-			$next = $entity->bestuur->get_season( get_adjacent_post( false, '', false ) );
-		}
-	}
-
-	$prev = apply_filters( 'zeta_previous_post_navigation_label', $prev );
-	$next = apply_filters( 'zeta_next_post_navigation_label',     $next );
-
 	// Post navigation description
 	$css .= '
-		.post-navigation .nav-previous a:before { content: "' . $prev . '"; }
-		.post-navigation .nav-next a:before { content: "'     . $next . '"; }
+		.post-navigation .nav-previous a:before { content: "' . apply_filters( 'zeta_previous_post_navigation_label', $prev ) . '"; }
+		.post-navigation .nav-next a:before { content: "'     . apply_filters( 'zeta_next_post_navigation_label',     $next ) . '"; }
 	';
 
 	/**
@@ -359,3 +343,4 @@ require( get_template_directory() . '/inc/customizer.php' );
 require( get_template_directory() . '/inc/buddypress.php' );
 require( get_template_directory() . '/inc/event-organiser.php' );
 require( get_template_directory() . '/inc/jetpack.php' );
+require( get_template_directory() . '/inc/vgsr-entity.php' );
