@@ -3020,22 +3020,22 @@ object {
 	padding: 0 17.5px;
 }
 
-	#content .content-column.full_width {
+	.entry-content .content-column.full_width {
 		padding: 0;
 	}
 
-	#content p + .content-column,
-	#content .clear_column + .content-column {
+	.entry-content p + .content-column,
+	.entry-content .clear_column + .content-column {
 		padding-left: 0;
 	}
 
-	#content .content-column.last_column {
+	.entry-content .content-column.last_column {
 		padding-right: 0;
 	}
 
 /* Breakpoint in the plugin: .entry-content { max-width: 444px; } */
 @media all and (max-width: 600px), (min-width: 741px) and (max-width: 904px) {
-	#content .content-column {
+	.entry-content .content-column {
 		clear: both;
 		width: 100%;
 		padding: 0;
