@@ -2206,7 +2206,7 @@ input[type="radio"] {
 
 	.widget-area aside li.current-menu-item > a {
 		color: #404040;
-		text-decoration: underline;
+		font-weight: bold;
 	}
 
 /* Make sure select elements and search boxes fit in widgets. */
