@@ -45,7 +45,8 @@
 	12.2 Galleries
 13.0 Plugins
 	13.1 Event Organiser
-	13.2 Column Shortcodes
+	13.2 VGSR Entity
+	13.3 Column Shortcodes
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -2979,10 +2980,42 @@ object {
 }
 
 /*--------------------------------------------------------------
-13.2 Column Shortcodes
+13.2 VGSR Entity
 --------------------------------------------------------------*/
 
-#content .content-column {
+.entry-content .entity-details {
+	display: inline-block;
+	width: 100%;
+	margin: 0;
+	padding: 0 1.5em;
+}
+
+.entity-details .entity-logo {
+	margin-top: 1.5em;
+	text-align: center;
+}
+
+	.entity-details .entity-logo img {
+		display: inline-block;
+		width: auto;
+		height: auto;
+	}
+
+@media screen and (min-width: 675px), (max-width: 740px) and (min-width: 998px) {
+	.entry-content .entity-details {
+		float: right;
+		width: auto;
+		max-width: 45%;
+		margin: 0 0 1.5em 1.5em;
+		padding: 0;
+	}
+}
+
+/*--------------------------------------------------------------
+13.3 Column Shortcodes
+--------------------------------------------------------------*/
+
+.entry-content .content-column {
 	margin: 1.5em 0 0 0;
 	padding: 0 17.5px;
 }
