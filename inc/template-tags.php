@@ -873,9 +873,11 @@ function zeta_map_slide( $slides ) {
  *
  * @since 1.0.0
  *
+ * @uses bp_has_members()
+ * @uses bp_member_class()
  * @uses bp_member_permalink()
- * @uses bp_member_name()
  * @uses bp_member_avatar()
+ * @uses bp_member_name()
  * 
  * @param int $post_id Attachment ID
  * @param bool $echo Optional. Whether to output the content
@@ -895,27 +897,41 @@ function zeta_media_users( $post_id, $echo = true ) {
 	) ) )
 		return;
 
-	if ( ! $echo ) {
-		ob_start();
-	}
+	// Start output buffer
+	ob_start();
 
 	// Query associated members
 	if ( bp_has_members( array(
-		'type'    => '', // Order handled by vgsr plugin
+		'type'    => '', // Empty type: query WP_User, order by ID
 		'include' => $users,
-	) ) ) {
-		?>
+	) ) ) : ?>
+
 		<div class="media-users">
-			<ul>
-			<?php while ( bp_members() ) : bp_the_member(); ?>
-				<li><a href="<?php echo esc_url( bp_get_member_permalink() ); ?>" data-title="<?php echo esc_attr( bp_get_member_name() ); ?>"><?php bp_member_avatar(); ?></a></li>
-			<?php endwhile; ?>
+			<ul class="bp-item-list">
+				<?php while ( bp_members() ) : bp_the_member(); ?>
+				<li <?php bp_member_class( array( 'member' ) ); ?>>
+					<div class="item-avatar">
+						<a href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar(); ?></a>
+					</div>
+
+					<div class="item">
+						<div class="item-title">
+							<a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
+						</div>
+					</div>
+				</li>
+				<?php endwhile; ?>
 			</ul>
 		</div>
-		<?php
-	}
 
-	if ( ! $echo ) {
-		return ob_get_clean();
+	<?php endif;
+
+	// End output buffer
+	$retval = ob_get_clean();
+
+	if ( $echo ) {
+		echo $retval;
+	} else {
+		return $retval;
 	}
 }
