@@ -902,7 +902,7 @@ function zeta_media_users( $post_id, $echo = true ) {
 
 	// Query associated members
 	if ( bp_has_members( array(
-		'type'    => '', // Empty type: query WP_User, order by ID
+		'type'    => '', // Query $wpdb->users, order by ID
 		'include' => $users,
 	) ) ) : ?>
 

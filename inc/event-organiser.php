@@ -226,6 +226,9 @@ if ( ! function_exists( 'get_adjacent_event' ) ) :
  *
  * @since 1.0.0
  *
+ * @uses get_adjacent_post()
+ * @uses get_adjacent_occurrence()
+ *
  * @param bool         $in_same_term   Optional. Whether post should be in a same taxonomy term.
  * @param array|string $excluded_terms Optional. Array or comma-separated list of excluded term IDs.
  * @param bool         $previous       Optional. Whether to retrieve previous post.
