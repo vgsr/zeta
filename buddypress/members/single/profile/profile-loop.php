@@ -16,7 +16,7 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 
 			<div class="bp-widget <?php bp_the_profile_group_slug(); ?>">
 
-				<h4><?php bp_the_profile_group_name(); ?> <?php zeta_profile_group_edit_link(); ?></h4>
+				<h4><?php bp_the_profile_group_name(); ?></h4>
 
 				<table class="profile-fields">
 
