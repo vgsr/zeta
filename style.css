@@ -2231,7 +2231,7 @@ input.search-field {
  * The other break points thus are:
  *  438.32 =  ( 166.66 * 2 ) + ( 1 * 35 ) + ( 2 * 35 )
  *  710    =  ( 166.66 * 3 ) + ( 2 * 35 ) + ( 2 * 70 )
- *  758    = (( 166.66 * 2 ) + ( 1 * 35 ) + ( 2 * 35 )) * 58%
+ *  758    = (( 166.66 * 2 ) + ( 1 * 35 ) + ( 2 * 35 )) / 58%
  */
 @media screen and (min-width: 438.32px) and (max-width: 710px), (min-width: 758px) {
 	.widget-area aside ul:not(.sub-menu):not(.children) {
@@ -2508,6 +2508,7 @@ body.home .entry-content {
 	text-transform: uppercase;
 	font-size: .75em;
 	color: #999;
+	text-align: center;
 }
 
 body.home .entry-footer {
@@ -2520,6 +2521,10 @@ body.home .entry-footer {
 
 	.entry-footer:not(:empty) {
 		margin: 2em 0 0;
+	}
+
+	.entry-meta span {
+		display: inline-block;
 	}
 
 	.entry-meta a,
@@ -2559,6 +2564,13 @@ body.home .entry-footer {
 .widget-title {
 	margin: 0;
 	font-size: 1.5em;
+}
+
+@media screen and (min-width: 741px) {
+	.entry-meta,
+	.entry-footer {
+		text-align: left;
+	}
 }
 
 /*--------------------------------------------------------------
