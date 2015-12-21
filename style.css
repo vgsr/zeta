@@ -3013,7 +3013,7 @@ object {
 		height: auto;
 	}
 
-@media screen and (min-width: 675px), (max-width: 740px) and (min-width: 998px) {
+@media screen and (min-width: 675px) and (max-width: 740px), (min-width: 998px) {
 	.entry-content .entity-details {
 		float: right;
 		width: auto;
