@@ -3013,6 +3013,12 @@ object {
 		height: auto;
 	}
 
+.entity-details .entity-members ul {
+	list-style: none;
+	margin: 10px -5px -5px;
+	padding: 0;
+}
+
 @media screen and (min-width: 675px) and (max-width: 740px), (min-width: 998px) {
 	.entry-content .entity-details {
 		float: right;
