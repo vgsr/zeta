@@ -1177,6 +1177,22 @@ body.home #colophon {
 		width: 58%;
 		margin-left: 42%;
 	}
+
+	/*
+	 * Anchor targets need to fall below the fixed admin-bar + header
+	 * @see http://stackoverflow.com/a/28824157/3601434
+	 */
+	:target:before {
+		content: '';
+		display: inline-block;
+		height: 80px; /* 45px header + 35px clearance */
+		margin-top: -80px;
+	}
+
+	body.admin-bar :target:before {
+		height: 126px; /* 80px + 46px admin-bar */
+		margin-top: -126px;
+	}
 }
 
 /* WP Admin Bar shrinks 46px > 32px */
@@ -1195,6 +1211,11 @@ body.home #colophon {
 
 	body.home.admin-bar .content-area {
 		margin-top: 38px; /* Correct for 32px Admin Bar */
+	}
+
+	body.admin-bar :target:before {
+		height: 112px; /* 80px + 32px admin-bar */
+		margin-top: -112px;
 	}
 }
 
