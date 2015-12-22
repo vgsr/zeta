@@ -2478,6 +2478,7 @@ body.home .entry-footer {
 
 	.entry-meta span {
 		display: inline-block;
+		margin: 0;
 	}
 
 	.entry-meta a,
