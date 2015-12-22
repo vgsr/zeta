@@ -60,6 +60,10 @@ function zeta_bp_profile_group_edit_link( $name ) {
 	if ( ! bp_is_my_profile() && ! current_user_can( 'bp_moderate' ) )
 		return $name;
 
+	// Bail when not on the profile page or editing it
+	if ( ! bp_is_user_profile() || bp_is_user_profile_edit() )
+		return $name;
+
 	// Bail when the profile group is invalid
 	if ( ! $group_id = bp_get_the_profile_group_id() )
 		return $name;
