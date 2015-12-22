@@ -1888,16 +1888,14 @@ a.button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	border: 1px solid;
-	border-color: #ccc #ccc #bbb;
+	border: 1px dashed #bbb;
 	background: #e6e6e6;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
-	color: rgba(0, 0, 0, .8);
+	color: #404040;
 	font-family: 'Montserrat', Arial, sans-serif;
-	font-size: 0.9rem;
-	line-height: 1;
-	padding: .6em 1em;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+	padding: 6px 12px;
+	/* Animation */
+	-webkit-transition: background .2s ease-in, border .2s ease-in, color .2s ease-in;
+	transition: background .2s ease-in, border .2s ease-in, color .2s ease-in;
 }
 
 button:hover,
@@ -1905,8 +1903,9 @@ a.button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	border-color: #ccc #bbb #aaa;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
+	border-color: #aaa;
+	background: rgba(191, 38, 105, .8);
+	color: #fff;
 }
 
 button:focus,
@@ -1920,8 +1919,8 @@ input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
 	outline: 0;
-	border-color: #aaa #bbb #bbb;
-	box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
+	box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15), inset 0 2px 5px rgba(0, 0, 0, 0.35);
+	padding: 7px 12px 5px;
 }
 
 input[type="checkbox"],
