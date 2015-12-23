@@ -35,6 +35,8 @@
 7.0 Alignments
 8.0 Clearings
 9.0 Widgets
+	9.1 Widget Area
+	9.2 Widgets
 10.0 Content
 	10.1 Posts and pages
 	10.2 Asides
@@ -2168,6 +2170,9 @@ input[type="radio"] {
 /*--------------------------------------------------------------
 9.0 Widgets
 --------------------------------------------------------------*/
+/*--------------------------------------------------------------
+9.1 Widget Area
+--------------------------------------------------------------*/
 .widget-area aside {
 	position: relative;
 	float: left;
@@ -2375,6 +2380,21 @@ input.search-field {
 	body.with-sidebar .widget-area {
 		width: 310px;
 	}
+}
+
+/*--------------------------------------------------------------
+9.2 Widgets
+--------------------------------------------------------------*/
+
+#wp-calendar caption,
+#wp-calendar tfoot a {
+	font-family: 'Montserrat', Arial, sans-serif;
+	font-weight: bold;
+}
+
+#wp-calendar th,
+#wp-calendar td {
+	text-align: center;
 }
 
 /*--------------------------------------------------------------
@@ -2922,17 +2942,6 @@ object {
 	float: left;
 }
 
-.eo_widget_calendar table caption,
-.eo_widget_calendar table tfoot a {
-	font-family: 'Montserrat', Arial, sans-serif;
-	font-weight: bold;
-}
-
-.eo_widget_calendar table th,
-.eo_widget_calendar table td {
-	text-align: center;
-}
-
 .eo_widget_calendar table td.event {
 	padding: 0;
 }
@@ -2941,6 +2950,7 @@ object {
 	display: block;
 	padding: 10px 7.5px;
 	background-color: rgba(2, 144, 7, .3);
+	font-family: 'Montserrat', Arial, sans-serif;
 	font-weight: bold;
 	color: #fff;
 }
@@ -2962,6 +2972,7 @@ object {
 
 .eo_widget_calendar table td.today,
 .eo_widget_calendar table td.today.event a {
+	font-family: 'Montserrat', Arial, sans-serif;
 	color: #fff;
 }
 
