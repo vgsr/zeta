@@ -15,7 +15,7 @@
  * Use it to make something cool, have fun, and share what you've learned with others.
  * 
  * Zeta is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
- * 
+ *
  * Normalizing styles have been helped along thanks to the fine work of
  * Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
  */
@@ -1947,6 +1947,9 @@ a.button:active,
 input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
+	border-color: #aaa;
+	background: rgba(191, 38, 105, .8);
+	color: #fff;
 	outline: 0;
 	box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15), inset 0 2px 5px rgba(0, 0, 0, 0.35);
 	padding: 7px 12px 5px;
