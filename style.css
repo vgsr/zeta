@@ -2951,6 +2951,7 @@ object {
 }
 
 .eo_widget_calendar table td.event a {
+	position: relative;
 	display: block;
 	padding: 10px 7.5px;
 	background-color: rgba(2, 144, 7, .3);
@@ -2964,6 +2965,45 @@ object {
 		background-color: rgba(2, 144, 7, .6);
 	}
 
+	.eo_widget_calendar table td.event a:before,
+	.eo_widget_calendar table td.event a:after {
+		position: absolute;
+		bottom: 100%;
+		left: 50%;
+		visibility: hidden;
+		opacity: 0;
+		pointer-events: none;
+		/* Animation */
+		-webkit-transition: all .25s ease-in;
+		transition: all .25s ease-in;
+	}
+
+	.eo_widget_calendar table td.event a:before {
+		content: attr(title);
+		-webkit-transform: translateX(-50%);
+		transform: translateX(-50%);
+		background: #404040;
+		margin-bottom: 5px;
+		padding: 5px 8px;
+		color: #fff;
+		font-size: 11px;
+	}
+
+	.eo_widget_calendar table td.event a:after {
+		content: '';
+		margin-left: -5px;
+		border-top: 5px solid #404040;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+	}
+
+		.eo_widget_calendar table td.event a:hover:before,
+		.eo_widget_calendar table td.event a:hover:after {
+			visibility: visible;
+			opacity: 1;
+			bottom: calc( 100% + 5px );
+		}
+
 .eo_widget_calendar table tr:nth-child(odd) td.today:after {
 	content: '';
 	position: absolute;
@@ -2976,7 +3016,6 @@ object {
 
 .eo_widget_calendar table td.today,
 .eo_widget_calendar table td.today.event a {
-	font-family: 'Montserrat', Arial, sans-serif;
 	color: #fff;
 }
 
