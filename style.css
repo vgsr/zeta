@@ -877,6 +877,10 @@ body.home #content {
 			text-shadow: 0 0 5px rgba( 0, 0, 0, .3 );
 		}
 
+#secondary {
+	background: #fafafa;
+}
+
 #colophon,
 /*
  * Also apply this to all <p> after #page #colophon,
