@@ -492,7 +492,7 @@ table {
 	table th,
 	table td {
 		position: relative;
-		padding: 10px 7.5px;
+		padding: 10px 0;
 		text-align: left;
 		vertical-align: top;
 		word-wrap: break-word;
@@ -2946,7 +2946,7 @@ object {
 .eo_widget_calendar table td.event a {
 	position: relative;
 	display: block;
-	padding: 10px 7.5px;
+	padding: 10px 0;
 	background-color: rgba(2, 144, 7, .3);
 	font-family: 'Montserrat', Arial, sans-serif;
 	font-weight: bold;
