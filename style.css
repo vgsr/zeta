@@ -1443,12 +1443,6 @@ a:active {
 		-webkit-font-smoothing: antialiased;
 	}
 
-	.menu-toggle:hover,
-	.menu-toggle:focus,
-	.menu-toggled .main-navigation .menu-toggle {
-		box-shadow: none;
-	}
-
 		.menu-toggled .main-navigation .menu-toggle:before {
 			content: '\f335'; /* dashicons-no-alt */
 		}
