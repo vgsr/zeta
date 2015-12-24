@@ -477,7 +477,6 @@ img {
 }
 
 table {
-	float: left;
 	width: 100%;
 	margin: 1.5em 0 0;
 	table-layout: fixed;
