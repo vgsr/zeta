@@ -23,8 +23,6 @@ get_header(); ?>
 				?>
 			</header><!-- .page-header -->
 
-			<?php zeta_event_organiser_the_posts_navigation(); ?>
-
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 
