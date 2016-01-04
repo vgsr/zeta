@@ -1,3 +1,14 @@
+<?php
+
+/**
+ * BuddyPress - Members Single Profile Edit
+ *
+ * @package Zeta
+ * @subpackage BuddyPress
+ */
+
+?>
+
 <?php do_action( 'bp_before_profile_edit_content' );
 
 if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) ) :

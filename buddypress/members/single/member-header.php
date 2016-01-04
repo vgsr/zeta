@@ -4,7 +4,7 @@
  * BuddyPress - Users Header
  *
  * @package Zeta
- * @subpackage buddypress
+ * @subpackage BuddyPress
  */
 
 ?>

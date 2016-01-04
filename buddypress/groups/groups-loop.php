@@ -5,8 +5,8 @@
  *
  * Querystring is set via AJAX in _inc/ajax.php - bp_legacy_theme_object_filter()
  *
- * @package BuddyPress
- * @subpackage bp-legacy
+ * @package Zeta
+ * @subpackage BuddyPress
  */
 
 ?>

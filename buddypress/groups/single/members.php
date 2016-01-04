@@ -1,3 +1,14 @@
+<?php
+
+/**
+ * BuddyPress - Groups Single Members
+ *
+ * @package Zeta
+ * @subpackage BuddyPress
+ */
+
+?>
+
 <?php if ( bp_group_has_members( bp_ajax_querystring( 'group_members' ) ) ) : ?>
 
 	<?php do_action( 'bp_before_group_members_content' ); ?>

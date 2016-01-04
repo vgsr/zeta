@@ -1,3 +1,14 @@
+<?php
+
+/**
+ * BuddyPress - Groups Single Admin
+ *
+ * @package Zeta
+ * @subpackage BuddyPress
+ */
+
+?>
+
 <div class="item-list-tabs no-ajax" id="subnav" role="navigation">
 	<ul>
 		<?php bp_group_admin_tabs(); ?>
