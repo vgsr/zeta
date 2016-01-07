@@ -1191,7 +1191,7 @@ body.home #colophon {
 	 */
 	:target:before {
 		content: '';
-		display: inline-block;
+		display: block;
 		height: 80px; /* 45px header + 35px clearance */
 		margin-top: -80px;
 	}
