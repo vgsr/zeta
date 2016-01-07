@@ -107,7 +107,7 @@ endif;
  * @param array $args Comment query arguments
  * @return string Comment content
  */
-function zeta_comment_text( $content, $comment, $args ) {
+function zeta_comment_text( $content, $comment = 0, $args = array() ) {
 
 	// Only when we're looping a post's comments
 	if ( ! is_admin() && in_the_loop() ) {
