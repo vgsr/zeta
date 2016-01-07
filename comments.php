@@ -50,7 +50,7 @@ if ( post_password_required() ) {
 					'walker'      => new Zeta_Walker_Comment,
 					'style'       => 'ol',
 					'short_ping'  => true,
-					'avatar_size' => 40
+					'avatar_size' => 50
 				) );
 			?>
 		</ol><!-- .comment-list -->
@@ -76,6 +76,19 @@ if ( post_password_required() ) {
 		<p class="no-comments"><?php _e( 'Comments are closed.', 'zeta' ); ?></p>
 	<?php endif; ?>
 
-	<?php comment_form(); ?>
+	<?php
 
+		// Define comment form arguments
+		$args = array(
+			'logged_in_as'  => '<div class="comment-reply-avatar">' . get_avatar( get_current_user_id(), 50 ) . '</div>',
+			'comment_field' => '<div class="comment-form-comment"><label for="comment" class="screen-reader-text">' . _x( 'Comment', 'noun' ) . '</label> <textarea id="comment" name="comment" aria-required="true" required="required"></textarea></div>',
+			'submit_button' => '<input name="%1$s" type="submit" id="%2$s" class="%3$s" value="%4$s" /> &nbsp; ' . get_cancel_comment_reply_link( __( 'Cancel', 'zeta' ) ),
+			'label_submit'  => _x( 'Post', 'noun', 'zeta' ),
+		);
+
+		// Prevent rendering of default cancel comment reply link in the comment form
+		add_filter( 'cancel_comment_reply_link', '__return_empty_string' );
+		comment_form( $args );
+		remove_filter( 'cancel_comment_reply_link', '__return_empty_string' );
+	?>
 </div><!-- #comments -->

@@ -306,23 +306,6 @@ function zeta_search_form_modify( $html ) {
 add_filter( 'get_search_form', 'zeta_search_form_modify' );
 
 /**
- * Add a `screen-reader-text` class to the comment form's comment label.
- *
- * @since Zeta 1.0.0
- *
- * @param array $defaults Comment form default elements.
- * @return array Modified comment form default elements.
- */
-function zeta_comment_form_modify( $defaults ) {
-
-	// Give the comment field label a `screen-reader-text` class
-	$defaults['comment_field'] = str_replace( 'for="comment"', 'for="comment" class="screen-reader-text"', $defaults['comment_field'] );
-
-	return $defaults;
-}
-add_filter( 'comment_form_defaults', 'zeta_comment_form_modify' );
-
-/**
  * Custom template tags for this theme.
  */
 require( get_template_directory() . '/inc/template-tags.php' );

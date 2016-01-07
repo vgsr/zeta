@@ -1913,8 +1913,9 @@ input[type="submit"] {
 	border: 1px dashed #bbb;
 	background: #e6e6e6;
 	color: #404040;
-	font-family: 'Montserrat', Arial, sans-serif;
 	padding: 6px 12px;
+	vertical-align: middle;
+	font-family: 'Montserrat', Arial, sans-serif;
 	/* Animation */
 	-webkit-transition: background .2s ease-in, border .2s ease-in, color .2s ease-in;
 	transition: background .2s ease-in, border .2s ease-in, color .2s ease-in;
@@ -2581,55 +2582,79 @@ body.home .entry-footer {
 10.3 Comments
 --------------------------------------------------------------*/
 #comments ol {
+	display: inline-block;
 	margin: 1.5em 0 0 0;
-	padding: 0 0 0 55px; /* avatar size + 15px margin */
+	padding: 0;
 	list-style: none;
 }
 
+	#comments ol ol,
 	#comments ol > li:not(:first-child) {
-		margin: 1.5em 0 0 0;
+		margin: 15px 0 0 0;
+		padding-top: 15px;
+		border-top: 1px solid #f9f9f9;
 	}
 
-	.comment-body {
+	#comments ol > li {
 		position: relative;
+		padding-left: 75px;
 	}
 
-		.comment-body .avatar {
+	#comments .comment-list > li {
+		font-size: .9em;
+	}
+
+		#comments .comment-list > li li {
+			padding-left: 52px;
+		}
+
+		.comment-avatar,
+		.comment-reply-avatar {
 			position: absolute;
-			right: calc( 100% + 15px );
-			top: 3px;
-			width: 40px;
-			height: 40px;
+			left: 0;
 		}
 
-	.comment-meta,
-	.comment-actions {
-		font-family: 'Montserrat', Arial, sans-serif;
-		font-weight: normal;
-		color: #aaa;
-		font-size: .75em;
-	}
+			.comment-avatar a,
+			.comment-reply-avatar,
+			.comment-body.without-link .comment-avatar {
+				display: block;
+				width: 54px;
+				height: 54px;
+				background: #fff;
+				padding: 2px;
+				border-radius: 50%;
+			}
 
-		.comment-meta a,
-		.comment-actions a {
-			color: #aaa;
-		}
+			.comment-list ol .comment-avatar a,
+			.comment-list .comment-reply-avatar {
+				width: 38px;
+				height: 38px;
+			}
 
-		.comment-meta a:hover,
-		.comment-actions a:hover {
-			color: #aaa;
-		}
+				.comment-avatar img,
+				.comment-reply-avatar img {
+					border-radius: 50%;
+					width: 50px;
+					height: 50px;
+				}
+
+				.comment-list ol .comment-avatar img,
+				.comment-list .comment-reply-avatar img {
+					width: 34px;
+					height: 34px;
+				}
 
 		.comment-author {
 			display: inline;
+			font-family: 'Montserrat', Arial, sans-serif;
+			font-size: .9em;
+			font-weight: bold;
+			opacity: .8;
+			letter-spacing: 0px;
 		}
 
-		.comment-metadata {
-			float: right;
-		}
-
-	.comment-content p {
-		margin-top: 0.5em;
+	.comment-content p:first-child {
+		margin-top: 0;
 	}
 
 		.comment-awaiting-moderation {
@@ -2641,16 +2666,22 @@ body.home .entry-footer {
 	}
 
 	.comment-actions {
-		margin-top: 1em;
+		margin-top: 5px;
+		font-family: 'Montserrat', Arial, sans-serif;
+		font-weight: normal;
 		color: #aaa;
-		text-transform: uppercase;
 	}
 
-		.comment-actions span:not(:first-child):before {
-			content: '\2022'; /* dot separator */
-			margin: 0 10px;
+		.comment-actions a {
+			font-size: .8em;
+			opacity: .5;
+			padding: 0 5px 0 0;
 		}
 
+			.comment-actions a:hover {
+				opacity: .9;
+				text-decoration: none;
+			}
 
 .bypostauthor {
 	display: block;
@@ -2658,9 +2689,18 @@ body.home .entry-footer {
 
 .comment-list + #respond,
 .comment-list #respond {
+	position: relative;
+	border-top: 1px solid #f9f9f9;
+}
+
+.comment-list + #respond {
 	margin-top: 1.5em;
-	border-top: 1px dashed #ddd;
-	padding-top: 1.5em;
+	padding: 1.5em 0 0 75px;
+}
+
+.comment-list #respond {
+	margin-top: 15px;
+	padding: 15px 0 0 52px;
 }
 
 	#respond input:not([type="submit"]) {
@@ -2668,15 +2708,23 @@ body.home .entry-footer {
 		width: 70%;
 	}
 
-	#cancel-comment-reply-link {
-		color: #aaa;
+	.comment-list + #respond .comment-form-comment {
+		margin-top: 1.5em;
 	}
 
-		#cancel-comment-reply-link:before {
-			content: '\2022';
-			margin: 0 10px 0 5px;
+	.comment-list .comment-reply-title,
+	#respond .comment-reply-title #cancel-comment-reply-link {
+		display: none;
+	}
+
+		#respond #cancel-comment-reply-link:before {
 			display: inline-block;
+			vertical-align: middle;
 		}
+
+	#respond .form-submit {
+		margin: 0;
+	}
 
 /*--------------------------------------------------------------
 11.0 Infinite scroll

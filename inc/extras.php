@@ -90,6 +90,51 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	add_action( 'wp_head', 'zeta_render_title' );
 endif;
 
+/** Comments ***************************************************************/
+
+/**
+ * Modify the post's comment content
+ *
+ * @since 1.0.0
+ *
+ * @uses in_the_loop()
+ * @uses get_comment_author_url()
+ * @uses get_comment_author()
+ * @uses apply_filters() Calls 'get_comment_author_link'
+ *
+ * @param string $content Comment content
+ * @param WP_Comment $comment Comment object
+ * @param array $args Comment query arguments
+ * @return string Comment content
+ */
+function zeta_comment_text( $content, $comment, $args ) {
+
+	// Only when we're looping a post's comments
+	if ( ! is_admin() && in_the_loop() ) {
+
+		/**
+		 * Mimic {@see get_comment_author_link()}.
+		 */
+		$url    = get_comment_author_url( $comment );
+		$author = get_comment_author( $comment );
+
+		if ( empty( $url ) || 'http://' == $url ) {
+			$link = '<span class="comment-author">%2$s</span>';
+		} else {
+			$link = '<a href="%s" class="comment-author url" rel="external nofollow">%s</a>';
+		}
+
+		/** This filter is documented in wp-includes/comment-template.php */
+		$link = apply_filters( 'get_comment_author_link', sprintf( $link, $url, $author ), $author, $comment->comment_ID );
+
+		// Prepend the comment user's display name to the comment content
+		$content = "$link $content";
+	}
+
+	return $content;
+}
+add_filter( 'comment_text', 'zeta_comment_text', 4, 3 );
+
 /** Media ******************************************************************/
 
 /**

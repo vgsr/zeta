@@ -32,27 +32,22 @@ class Zeta_Walker_Comment extends Walker_Comment {
 	 * @param array  $args    An array of arguments.
 	 */
 	protected function html5_comment( $comment, $depth, $args ) {
-		$tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
-?>
-		<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $this->has_children ? 'parent' : '' ); ?>>
-			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
-				<footer class="comment-meta">
-					<div class="comment-author vcard">
-						<?php if ( 0 != $args['avatar_size'] ) {
-							$with_link = ( $url = get_comment_author_url() ) && ! ( empty( $url ) || 'http://' == $url );
-							printf( $with_link ? '<a href="%2$s">%1$s</a>' : '%1$s', get_avatar( $comment, $args['avatar_size'] ), $url );
-						} ?>
-						<?php printf( '<span class="fn">%s</span>', get_comment_author_link() ); ?>
-					</div><!-- .comment-author -->
 
-					<div class="comment-metadata">
-						<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
-							<time datetime="<?php comment_time( 'c' ); ?>" title="<?php printf( _x( '%1$s at %2$s', '1: date, 2: time' ), get_comment_date(), get_comment_time() ); ?>">
-								<?php comment_time( __( 'D. M jS', 'zeta' ) ); ?>
-							</time>
-						</a>
-					</div><!-- .comment-metadata -->
-				</footer><!-- .comment-meta -->
+		// Define enclosing HTML element
+		$tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
+
+		// Has comment author a uri?
+		$with_link = ( $url = get_comment_author_url() ) && ! ( empty( $url ) || 'http://' == $url );
+
+		?>
+
+		<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $this->has_children ? 'parent' : '' ); ?>>
+			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body <?php if ( ! $with_link ) { echo 'without-link'; } ?>">
+				<div class="comment-avatar">
+					<?php if ( 0 != $args['avatar_size'] ) {
+						printf( $with_link ? '<a href="%2$s">%1$s</a>' : '%1$s', get_avatar( $comment, $args['avatar_size'] ), $url );
+					} ?>
+				</div><!-- .comment-avatar -->
 
 				<div class="comment-content">
 					<?php if ( '0' == $comment->comment_approved ) : ?>
@@ -63,19 +58,26 @@ class Zeta_Walker_Comment extends Walker_Comment {
 				</div><!-- .comment-content -->
 
 				<div class="comment-actions">
-					<?php 
-					edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); 
-					comment_reply_link( array_merge( $args, array(
+					<?php edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
+
+					<?php comment_reply_link( array_merge( $args, array(
 						'add_below' => 'div-comment',
 						'depth'     => $depth,
 						'max_depth' => $args['max_depth'],
 						'before'    => '<span class="reply-link">',
 						'after'     => '</span>'
-					) ) );
-					?>
+					) ) ); ?>
+
+					<?php printf( '<span class="since-link"><a href="%s" class="post-comment-since"><time datetime="%s" title="%s">%s</time></a></span>',
+						esc_url( get_comment_link( $comment->comment_ID, $args ) ),
+						get_comment_time( 'c' ),
+						sprintf( _x( '%1$s at %2$s', '1: date, 2: time' ), get_comment_date(), get_comment_time() ),
+						// Use BP's time differ when present, else fallback to native WP's differ
+						function_exists( 'bp_core_time_since' ) ? bp_core_time_since( get_comment_time( 'c' ) ) : human_time_diff( get_comment_time( 'c' ) )
+					); ?>
 				</div>
 			</article><!-- .comment-body -->
-<?php
+		<?php
 	}
 }
 
