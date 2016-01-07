@@ -264,6 +264,7 @@ legend {
 
 textarea {
 	overflow: auto;
+	vertical-align: bottom;
 }
 
 optgroup {
@@ -2588,6 +2589,12 @@ body.home .entry-footer {
 	list-style: none;
 }
 
+#comments .comment-list,
+#comments .comment-list + #respond .comment-form,
+#comments > #respond .comment-form {
+	font-size: .9em;
+}
+
 	#comments ol ol,
 	#comments ol > li:not(:first-child) {
 		margin: 15px 0 0 0;
@@ -2598,10 +2605,6 @@ body.home .entry-footer {
 	#comments ol > li {
 		position: relative;
 		padding-left: 75px;
-	}
-
-	#comments .comment-list > li {
-		font-size: .9em;
 	}
 
 		#comments .comment-list > li li {
@@ -2657,7 +2660,8 @@ body.home .entry-footer {
 		margin-top: 0;
 	}
 
-		.comment-awaiting-moderation {
+		#comments .comment-awaiting-moderation {
+			margin-bottom: -1em; /* Decrease gap to next <p> */
 			font-style: italic;
 		}
 
@@ -2698,6 +2702,11 @@ body.home .entry-footer {
 	padding: 1.5em 0 0 75px;
 }
 
+body.logged-in #comments > #respond:first-child {
+	position: relative;
+	padding: 0 0 0 75px;
+}
+
 .comment-list #respond {
 	margin-top: 15px;
 	padding: 15px 0 0 52px;
@@ -2708,8 +2717,31 @@ body.home .entry-footer {
 		width: 70%;
 	}
 
-	.comment-list + #respond .comment-form-comment {
+	.comment-notes {
+		font-style: italic;
+	}
+
+	.comment-form-comment {
 		margin-top: 1.5em;
+	}
+
+		#respond .comment-form-comment ~ p {
+			display: inline-block;
+			width: 100%;
+			margin-top: 10px;
+		}
+
+		#respond .comment-form-comment ~ p label {
+			display: inline-block;
+			vertical-align: middle;
+			padding: 6px 0;
+		}
+
+	.comment-list #respond .comment-form p:first-child,
+	.comment-list #respond .comment-form div:first-child,
+	.comment-list #respond .comment-form .comment-reply-avatar + p,
+	.comment-list #respond .comment-form .comment-reply-avatar + div {
+		margin-top: 0 !important;
 	}
 
 	.comment-list .comment-reply-title,
@@ -2721,10 +2753,6 @@ body.home .entry-footer {
 			display: inline-block;
 			vertical-align: middle;
 		}
-
-	#respond .form-submit {
-		margin: 0;
-	}
 
 /*--------------------------------------------------------------
 11.0 Infinite scroll
