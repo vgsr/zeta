@@ -2749,10 +2749,19 @@ body.logged-in #comments > #respond:first-child {
 		display: none;
 	}
 
-		#respond #cancel-comment-reply-link:before {
-			display: inline-block;
-			vertical-align: middle;
-		}
+	#respond .form-submit #cancel-comment-reply-link {
+		display: inline-block;
+		vertical-align: middle;
+		padding: 7px 0;
+	}
+
+@media all and (max-width: 710px), (min-width: 741px) and (max-width: 998px) {
+	/* Threaded comments: -30px */
+	#comments .comment-list .children,
+	#comments .comment-list #respond {
+		margin-left: -30px;
+	}
+}
 
 /*--------------------------------------------------------------
 11.0 Infinite scroll
