@@ -125,7 +125,6 @@ function zeta_entry_meta() {
 }
 endif;
 
-
 if ( ! function_exists( 'zeta_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.
@@ -272,7 +271,6 @@ function zeta_categorized_blog() {
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
 			'hide_empty' => 1,
-
 			// We only need to know if there is more than one category.
 			'number'     => 2,
 		) );
