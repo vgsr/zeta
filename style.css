@@ -1381,7 +1381,7 @@ a:active {
 		width: 20px;
 		height: 20px;
 		font-size: 20px;
-		line-height: 20px;
+		line-height: 22px;
 		font-family: dashicons;
 		text-decoration: inherit;
 		font-weight: 400;
@@ -1432,7 +1432,7 @@ a:active {
 		width: 20px;
 		height: 20px;
 		font-size: 20px;
-		line-height: 22px;
+		line-height: 20px;
 		font-family: dashicons;
 		text-decoration: inherit;
 		font-weight: 400;
