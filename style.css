@@ -967,8 +967,8 @@ body.home #colophon {
 		position: fixed;
 		top: 0;
 		height: 45px;
-		font-size: .8rem;
 		background-color: rgba(2, 144, 7, .8);
+		font-size: .8rem;
 	}
 
 	body.admin-bar .site-header {
@@ -1432,7 +1432,7 @@ a:active {
 		width: 20px;
 		height: 20px;
 		font-size: 20px;
-		line-height: 20px;
+		line-height: 22px;
 		font-family: dashicons;
 		text-decoration: inherit;
 		font-weight: 400;
@@ -1639,7 +1639,6 @@ a:active {
 @media screen and (min-width: 561px) {
 	.main-navigation {
 		margin-bottom: 96px;
-		font-size: 1em;
 	}
 
 		.main-navigation .menu {
@@ -1653,11 +1652,6 @@ a:active {
 			height: 46px;
 			padding: 13px;
 			line-height: 46px;
-		}
-
-		.dropdown-toggle {
-			height: 38px;
-			width: 38px;
 		}
 
 	.main-navigation ul.tools-nav {
@@ -1688,6 +1682,7 @@ a:active {
 		top: 0;
 		margin: 0;
 		padding: 0;
+		font-size: 1em;
 	}
 
 		.main-navigation > div {
@@ -1733,8 +1728,8 @@ a:active {
 
 	.main-navigation .menu > li > a {
 		height: 45px;
-		font-size: 1.1em;
 		padding: 0 17px;
+		font-size: 1.1em;
 		line-height: 45px;
 	}
 
