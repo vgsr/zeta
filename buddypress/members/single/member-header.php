@@ -12,53 +12,41 @@
 <?php do_action( 'bp_before_member_header' ); ?>
 
 <div id="item-header-avatar">
-	<a href="<?php bp_is_my_profile() ? bp_members_component_link( 'profile', 'change-avatar' ) : bp_displayed_user_link(); ?>">
-
+	<a class="item-avatar" href="<?php bp_is_my_profile() ? bp_members_component_link( 'profile', 'change-avatar' ) : bp_displayed_user_link(); ?>">
 		<?php bp_displayed_user_avatar( 'type=full' ); ?>
-
 	</a>
+
+	<?php if ( bp_is_my_profile() ) : ?>
+	<a class="change-avatar" href="<?php bp_members_component_link( 'profile', 'change-avatar' ); ?>"><span class="bp-screen-reader-text"><?php _e( 'Change your profile photo', 'zeta' ); ?></span></a>
+	<?php endif; ?>
 </div><!-- #item-header-avatar -->
 
 <div id="item-header-content">
-
-	<h2 class="entry-title"><?php the_title(); ?></h2>
-
-	<?php if ( bp_activity_do_mentions() ) : // && bp_is_active( 'activity' ) ?>
-		<span class="user-nicename">@<?php bp_displayed_user_mentionname(); ?></span>
-	<?php endif; ?>
-
-	<!-- <span class="activity"><?php bp_last_activity( bp_displayed_user_id() ); ?></span> -->
 
 	<?php do_action( 'bp_before_member_header_meta' ); ?>
 
 	<div id="item-meta">
 
 		<?php if ( bp_is_active( 'activity' ) ) : ?>
+		<div id="latest-update"><?php
+			bp_activity_latest_update( bp_displayed_user_id() );
+		?></div>
+		<?php endif;
 
-			<div id="latest-update">
-
-				<?php bp_activity_latest_update( bp_displayed_user_id() ); ?>
-
-			</div>
-
-		<?php endif; ?>
-
-		<div id="item-buttons">
-
-			<?php do_action( 'bp_member_header_actions' ); ?>
-
-		</div><!-- #item-buttons -->
-
-		<?php
-		/***
+		/**
 		 * If you'd like to show specific profile fields here use:
 		 * bp_member_profile_data( 'field=About Me' ); -- Pass the name of the field
 		 */
-		 do_action( 'bp_profile_header_meta' );
+		do_action( 'bp_profile_header_meta' );
 
-		 ?>
-
+		?>
 	</div><!-- #item-meta -->
+
+	<div id="item-actions"><?php
+		do_action( 'bp_member_header_actions' );
+	?></div><!-- #item-actions -->
+
+	<button class="item-actions-toggle" aria-controls="actions" aria-expanded="false"><?php _e( 'Actions', 'zeta' ); ?></button>
 
 </div><!-- #item-header-content -->
 

@@ -79,26 +79,26 @@
  * Handles toggling the tools elements for all screens.
  */
 ( function( $ ) {
-	var $body = $( 'body' ),
-	    $toolsNav = $body.find( '.tools-nav li:not(.no-toggle)' ),
-	    $toolsContainer = $body.find( '#site-tools' );
+	var _body = $( 'body' ),
+	    _toolsNav = _body.find( '.tools-nav li:not(.no-toggle)' ),
+	    _toolsContainer = _body.find( '#site-tools' );
 
-	$toolsNav.each( function() {
-		var $nav  = $(this),
-		    $tool = $toolsContainer.find( '#site-tool-' + $nav.data( 'tool' ) );
+	_toolsNav.each( function() {
+		var _nav  = $(this),
+		    _tool = _toolsContainer.find( '#site-tool-' + _nav.data( 'tool' ) );
 
-		$nav.on( 'click', 'a', function( e ) {
+		_nav.on( 'click', 'a', function( e ) {
 			e.preventDefault();
 
-			if ( $body.hasClass( 'tools-toggled' ) ) {
-				$toolsNav.removeClass( 'toggled' );
+			if ( _body.hasClass( 'tools-toggled' ) ) {
+				_toolsNav.removeClass( 'toggled' );
 
-				if ( $tool.is( ':visible' ) ) {
-					$body.removeClass( 'tools-toggled' );
-					$tool.hide();
+				if ( _tool.is( ':visible' ) ) {
+					_body.removeClass( 'tools-toggled' );
+					_tool.hide();
 				} else {
-					$nav.addClass( 'toggled' );
-					$tool.show()
+					_nav.addClass( 'toggled' );
+					_tool.show()
 						.siblings()
 							.hide()
 							.end()
@@ -108,9 +108,9 @@
 				}
 
 			} else {
-				$body.addClass( 'tools-toggled' );
-				$nav.addClass( 'toggled' );
-				$tool.show()
+				_body.addClass( 'tools-toggled' );
+				_nav.addClass( 'toggled' );
+				_tool.show()
 					.find( 'input[type!="hidden"], textarea' )
 						.first()
 							.focus();
@@ -119,3 +119,45 @@
 	});
 
 } )( jQuery );
+
+/**
+ * BuddyPress
+ *
+ * Handles toggling the item actions menu for all screens.
+ */
+( function() {
+	var container, button, actions;
+
+	container = document.getElementById( 'item-header-content' );
+	if ( ! container ) {
+		return;
+	}
+
+	button = container.getElementsByTagName( 'button' )[0];
+	if ( 'undefined' === typeof button ) {
+		return;
+	}
+
+	actions = document.getElementById( 'item-actions' );
+
+	// Hide actions toggle button if actions is empty and return early.
+	if ( ! actions.childNodes.length ) {
+		button.style.display = 'none';
+		return;
+	}
+
+	actions.setAttribute( 'aria-expanded', 'false' );
+
+	button.onclick = function() {
+		if ( -1 !== document.body.className.indexOf( 'item-actions-toggled' ) ) {
+			document.body.className = document.body.className.replace( ' item-actions-toggled', '' );
+			button.setAttribute( 'aria-expanded', 'false' );
+			actions.setAttribute( 'aria-expanded', 'false' );
+		} else {
+			document.body.className += ' item-actions-toggled';
+			button.setAttribute( 'aria-expanded', 'true' );
+			actions.setAttribute( 'aria-expanded', 'true' );
+		}
+	};
+
+} )();

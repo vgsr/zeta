@@ -73,7 +73,7 @@ class Zeta_Walker_Comment extends Walker_Comment {
 						get_comment_time( 'c' ),
 						sprintf( _x( '%1$s at %2$s', '1: date, 2: time' ), get_comment_date(), get_comment_time() ),
 						// Use BP's time differ when present, else fallback to native WP's differ
-						function_exists( 'bp_core_time_since' ) ? bp_core_time_since( get_comment_time( 'c' ) ) : human_time_diff( get_comment_time( 'c' ) )
+						function_exists( 'bp_core_time_since' ) ? bp_core_time_since( get_comment_time( 'U' ) ) : human_time_diff( get_comment_time( 'U' ) )
 					); ?>
 				</div>
 			</article><!-- .comment-body -->

@@ -2418,7 +2418,7 @@ input.search-field {
 }
 
 .entry-content {
-	margin: 0.5em 0 0;
+	margin: 0;
 }
 
 .entry-content h2,
@@ -2499,22 +2499,18 @@ body.home .entry-content {
 .entry-meta,
 .entry-footer {
 	font-family: 'Montserrat', Arial, sans-serif;
-	text-transform: uppercase;
 	font-size: .75em;
-	color: #999;
 	text-align: center;
+	color: rgba(64, 64, 64, .5);
 }
 
 body.home .entry-footer {
 	display: none;
 }
 
-	.entry-meta:not(:empty) {
-		margin-top: 1.5em;
-	}
-
+	.entry-meta:not(:empty),
 	.entry-footer:not(:empty) {
-		margin: 2em 0 0;
+		margin-top: 1.5em;
 	}
 
 	.entry-meta span {
