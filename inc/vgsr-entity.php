@@ -11,7 +11,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // Bail when plugin is not active
-if ( ! function_exists( 'vgsr_entity' ) )
+if ( ! function_exists( 'vgsr_entity' ) || version_compare( vgsr_entity()->version, '2.0.0', '<' ) )
 	return;
 
 /** Template ***************************************************************/
