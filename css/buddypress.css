@@ -128,7 +128,7 @@
 		#buddypress .item-list-tabs ul li.filter select,
 		#buddypress .item-list-tabs ul li.last select {
 			width: auto;
-			padding: 9px 10px 10px;
+			padding: 9px 0 10px;
 			margin-left: 5px;
 			background: none;
 			border: 0;
@@ -148,6 +148,13 @@
 	#buddypress .button-nav li.selected {
 		background: none;
 		margin: 0 10px;
+	}
+
+	#buddypress .item-list-tabs ul li.current:first-child,
+	#buddypress .item-list-tabs ul li.selected:first-child,
+	#buddypress .button-nav li.current:first-child,
+	#buddypress .button-nav li.selected:first-child {
+		margin-left: -10px;
 	}
 
 		#buddypress .item-list-tabs ul li a,
@@ -219,6 +226,7 @@
 --------------------------------------------------------------*/
 #buddypress .dir-search {
 	position: relative;
+	margin-top: 1.5em;
 	z-index: 1;
 }
 
