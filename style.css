@@ -2441,6 +2441,10 @@ input.search-field {
 	padding-left: 2em;
 }
 
+.entry-content p img {
+	margin: 1.5em 0 .5em;
+}
+
 body.home .entry-content {
 	margin: 0;
 }
