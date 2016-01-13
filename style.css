@@ -2522,35 +2522,55 @@ body.home .entry-footer {
 	.entry-meta a:visited,
 	.entry-footer a,
 	.entry-footer a:visited {
-		color: #999;
+		color: rgba(64, 64, 64, .5);
 		text-decoration: none;
-		border-bottom: 1px solid rgba(153, 153, 153, .3);
 	}
 
 	#colophon a,
 	#colophon a:visited {
 		color: #404040;
 		text-decoration: none;
-		border-bottom: 1px solid rgba(64, 64, 64, .3);
 	}
 
-	.entry-meta a:hover,
-	.entry-footer a:hover,
-	#colophon a:hover {
-		color: #fff;
-		background-color: rgba(191, 38, 105, .8);
-		border-color: rgba(191, 38, 105, .8);
-	}
+		.entry-meta a:hover,
+		.entry-footer a:hover,
+		#colophon a:hover {
+			color: rgba(64, 64, 64, .9);
+		}
 
-	.entry-meta > *:not(:first-child):not(.byline):before {
-		content: '\2022'; /* dot separator */
-		margin: 0 5px;
-	}
+		.entry-meta > *:not(:first-child):not(.byline):before {
+			content: '\2022'; /* dot separator */
+			margin: 0 5px;
+		}
 
-	.entry-footer > *:not(:first-child):before {
-		content: '\2022'; /* dot separator */
-		margin: 0 10px;
-	}
+		.entry-footer span:before,
+		.entry-footer a:before {
+			content: '';
+			vertical-align: bottom;
+			font-family: dashicons;
+			font-size: 1.2em;
+		}
+
+			.entry-footer a:not(.cat-links a):not(.tag-links a):before {
+				margin-right: 8px;
+			}
+
+			span.cat-links:before {
+				content: '\f318'; /* dashicons-category */
+			}
+
+			span.tag-links:before {
+				content: '\f323'; /* dashicons-tag */
+			}
+
+			span.comments-link a:before {
+				content: '\f125'; /* dashicons-format-chat */
+				margin-right: 4px;
+			}
+
+			span.edit-link a:before {
+				content: '\f464'; /* dashicons-edit */
+			}
 
 .widget-title {
 	margin: 0;
