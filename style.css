@@ -49,7 +49,8 @@
 	13.1 Event Organiser
 	13.2 VGSR Entity
 	13.3 VGSR Widgets
-	13.4 Column Shortcodes
+	13.4 Gravity Forms
+	13.5 Column Shortcodes
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -3204,7 +3205,40 @@ object {
 }
 
 /*--------------------------------------------------------------
-13.4 Column Shortcodes
+13.4 Gravity Forms
+--------------------------------------------------------------*/
+#page .gform_wrapper {
+	margin: 0;
+	max-width: inherit;
+}
+
+	#page .gform_wrapper .gfield_label,
+	#page .gform_wrapper .gfield_label + .ginput_container {
+		margin: .5em 0 0;
+	}
+
+	#page .gform_wrapper .top_label .gfield:first-child .gfield_label,
+	#page .gform_wrapper .bottom_label .gfield:first-child .ginput_container {
+		margin: 0;
+	}
+
+	#page .gform_wrapper .gform_footer {
+		padding: 0;
+		margin: 1.5em 0 0;
+	}
+
+	#page .gform_wrapper input[type=text],
+	#page .gform_wrapper input[type=url],
+	#page .gform_wrapper input[type=email],
+	#page .gform_wrapper input[type=tel],
+	#page .gform_wrapper input[type=number],
+	#page .gform_wrapper input[type=password] {
+		text-indent: inherit;
+		font-size: 
+	}
+
+/*--------------------------------------------------------------
+13.5 Column Shortcodes
 --------------------------------------------------------------*/
 
 .entry-content .content-column {
