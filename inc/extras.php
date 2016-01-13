@@ -950,7 +950,7 @@ function zeta_count_widgets_with_setting( $sidebar_id, $key, $value = null ) {
 	$sidebars = wp_get_sidebars_widgets();
 
 	// Bail when sidebar is not found
-	if ( ! isset( $sidebars[ $sidebar_id ] ) )
+	if ( ! isset( $sidebars[ $sidebar_id ] ) || ! is_array( $sidebars[ $sidebar_id ] ) )
 		return false;
 
 	// Define local variable(s)
