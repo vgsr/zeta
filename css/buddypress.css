@@ -323,24 +323,45 @@
 
 	#buddypress #item-actions:empty,
 	#buddypress #item-actions:empty + .item-actions-toggle,
-	.no-js #buddypress .item-actions-toggle {
+	.no-js #buddypress .item-actions-toggle,
+	#buddypress .item-list .action:empty,
+	#buddypress .item-list .action:empty + .action-toggle,
+	.no-js #buddypress .item-list .action-toggle {
 		display: none; /* Hide when without actions */
 	}
 
-	.no-js #buddypress #item-actions {
+	.no-js #buddypress #item-actions,
+	.no-js #buddypress .item-list .action {
 		display: inline-block;
 		margin-top: 1em;
 	}
 
-	.js #buddypress #item-actions {
+	.js #buddypress #item-actions,
+	.js #buddypress .item-list .action {
 		position: absolute;
 		top: 52px;
 		right: 15px;
 		width: 155px;
 		z-index: 1;
+		/* Hide by default */
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		/* Animation */
+		-webkit-transition: top .25s ease-in, opacity .25s ease-in;
+		transition: top .25s ease-in, opacity .25s ease-in;
 	}
 
-		.js #buddypress #item-actions:before {
+	.item-actions-toggled #buddypress #item-actions,
+	#buddypress .item-list li.actions-toggled .action {
+		top: 62px; /* Animate position */
+		opacity: 1;
+		visibility: visible;
+		pointer-events: inherit;
+	}
+
+		.js #buddypress #item-actions:before,
+		.js #buddypress .item-list .action:before {
 			content: '';
 			position: absolute;
 			bottom: 100%;
@@ -351,34 +372,28 @@
 			border-right: 5px solid transparent;
 		}
 
-		.js #buddypress #item-actions,
-		.js #buddypress #item-actions:before {
-			visibility: hidden;
-			opacity: 0;
-			pointer-events: none;
-			/* Animation */
-			-webkit-transition: all .25s ease-in;
-			transition: all .25s ease-in;
-		}
-
-		.item-actions-toggled #buddypress #item-actions,
-		.item-actions-toggled #buddypress #item-actions:before {
-			visibility: visible;
-			opacity: 1;
-			pointer-events: inherit;
-		}
-
-		.item-actions-toggled #buddypress #item-actions {
-			top: 62px; /* Animate position */
-		}
-
-			.js #buddypress #item-actions .generic-button {
+			.js #buddypress #item-actions .generic-button,
+			.js #buddypress .item-list .action .generic-button {
 				position: relative;
 				float: left;
 				width: 100%;
 			}
 
-	#buddypress .item-actions-toggle {
+				.js #buddypress #item-actions .generic-button a,
+				.js #buddypress .item-list .action .generic-button a {
+					position: relative;
+					padding-left: 28px;
+				}
+
+					.js #buddypress #item-actions .generic-button a:before,
+					.js #buddypress .item-list .action .generic-button a:before {
+						position: absolute;
+						left: 8px;
+						margin: 0;
+					}
+
+	#buddypress .item-actions-toggle,
+	#buddypress .item-list .action-toggle {
 		position: absolute;
 		right: 15px;
 		top: 15px;
@@ -397,11 +412,14 @@
 	}
 
 		#buddypress .item-actions-toggle:hover,
-		.item-actions-toggled #buddypress .item-actions-toggle {
+		.item-actions-toggled #buddypress .item-actions-toggle,
+		#buddypress .item-list .action-toggle:hover,
+		#buddypress .item-list li.actions-toggled .action-toggle {
 			border-color: rgba(64, 64, 64, .1);
 		}
 
-		#buddypress .item-actions-toggle:before {
+		#buddypress .item-actions-toggle:before,
+		#buddypress .item-list .action-toggle:before {
 			content: "\2022\2022\2022"; /* three dots */
 			display: inline-block;
 			width: 20px;
@@ -419,20 +437,12 @@
 			-webkit-font-smoothing: antialiased;
 		}
 
-			.item-actions-toggled #buddypress .item-actions-toggle:before {
+			.item-actions-toggled #buddypress .item-actions-toggle:before,
+			#buddypress .item-list li.actions-toggled .action-toggle:before {
 				content: '\f335'; /* dashicons-no-alt */
 				font-size: 20px;
 				font-family: dashicons;
 			}
-
-	#buddypress #item-header-content > span {
-		font: 1em 'Montserrat', Arial, sans-serif;
-	}
-
-		#buddypress #item-header-content > span:not(:last-of-type):after {
-			content: ' \2022';
-			margin: 0 10px;
-		}
 
 	#buddypress #latest-update:not(:empty) {
 		margin-top: 1.5em;
@@ -576,7 +586,24 @@
 			height: 160px;
 		}
 
-	#buddypress .item-actions-toggle {
+	.js #buddypress #item-actions,
+	.js #buddypress .item-list .action {
+		top: 57px;
+		right: 7px;
+	}
+
+	.item-actions-toggled #buddypress #item-actions,
+	#buddypress .item-list li.action-toggled .action {
+		top: 67px; /* Animate position */
+	}
+
+		.js #buddypress #item-actions:before,
+		.js #buddypress .item-list .action:before {
+			right: 23px;
+		}
+
+	#buddypress .item-actions-toggle,
+	#buddypress .item-list .action-toggle {
 		top: 7px;
 		right: 7px;
 		width: 46px;
@@ -584,19 +611,6 @@
 		padding: 13px;
 		line-height: 46px;
 	}
-
-	.js #buddypress #item-actions {
-		top: 57px;
-		right: 7px;
-	}
-
-	.item-actions-toggled #buddypress #item-actions {
-		top: 67px; /* Animate position */
-	}
-
-		.js #buddypress #item-actions:before {
-			right: 23px;
-		}
 }
 
 @media screen and (min-width: 741px) {
