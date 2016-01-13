@@ -885,7 +885,11 @@ body.home #content {
 	background: #fafafa;
 }
 
-#colophon,
+body.home #colophon {
+	display: none;
+}
+
+#colophon .site-info,
 /*
  * Also apply this to all <p> after #page #colophon,
  * which are added at `do_action( 'wp_footer' )`.
@@ -900,9 +904,10 @@ body.home #content {
 	font-size: .75em;
 }
 
-body.home #colophon {
-	display: none;
-}
+	#colophon .footer-area {
+		padding: 35px;
+		background-color: #efefef;
+	}
 
 @media screen and (min-width: 561px) {
 	.site-branding {
