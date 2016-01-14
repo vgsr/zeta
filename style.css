@@ -734,7 +734,7 @@ body.home #header-aside {
 		margin: 0;
 		padding: 0;
 		list-style: none;
-		z-index: 499;
+		z-index: 498;
 		opacity: 0;
 		-webkit-transition: opacity .2s ease-in;
 		transition: opacity .2s ease-in;
