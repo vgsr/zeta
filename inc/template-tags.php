@@ -82,18 +82,13 @@ function zeta_posted_on() {
 		esc_html( get_the_modified_date() )
 	);
 
-	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'zeta' ),
-		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+	$posted_on = sprintf( '<a href="%s" rel="bookmark" title="%s">%s</a>',
+		esc_url( get_permalink() ),
+		sprintf( esc_attr_x( 'Posted by %s', 'post author', 'zeta' ), get_the_author() ),
+		$time_string
 	);
 
-	$byline = sprintf(
-		_x( 'by %s', 'post author', 'zeta' ),
-		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
-	);
-
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
-
+	echo '<span class="posted-on">' . sprintf( _x( 'Posted on %s', 'post date', 'zeta' ), $posted_on ) . '</span>';
 }
 endif;
 
@@ -131,7 +126,7 @@ if ( ! function_exists( 'zeta_entry_footer' ) ) :
  */
 function zeta_entry_footer() {
 
-	// Hide category and tag text for pages.
+	// Show category and tag text for posts
 	if ( 'post' == get_post_type() ) {
 
 		/* translators: used between list items, there is a space after the comma */
