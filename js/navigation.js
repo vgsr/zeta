@@ -79,23 +79,30 @@
  * Handles toggling the tools elements for all screens.
  */
 ( function( $ ) {
-	var _body = $( 'body' ),
-	    _toolsNav = _body.find( '.tools-nav li:not(.no-toggle)' ),
-	    _toolsContainer = _body.find( '#site-tools' );
 
-	_toolsNav.each( function() {
+	// Get the body and tool elements
+	var $body = $( 'body' ),
+	    $toolsNav = $body.find( '.tools-nav li:not(.no-toggle)' ),
+	    $toolsContainer = $body.find( '#site-tools' );
+
+	// Walk all tool elements and toggle their active state
+	$toolsNav.each( function() {
 		var _nav  = $(this),
-		    _tool = _toolsContainer.find( '#site-tool-' + _nav.data( 'tool' ) );
+		    _tool = $toolsContainer.find( '#site-tool-' + _nav.data( 'tool' ) );
 
 		_nav.on( 'click', 'a', function( e ) {
 			e.preventDefault();
 
-			if ( _body.hasClass( 'tools-toggled' ) ) {
-				_toolsNav.removeClass( 'toggled' );
+			// Tools have been toggled
+			if ( $body.hasClass( 'tools-toggled' ) ) {
+				$toolsNav.removeClass( 'toggled' );
 
+				// Close opened tool
 				if ( _tool.is( ':visible' ) ) {
-					_body.removeClass( 'tools-toggled' );
+					$body.removeClass( 'tools-toggled' );
 					_tool.hide();
+
+				// Open new tool
 				} else {
 					_nav.addClass( 'toggled' );
 					_tool.show()
@@ -105,18 +112,26 @@
 						.find( 'input[type!="hidden"], textarea' )
 							.first()
 								.focus();
+
+					// Hide navigation menu
+					$body.removeClass( 'menu-toggled' );
 				}
 
+			// Toggle tool
 			} else {
-				_body.addClass( 'tools-toggled' );
+				$body.addClass( 'tools-toggled' )
+					// Hide navigation menu
+					.removeClass( 'menu-toggled');
 				_nav.addClass( 'toggled' );
+
+				// Focus on the first focusable input field
 				_tool.show()
 					.find( 'input[type!="hidden"], textarea' )
 						.first()
 							.focus();
 			}
-		});
-	});
+		} );
+	} );
 
 } )( jQuery );
 
