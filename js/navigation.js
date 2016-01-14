@@ -74,6 +74,50 @@
 } )( jQuery );
 
 /**
+ * Navigation
+ *
+ * Handles toggling fixed menu state for small screens
+ */
+( function( $ ) {
+
+	// Get the body element
+	var $body = $( 'body' ), w = window, d = document, e = d.documentElement, b = d.body,
+	    fixHeader, width;
+
+	// This logic is only needed with the Admin Bar
+	if ( ! $body.hasClass( 'admin-bar' ) )
+		return;
+
+	/**
+	 * Runs logic to fix the header
+	 */
+	fixHeader = function() {
+		width = ( w.innerWidth || e.clientWidth || b.clientWidth );
+
+		// Bail when window is larger than 740px
+		if ( width >= 741 )
+			return;
+
+		// Add body class beyond 46px scroll top
+		// 46 is the height of the admin bar on smaller screens
+		if ( w.pageYOffset > 46 && ! $body.hasClass( 'fixed-header' ) ) {
+			$body.addClass( 'fixed-header' );
+
+		// Remove body class below 46px scroll top
+		} else if ( w.pageYOffset <= 46 && $body.hasClass( 'fixed-header' ) ) {
+			$body.removeClass( 'fixed-header' );
+		}
+	}
+
+	// Run on scroll & resize
+	$(document).on( 'scroll resize', fixHeader );
+
+	// Run on first load
+	fixHeader();
+
+} )( jQuery );
+
+/**
  * Tools
  * 
  * Handles toggling the tools elements for all screens.

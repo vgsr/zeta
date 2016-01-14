@@ -552,14 +552,29 @@ body.admin-bar #page {
 }
 
 .site-header {
-	position: relative;
 	float: left;
 	width: 100%;
 	padding: 0;
 	color: #fff;
 	font-size: 1.2rem;
 	z-index: 499; /* Below the admin bar. */
-	background-color: rgba(2, 144, 7, .8);
+	background: rgb(52, 166, 56); /* rgba(2, 144, 7, .8) on #fff background */
+
+	/* Fixed */
+	position: fixed;
+	top: 0;
+}
+
+body.admin-bar .site-header {
+	position: relative; /* Unfixed (initially) */
+}
+
+body.fixed-header.admin-bar .site-header {
+	position: fixed; /* Fixed again */
+}
+
+.menu-toggled .site-header {
+	box-shadow: 0 2px 5px rgba(64, 64, 64, .15);
 }
 
 	.site-header a,
@@ -602,6 +617,15 @@ body.admin-bar #page {
 	float: left;
 	width: 100%;
 	z-index: 1;
+	margin-top: 62px;
+}
+
+body.admin-bar #site-tools {
+	margin-top: 0;
+}
+
+body.fixed-header.admin-bar #site-tools {
+	margin-top: 62px;
 }
 
 	#site-tools .site-tool {
@@ -922,17 +946,13 @@ body.home #colophon {
 			line-height: 46px;
 		}
 
+	#site-tools,
+	body.fixed-header.admin-bar #site-tools {
+		margin-top: 76px;
+	}
+
 	#header-aside {
 		height: 280px;
-	}
-
-	body.home #header-aside {
-		top: 76px;
-		height: auto;
-	}
-
-	body.home.admin-bar #header-aside {
-		top: 122px;
 	}
 
 		.menu-toggled #header-aside .slider {
@@ -952,10 +972,18 @@ body.home #colophon {
 			.widget-area > * {
 				background-color: #fff;
 			}
+}
 
-			body.home .content-area .site-main > * {
-				background-color: transparent;
-			}
+/* WP's Admin Bar fixed */
+@media screen and (min-width: 601px) {
+	body.admin-bar .site-header {
+		position: fixed;
+		top: 46px;
+	}
+
+	body.admin-bar #site-tools {
+		margin-top: 76px;
+	}
 }
 
 @media screen and (min-width: 741px) {
@@ -968,7 +996,7 @@ body.home #colophon {
 		position: fixed;
 		top: 0;
 		height: 45px;
-		background-color: rgba(2, 144, 7, .8);
+		background: rgba(2, 144, 7, .8);
 		font-size: .8rem;
 	}
 
@@ -1042,23 +1070,14 @@ body.home #colophon {
 	#site-tools {
 		display: none;
 		float: right;
+		margin-top: 0;
 		background-color: #fff;
 		border-left: 1px solid #efefef;
 		border-bottom: 1px dashed #ddd;
 	}
 
-	body.home #site-tools {
-		position: absolute;
-		top: 53px;
-		right: 8px;
-		width: 400px;
-		margin: 0;
-		border: none;
-		box-shadow: 0 0 5px rgba(0, 0, 0, .3);
-	}
-
-	body.home.admin-bar #site-tools {
-		top: 99px;
+	body.admin-bar #site-tools {
+		margin-top: 0;
 	}
 
 		.tools-toggled #site-tools {
@@ -1286,15 +1305,14 @@ a:active {
 --------------------------------------------------------------*/
 .main-navigation {
 	clear: both;
-	margin-bottom: 62px;
+	margin-top: 62px;
 	font-size: .8em;
 }
 
 .main-navigation .menu {
 	display: none;
 	float: left;
-	margin-top: 62px; /* Below .site-branding */
-	background-color: #fff;
+	background: #fff;
 }
 
 	.site-header .menu a,
@@ -1521,7 +1539,6 @@ a:active {
 }
 
 .main-navigation .menu-social ~ .menu-primary .menu {
-	margin-top: 0;
 	padding-top: 0;
 }
 
@@ -1640,12 +1657,8 @@ a:active {
 
 @media screen and (min-width: 561px) {
 	.main-navigation {
-		margin-bottom: 76px;
+		margin-top: 76px;
 	}
-
-		.main-navigation .menu {
-			margin-top: 76px;
-		}
 
 		/* Small menu. */
 		.menu-toggle {
