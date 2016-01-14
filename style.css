@@ -910,10 +910,6 @@ body.home #colophon {
 	}
 
 @media screen and (min-width: 561px) {
-	.site-branding {
-		padding: 25px 35px;
-	}
-
 		.site-branding .site-title {
 			font-size: 2em;
 		}
@@ -931,12 +927,12 @@ body.home #colophon {
 	}
 
 	body.home #header-aside {
-		top: 96px;
+		top: 76px;
 		height: auto;
 	}
 
 	body.home.admin-bar #header-aside {
-		top: 142px;
+		top: 122px;
 	}
 
 		.menu-toggled #header-aside .slider {
@@ -1644,16 +1640,15 @@ a:active {
 
 @media screen and (min-width: 561px) {
 	.main-navigation {
-		margin-bottom: 96px;
+		margin-bottom: 76px;
 	}
 
 		.main-navigation .menu {
-			margin-top: 96px;
+			margin-top: 76px;
 		}
 
 		/* Small menu. */
 		.menu-toggle {
-			top: 25px;
 			width: 46px;
 			height: 46px;
 			padding: 13px;
@@ -1661,7 +1656,6 @@ a:active {
 		}
 
 	.main-navigation ul.tools-nav {
-		top: 25px;
 		right: calc( 35px + 46px + 25px );
 	}
 
