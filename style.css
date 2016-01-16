@@ -2215,7 +2215,7 @@ input[type="radio"] {
 /*--------------------------------------------------------------
 9.1 Widget Area
 --------------------------------------------------------------*/
-.widget-area aside {
+.widget {
 	position: relative;
 	float: left;
 	width: 100%;
@@ -2223,25 +2223,25 @@ input[type="radio"] {
 	border-top: 1px dashed #ddd;
 }
 
-	.widget-area aside .widget-title ~ *,
-	.widget-area aside .widget-title + .screen-reader-text + * {
+	.widget .widget-title ~ *,
+	.widget .widget-title + .screen-reader-text + * {
 		margin-top: 1.5em;
 	}
 
-	.widget-area aside ul {
+	.widget ul {
 		list-style: none;
 		margin-left: 0;
 		padding: 0;
 	}
 
-	.widget-area aside li.current-menu-item > a {
+	.widget li.current-menu-item > a {
 		color: #404040;
 		font-weight: bold;
 	}
 
 /* Make sure select elements and search boxes fit in widgets. */
-.widget-area aside select,
-.widget-area aside input[type="search"] {
+.widget select,
+.widget input[type="search"] {
 	max-width: 100%;
 }
 
@@ -2251,7 +2251,7 @@ input.search-field {
 
 /* Breakpoint 1 */
 @media screen and (min-width: 561px) {
-	.widget-area aside {
+	.widget {
 		padding: 35px;
 	}
 }
@@ -2270,7 +2270,7 @@ input.search-field {
  *  758    = (( 166.66 * 2 ) + ( 1 * 35 ) + ( 2 * 35 )) / 58%
  */
 @media screen and (min-width: 438.32px) and (max-width: 710px), (min-width: 758px) {
-	.widget-area aside ul:not(.sub-menu):not(.children) {
+	.widget ul:not(.sub-menu):not(.children) {
 		   -moz-column-count: 2;
 		-webkit-column-count: 2;
 		        column-count: 2;
@@ -2281,7 +2281,7 @@ input.search-field {
 }
 
 @media screen and (min-width: 710px) and (max-width: 740px), (min-width: 1120px) {
-	.widget-area aside.full-width ul:not(.sub-menu):not(.children) {
+	.widget.full-width ul:not(.sub-menu):not(.children) {
 		   -moz-column-count: 3;
 		-webkit-column-count: 3;
 		        column-count: 3;
@@ -2295,33 +2295,33 @@ input.search-field {
 		flex-flow: row wrap;
 	}
 
-	.widget-area aside {
+	.widget {
 		float: none;
 		border-top: 1px dashed #ddd;
 		flex: 1;
 		flex-basis: 50%;
 	}
 
-		.widget-area aside.full-width {
+		.widget.full-width {
 			flex-basis: 100%;
 		}
 
 		/* Left widget column */
-		.widget-area aside.full-width:nth-of-type(odd)  + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even),
-		.widget-area aside.full-width:nth-of-type(even) + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd),
-		.widget-area aside.full-width + aside:not(.full-width),
-		.widget-area aside:not(.full-width):nth-of-type(odd) {
+		.widget.full-width:nth-of-type(odd)  + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even),
+		.widget.full-width:nth-of-type(even) + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd),
+		.widget.full-width + aside:not(.full-width),
+		.widget:not(.full-width):nth-of-type(odd) {
 			clear: both;
 		}
 
 		/* Right widget column */
-		.widget-area aside.full-width:nth-of-type(odd)  + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd),
-		.widget-area aside.full-width:nth-of-type(even) + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even),
-		.widget-area aside:not(.full-width):nth-of-type(even) {
+		.widget.full-width:nth-of-type(odd)  + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd),
+		.widget.full-width:nth-of-type(even) + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even),
+		.widget:not(.full-width):nth-of-type(even) {
 			clear: none;
 		}
 
-			.widget-area aside:not(.full-width) ul:not(.sub-menu):not(.children) {
+			.widget:not(.full-width) ul:not(.sub-menu):not(.children) {
 				   -moz-column-count: 1;
 				-webkit-column-count: 1;
 				        column-count: 1;
@@ -2378,16 +2378,16 @@ input.search-field {
 		order: 1; /* before .content-area */
 	}
 
-		body.with-sidebar .widget-area aside {
+		body.with-sidebar .widget {
 			padding: 35px !important;
 			flex: none;
 		}
 
-		body.with-sidebar .widget-area aside:first-child {
+		body.with-sidebar .widget:first-child {
 			border: none;
 		}
 
-			body.with-sidebar .widget-area aside.full-width ul {
+			body.with-sidebar .widget.full-width ul {
 				   -moz-column-count: 1 !important;
 				-webkit-column-count: 1 !important;
 				        column-count: 1 !important;
@@ -2439,7 +2439,6 @@ input.search-field {
 /*--------------------------------------------------------------
 9.2 Widgets
 --------------------------------------------------------------*/
-
 #wp-calendar caption,
 #wp-calendar tfoot a {
 	font-family: 'Montserrat', Arial, sans-serif;
