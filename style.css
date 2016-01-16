@@ -2223,6 +2223,11 @@ input[type="radio"] {
 	border-top: 1px dashed #ddd;
 }
 
+	.widget-area aside .widget-title ~ *,
+	.widget-area aside .widget-title + .screen-reader-text + * {
+		margin-top: 1.5em;
+	}
+
 	.widget-area aside ul {
 		list-style: none;
 		margin-left: 0;
