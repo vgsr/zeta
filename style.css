@@ -517,16 +517,27 @@ table {
 		}
 
 		table tbody tr:nth-of-type(odd) td:first-child:before {
-			left: -35px;
+			left: -25px;
 		}
 
 		table tbody tr:nth-of-type(odd) td:last-child:before {
-			right: -35px;
+			right: -25px;
 		}
 
 		table td p:first-child {
 			margin: 0;
 		}
+
+/* Breakpoint 1 */
+@media screen and (min-width: 561px) {
+	table tbody tr:nth-of-type(odd) td:first-child:before {
+		left: -35px;
+	}
+
+	table tbody tr:nth-of-type(odd) td:last-child:before {
+		right: -35px;
+	}
+}
 
 /*--------------------------------------------------------------
 3.1 Layout
