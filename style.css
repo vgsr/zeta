@@ -3208,7 +3208,26 @@ object {
 	padding: 0;
 }
 
-@media screen and (min-width: 675px) and (max-width: 740px), (min-width: 998px) {
+@media screen and (min-width: 480px) and (max-width: 674px), (min-width: 741px) and (max-width: 779px) {
+	.entity-details .entity-logo {
+		float: left;
+		width: 50%;
+		padding-right: 35px;
+	}
+
+	.entity-details .entity-logo ~ div {
+		float: left;
+		width: 50%;
+	}
+
+	.entity-details .entity-logo ~ div:nth-child(2n-1) {
+		clear: both;
+		padding-right: 35px;
+	}
+}
+
+/* Content width 518px */
+@media screen and (min-width: 675px) and (max-width: 740px), (min-width: 780px) {
 	.entry-content .entity-details {
 		float: right;
 		width: auto;
