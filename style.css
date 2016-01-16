@@ -589,29 +589,29 @@ body.fixed-header.admin-bar .site-header {
 	.site-branding {
 		position: absolute;
 		width: 100%;
-		padding: 15px 35px;
+		padding: 15px 25px;
 	}
 
-	.site-branding .site-title {
-		margin: 0;
-		font-size: 1.3em;
-	}
-
-		.site-branding .site-title a {
-			display: block;
-			background: url(images/logo-wit.png) no-repeat;
-			background-size: 32px;
-			width: 32px;
-			height: 32px;
-			line-height: 32px;
-			padding-left: 48px;
+		.site-branding .site-title {
+			margin: 0;
+			font-size: 1.3em;
 		}
 
-	.site-branding .site-description {
-		font-weight: normal;
-		display: none;
-		font-family: Georgia, Times, serif;
-	}
+			.site-branding .site-title a {
+				display: block;
+				background: url(images/logo-wit.png) no-repeat;
+				background-size: 32px;
+				width: 32px;
+				height: 32px;
+				line-height: 32px;
+				padding-left: 48px;
+			}
+
+		.site-branding .site-description {
+			font-weight: normal;
+			display: none;
+			font-family: Georgia, Times, serif;
+		}
 
 #site-tools {
 	float: left;
@@ -632,7 +632,7 @@ body.fixed-header.admin-bar #site-tools {
 		display: none;
 		position: relative;
 		overflow: hidden;
-		padding: 35px;
+		padding: 35px 25px;
 		background-color: #f9f9f9;
 	}
 
@@ -715,7 +715,7 @@ body.home #header-aside {
 					left: 0;
 					bottom: 0;
 					width: 100%;
-					padding: 35px 150px 20px 35px;
+					padding: 35px 25px 20px;
 					text-shadow: 0px 2px rgba(0, 0, 0, .15);
 
 					/* Dark gradient below the text for better contrast */
@@ -752,6 +752,7 @@ body.home #header-aside {
 	}
 
 	#header-aside .flex-direction-nav {
+		display: none; /* Hide on small screens */
 		position: absolute;
 		right: 35px;
 		bottom: 20px;
@@ -884,11 +885,7 @@ body.home #content {
 
 	.content-area .site-main > * {
 		margin: 0;
-		padding: 35px;
-	}
-
-	body.home .content-area .site-main > * {
-		padding: 0 35px;
+		padding: 35px 25px;
 	}
 
 		.content-area .site-main > :not(:last-child) {
@@ -909,8 +906,9 @@ body.home #content {
 	background: #fafafa;
 }
 
-body.home #colophon {
-	display: none;
+.footer-area {
+	padding: 35px 25px;
+	background-color: #efefef;
 }
 
 #colophon .site-info,
@@ -922,18 +920,17 @@ body.home #colophon {
 	float: right;
 	width: 100%;
 	margin: 0;
-	padding: 15px 35px;
+	padding: 15px 25px;
 	background-color: #dfdfdf;
 	font-family: 'Montserrat', Arial, sans-serif;
 	font-size: .75em;
 }
 
-	#colophon .footer-area {
-		padding: 35px;
-		background-color: #efefef;
+@media screen and (min-width: 561px) {
+	.site-branding {
+		padding: 15px 35px;
 	}
 
-@media screen and (min-width: 561px) {
 		.site-branding .site-title {
 			font-size: 2em;
 		}
@@ -951,6 +948,10 @@ body.home #colophon {
 		margin-top: 76px;
 	}
 
+		#site-tools .site-tool {
+			padding: 35px;
+		}
+
 	#header-aside {
 		height: 280px;
 	}
@@ -959,10 +960,18 @@ body.home #colophon {
 			border-bottom: 1px solid #efefef;
 		}
 
+			#header-aside .slides .slide-inner .slide-details {
+				padding: 35px 35px 20px;
+			}
+
 	#content {
 		padding: 35px;
 		background-color: transparent;
 	}
+
+		.content-area .site-main > * {
+			padding: 35px;
+		}
 
 		.widget-area {
 			background-color: #fff;
@@ -972,6 +981,12 @@ body.home #colophon {
 			.widget-area > * {
 				background-color: #fff;
 			}
+
+	#colophon .footer-area,
+	#colophon .site-info,
+	#page ~ p {
+		padding: 35px;
+	}
 }
 
 /* WP's Admin Bar fixed */
@@ -1060,7 +1075,7 @@ body.home #colophon {
 
 	.site-header:hover,
 	.site-header:hover .site-branding {
-		background-color: rgba(51, 165, 55, 1);
+		background-color: rgb(51, 165, 55);
 	}
 
 	.site-header:hover .site-branding:after {
@@ -1331,7 +1346,7 @@ a:active {
 	list-style: none;
 	margin: 0;
 	width: 100%;
-	padding: 25px 35px;
+	padding: 15px 25px;
 }
 
 .menu-toggled .main-navigation .menu {
@@ -1375,7 +1390,7 @@ a:active {
 .main-navigation .page_item_has_children ul.toggled-on {
 	display: block;
 	float: left;
-	padding: 0 0 0 35px;
+	padding: 0 0 0 25px;
 }
 
 .no-js .main-navigation ul ul {
@@ -1430,7 +1445,7 @@ a:active {
 /* Small menu. */
 .menu-toggle {
 	position: absolute;
-	right: 35px;
+	right: 25px;
 	top: 15px;
 	width: 32px;
 	height: 32px;
@@ -1472,7 +1487,7 @@ a:active {
 	display: block;
 	position: absolute;
 	top: 15px;
-	right: calc( 35px + 32px + 15px );
+	right: calc( 25px + 32px + 15px );
 	width: auto;
 	padding: 0;
 }
@@ -1662,22 +1677,32 @@ a:active {
 
 		/* Small menu. */
 		.menu-toggle {
+			right: 35px;
 			width: 46px;
 			height: 46px;
 			padding: 13px;
 			line-height: 46px;
 		}
 
-	.main-navigation ul.tools-nav {
-		right: calc( 35px + 46px + 25px );
-	}
-
-		.tools-nav a {
-			width: 46px;
-			height: 46px;
-			padding: 13px;
-			line-height: 46px;
+		.main-navigation ul {
+			padding: 15px 35px;
 		}
+
+		.main-navigation .menu-item-has-children ul.toggled-on,
+		.main-navigation .page_item_has_children ul.toggled-on {
+			padding: 0 0 0 35px;
+		}
+
+		.main-navigation ul.tools-nav {
+			right: calc( 35px + 46px + 25px );
+		}
+
+			.tools-nav a {
+				width: 46px;
+				height: 46px;
+				padding: 13px;
+				line-height: 46px;
+			}
 }
 
 @media screen and (min-width: 741px) {
@@ -2184,7 +2209,7 @@ input[type="radio"] {
 	position: relative;
 	float: left;
 	width: 100%;
-	padding: 35px;
+	padding: 35px 25px;
 	border-top: 1px dashed #ddd;
 }
 
@@ -2208,6 +2233,12 @@ input[type="radio"] {
 /* Search widget. */
 input.search-field {
 	width: 100%;
+}
+
+@media screen and (min-width: 561px) {
+	.widget-area aside {
+		padding: 35px;
+	}
 }
 
 /**
