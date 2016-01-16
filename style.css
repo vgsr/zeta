@@ -18,6 +18,10 @@
  *
  * Normalizing styles have been helped along thanks to the fine work of
  * Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+ *
+ * This theme has 2 key visible breakpoints:
+ * 1 @ min-width: 561px; (extra content padding)
+ * 2 @ min-width: 741px; (full-screen mode: banner, slider on the left)
  */
 
 /*--------------------------------------------------------------
@@ -937,6 +941,7 @@ body.home #content {
 	font-size: .75em;
 }
 
+/* Breakpoint 1 */
 @media screen and (min-width: 561px) {
 	.site-branding {
 		padding: 15px 35px;
@@ -1012,6 +1017,7 @@ body.home #content {
 	}
 }
 
+/* Breakpoint 2 */
 @media screen and (min-width: 741px) {
 	#page {
 		padding-top: 45px;
@@ -1259,21 +1265,13 @@ body.home #content {
 		top: 32px;
 	}
 
-	body.home.admin-bar #site-tools {
-		top: 85px;
-	}
-
-	body.home.admin-bar .content-area {
-		margin-top: 38px; /* Correct for 32px Admin Bar */
-	}
-
 	body.admin-bar :target:before {
 		height: 112px; /* 80px + 32px admin-bar */
 		margin-top: -112px;
 	}
 }
 
-/* 174 + 640 = 814 + 17 for the scrollbar = 831 */
+/* Content at maximum width: 174 + 640 = 814 + 17 for the scrollbar = 831 */
 @media screen and (min-width: 831px) { /*(min-width: 1120px) {*/
 	#header-aside {
 		width: calc( 100% - 640px );
@@ -1681,6 +1679,7 @@ a:active {
 		content: "rss";
 	}
 
+/* Breakpoint 1 */
 @media screen and (min-width: 561px) {
 	.main-navigation {
 		margin-top: 76px;
@@ -1716,6 +1715,7 @@ a:active {
 			}
 }
 
+/* Breakpoint 2 */
 @media screen and (min-width: 741px) {
 	.site-header .menu a,
 	.site-header .menu a:visited,
@@ -1884,7 +1884,6 @@ a:active {
 	}
 
 	/* Social Menu */
-
 	.menu-social {
 		display: none;
 	}
@@ -1922,10 +1921,10 @@ a:active {
 }
 
 	.comment-navigation .nav-previous a:before,
-	.posts-navigation .nav-previous a:before,
-	.post-navigation .nav-previous a:before,
 	.comment-navigation .nav-next a:before,
+	.posts-navigation .nav-previous a:before,
 	.posts-navigation .nav-next a:before,
+	.post-navigation .nav-previous a:before,
 	.post-navigation .nav-next a:before {
 		float: left;
 		width: 100%;
@@ -1934,10 +1933,10 @@ a:active {
 	}
 
 		.comment-navigation .nav-previous a:hover:before,
-		.posts-navigation .nav-previous a:hover:before,
-		.post-navigation .nav-previous a:hover:before,
 		.comment-navigation .nav-next a:hover:before,
+		.posts-navigation .nav-previous a:hover:before,
 		.posts-navigation .nav-next a:hover:before,
+		.post-navigation .nav-previous a:hover:before,
 		.post-navigation .nav-next a:hover:before {
 			color: #aaa;
 		}
@@ -2241,11 +2240,11 @@ input[type="radio"] {
 	max-width: 100%;
 }
 
-/* Search widget. */
 input.search-field {
 	width: 100%;
 }
 
+/* Breakpoint 1 */
 @media screen and (min-width: 561px) {
 	.widget-area aside {
 		padding: 35px;
@@ -2635,6 +2634,7 @@ body.home .entry-footer {
 	font-size: 1.5em;
 }
 
+/* Breakpoint 2 */
 @media screen and (min-width: 741px) {
 	.entry-meta,
 	.entry-footer {
