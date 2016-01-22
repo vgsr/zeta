@@ -900,6 +900,7 @@ body.home #content {
 	}
 
 	.content-area .site-main > * {
+		position: relative;
 		margin: 0;
 		padding: 35px 25px;
 	}

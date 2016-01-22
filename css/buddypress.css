@@ -31,10 +31,6 @@
 /*--------------------------------------------------------------
 0.0 General
 --------------------------------------------------------------*/
-.buddypress .content-area {
-	position: relative;
-}
-
 #buddypress .bp-widget:last-child,
 #buddypress .bp-widget     > *:last-child,
 #buddypress .profile       > *:last-child,
