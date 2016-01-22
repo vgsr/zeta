@@ -60,14 +60,14 @@
 #buddypress .button-nav {
 	position: relative;
 	font-family: 'Montserrat', Arial, sans-serif;
-	margin: 1.5em -35px 0;
+	margin: 1.5em -25px 0;
 }
 
 	#buddypress .item-list-tabs ul,
 	#buddypress .button-nav {
 		list-style: none;
 		display: inline-block;
-		padding: 0 27px;
+		padding: 0 17px;
 		background-color: #f9f9f9;
 		font-size: .9em;
 	}
@@ -79,7 +79,7 @@
 	}
 
 	#buddypress .button-nav {
-		width: calc( 100% + 70px );
+		width: calc( 100% + 50px );
 	}
 
 	#buddypress .item-list-tabs ul li,
@@ -217,6 +217,23 @@
 			#buddypress #subnav ul li.selected a {
 				padding: 8px;
 			}
+
+/* Breakpoint 1 */
+@media screen and (min-width: 561px) {
+	#buddypress .item-list-tabs,
+	#buddypress .button-nav {
+		margin: 1.5em -35px 0;
+	}
+
+	#buddypress .item-list-tabs ul,
+	#buddypress .button-nav {
+		padding: 0 27px;
+	}
+
+		#buddypress .button-nav {
+			width: calc( 100% + 70px );
+		}
+}
 
 /*--------------------------------------------------------------
 2.0 Items
