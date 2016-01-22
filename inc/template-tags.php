@@ -256,6 +256,28 @@ function the_archive_description( $before = '', $after = '' ) {
 endif;
 
 /**
+ * Run a dedicated hook before the page's content
+ *
+ * @since 1.0.0
+ *
+ * @uses do_action() Calls 'zeta_pre_content'
+ */
+function zeta_pre_content() {
+	do_action( 'zeta_pre_content' );
+}
+
+/**
+ * Run a dedicated hook after the page's content
+ *
+ * @since 1.0.0
+ *
+ * @uses do_action() Calls 'zeta_after_content'
+ */
+function zeta_after_content() {
+	do_action( 'zeta_after_content' );
+}
+
+/**
  * Returns true if a blog has more than 1 category.
  *
  * @return bool

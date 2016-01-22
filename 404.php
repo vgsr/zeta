@@ -11,6 +11,8 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
+			<?php zeta_pre_content(); ?>
+
 			<section class="error-404 not-found">
 				<header class="entry-header">
 					<h1 class="entry-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'zeta' ); ?></h1>
@@ -30,6 +32,8 @@ get_header(); ?>
 
 				</div><!-- .entry-content -->
 			</section><!-- .error-404 -->
+
+			<?php zeta_after_content(); ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

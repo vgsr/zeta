@@ -17,6 +17,8 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
+		<?php zeta_pre_content(); ?>
+
 		<?php if ( have_posts() ) : ?>
 
 			<?php /* Start the Loop */ ?>
@@ -39,6 +41,8 @@ get_header(); ?>
 			<?php get_template_part( 'content', 'none' ); ?>
 
 		<?php endif; ?>
+
+		<?php zeta_after_content(); ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
