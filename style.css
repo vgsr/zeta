@@ -34,6 +34,7 @@
 4.0 Navigation
 	4.1 Links
 	4.2 Menus
+	4.3 Breadcrumb
 5.0 Forms
 6.0 Accessibility
 7.0 Alignments
@@ -1939,6 +1940,52 @@ a:active {
 		.post-navigation .nav-previous a:hover:before,
 		.post-navigation .nav-next a:hover:before {
 			color: #aaa;
+		}
+
+/*--------------------------------------------------------------
+4.3 Breadcrumb
+--------------------------------------------------------------*/
+#breadcrumb {
+	font-family: 'Montserrat', Arial, sans-serif;
+	font-size: .8em;
+}
+
+	.yoast-breadcrumb span[typeof="v:Breadcrumb"]:not([rel="v:child"]) > a:hover,
+	.bbp-breadcrumb .bbp-breadcrumb-home:hover {
+		text-decoration: none;
+	}
+
+		.yoast-breadcrumb span[typeof="v:Breadcrumb"]:not([rel="v:child"]) > a:before,
+		.bbp-breadcrumb .bbp-breadcrumb-home:before {
+			content: '\f102'; /* dashicons-admin-home */
+			font-family: dashicons;
+			font-size: 1.1em;
+			vertical-align: bottom;
+		}
+
+	.yoast-breadcrumb span[rel="v:child"]:before,
+	.yoast-breadcrumb span.breadcrumb_last:before,
+	.bbp-breadcrumb > span:not(:last-child):after {
+		content: '\f345'; /* dashicons-arrow-right-alt2 */
+		font-family: dashicons;
+		margin: 0 7px;
+		vertical-align: bottom;
+		opacity: .8;
+	}
+
+	.yoast-breadcrumb span[rel="v:child"]:before,
+	.yoast-breadcrumb span.breadcrumb_last:before {
+		margin: 0 9px 0 5px; /* Compensate for spaces between elements */
+	}
+
+	#breadcrumb a {
+		opacity: .8;
+		-webkit-transition: opacity .2s ease-in;
+		transition: opacity .2s ease-in;
+	}
+
+		#breadcrumb a:hover {
+			opacity: 1;
 		}
 
 /*--------------------------------------------------------------

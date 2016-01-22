@@ -92,6 +92,83 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 endif;
 
 /**
+ * Output a breadcrumbs trail before the page's content
+ *
+ * @since 1.0.0
+ *
+ * @uses yoast_breadcrumb()
+ * @uses bbp_breadcrumb()
+ */
+function zeta_breadcrumbs() {
+
+	// Using Yoast SEO
+	if ( function_exists( 'yoast_breadcrumb' ) ) {
+
+		// Modify crumbs
+		add_filter( 'wpseo_breadcrumb_links', 'zeta_wpseo_breadcrumb_links' );
+
+		// Output crumbs
+		yoast_breadcrumb( '<div id="breadcrumb" class="yoast-breadcrumb">', '</div>' );
+
+		// Undo modify crumbs
+		remove_filter( 'wpseo_breadcrumb_links', 'zeta_wpseo_breadcrumb_links' );
+
+	// Using bbPress
+	} elseif ( function_exists( 'bbp_breadcrumb' ) ) {
+
+		// Set home text to page title
+		if ( $front_id = get_option( 'page_on_front' ) ) {
+			$pre_front_text = get_the_title( $front_id );
+
+		// Default to 'Home'
+		} else {
+			$pre_front_text = __( 'Home', 'bbpress' );
+		}
+
+		// Remove separator
+		add_filter( 'bbp_breadcrumb_separator', '__return_empty_string' );
+
+		// Output crumbs
+		bbp_breadcrumb( array(
+			'before'       => '<div id="breadcrumb" class="bbp-breadcrumb">',
+			'after'        => '</div>',
+			'crumb_before' => '<span>',
+			'crumb_after'  => '</span>',
+			'home_text'    => '<span class="screen-reader-text">' . $pre_front_text . '</span>',
+		) );
+
+		// Undo remove separator
+		remove_filter( 'bbp_breadcrumb_separator', '__return_empty_string' );
+	}
+}
+add_action( 'zeta_pre_content', 'zeta_breadcrumbs', 6 );
+
+	/**
+	 * Modify the crumbs collection of Yoast SEO
+	 *
+	 * @since 1.0.0
+	 *
+	 * @uses get_home_url()
+	 *
+	 * @param array $crumbs Crumbs
+	 * @return array Crumbs
+	 */
+	function zeta_wpseo_breadcrumb_links( $crumbs ) {
+
+		// Walk all crumbs
+		foreach ( $crumbs as $k => $crumb ) {
+
+			// Wrap the Home crumb in screen-reader-text
+			if ( get_home_url() === $crumb['url'] ) {
+				$crumbs[ $k ]['text'] = '<span class="screen-reader-text">' . $crumb['text'] . '</span>';
+				break;
+			}
+		}
+
+		return $crumbs;
+	}
+
+/**
  * Modify the categories in the category list
  *
  * @since 1.0.0

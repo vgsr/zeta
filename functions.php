@@ -79,6 +79,11 @@ function zeta_setup() {
 	add_theme_support( 'event-organiser' );
 
 	/*
+	 * Enable support for Yoast SEO's breadcrumbs.
+	 */
+	add_theme_support( 'yoast-seo-breadcrumbs' );
+
+	/*
 	 * Register theme image sizes
 	 */
 	zeta_add_image_sizes();
