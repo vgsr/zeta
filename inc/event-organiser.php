@@ -138,10 +138,13 @@ function zeta_event_organiser_get_archive_url( $type = 'day', $date = null ) {
 			$format = 'Y-m-d';
 	}
 
-	if ( ! $date ) {
-		$date = eo_get_the_start( $format );
-	} else {
+	// Parse date parameter
+	if ( $date ) {
 		$date = date( $format, $date );
+
+	// Default to current event's date
+	} else {
+		$date = eo_get_the_start( $format );
 	}
 
 	// Pass the `$date` as array elements to the native archive link getter
@@ -243,8 +246,8 @@ function get_adjacent_event( $in_same_term = false, $excluded_terms = '', $previ
 	if ( ! $adjacent )
 		return $adjacent;
 
-	// Get the adjacent occurrence of the adjacent event
-	$event = get_adjacent_occurrence( $adjacent->ID, $previous, eo_get_the_start( DATETIMEOBJ ) );
+	// Get the occurrence of the adjacent event
+	$event = get_adjacent_occurrence( get_the_ID(), $adjacent->ID, $previous, eo_get_the_start( DATETIMEOBJ ) );
 
 	// Define the adjacent event
 	if ( $event ) {
@@ -272,28 +275,40 @@ if ( ! function_exists( 'get_adjacent_occurrence' ) ) :
  * @uses eo_get_blog_timezone()
  *
  * @param int $post_id Post ID
+ * @param int $adjacent_id Adjacent post ID
  * @param bool $previous Optional. Wehther to retrieve previous occurrence.
  * @param DateTime|string $event_date Optional. Date to compare to.
  * @return bool|array Occurrence data if successful. False if no adjacent occurrence exists.
  */
-function get_adjacent_occurrence( $post_id, $previous = true, $event_date = '' ) {
+function get_adjacent_occurrence( $post_id, $adjacent_id, $previous = true, $event_date = '' ) {
 	global $wpdb;
 
-	if ( ! $post_id )
+	// Bail when post ids are invalid
+	if ( ! $post_id || ! $adjacent_id )
 		return false;
 
-	$timezone = eo_get_blog_timezone();
+	// The current event reoccurs
+	if ( eo_reoccurs( $post_id ) ) {
 
-	// Default compare time to now
-	if ( ! $event_date ) {
-		$event_date = new DateTime( 'now', $timezone );
-	} elseif ( is_string( $event_date ) ) {
-		$event_date = new DateTime( $event_date, $timezone );
+		// Get the current, next or last occurrence date
+		if ( ! $occurrence = eo_get_current_occurrence_of( $post_id ) ) {
+			if ( ! $occurrence = eo_get_next_occurrence_of( $post_id ) ) {
+				$date = eo_get_schedule_last( 'Y-m-d', $post_id );
+				$time = eo_get_schedule_last( 'H:i:s', $post_id );
+			}
+		}
+
+		if ( isset( $occurrence['start'] ) && is_a( $occurrence['start'], 'DateTime' ) ) {
+			$date = $occurrence['start']->format( 'Y-m-d' );
+			$time = $occurrence['start']->format( 'H:i:s' );
+		}
+
+	// Single event, get its date
+	} else {
+		$post = get_post( $post_id );
+		$date = $post->StartDate;
+		$time = $post->StartTime;
 	}
-
-	// Get date and time
-	$date  = $event_date->format( 'Y-m-d' );
-	$time  = $event_date->format( 'H:i:s' );
 
 	// Define operators
 	$op    = $previous ? '<'  : '>';
@@ -311,11 +326,15 @@ function get_adjacent_occurrence( $post_id, $previous = true, $event_date = '' )
 				)
 		ORDER BY {$wpdb->eo_events}.StartDate $order, {$wpdb->eo_events}.StartTime $order
 		LIMIT 1",
-		$post_id, $date, $date, $time
+		$adjacent_id, $date, $date, $time
 	);
 
+	// Bail when the query returned nothing
 	if ( ! $event = $wpdb->get_row( $sql ) )
 		return false;
+
+	// Get the timezone
+	$timezone = eo_get_blog_timezone();
 
 	// Define occurrence data
 	$occurrence = array(
