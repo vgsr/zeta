@@ -3067,6 +3067,7 @@ object {
 
 .entry-content .eo-venue-map {
 	z-index: 498; /* below site header */
+	margin-top: 1.5em;
 }
 
 /* Event archives */
@@ -3089,7 +3090,8 @@ object {
 		flex: 1 0 auto;
 	}
 
-	.event-section .entry-title,
+	.post-type-archive .event-section .entry-title,
+	.post-type-archive .event .entry-title,
 	.event-section .section-title {
 		font-size: 1em;
 	}
