@@ -2608,9 +2608,8 @@ body.home .entry-content {
 .entry-meta,
 .entry-footer {
 	font-family: 'Montserrat', Arial, sans-serif;
-	font-size: .75em;
+	font-size: .9em;
 	text-align: center;
-	color: rgba(64, 64, 64, .5);
 }
 
 body.home .entry-footer {
@@ -2622,9 +2621,21 @@ body.home .entry-footer {
 		margin-top: 1.5em;
 	}
 
-	.entry-meta span {
-		display: inline-block;
+	.entry-meta span,
+	.entry-footer span {
 		margin: 0;
+	}
+
+	.entry-footer span:not(:last-child) {
+		padding-right: 9px; /* 5px + 'space' between elements */
+	}
+
+	.entry-meta > span,
+	.entry-meta > a,
+	.entry-footer > span,
+	.entry-footer > a {
+		color: rgba(64, 64, 64, .5);
+		font-size: .8em;
 	}
 
 	.entry-meta a,
@@ -2679,6 +2690,7 @@ body.home .entry-footer {
 
 			span.edit-link a:before {
 				content: '\f464'; /* dashicons-edit */
+				margin-right: 3px;
 			}
 
 .widget-title {
