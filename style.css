@@ -3073,13 +3073,18 @@ object {
 }
 
 	.event-section.section-day .section-header {
-		width: 110px; /* arbitrarily */
+		width: 5em; /* arbitrarily */
 		flex: 1 0 auto;
 	}
 
 	.event-section .entry-title,
 	.event-section .section-title {
-		font-size: 1.3em;
+		font-size: 1em;
+	}
+
+	.section-header .section-title,
+	.section-header .section-title a {
+		vertical-align: top;
 	}
 
 	.event-section .entry-content {
@@ -3096,7 +3101,7 @@ object {
 	}
 
 	.event-section .section-content {
-		width: calc( 100% - 110px );
+		width: calc( 100% - 5em );
 		padding-left: 35px;
 	}
 
