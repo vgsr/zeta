@@ -2,7 +2,7 @@
 Contributors: Offereins
 Tags: vgsr, green, white, single-column, fixed-layout, responsive-layout, custom-background, custom-header, custom-menu, featured-images, flexible-header, post-formats, translation-ready, buddypress
 Requires at least: 4.0
-Tested up to: 4.2
+Tested up to: 4.4.1
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
