@@ -76,7 +76,7 @@
 /**
  * Navigation
  *
- * Handles toggling fixed menu state for small screens
+ * Handles toggling fixed header state for small screens
  */
 ( function( $ ) {
 
@@ -114,6 +114,51 @@
 
 	// Run on first load
 	fixHeader();
+
+} )( jQuery );
+
+/**
+ * Front Page: animate scroll top
+ */
+( function( $ ) {
+
+	// Get the body element
+	var $body = $( 'body' ), w = window, d = document, e = d.documentElement, b = d.body,
+	    width, height;
+
+	// Bail when this is not the front page
+	if ( ! $body.hasClass( 'home' ) )
+		return;
+
+	// When clicking the scroll-down button
+	$( '#page-scroll-down' ).on( 'click', function( e ) {
+		e.preventDefault();
+
+		// Get window proportions
+		width  = ( w.innerWidth  || e.clientWidth  || b.clientWidth  );
+		height = ( w.innerHeight || e.clientHeight || b.clientHeight );
+
+		// Consider header size
+		if ( width < 561 ) {
+			height -= 62;
+		} else if ( width < 741 ) {
+			height -= 76;
+		} else {
+			height -= 45;
+		}
+
+		// Consider admin-bar
+		if ( $body.hasClass( 'admin-bar' ) ) {
+			if ( width < 783 ) {
+				height -= 46;
+			} else {
+				height -= 32;
+			}
+		}
+
+		// Animate scrolling with 35px top margin
+		$( 'html, body' ).animate({ scrollTop: height - 35 + 'px' }, 500 );
+	})
 
 } )( jQuery );
 
