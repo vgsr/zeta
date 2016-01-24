@@ -3078,7 +3078,7 @@ object {
 
 .event-section.section-day {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 }
 
 .event-section.section-month .section-day:not(:last-child) {
@@ -3086,7 +3086,7 @@ object {
 }
 
 	.event-section.section-day .section-header {
-		width: 5em; /* arbitrarily */
+		width: 100%;
 		flex: 1 0 auto;
 	}
 
@@ -3110,17 +3110,22 @@ object {
 		margin-top: .5em;
 	}
 
+	.event-section .entry-meta,
+	.event-section .entry-footer {
+		text-align: left;
+	}
+
 	.event-section .section-header + .event {
 		margin: 0;
 	}
 
 	.event-section .section-content {
-		width: calc( 100% - 5em );
-		padding-left: 35px;
+		width: 100%;
+		margin-top: 1.5em;
 	}
 
 	.event-section .section-content .event {
-		margin-top: 1.5em 0 0;
+		margin-top: 1.5em;
 	}
 
 	.event-section .section-content .event:first-child {
@@ -3130,6 +3135,25 @@ object {
 	.event-section .section-content .entry-title {
 		text-align: left;
 	}
+
+@media screen and (min-width: 480px) {
+	.event-section.section-day {
+		flex-direction: row;
+	}
+
+		.event-section.section-day .section-header {
+			width: 5em;
+		}
+
+		.event-section .section-content {
+			width: calc( 100% - 5em );
+			padding-left: 35px;
+		}
+
+		.event-section .section-content {
+			margin-top: 0;
+		}
+}
 
 /* List view */
 
