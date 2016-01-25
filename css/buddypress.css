@@ -948,8 +948,8 @@
 	}
 
 	#buddypress .activity .item-list.activity-list > li:not(:first-child) {
-		padding-top: 15px;
-		margin-top: 15px;
+		padding-top: 20px;
+		margin-top: 20px;
 		border-top: 1px solid #f9f9f9;
 	}
 
