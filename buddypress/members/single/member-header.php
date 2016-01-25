@@ -31,15 +31,8 @@
 		<div id="latest-update"><?php
 			bp_activity_latest_update( bp_displayed_user_id() );
 		?></div>
-		<?php endif;
+		<?php endif; ?>
 
-		/**
-		 * If you'd like to show specific profile fields here use:
-		 * bp_member_profile_data( 'field=About Me' ); -- Pass the name of the field
-		 */
-		do_action( 'bp_profile_header_meta' );
-
-		?>
 	</div><!-- #item-meta -->
 
 	<div id="item-actions"><?php

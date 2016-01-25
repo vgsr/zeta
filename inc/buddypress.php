@@ -61,6 +61,12 @@ function zeta_bp_entry_meta() {
 			endforeach;
 		}
 
+		/**
+		 * If you'd like to show specific profile fields here use:
+		 * bp_member_profile_data( 'field=About Me' ); -- Pass the name of the field
+		 */
+		do_action( 'bp_profile_header_meta' );
+
 		// User activity
 		printf( '<span class="activity">%s</span>', bp_get_last_activity( bp_displayed_user_id() ) );
 	}
