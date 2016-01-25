@@ -96,10 +96,15 @@ endif;
  *
  * @since 1.0.0
  *
+ * @uses is_front_page()
  * @uses yoast_breadcrumb()
  * @uses bbp_breadcrumb()
  */
 function zeta_breadcrumbs() {
+
+	// Bail when on the site's front page
+	if ( is_front_page() )
+		return;
 
 	// Using Yoast SEO
 	if ( function_exists( 'yoast_breadcrumb' ) ) {

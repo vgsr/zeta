@@ -24,4 +24,12 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
+	<?php if ( is_active_sidebar( 'front-page-1' ) ) : ?>
+
+	<div id="secondary" class="widget-area" role="complementary">
+		<?php dynamic_sidebar( 'front-page-1' ); ?>
+	</div><!-- #secondary -->
+
+	<?php endif; ?>
+
 <?php get_footer(); ?>

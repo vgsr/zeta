@@ -31,6 +31,7 @@
 2.0 Typography
 3.0 Elements
 	3.1 Layout
+	3.2 Front Page
 4.0 Navigation
 	4.1 Links
 	4.2 Menus
@@ -675,20 +676,8 @@ body.fixed-header.admin-bar #site-tools {
 	float: left;
 	width: 100%;
 	height: 250px;
+	z-index: 0;
 }
-
-body.home #header-aside {
-	position: fixed;
-	top: 62px;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	height: auto;
-}
-
-	body.home.admin-bar #header-aside {
-		top: 108px;
-	}
 
 	#header-aside .slider {
 		position: relative;
@@ -870,33 +859,10 @@ body.home #header-aside {
 	flex-direction: column;
 }
 
-body.home #content {
-	width: 100%;
-	margin: 0 0 35px 0;
-	padding: 35px;
-	background-color: transparent;
-	pointer-events: none;
-	/* Vertically center */
-	align-items: center;
-	justify-content: center;
-}
-
 	/* Sticky footer: have the content take all the available screen space */
 	.content-area {
 		/* IE 10/11 workaround requires `flex-shrink: 0` and `flex-basis: auto` */
 		flex: 1 0 auto;
-	}
-
-	body.home .content-area {
-		flex: none;
-		max-width: 640px;
-		margin-top: 70px;
-		color: #fff;
-		pointer-events: auto;
-	}
-
-	body.home.admin-bar .content-area {
-		margin-top: 24px; /* Correct for 46px Admin Bar */
 	}
 
 	.content-area .site-main > * {
@@ -914,14 +880,10 @@ body.home #content {
 			text-align: center;
 		}
 
-		body.home .entry-title {
-			font-size: 5em;
-			text-shadow: 0 0 5px rgba( 0, 0, 0, .3 );
-		}
-
-#secondary {
-	background: #fafafa;
-}
+	.widget-area {
+		width: 100%;
+		background: #fafafa;
+	}
 
 .footer-area {
 	width: 100%;
@@ -1117,10 +1079,6 @@ body.home #content {
 			display: block;
 		}
 
-		body.home #site-tools .site-tool {
-			padding: 15px;
-		}
-
 	#header-aside {
 		position: fixed;
 		top: 0;
@@ -1131,14 +1089,8 @@ body.home #content {
 		padding: 0;
 	}
 
-	body.admin-bar #header-aside,
-	body.home.admin-bar #header-aside {
+	body.admin-bar #header-aside {
 		top: 32px;
-	}
-
-	body.home #header-aside {
-		top: 0;
-		width: 100%;
 	}
 
 		.menu-toggled #header-aside {
@@ -1206,13 +1158,6 @@ body.home #content {
 		border-left: 1px solid #efefef;
 	}
 
-	body.home #content {
-		width: 100%;
-		margin: 0;
-		padding: 35px 174px;
-		border: none;
-	}
-
 		.content-area .site-main > *,
 		.widget-area > * {
 			background-color: transparent;
@@ -1221,10 +1166,6 @@ body.home #content {
 		.entry-title,
 		.page-title {
 			text-align: left;
-		}
-
-		body.home .entry-title {
-			text-align: center;
 		}
 
 	#site-tools,
@@ -1289,11 +1230,259 @@ body.home #content {
 		width: 640px;
 		margin-left: calc( 100% - 640px );
 	}
+}
 
-	body.home #header-aside,
+/*--------------------------------------------------------------
+3.2 Front Page
+--------------------------------------------------------------*/
+body.home #header-aside {
+	position: fixed;
+	top: 62px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: auto;
+}
+
+body.home #content {
+	width: 100%;
+	margin: calc( 100vh - 62px + 35px ) 0 0;
+	padding: 0;
+	background-color: #f9f9f9;
+	pointer-events: none;
+	/* Vertically center */
+	align-items: center;
+	justify-content: center;
+}
+
+body.home.admin-bar #content {
+	margin-top: calc( 100vh - 46px - 62px + 35px );
+}
+
+	body.home .content-area {
+		position: fixed; /* Fix it in the front of #header-aside */
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		padding: 0;
+		color: #fff;
+		pointer-events: none;
+
+		/* Flex the inner content */
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+		body.home .content-area .site-main {
+			flex: 1 0 auto;
+			width: 100%;
+			max-width: 640px;
+			pointer-events: auto;
+			margin-top: 116px;
+		}
+
+		body.home.admin-bar .content-area .site-main {
+			margin-top: 70px;
+		}
+
+	body.home .content-area .site-main > * {
+		padding: 0 25px;
+	}
+
+		body.home .entry-title {
+			font-size: 5em;
+			text-shadow: 0 0 5px rgba( 0, 0, 0, .3 );
+		}
+
+		body.home .entry-footer {
+			position: fixed;
+			bottom: 35px;
+			left: 50%;
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+		}
+
+			body.home .entry-footer .edit-link {
+				display: none;
+			}
+
+			body.home #page-scroll-down {
+				display: block;
+				background: transparent;
+				padding: 15px;
+				border: 0;
+			}
+
+			body.home #page-scroll-down:focus,
+			body.home #page-scroll-down:active {
+				box-shadow: none;
+				border: 0;
+			}
+
+			body.home #page-scroll-down:not(:active):not(:focus) {
+				/* Animation */
+				-webkit-animation: arrow-pulse 1s ease infinite;
+				animation: arrow-pulse 1s ease infinite;
+			}
+
+			@-webkit-keyframes arrow-pulse {
+				0%, 100% {	transform: translateY( 0px ); }
+				50% {   	transform: translateY( 5px ); }
+			}
+
+			@keyframes arrow-pulse {
+				0%, 100% {	transform: translateY( 0px ); }
+				50% {   	transform: translateY( 5px ); }
+			}
+
+			body.home #page-scroll-down:active {
+				padding: 17px 15px 13px;
+			}
+
+				body.home #page-scroll-down:before {
+					content: '\f347'; /* dashicons-arrow-down-alt2 */
+					display: block;
+					width: 45px;
+					height: 45px;
+					font-family: dashicons;
+					font-size: 45px;
+					line-height: 50px;
+					color: #f9f9f9;
+				}
+
+	body.home .widget-area {
+		margin-top: -35px;
+		background: #fff;
+		pointer-events: visible;
+		z-index: 1; /* Above .site-content */
+	}
+
+body.home #colophon {
+	z-index: 1; /* Above #content */
+	background: #e9e9e9;
+}
+
+/* Breakpoint 1 */
+@media screen and (min-width: 561px) {
+	body.home #header-aside {
+		top: 76px;
+		height: auto;
+	}
+
 	body.home #content {
-		width: 100%;
+		margin-top: calc( 100vh - 76px + 35px );
+	}
+
+	body.home.admin-bar #content {
+		margin-top: calc( 100vh - 46px - 76px + 35px );
+	}
+
+		body.home .content-area .site-main > * {
+			background-color: transparent;
+		}
+}
+
+/* Breakpoint 2 */
+@media screen and (min-width: 741px) {
+	body.home #site-tools {
+		position: absolute;
+		top: 53px;
+		right: 8px;
+		width: 400px;
 		margin: 0;
+		border: none;
+		box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+		z-index: 498;
+	}
+
+	body.home.admin-bar #site-tools {
+		top: 99px;
+	}
+
+		body.home #site-tools .site-tool {
+			padding: 15px;
+		}
+
+	body.home #header-aside {
+		top: 0;
+		width: 100%;
+	}
+
+	body.home.admin-bar #header-aside {
+		top: 32px;
+	}
+
+	body.home #content {
+		margin-top: calc( 100vh - 45px + 35px );
+		padding: 0 0 0 174px;
+		border: none;
+	}
+
+	body.home.admin-bar #content {
+		margin-top: calc( 100vh - 46px - 45px + 35px );
+	}
+
+		body.home .content-area {
+			padding: calc( 45px + 35px ) 174px 35px;
+		}
+
+		body.home.admin-bar .content-area {
+			padding-top: calc( 46px + 45px + 35px );
+		}
+
+			body.home .entry-title {
+				text-align: center;
+			}
+
+	body.home #colophon {
+		padding: 0 0 0 174px;
+	}
+
+	body.home #colophon,
+	/*
+	 * Also apply this to all <p> after #page #colophon,
+	 * which are added at `do_action( 'wp_footer' )`.
+	 */
+	body.home #page ~ p {
+		width: 100%;
+		margin-left: 0;
+	}
+}
+
+/* WP Admin Bar shrinks 46px > 32px */
+@media screen and (min-width: 783px) {
+	body.home.admin-bar #site-tools {
+		top: 85px;
+	}
+
+	body.home.admin-bar #content {
+		margin-top: calc( 100vh - 32px - 45px + 35px );
+	}
+
+		body.home.admin-bar .content-area {
+			padding-top: calc( 32px + 45px + 35px );
+		}
+
+			body.home.admin-bar .content-area .site-main {
+				margin-top: 84px;
+			}
+}
+
+/* Content at intial max width: 2 x 174 + 640 = 988 + 17 for the scrollbar = 1005 */
+@media screen and (min-width: 1005px) { /*(min-width: 1120px) {*/
+	body.home #content,
+	body.home #colophon {
+		padding: 0 174px;
+	}
+
+	body.home #page ~ p {
+		padding: 0 calc( 174px + 35px );
 	}
 }
 
@@ -2264,13 +2453,19 @@ input[type="radio"] {
 --------------------------------------------------------------*/
 .widget {
 	position: relative;
-	float: left;
-	width: 100%;
 	padding: 35px 25px;
 	border-top: 1px dashed #ddd;
 }
 
-	.widget .widget-title ~ *,
+	body.home .widget:first-child {
+		border: 0;
+	}
+
+	body.home .widget.full-width:first-child {
+		text-align: center;
+	}
+
+	.widget .widget-title ~ *:not(.widget-content),
 	.widget .widget-title + .screen-reader-text + * {
 		margin-top: 1.5em;
 	}
@@ -2350,6 +2545,10 @@ input.search-field {
 		flex-basis: 50%;
 	}
 
+		body.home .widget:not(.full-width) ~ .widget:not(.full-width):nth-child(2) {
+			border: 0;
+		}
+
 		.widget.full-width {
 			flex-basis: 100%;
 		}
@@ -2374,6 +2573,20 @@ input.search-field {
 				-webkit-column-count: 1;
 				        column-count: 1;
 			}
+}
+
+/* Front Page: 640px minimum content width */
+@media screen and (min-width: 640px) and (max-width: 740px), (min-width: 881px) {
+	body.home .widget.full-width {
+		padding: 35px calc( ( 100% - 640px + 70px ) / 2 ); /* Effectively force max-width of 640px */
+	}
+}
+
+/* Front Page: 2 x 174 padding + 960 = 1304 + 17 for the scrollbar = 1321 */
+@media screen and (min-width: 1321px) {
+	body.home .widget:not(.full-width) {
+		flex-basis: 33.33%;
+	}
 }
 
 /**
@@ -2614,10 +2827,6 @@ body.home .entry-content {
 	font-family: 'Montserrat', Arial, sans-serif;
 	font-size: .9em;
 	text-align: center;
-}
-
-body.home .entry-footer {
-	display: none;
 }
 
 	.entry-meta:not(:empty),

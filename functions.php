@@ -132,6 +132,17 @@ function zeta_widgets_init() {
 		'after_title'   => '</h4>',
 	) );
 
+	// Front Page sidebar
+	register_sidebar( array(
+		'name'          => __( 'Front Page', 'zeta' ),
+		'id'            => 'front-page-1',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
+
 	// Footer sidebar
 	register_sidebar( array(
 		'name'          => __( 'Footer', 'zeta' ),
