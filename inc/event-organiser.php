@@ -412,7 +412,7 @@ function zeta_event_organiser_get_previous_archive_link() {
 }
 
 /**
- * Return the link of the previous archive of the same type.
+ * Return the link of the adjacent archive of the same type.
  *
  * @since 1.0.0
  *
@@ -573,81 +573,81 @@ function zeta_event_organiser_is_date_same_day( $query = false, $check = 'next' 
 	return zeta_event_organiser_is_date_same( 'Y-m-d', $query, $check );
 }
 
-	/**
-	 * Return whether the date of another event is the same as the current date type.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @uses zeta_has_posts()
-	 * @uses eo_get_the_start()
-	 *
-	 * @param string             $format Date format. Used to check the date equality.
-	 * @param bool|WP_Query      $query  Optional. Query object. Defaults to main query global.
-	 * @param string|int|WP_Post $check  Optional. Which post to check against. Either 'prev'
-	 *                                   or 'next', which results in the suggested post within
-	 *                                   the current loop, event post ID or post object.
-	 *                                   Defaults to 'next'.
-	 * @return bool Event is of the same date format
-	 */
-	function zeta_event_organiser_is_date_same( $format = 'Y-m-d', $query = false, $check = 'next' ) {
+/**
+ * Return whether the date of another event is the same as the current date type.
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_has_posts()
+ * @uses eo_get_the_start()
+ *
+ * @param string             $format Date format. Used to check the date equality.
+ * @param bool|WP_Query      $query  Optional. Query object. Defaults to main query global.
+ * @param string|int|WP_Post $check  Optional. Which post to check against. Either 'prev'
+ *                                   or 'next', which results in the suggested post within
+ *                                   the current loop, event post ID or post object.
+ *                                   Defaults to 'next'.
+ * @return bool Event is of the same date format
+ */
+function zeta_event_organiser_is_date_same( $format = 'Y-m-d', $query = false, $check = 'next' ) {
 
-		// Default the query context to the global main query
-		if ( ! $query || ! is_a( $query, 'WP_Query' ) ) {
-			$query = $GLOBALS['wp_query'];
-		}
-
-		// Bail when this isn't an event query
-		if ( 'event' !== $query->query['post_type'] )
-			return false;
-
-		// Default to check the next query item
-		if ( ! $check ) {
-			$check = 'next';
-		}
-
-		// Bail when there are no next or previous posts in the query
-		if (   ( 'next' === $check && ! zeta_has_posts( $query ) )
-			|| ( 'prev' === $check && 0 === $query->current_post )
-		)
-			return false;
-
-		/**
-		 * To compare dates, we're using `eo_get_the_start()`, but it needs
-		 * to use the global `$post`. So we set it apart here to override it.
-		 */
-		$_post = $GLOBALS['post'];
-
-		// Use event start date from the post to compare from
-		$GLOBALS['post'] = $query->post;
-		$date1 = eo_get_the_start( $format, $query->post->ID );
-
-		// Get the post to compare to
-		if ( 'next' === $check ) {
-			$post2 = $query->posts[ $query->current_post + 1 ];
-		} elseif ( 'prev' === $check ) {
-			$post2 = $query->posts[ $query->current_post - 1 ];
-		} else {
-			$post2 = get_post( $check );
-		}
-
-		// Bail when a post wasn't found
-		if ( ! $post2 ) {
-			$GLOBALS['post'] = $_post;
-			return false;
-		}
-
-		// Use event start date from the post to compare to
-		$GLOBALS['post'] = $post2;
-		$date2 = eo_get_the_start( $format, $post2->ID );
-
-		// Restore the global `$post`
-		$GLOBALS['post'] = $_post;
-
-		// Check for equality in dates
-		$equal = ( $date1 === $date2 );
-
-		return $equal;
+	// Default the query context to the global main query
+	if ( ! $query || ! is_a( $query, 'WP_Query' ) ) {
+		$query = $GLOBALS['wp_query'];
 	}
+
+	// Bail when this isn't an event query
+	if ( 'event' !== $query->query['post_type'] )
+		return false;
+
+	// Default to check the next query item
+	if ( ! $check ) {
+		$check = 'next';
+	}
+
+	// Bail when there are no next or previous posts in the query
+	if (   ( 'next' === $check && ! zeta_has_posts( $query ) )
+		|| ( 'prev' === $check && 0 === $query->current_post )
+	)
+		return false;
+
+	/**
+	 * To compare dates, we're using `eo_get_the_start()`, but it needs
+	 * to use the global `$post`. So we set it apart here to override it.
+	 */
+	$_post = $GLOBALS['post'];
+
+	// Use event start date from the post to compare from
+	$GLOBALS['post'] = $query->post;
+	$date1 = eo_get_the_start( $format, $query->post->ID );
+
+	// Get the post to compare to
+	if ( 'next' === $check ) {
+		$post2 = $query->posts[ $query->current_post + 1 ];
+	} elseif ( 'prev' === $check ) {
+		$post2 = $query->posts[ $query->current_post - 1 ];
+	} else {
+		$post2 = get_post( $check );
+	}
+
+	// Bail when a post wasn't found
+	if ( ! $post2 ) {
+		$GLOBALS['post'] = $_post;
+		return false;
+	}
+
+	// Use event start date from the post to compare to
+	$GLOBALS['post'] = $post2;
+	$date2 = eo_get_the_start( $format, $post2->ID );
+
+	// Restore the global `$post`
+	$GLOBALS['post'] = $_post;
+
+	// Check for equality in dates
+	$equal = ( $date1 === $date2 );
+
+	return $equal;
+}
 
 /**
  * Filter the post title for events
@@ -698,8 +698,8 @@ add_filter( 'the_title', 'zeta_event_organiser_event_title' );
  */
 function zeta_event_organiser_event_meta() {
 
-	// Show event meta for events
-	if ( 'event' == get_post_type() ) {
+	// Show event meta for single events
+	if ( is_singular( 'event' ) ) {
 
 		/* translators: 1. date format 2. time format. Please slash any other characters */
 		$format = eo_is_all_day() ? get_option( 'date_format' ) : sprintf( _x( '%1$s \a\t %2$s', 'Event meta date', 'zeta' ), get_option( 'date_format' ), get_option( 'time_format' ) );
@@ -711,11 +711,6 @@ function zeta_event_organiser_event_meta() {
 		// Fallback to the upcoming event
 		if ( ! $occurrence ) {
 			$occurrence = eo_get_next_occurrence_of();
-		}
-
-		// Event reoccurs
-		if ( $reoccurs ) {
-			printf( '<span class="event-reoccurs">%s</span>', __( 'Reoccurring', 'zeta' ) );
 		}
 
 		// Show the (next) start date and time - not on event archive pages
@@ -731,6 +726,11 @@ function zeta_event_organiser_event_meta() {
 			  ( $occurrence ) ? $occurrence['start']->format( 'U' ) : eo_get_the_start( 'U' ),
 			( ( $occurrence ) ? $occurrence['end']->format  ( 'U' ) : eo_get_the_end  ( 'U' ) ) + 1 // Turns '24 hours' into '1 day'
 		) );
+
+		// Event reoccurs
+		if ( $reoccurs ) {
+			printf( '<span class="event-reoccurs">%s</span>', __( 'Reoccurring', 'zeta' ) );
+		}
 
 		// Event venue
 		if ( eo_get_venue() ) {
@@ -762,7 +762,7 @@ add_action( 'zeta_entry_meta', 'zeta_event_organiser_event_meta' );
 function zeta_event_organiser_event_content( $content ) {
 
 	// Filter content for single events
-	if ( in_the_loop() && 'event' == get_post_type() && is_singular() ) {
+	if ( in_the_loop() && is_singular( 'event' ) ) {
 
 		// Append event venue for events
 		if ( eo_get_venue() && $map = eo_get_venue_map( eo_get_venue(), array( 'width' => '100%' ) ) ) {
@@ -825,7 +825,7 @@ add_filter( 'the_content', 'zeta_event_organiser_event_content' );
 function zeta_event_organiser_entry_footer() {
 
 	// Show event categories for events
-	if ( 'event' == get_post_type() ) {
+	if ( is_singular( 'event' ) ) {
 
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_term_list( get_the_ID(), 'event-category', '', __( ', ', 'zeta' ) );
