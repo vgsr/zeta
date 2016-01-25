@@ -114,11 +114,28 @@ function zeta_add_image_sizes() {
  * Register widget area.
  *
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
+ *
+ * @since 1.0.0
+ *
+ * @uses register_sidebar()
  */
 function zeta_widgets_init() {
+
+	// Main sidebar
 	register_sidebar( array(
 		'name'          => __( 'Sidebar', 'zeta' ),
 		'id'            => 'sidebar-1',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
+
+	// Footer sidebar
+	register_sidebar( array(
+		'name'          => __( 'Footer', 'zeta' ),
+		'id'            => 'footer-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',

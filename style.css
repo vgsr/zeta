@@ -2336,7 +2336,8 @@ input.search-field {
 }
 
 @media screen and (min-width: 587px) and (max-width: 740px), (min-width: 881px) {
-	.widget-area {
+	.widget-area,
+	.footer-area {
 		display: -webkit-flex;
 		display: flex;
 		flex-flow: row wrap;
@@ -2425,9 +2426,13 @@ input.search-field {
 		order: 1; /* before .content-area */
 	}
 
-		body.with-sidebar .widget {
+		body.with-sidebar .widget-area .widget {
 			padding: 35px !important;
 			flex: none;
+		}
+
+		body.with-sidebar .footer-area .widget:not(.full-width) {
+			flex: 1 0 33.33%;
 		}
 
 		body.with-sidebar .widget:first-child {
