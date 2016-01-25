@@ -194,6 +194,10 @@ add_filter( 'the_category_list', 'zeta_the_category_list', 10, 2 );
 /**
  * Modify the category display name
  *
+ * When the category list is empty, `the_category_list()` will default
+ * to the unlinked text 'Uncategorized'. As we don't want that, this
+ * filter is in place to undo that.
+ *
  * @since 1.0.0
  *
  * @param string $cat Category name
@@ -940,7 +944,9 @@ add_action( 'parse_query', 'zeta_search_context_parse_query' );
  * @param string $return Form output markup
  * @param array $instance Widget settings
  */
-function zeta_widget_form( $widget, $return, $instance ) { ?>
+function zeta_widget_form( $widget, $return, $instance ) {
+
+	// @todo Find a way to display this only on the Main Sidebar's widgets ?>
 
 	<h4><?php esc_html_e( 'Theme Settings', 'zeta' ); ?></h4>
 

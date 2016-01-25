@@ -1,7 +1,7 @@
 /**
  * Zeta Customize Controls
  *
- * Contains the logic to power the theme's custom controls in the Customizer.
+ * Contains the logic for the theme's custom controls in the Customizer.
  *
  * global wp, jQuery
  */
