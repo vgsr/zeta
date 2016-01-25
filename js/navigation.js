@@ -149,9 +149,9 @@
 
 		// Consider admin-bar
 		if ( $body.hasClass( 'admin-bar' ) ) {
-			if ( width < 783 ) {
+			if ( width >= 601 && width < 783 ) {
 				height -= 46;
-			} else {
+			} else if ( width > 783 ) {
 				height -= 32;
 			}
 		}
