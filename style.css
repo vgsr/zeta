@@ -1329,7 +1329,7 @@ body.home.admin-bar #content {
 				border: 0;
 			}
 
-			body.home #page-scroll-down:not(:active):not(:focus) {
+			body.home #page-scroll-down:not(:active) {
 				/* Animation */
 				-webkit-animation: arrow-pulse 1s ease infinite;
 				animation: arrow-pulse 1s ease infinite;
