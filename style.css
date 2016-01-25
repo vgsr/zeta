@@ -1391,7 +1391,7 @@ body.home #colophon {
 /* Breakpoint 2 */
 @media screen and (min-width: 741px) {
 	body.home #site-tools {
-		position: absolute;
+		position: fixed;
 		top: 53px;
 		right: 8px;
 		width: 400px;
