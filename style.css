@@ -1396,7 +1396,7 @@ body.home #colophon {
 		right: 8px;
 		width: 400px;
 		margin: 0;
-		border: none;
+		border: 0;
 		box-shadow: 0 0 5px rgba(0, 0, 0, .3);
 		z-index: 498;
 	}
@@ -1421,7 +1421,7 @@ body.home #colophon {
 	body.home #content {
 		margin-top: calc( 100vh - 45px + 35px );
 		padding: 0 0 0 174px;
-		border: none;
+		border: 0;
 	}
 
 	body.home.admin-bar #content {
@@ -1761,7 +1761,7 @@ a:active {
 }
 
 	.main-navigation .menu-social .menu > li:not(:first-child) {
-		border: none;
+		border: 0;
 	}
 
 	.main-navigation .menu-social a {
@@ -1950,7 +1950,7 @@ a:active {
 
 	.main-navigation ul {
 		display: block;
-		border: none;
+		border: 0;
 		width: auto;
 		padding: 0;
 		background-color: transparent;
@@ -1962,7 +1962,7 @@ a:active {
 
 	.main-navigation .menu li:not(:first-child),
 	.main-navigation .menu ul li {
-		border: none;
+		border: 0;
 	}
 
 	.main-navigation .menu > li > a {
@@ -2649,7 +2649,7 @@ input.search-field {
 		}
 
 		body.with-sidebar .widget:first-child {
-			border: none;
+			border: 0;
 		}
 
 			body.with-sidebar .widget.full-width ul {
@@ -2783,7 +2783,7 @@ body.home .entry-content {
 	body.home .entry-content a:visited {
 		padding: 8px 12px;
 		color: #fff;
-		border: none;
+		border: 0;
 		background-color: rgba(191, 38, 105, .8);
 	}
 
@@ -3130,7 +3130,7 @@ body.logged-in #comments > #respond:first-child {
 --------------------------------------------------------------*/
 .entry-content .wp-smiley,
 .comment-content .wp-smiley {
-	border: none;
+	border: 0;
 	margin-bottom: 0;
 	margin-top: 0;
 	padding: 0;
