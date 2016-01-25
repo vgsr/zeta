@@ -910,6 +910,17 @@
 		border-radius: 50%;
 	}
 
+	.mini .activity-avatar a,
+	.activity-comments .ac-reply-avatar,
+	.activity-comments .acomment-avatar a {
+		width: 38px;
+		height: 38px;
+	}
+
+	.mini .activity-avatar a {
+		margin: 0 8px; /* Maintain 54px width */
+	}
+
 		#whats-new-avatar img,
 		.activity-avatar img,
 		.ac-reply-avatar img,
@@ -917,6 +928,13 @@
 			border-radius: 50%;
 			width: 50px;
 			height: 50px;
+		}
+
+		.mini .activity-avatar img,
+		.activity-comments .ac-reply-avatar img,
+		.activity-comments .acomment-avatar img {
+			width: 34px;
+			height: 34px;
 		}
 
 .activity-greeting,
@@ -1083,18 +1101,6 @@
 			padding-top: 15px;
 			border-top: 1px solid #f9f9f9;
 		}
-
-			#buddypress .activity .activity-comments .ac-reply-avatar,
-			#buddypress .activity .activity-comments .acomment-avatar a {
-				width: 38px;
-				height: 38px;
-			}
-
-				#buddypress .activity .activity-comments .ac-reply-avatar img,
-				#buddypress .activity .activity-comments .acomment-avatar img {
-					width: 34px;
-					height: 34px;
-				}
 
 			#buddypress .activity .activity-comments .ac-form .ac-reply-avatar {
 				position: inherit;
