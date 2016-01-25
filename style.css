@@ -882,7 +882,7 @@ body.fixed-header.admin-bar #site-tools {
 
 	.widget-area {
 		width: 100%;
-		background: #fafafa;
+		background: #f9f9f9;
 	}
 
 .footer-area {
@@ -954,7 +954,7 @@ body.fixed-header.admin-bar #site-tools {
 		}
 
 		.widget-area {
-			background-color: #fff;
+			background: #fff;
 		}
 
 			.content-area .site-main > *,
@@ -1167,6 +1167,10 @@ body.fixed-header.admin-bar #site-tools {
 		.page-title {
 			text-align: left;
 		}
+
+	.widget-area {
+		background: #f9f9f9;
+	}
 
 	#site-tools,
 	#content,
