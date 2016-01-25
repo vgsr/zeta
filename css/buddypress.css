@@ -240,12 +240,7 @@
 #buddypress .dir-search {
 	position: relative;
 	margin-top: 1.5em;
-	z-index: 1;
 }
-
-	#buddypress .dir-search input {
-		margin-bottom: -1px;
-	}
 
 	#buddypress .dir-search input:not(:focus) {
 		border-color: #efefef;
@@ -298,6 +293,15 @@
 			#buddypress .pagination .pagination-links .page-numbers.current:hover {
 				background-color: #efefef;
 			}
+
+@media screen and (min-width: 741px) {
+	#buddypress .dir-search {
+		position: absolute;
+		top: 35px;
+		right: 35px;
+		margin: 0;
+	}
+}
 
 /*--------------------------------------------------------------
 2.2 Single item
