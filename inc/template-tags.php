@@ -404,21 +404,6 @@ function zeta_has_posts( $query = false ) {
 }
 
 /**
- * Return whether the current post has any post content.
- *
- * @since 1.0.0
- *
- * @uses apply_filters() Calls 'the_content'
- * @uses get_the_content()
- *
- * @return bool Post has content
- */
-function zeta_has_content() {
-	$content = apply_filters( 'the_content', get_the_content() );
-	return ! empty( $content );
-}
-
-/**
  * Display collection of site tools for in the site header
  *
  * @since 1.0.0
