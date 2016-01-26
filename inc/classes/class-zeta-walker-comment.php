@@ -58,8 +58,6 @@ class Zeta_Walker_Comment extends Walker_Comment {
 				</div><!-- .comment-content -->
 
 				<div class="comment-actions">
-					<?php edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
-
 					<?php comment_reply_link( array_merge( $args, array(
 						'add_below' => 'div-comment',
 						'depth'     => $depth,
@@ -67,6 +65,8 @@ class Zeta_Walker_Comment extends Walker_Comment {
 						'before'    => '<span class="reply-link">',
 						'after'     => '</span>'
 					) ) ); ?>
+
+					<?php edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
 
 					<?php printf( '<span class="since-link"><a href="%s" class="post-comment-since"><time datetime="%s" title="%s">%s</time></a></span>',
 						esc_url( get_comment_link( $comment->comment_ID, $args ) ),
