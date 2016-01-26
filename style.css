@@ -3055,6 +3055,7 @@ body.home .entry-content {
 .comment-list #respond {
 	position: relative;
 	border-top: 1px solid #f9f9f9;
+	padding: 0;
 }
 
 .comment-list + #respond {
@@ -3062,6 +3063,7 @@ body.home .entry-content {
 	padding: 1.5em 0 0 52px;
 }
 
+body:not(.logged-in) .comment-list #respond,
 body:not(.logged-in) .comment-list + #respond {
 	padding-left: 0;
 }
@@ -3150,14 +3152,8 @@ body.logged-in #comments > #respond:first-child {
 				height: 34px;
 			}
 
-	.comment-list + #respond,
+	body.logged-in .comment-list + #respond,
 	body.logged-in #comments > #respond:first-child {
-		padding-left: 75px;
-	}
-}
-
-@media screen and (min-width: 601px) {
-	body:not(.logged-in) .comment-list + #respond {
 		padding-left: 75px;
 	}
 }
