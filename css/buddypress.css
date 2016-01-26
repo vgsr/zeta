@@ -887,8 +887,8 @@
 		content: '';
 		position: absolute;
 		bottom: 0;
-		left: -35px;
-		width: calc( 100% + 70px );
+		left: -25px;
+		width: calc( 100% + 50px );
 		border-bottom: 1px dashed #ddd;
 	}
 
@@ -907,22 +907,11 @@
 	.ac-form .ac-reply-avatar, /* <img> not wrapped in <a> */
 	.acomment-avatar a {
 		display: block;
-		width: 54px;
-		height: 54px;
+		width: 38px;
+		height: 38px;
 		padding: 2px;
 		background: #fff;
 		border-radius: 50%;
-	}
-
-	.mini .activity-avatar a,
-	.activity-comments .ac-reply-avatar,
-	.activity-comments .acomment-avatar a {
-		width: 38px;
-		height: 38px;
-	}
-
-	.mini .activity-avatar a {
-		margin: 0 8px; /* Maintain 54px width */
 	}
 
 		#whats-new-avatar img,
@@ -930,20 +919,13 @@
 		.ac-reply-avatar img,
 		.acomment-avatar img {
 			border-radius: 50%;
-			width: 50px;
-			height: 50px;
-		}
-
-		.mini .activity-avatar img,
-		.activity-comments .ac-reply-avatar img,
-		.activity-comments .acomment-avatar img {
 			width: 34px;
 			height: 34px;
 		}
 
 .activity-greeting,
 #whats-new-content {
-	padding-left: 75px;
+	padding-left: 52px;
 }
 
 #whats-new-content {
@@ -964,7 +946,7 @@
 
 	#buddypress .activity .item-list.activity-list > li {
 		width: 100%;
-		padding: 0 0 0 75px;
+		padding: 0 0 0 52px;
 		margin: 1.5em 0 0 0;
 		border: 0;
 	}
@@ -1128,6 +1110,57 @@
 						text-decoration: underline;
 						opacity: 1;
 					}
+
+/* Larger main avatars */
+@media screen and (min-width: 440px) {
+	.activity-greeting,
+	#whats-new-content,
+	#buddypress .activity .item-list.activity-list > li {
+		padding-left: 75px;
+	}
+
+	#whats-new-avatar a,
+	.activity-avatar a,
+	.ac-reply-avatar a,
+	.ac-form .ac-reply-avatar, /* <img> not wrapped in <a> */
+	.acomment-avatar a {
+		width: 54px;
+		height: 54px;
+	}
+
+	.mini .activity-avatar a {
+		margin: 0 8px; /* Maintain 54px width */
+	}
+
+	.mini .activity-avatar a,
+	.activity-comments .ac-reply-avatar,
+	.activity-comments .acomment-avatar a {
+		width: 38px;
+		height: 38px;
+	}
+
+		#whats-new-avatar img,
+		.activity-avatar img,
+		.ac-reply-avatar img,
+		.acomment-avatar img {
+			width: 50px;
+			height: 50px;
+		}
+
+		.mini .activity-avatar img,
+		.activity-comments .ac-reply-avatar img,
+		.activity-comments .acomment-avatar img {
+			width: 34px;
+			height: 34px;
+		}
+}
+
+@media screen and (min-width: 561px) {
+	#whats-new-form:after {
+		left: -35px;
+		width: calc( 100% + 70px );
+	}
+}
 
 @media all and (max-width: 710px), (min-width: 741px) and (max-width: 998px) {
 	/* Threaded comments: -30px */

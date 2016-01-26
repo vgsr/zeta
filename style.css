@@ -2980,7 +2980,7 @@ body.home .entry-content {
 
 	#comments ol > li {
 		position: relative;
-		padding-left: 75px;
+		padding-left: 52px;
 	}
 
 		#comments .comment-list > li li {
@@ -2997,28 +2997,16 @@ body.home .entry-content {
 			.comment-reply-avatar,
 			.comment-body.without-link .comment-avatar {
 				display: block;
-				width: 54px;
-				height: 54px;
+				width: 38px;
+				height: 38px;
 				background: #fff;
 				padding: 2px;
 				border-radius: 50%;
 			}
 
-			.comment-list ol .comment-avatar a,
-			.comment-list .comment-reply-avatar {
-				width: 38px;
-				height: 38px;
-			}
-
 				.comment-avatar img,
 				.comment-reply-avatar img {
 					border-radius: 50%;
-					width: 50px;
-					height: 50px;
-				}
-
-				.comment-list ol .comment-avatar img,
-				.comment-list .comment-reply-avatar img {
 					width: 34px;
 					height: 34px;
 				}
@@ -3063,12 +3051,16 @@ body.home .entry-content {
 
 .comment-list + #respond {
 	margin-top: 1.5em;
-	padding: 1.5em 0 0 75px;
+	padding: 1.5em 0 0 52px;
+}
+
+body:not(.logged-in) .comment-list + #respond {
+	padding-left: 0;
 }
 
 body.logged-in #comments > #respond:first-child {
 	position: relative;
-	padding: 0 0 0 75px;
+	padding: 0 0 0 52px;
 }
 
 .comment-list #respond {
@@ -3118,6 +3110,49 @@ body.logged-in #comments > #respond:first-child {
 		vertical-align: middle;
 		padding: 7px 0;
 	}
+
+/* Larger main avatars */
+@media screen and (min-width: 440px) {
+	#comments ol > li {
+		padding-left: 75px;
+	}
+
+		.comment-avatar a,
+		.comment-reply-avatar,
+		.comment-body.without-link .comment-avatar {
+			width: 54px;
+			height: 54px;
+		}
+
+		.comment-list ol .comment-avatar a,
+		.comment-list .comment-reply-avatar {
+			width: 38px;
+			height: 38px;
+		}
+
+			.comment-avatar img,
+			.comment-reply-avatar img {
+				width: 50px;
+				height: 50px;
+			}
+
+			.comment-list ol .comment-avatar img,
+			.comment-list .comment-reply-avatar img {
+				width: 34px;
+				height: 34px;
+			}
+
+	.comment-list + #respond,
+	body.logged-in #comments > #respond:first-child {
+		padding-left: 75px;
+	}
+}
+
+@media screen and (min-width: 601px) {
+	body:not(.logged-in) .comment-list + #respond {
+		padding-left: 75px;
+	}
+}
 
 @media all and (max-width: 710px), (min-width: 741px) and (max-width: 998px) {
 	/* Threaded comments: -30px */
