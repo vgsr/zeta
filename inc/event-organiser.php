@@ -591,14 +591,14 @@ function zeta_event_organiser_is_date_same_day( $query = false, $check = 'next' 
  */
 function zeta_event_organiser_is_date_same( $format = 'Y-m-d', $query = false, $check = 'next' ) {
 
+	// Bail when this isn't an event query
+	if ( 'event' !== get_post_type() )
+		return false;
+
 	// Default the query context to the global main query
 	if ( ! $query || ! is_a( $query, 'WP_Query' ) ) {
 		$query = $GLOBALS['wp_query'];
 	}
-
-	// Bail when this isn't an event query
-	if ( 'event' !== $query->query['post_type'] )
-		return false;
 
 	// Default to check the next query item
 	if ( ! $check ) {
@@ -650,7 +650,7 @@ function zeta_event_organiser_is_date_same( $format = 'Y-m-d', $query = false, $
 }
 
 /**
- * Filter the post title for events
+ * Filter the post title for events in the daily archives
  *
  * @since 1.0.0
  *
@@ -698,8 +698,8 @@ add_filter( 'the_title', 'zeta_event_organiser_event_title' );
  */
 function zeta_event_organiser_event_meta() {
 
-	// Show event meta for single events
-	if ( is_singular( 'event' ) ) {
+	// Show event meta for events
+	if ( 'event' === get_post_type() ) {
 
 		/* translators: 1. date format 2. time format. Please slash any other characters */
 		$format = eo_is_all_day() ? get_option( 'date_format' ) : sprintf( _x( '%1$s \a\t %2$s', 'Event meta date', 'zeta' ), get_option( 'date_format' ), get_option( 'time_format' ) );
@@ -762,7 +762,7 @@ add_action( 'zeta_entry_meta', 'zeta_event_organiser_event_meta' );
 function zeta_event_organiser_event_content( $content ) {
 
 	// Filter content for single events
-	if ( in_the_loop() && is_singular( 'event' ) ) {
+	if ( is_singular( 'event' ) && in_the_loop() ) {
 
 		// Append event venue for events
 		if ( eo_get_venue() && $map = eo_get_venue_map( eo_get_venue(), array( 'width' => '100%' ) ) ) {
@@ -824,8 +824,8 @@ add_filter( 'the_content', 'zeta_event_organiser_event_content' );
  */
 function zeta_event_organiser_entry_footer() {
 
-	// Show event categories for events
-	if ( is_singular( 'event' ) ) {
+	// Show event categories events
+	if ( 'event' === get_post_type() ) {
 
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_term_list( get_the_ID(), 'event-category', '', __( ', ', 'zeta' ) );

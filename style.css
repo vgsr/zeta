@@ -3315,29 +3315,15 @@ object {
 		flex: 1 0 auto;
 	}
 
-	.post-type-archive .event-section .entry-title,
-	.post-type-archive .event .entry-title,
-	.event-section .section-title {
+	.post-type-archive-event .entry-title, /* Daily archives */
+	.event-section .section-title,
+	.event-section .entry-title {
 		font-size: 1em;
 	}
 
-	.section-header .section-title,
-	.section-header .section-title a {
-		vertical-align: top;
-	}
-
-	.event-section .entry-content {
-		margin: 0;
-	}
-
-	/* When without post content */
-	.event-section .entry-header + .entry-footer {
-		margin-top: .5em;
-	}
-
-	.event-section .entry-meta,
-	.event-section .entry-footer {
-		text-align: left;
+	.event-section.section-day .entry-title {
+		font-family: inherit;
+		font-weight: normal;
 	}
 
 	.event-section .section-header + .event {
@@ -3350,15 +3336,16 @@ object {
 	}
 
 	.event-section .section-content .event {
-		margin-top: 1.5em;
-	}
-
-	.event-section .section-content .event:first-child {
-		margin: 0;
+		margin-top: 0;
 	}
 
 	.event-section .section-content .entry-title {
 		text-align: left;
+	}
+
+	/* When without post content */
+	.post-type-archive-event .entry-meta {
+		margin-top: .5em;
 	}
 
 @media screen and (min-width: 480px) {
