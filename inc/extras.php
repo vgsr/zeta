@@ -110,13 +110,15 @@ function zeta_breadcrumbs() {
 	if ( function_exists( 'yoast_breadcrumb' ) ) {
 
 		// Modify crumbs
-		add_filter( 'wpseo_breadcrumb_links', 'zeta_wpseo_breadcrumb_links' );
+		add_filter( 'wpseo_breadcrumb_links',     'zeta_wpseo_breadcrumb_links' );
+		add_filter( 'wpseo_breadcrumb_separator', '__return_empty_string'       );
 
 		// Output crumbs
 		yoast_breadcrumb( '<div id="breadcrumb" class="yoast-breadcrumb">', '</div>' );
 
 		// Undo modify crumbs
-		remove_filter( 'wpseo_breadcrumb_links', 'zeta_wpseo_breadcrumb_links' );
+		remove_filter( 'wpseo_breadcrumb_links',     'zeta_wpseo_breadcrumb_links' );
+		remove_filter( 'wpseo_breadcrumb_separator', '__return_empty_string'       );
 
 	// Using bbPress
 	} elseif ( function_exists( 'bbp_breadcrumb' ) ) {
