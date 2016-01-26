@@ -1193,6 +1193,7 @@ body.fixed-header.admin-bar #site-tools {
 		display: block;
 		height: 80px; /* 45px header + 35px clearance */
 		margin-top: -80px;
+		pointer-events: none;
 	}
 
 	body.admin-bar :target:before {
