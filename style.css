@@ -905,6 +905,18 @@ body.fixed-header.admin-bar #site-tools {
 	font-size: .75em;
 }
 
+/*
+ * Anchor targets need to fall below the fixed admin-bar + fixed header
+ * @see http://stackoverflow.com/a/28824157/3601434
+ */
+:target:before {
+	content: '';
+	display: block;
+	height: 97px; /* 62px header + 35px clearance */
+	margin-top: -97px;
+	pointer-events: none;
+}
+
 /* Breakpoint 1 */
 @media screen and (min-width: 561px) {
 	.site-branding {
@@ -966,6 +978,11 @@ body.fixed-header.admin-bar #site-tools {
 	#page ~ p {
 		padding: 15px 35px;
 	}
+
+	:target:before {
+		height: 111px; /* 76px + 35px clearance */
+		margin-top: -111px;
+	}
 }
 
 /* WP's Admin Bar fixed */
@@ -977,6 +994,11 @@ body.fixed-header.admin-bar #site-tools {
 
 	body.admin-bar #site-tools {
 		margin-top: 76px;
+	}
+
+	body.admin-bar :target:before {
+		height: 157px; /* 76px + 35px + 46px admin-bar */
+		margin-top: -157px;
 	}
 }
 
@@ -1184,20 +1206,13 @@ body.fixed-header.admin-bar #site-tools {
 		margin-left: 174px;
 	}
 
-	/*
-	 * Anchor targets need to fall below the fixed admin-bar + header
-	 * @see http://stackoverflow.com/a/28824157/3601434
-	 */
 	:target:before {
-		content: '';
-		display: block;
 		height: 80px; /* 45px header + 35px clearance */
 		margin-top: -80px;
-		pointer-events: none;
 	}
 
 	body.admin-bar :target:before {
-		height: 126px; /* 80px + 46px admin-bar */
+		height: 126px; /* 45px + 35px + 46px admin-bar */
 		margin-top: -126px;
 	}
 }
@@ -1213,7 +1228,7 @@ body.fixed-header.admin-bar #site-tools {
 	}
 
 	body.admin-bar :target:before {
-		height: 112px; /* 80px + 32px admin-bar */
+		height: 112px; /* 45px + 35px + 32px admin-bar */
 		margin-top: -112px;
 	}
 }
