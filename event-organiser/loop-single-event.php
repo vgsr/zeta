@@ -17,7 +17,7 @@
 				/* translators: 1. Event title 2. Event time */
 				sprintf( eo_is_all_day() ? '%1$s' : __( '%2$s &mdash; %1$s', 'zeta' ),
 					get_the_title(),
-					eo_get_the_start( _x( 'g:i A', 'Event time title prefix', 'zeta' ) )
+					eo_get_the_start( get_option( 'time_format' ) )
 				)
 			); ?>
 		</h2>
