@@ -1051,7 +1051,7 @@
 				#buddypress .activity-item .activity-content:hover .activity-meta a ~ a,
 				#buddypress .activity-comments li > div:hover ~ .acomment-options a ~ a,
 				#buddypress .activity-comments li > .acomment-options:hover a ~ a {
-					display: inline;
+					display: inline-block;
 				}
 
 	#buddypress .activity .activity-comments {
@@ -1278,6 +1278,13 @@
 			background: rgba(191, 38, 105, .8);
 		}
 
+		#buddypress .generic-button a,
+		#buddypress .button,
+		#buddypress .acomment-options a {
+			display: inline-block;
+			padding-right: 6px;
+		}
+
 		#buddypress .generic-button a:before,
 		#buddypress .button:before,
 		#buddypress .acomment-options a:before {
@@ -1286,6 +1293,7 @@
 			margin-right: 8px;
 			font-family: dashicons;
 			font-size: 1.2em;
+			line-height: 1.2em;
 			opacity: .5;
 		}
 

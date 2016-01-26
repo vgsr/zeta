@@ -2852,22 +2852,28 @@ body.home .entry-content {
 		margin: 0;
 	}
 
-	.entry-footer span:not(:last-child) {
-		padding-right: 9px; /* 5px + 'space' between elements */
-	}
-
 	.entry-meta > span,
 	.entry-meta > a,
 	.entry-footer > span,
-	.entry-footer > a {
+	.entry-footer > a,
+	.comment-actions a {
 		color: rgba(64, 64, 64, .5);
 		font-size: .8em;
+		display: inline-block;
 	}
+
+		.entry-footer > span:not(:last-child),
+		.entry-footer > a:not(:last-child),
+		.comment-actions > span:not(:last-child) {
+			padding-right: 10px; /* 6px + 'space' between elements */
+		}
 
 	.entry-meta a,
 	.entry-meta a:visited,
 	.entry-footer a,
-	.entry-footer a:visited {
+	.entry-footer a:visited,
+	.comment-actions a,
+	.comment-actions a:visited {
 		color: rgba(64, 64, 64, .5);
 		text-decoration: none;
 	}
@@ -2880,6 +2886,7 @@ body.home .entry-content {
 
 		.entry-meta a:hover,
 		.entry-footer a:hover,
+		.comment-actions a:hover,
 		#colophon a:hover {
 			color: rgba(64, 64, 64, .9);
 		}
@@ -2890,32 +2897,40 @@ body.home .entry-content {
 		}
 
 		.entry-footer span:before,
-		.entry-footer a:before {
+		.entry-footer a:before,
+		.comment-actions a:before {
 			content: '';
 			vertical-align: bottom;
 			font-family: dashicons;
 			font-size: 1.2em;
+			line-height: 1.2em;
+			margin: 0; /* no initial margin to prevent on icon-less elements */
 		}
-
-			.entry-footer a:not(.cat-links a):not(.tag-links a):before {
-				margin-right: 8px;
-			}
 
 			span.cat-links:before {
 				content: '\f318'; /* dashicons-category */
+				margin-right: 3px;
 			}
 
 			span.tag-links:before {
 				content: '\f323'; /* dashicons-tag */
+				margin-right: 3px;
 			}
 
+			span.reply-link a:before,
 			span.comments-link a:before {
 				content: '\f125'; /* dashicons-format-chat */
 				margin-right: 4px;
 			}
 
+			span.edit-link a:before,
 			span.edit-link a:before {
 				content: '\f464'; /* dashicons-edit */
+				margin-right: 3px;
+			}
+
+			span.since-link a:before {
+				content: '\f469'; /* dashicons-clock */
 				margin-right: 3px;
 			}
 
@@ -3034,19 +3049,7 @@ body.home .entry-content {
 		margin-top: 5px;
 		font-family: 'Montserrat', Arial, sans-serif;
 		font-weight: normal;
-		color: #aaa;
 	}
-
-		.comment-actions a {
-			font-size: .8em;
-			opacity: .5;
-			padding: 0 5px 0 0;
-		}
-
-			.comment-actions a:hover {
-				opacity: .9;
-				text-decoration: none;
-			}
 
 .bypostauthor {
 	display: block;
