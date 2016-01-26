@@ -3039,6 +3039,14 @@ body.home .entry-content {
 		font-weight: normal;
 	}
 
+		.comment-actions span ~ span {
+			display: none;
+		}
+
+		.comment-body:hover > .comment-actions span ~ span {
+			display: inline-block;
+		}
+
 .bypostauthor {
 	display: block;
 }
