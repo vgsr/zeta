@@ -1383,6 +1383,10 @@ body.front-page.admin-bar #content {
 		z-index: 1; /* Above .site-content */
 	}
 
+		body.front-page .widget-area .widget {
+			font-size: inherit;
+		}
+
 body.front-page #colophon {
 	z-index: 1; /* Above #content */
 	background: #e9e9e9;
