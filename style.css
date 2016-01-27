@@ -2485,6 +2485,15 @@ input[type="radio"] {
 		text-align: center;
 	}
 
+	.widget-title {
+		margin: 0;
+		font-size: 1.5em;
+	}
+
+	.footer-area .widget-title {
+		font-size: 1.1em;
+	}
+
 	.widget .widget-title ~ *:not(.widget-content),
 	.widget .widget-title + .screen-reader-text + * {
 		margin-top: 1.5em;
@@ -2948,11 +2957,6 @@ body.home .entry-content {
 				content: '\f469'; /* dashicons-clock */
 				margin-right: 3px;
 			}
-
-.widget-title {
-	margin: 0;
-	font-size: 1.5em;
-}
 
 /* Breakpoint 2 */
 @media screen and (min-width: 741px) {
