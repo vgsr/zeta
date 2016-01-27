@@ -976,11 +976,15 @@
 		color: rgba(64, 64, 64, .8); /* Don't use `opacity`, as it cannot be overriden positively */
 	}
 
+	#buddypress #latest-update,
 	#buddypress .activity .activity-inner {
-		margin: 10px 0;
 		padding: 10px;
 		background-color: #e9e9e9;
 		border-radius: 4px;
+	}
+
+	#buddypress .activity .activity-inner {
+		margin: 10px 0;
 	}
 
 	#buddypress .activity .activity-meta {
