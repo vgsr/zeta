@@ -2568,12 +2568,12 @@ input.search-field {
 		flex-flow: row wrap;
 	}
 
-	.widget {
-		float: none;
-		border-top: 1px dashed #ddd;
-		flex: 1;
-		flex-basis: 50%;
-	}
+		.widget {
+			float: none;
+			border-top: 1px dashed #ddd;
+			flex: 1;
+			flex-basis: 50%;
+		}
 
 		body.home .widget:not(.full-width):first-child ~ .widget:not(.full-width):nth-child(2) {
 			border: 0;
@@ -2667,6 +2667,7 @@ input.search-field {
 			flex: 1 0 33.33%;
 		}
 
+			body.with-sidebar .widget:not(.full-width):first-child ~ .widget:not(.full-width):nth-child(2),
 			body.with-sidebar .widget:not(.full-width):first-child ~ .widget:not(.full-width):nth-child(3) {
 				border: 0;
 			}
