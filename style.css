@@ -1255,7 +1255,7 @@ body.fixed-header.admin-bar #site-tools {
 /*--------------------------------------------------------------
 3.2 Front Page
 --------------------------------------------------------------*/
-body.home #header-aside {
+body.front-page #header-aside {
 	position: fixed;
 	top: 62px;
 	right: 0;
@@ -1264,7 +1264,7 @@ body.home #header-aside {
 	height: auto;
 }
 
-body.home #content {
+body.front-page #content {
 	width: 100%;
 	margin: calc( 100vh - 62px + 35px ) 0 0;
 	padding: 0;
@@ -1275,11 +1275,11 @@ body.home #content {
 	justify-content: center;
 }
 
-body.home.admin-bar #content {
+body.front-page.admin-bar #content {
 	margin-top: calc( 100vh - 46px - 62px + 35px );
 }
 
-	body.home .content-area {
+	body.front-page .content-area {
 		position: fixed; /* Fix it in the front of #header-aside */
 		top: 0;
 		right: 0;
@@ -1299,7 +1299,7 @@ body.home.admin-bar #content {
 		justify-content: center;
 	}
 
-		body.home .content-area .site-main {
+		body.front-page .content-area .site-main {
 			flex: 1 0 auto;
 			width: 100%;
 			max-width: 640px;
@@ -1307,20 +1307,20 @@ body.home.admin-bar #content {
 			margin-top: 116px;
 		}
 
-		body.home.admin-bar .content-area .site-main {
+		body.front-page.admin-bar .content-area .site-main {
 			margin-top: 70px;
 		}
 
-	body.home .content-area .site-main > * {
+	body.front-page .content-area .site-main > * {
 		padding: 0 25px;
 	}
 
-		body.home .entry-title {
+		body.front-page .entry-title {
 			font-size: 5em;
 			text-shadow: 0 0 5px rgba( 0, 0, 0, .3 );
 		}
 
-		body.home .entry-footer {
+		body.front-page .entry-footer {
 			position: fixed;
 			bottom: 35px;
 			left: 50%;
@@ -1328,24 +1328,24 @@ body.home.admin-bar #content {
 			transform: translateX(-50%);
 		}
 
-			body.home .entry-footer .edit-link {
+			body.front-page .entry-footer .edit-link {
 				display: none;
 			}
 
-			body.home #page-scroll-down {
+			body.front-page #page-scroll-down {
 				display: block;
 				background: transparent;
 				padding: 15px;
 				border: 0;
 			}
 
-			body.home #page-scroll-down:focus,
-			body.home #page-scroll-down:active {
+			body.front-page #page-scroll-down:focus,
+			body.front-page #page-scroll-down:active {
 				box-shadow: none;
 				border: 0;
 			}
 
-			body.home #page-scroll-down:not(:active) {
+			body.front-page #page-scroll-down:not(:active) {
 				/* Animation */
 				-webkit-animation: arrow-pulse 1s ease infinite;
 				animation: arrow-pulse 1s ease infinite;
@@ -1361,11 +1361,11 @@ body.home.admin-bar #content {
 				50% {   	transform: translateY( 5px ); }
 			}
 
-			body.home #page-scroll-down:active {
+			body.front-page #page-scroll-down:active {
 				padding: 17px 15px 13px;
 			}
 
-				body.home #page-scroll-down:before {
+				body.front-page #page-scroll-down:before {
 					content: '\f347'; /* dashicons-arrow-down-alt2 */
 					display: block;
 					width: 45px;
@@ -1376,41 +1376,41 @@ body.home.admin-bar #content {
 					color: #f9f9f9;
 				}
 
-	body.home .widget-area {
+	body.front-page .widget-area {
 		margin-top: -35px;
 		background: #fff;
 		pointer-events: visible;
 		z-index: 1; /* Above .site-content */
 	}
 
-body.home #colophon {
+body.front-page #colophon {
 	z-index: 1; /* Above #content */
 	background: #e9e9e9;
 }
 
 /* Breakpoint 1 */
 @media screen and (min-width: 561px) {
-	body.home #header-aside {
+	body.front-page #header-aside {
 		top: 76px;
 		height: auto;
 	}
 
-	body.home #content {
+	body.front-page #content {
 		margin-top: calc( 100vh - 76px + 35px );
 	}
 
-	body.home.admin-bar #content {
+	body.front-page.admin-bar #content {
 		margin-top: calc( 100vh - 46px - 76px + 35px );
 	}
 
-		body.home .content-area .site-main > * {
+		body.front-page .content-area .site-main > * {
 			background-color: transparent;
 		}
 }
 
 /* Breakpoint 2 */
 @media screen and (min-width: 741px) {
-	body.home #site-tools {
+	body.front-page #site-tools {
 		position: fixed;
 		top: 53px;
 		right: 8px;
@@ -1421,55 +1421,55 @@ body.home #colophon {
 		z-index: 498;
 	}
 
-	body.home.admin-bar #site-tools {
+	body.front-page.admin-bar #site-tools {
 		top: 99px;
 	}
 
-		body.home #site-tools .site-tool {
+		body.front-page #site-tools .site-tool {
 			padding: 15px;
 		}
 
-	body.home #header-aside {
+	body.front-page #header-aside {
 		top: 0;
 		width: 100%;
 	}
 
-	body.home.admin-bar #header-aside {
+	body.front-page.admin-bar #header-aside {
 		top: 32px;
 	}
 
-	body.home #content {
+	body.front-page #content {
 		margin-top: calc( 100vh - 45px + 35px );
 		padding: 0 0 0 174px;
 		border: 0;
 	}
 
-	body.home.admin-bar #content {
+	body.front-page.admin-bar #content {
 		margin-top: calc( 100vh - 46px - 45px + 35px );
 	}
 
-		body.home .content-area {
+		body.front-page .content-area {
 			padding: calc( 45px + 35px ) 174px 35px;
 		}
 
-		body.home.admin-bar .content-area {
+		body.front-page.admin-bar .content-area {
 			padding-top: calc( 46px + 45px + 35px );
 		}
 
-			body.home .entry-title {
+			body.front-page .entry-title {
 				text-align: center;
 			}
 
-	body.home #colophon {
+	body.front-page #colophon {
 		padding: 0 0 0 174px;
 	}
 
-	body.home #colophon,
+	body.front-page #colophon,
 	/*
 	 * Also apply this to all <p> after #page #colophon,
 	 * which are added at `do_action( 'wp_footer' )`.
 	 */
-	body.home #page ~ p {
+	body.front-page #page ~ p {
 		width: 100%;
 		margin-left: 0;
 	}
@@ -1477,31 +1477,31 @@ body.home #colophon {
 
 /* WP Admin Bar shrinks 46px > 32px */
 @media screen and (min-width: 783px) {
-	body.home.admin-bar #site-tools {
+	body.front-page.admin-bar #site-tools {
 		top: 85px;
 	}
 
-	body.home.admin-bar #content {
+	body.front-page.admin-bar #content {
 		margin-top: calc( 100vh - 32px - 45px + 35px );
 	}
 
-		body.home.admin-bar .content-area {
+		body.front-page.admin-bar .content-area {
 			padding-top: calc( 32px + 45px + 35px );
 		}
 
-			body.home.admin-bar .content-area .site-main {
+			body.front-page.admin-bar .content-area .site-main {
 				margin-top: 84px;
 			}
 }
 
 /* Content at intial max width: 2 x 174 + 640 = 988 + 17 for the scrollbar = 1005 */
 @media screen and (min-width: 1005px) { /*(min-width: 1120px) {*/
-	body.home #content,
-	body.home #colophon {
+	body.front-page #content,
+	body.front-page #colophon {
 		padding: 0 174px;
 	}
 
-	body.home #page ~ p {
+	body.front-page #page ~ p {
 		padding: 0 calc( 174px + 35px );
 	}
 }
@@ -2058,7 +2058,7 @@ a:active {
 		right: auto;
 	}
 
-		body.home .tools-nav .toggled:after {
+		body.front-page .tools-nav .toggled:after {
 			content: '';
 			position: absolute;
 			top: 100%;
@@ -2478,11 +2478,11 @@ input[type="radio"] {
 	font-size: 1rem;
 }
 
-	body.home .widget:first-child {
+	body.front-page .widget:first-child {
 		border: 0;
 	}
 
-	body.home .widget.full-width:first-child {
+	body.front-page .widget.full-width:first-child {
 		text-align: center;
 	}
 
@@ -2575,7 +2575,7 @@ input.search-field {
 			flex-basis: 50%;
 		}
 
-		body.home .widget:not(.full-width):first-child ~ .widget:not(.full-width):nth-child(2) {
+		body.front-page .widget:not(.full-width):first-child ~ .widget:not(.full-width):nth-child(2) {
 			border: 0;
 		}
 
@@ -2592,18 +2592,18 @@ input.search-field {
 
 /* Front Page: 640px minimum content width */
 @media screen and (min-width: 640px) and (max-width: 740px), (min-width: 881px) {
-	body.home .widget.full-width {
+	body.front-page .widget.full-width {
 		padding: 35px calc( ( 100% - 640px + 70px ) / 2 ); /* Effectively force max-width of 640px */
 	}
 }
 
 /* Front Page: 2 x 174 padding + 960 = 1304 + 17 for the scrollbar = 1321 */
 @media screen and (min-width: 1321px) {
-	body.home .widget:not(.full-width) {
+	body.front-page .widget:not(.full-width) {
 		flex-basis: 33.33%;
 	}
 
-	body.home .widget:not(.full-width):first-child ~ .widget:not(.full-width):nth-child(3) {
+	body.front-page .widget:not(.full-width):first-child ~ .widget:not(.full-width):nth-child(3) {
 		border: 0;
 	}
 }
@@ -2786,15 +2786,15 @@ input.search-field {
 	margin: 1.5em 0 .5em;
 }
 
-body.home .entry-content {
+body.front-page .entry-content {
 	margin: 0;
 }
 
-	body.home .entry-content p:first-child {
+	body.front-page .entry-content p:first-child {
 		margin: 0;
 	}
 
-	body.home .entry-content a {
+	body.front-page .entry-content a {
 		font-family: 'Montserrat', Arial, sans-serif;
 		text-transform: uppercase;
 		font-size: .75em;
@@ -2803,16 +2803,16 @@ body.home .entry-content {
 		text-decoration: none;
 	}
 
-	body.home .entry-content a,
-	body.home .entry-content a:visited {
+	body.front-page .entry-content a,
+	body.front-page .entry-content a:visited {
 		padding: 8px 12px;
 		color: #fff;
 		border: 0;
 		background-color: rgba(191, 38, 105, .8);
 	}
 
-	body.home .entry-content a:hover,
-	body.home .entry-content a:hover {
+	body.front-page .entry-content a:hover,
+	body.front-page .entry-content a:hover {
 		background-color: rgba(191, 38, 105, 1);
 	}
 

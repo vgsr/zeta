@@ -15,6 +15,12 @@
  * @return array
  */
 function zeta_body_classes( $classes ) {
+
+	// Adds a more distinctive class for the front page
+	if ( is_front_page() ) {
+		$classes[] = 'front-page';
+	}
+
 	// Adds a class of group-blog to blogs with more than 1 published author.
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
