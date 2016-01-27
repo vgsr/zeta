@@ -251,7 +251,9 @@ add_action( 'wp_enqueue_scripts', 'zeta_scripts' );
  *
  * @since Zeta 1.0.0
  *
- * @see wp_add_inline_style()
+ * @uses apply_filters() Calls 'zeta_previous_post_navigation_label'
+ * @uses apply_filters() Calls 'zeta_next_post_navigation_label'
+ * @uses wp_add_inline_style()
  */
 function zeta_inline_styles() {
 
