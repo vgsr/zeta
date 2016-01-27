@@ -190,6 +190,10 @@
 				text-align: center;
 			}
 
+			#buddypress .item-list-tabs li:not(.current):not(.selected) a span {
+				background: rgba(64, 64, 64, .8);
+			}
+
 				#buddypress .item-list-tabs li a span.no-count {
 					display: none;
 				}
