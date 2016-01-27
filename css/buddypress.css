@@ -310,6 +310,27 @@
 	text-align: center;
 }
 
+/*
+ * For user/group pages, push #breadcrumb below content
+ * so the #item-header-avatar positions nicely between
+ * #header-aside and the page title.
+ */
+.buddypress.bp-user .site-main {
+	/* Flex the inner content */
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: column;
+}
+
+	.buddypress.bp-user:not(.activity-permalink) #breadcrumb {
+		order: 2;
+		border: 0;
+		border-top: 1px dashed #ddd;
+	}
+
 #buddypress #item-header {
 	padding: 0;
 }
