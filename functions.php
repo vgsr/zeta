@@ -252,11 +252,6 @@ add_action( 'wp_enqueue_scripts', 'zeta_scripts' );
  * @since Zeta 1.0.0
  *
  * @see wp_add_inline_style()
- *
- * @uses vgsr_entity()
- * @uses is_singular()
- * @uses wp_get_sidebars_widgets()
- * @uses zeta_count_widgets_wit_setting()
  */
 function zeta_inline_styles() {
 
@@ -282,44 +277,6 @@ function zeta_inline_styles() {
 		.post-navigation .nav-previous a:before { content: "' . apply_filters( 'zeta_previous_post_navigation_label', $prev ) . '"; }
 		.post-navigation .nav-next a:before { content: "'     . apply_filters( 'zeta_next_post_navigation_label',     $next ) . '"; }
 	';
-
-	/**
-	 * Widgets
-	 */
-
-	// Define the max count of full-width widgets in any sidebar
-	$widgets_count = 0;
-	foreach ( wp_get_sidebars_widgets() as $sidebar => $widgets ) {
-		$count = zeta_count_widgets_with_setting( $sidebar, 'zeta-full-width', true );
-		if ( $count > $widgets_count )
-			$widgets_count = $count;
-	}
-
-	// Define styles for widgets following multiple full-width widgets,
-	// since there is no :nth-of-class type selector available in CSS.
-	if ( $widgets_count > 1 ) {
-		$left = $right = $left_before = $right_before = $rep = '';
-
-		while ( $widgets_count > 1 ) {
-			$rep = str_repeat( ' ~ aside.full-width', $widgets_count - 1 );
-
-			$left  = "\t\t\t.widget-area aside.full-width{$rep}:nth-of-type(odd)  ~ aside:not(.full-width):nth-of-type(even),\n" . $left;
-			$left  = "\t\t\t.widget-area aside.full-width{$rep}:nth-of-type(even) ~ aside:not(.full-width):nth-of-type(odd),\n"  . $left;
-			$right = "\t\t\t.widget-area aside.full-width{$rep}:nth-of-type(odd)  ~ aside:not(.full-width):nth-of-type(odd),\n"  . $right;
-			$right = "\t\t\t.widget-area aside.full-width{$rep}:nth-of-type(even) ~ aside:not(.full-width):nth-of-type(even),\n" . $right;
-
-			$widgets_count--;
-		}
-
-		// Define styles
-		$left  = trim( $left,  ",\n" ) . " { clear: both; }\n";
-		$right = trim( $right, ",\n" ) . " { clear: none; }\n";
-
-		// Append widget styles within media query. See style.css chapter 9.0
-		$css .= "
-		@media screen and (min-width: 587px) and (max-width: 740px), (min-width: 881px) {\n{$left}{$right}\t\t}
-		";
-	}
 
 	wp_add_inline_style( 'zeta-style', $css );
 }

@@ -2583,21 +2583,6 @@ input.search-field {
 			flex-basis: 100%;
 		}
 
-		/* Left widget column */
-		.widget.full-width:nth-of-type(odd)  + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even),
-		.widget.full-width:nth-of-type(even) + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd),
-		.widget.full-width + aside:not(.full-width),
-		.widget:not(.full-width):nth-of-type(odd) {
-			clear: both;
-		}
-
-		/* Right widget column */
-		.widget.full-width:nth-of-type(odd)  + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(odd),
-		.widget.full-width:nth-of-type(even) + aside:not(.full-width) ~ aside:not(.full-width):nth-of-type(even),
-		.widget:not(.full-width):nth-of-type(even) {
-			clear: none;
-		}
-
 			.widget:not(.full-width) ul:not(.sub-menu):not(.children) {
 				   -moz-column-count: 1;
 				-webkit-column-count: 1;
