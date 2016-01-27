@@ -671,14 +671,17 @@
 /*--------------------------------------------------------------
 2.3 Item list (members/groups)
 --------------------------------------------------------------*/
+.avatar-block .item-avatar,
 .bp-item-list li {
 	position: relative;
 	float: left;
 	width: 50px;
 	height: 50px;
-	margin: 5px;
+	margin: 0 5px 5px 0;
 }
 
+	.avatar-block .item-avatar a:before,
+	.avatar-block .item-avatar a:after,
 	.bp-item-list li .item-title {
 		position: absolute;
 		bottom: 100%;
@@ -691,6 +694,7 @@
 		transition: all .25s ease-in;
 	}
 
+	.avatar-block .item-avatar a:before,
 	.bp-item-list li .item-title a {
 		display: inline-block;
 		padding: 5px 8px;
@@ -699,11 +703,17 @@
 		transform: translateX(-50%);
 		background-color: #404040;
 		color: #fff;
+		font-family: 'Montserrat', Arial, sans-serif;
 		font-size: 11px;
 		line-height: 1.3em;
 		text-align: center;
 	}
 
+	.avatar-block .item-avatar a:before {
+		content: attr(title);
+	}
+
+	.avatar-block .item-avatar a:after,
 	.bp-item-list li .item-title:after {
 		content: '';
 		position: absolute;
@@ -714,16 +724,24 @@
 		border-right: 5px solid transparent;
 	}
 
+	.avatar-block .item-avatar a:after {
+		bottom: 100%;
+	}
+
+	.avatar-block .item-avatar a:hover:before,
+	.avatar-block .item-avatar a:hover:after,
 	.bp-item-list li:hover .item-title {
 		visibility: visible;
 		bottom: calc( 100% + 5px );
 		opacity: 1;
 	}
 
+	.avatar-block .item-avatar a,
 	.bp-item-list .item-avatar a {
 		display: inline-block;
 	}
 
+	.avatar-block .item-avatar img,
 	.bp-item-list .item-avatar img {
 		vertical-align: bottom;
 		width: 50px;
