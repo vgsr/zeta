@@ -482,7 +482,7 @@
 				font-family: dashicons;
 			}
 
-	#buddypress #latest-update:not(:empty) {
+	#buddypress #latest-update {
 		margin-top: 1.5em;
 	}
 

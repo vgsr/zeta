@@ -62,8 +62,12 @@ function zeta_bp_entry_meta() {
 		}
 
 		/**
+		 * Fires after the group header actions section.
+		 *
 		 * If you'd like to show specific profile fields here use:
 		 * bp_member_profile_data( 'field=About Me' ); -- Pass the name of the field
+		 *
+		 * @since 1.2.0
 		 */
 		do_action( 'bp_profile_header_meta' );
 
