@@ -3,6 +3,9 @@
 /**
  * BuddyPress - Members Single Profile Loop
  *
+ * Changes to the default template:
+ * - Removed field visibility text
+ *
  * @package Zeta
  * @subpackage BuddyPress
  */

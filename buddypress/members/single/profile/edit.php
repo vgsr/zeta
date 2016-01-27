@@ -3,6 +3,9 @@
 /**
  * BuddyPress - Members Single Profile Edit
  *
+ * Changes to the default template:
+ * - Removed field visibility settings
+ *
  * @package Zeta
  * @subpackage BuddyPress
  */

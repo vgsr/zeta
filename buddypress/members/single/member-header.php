@@ -3,6 +3,11 @@
 /**
  * BuddyPress - Users Header
  *
+ * Changes to the default template:
+ * - Cleaned member meta section
+ * - Moved member meta hook to entry-meta action
+ * - Added change-avatar link
+ *
  * @package Zeta
  * @subpackage BuddyPress
  */

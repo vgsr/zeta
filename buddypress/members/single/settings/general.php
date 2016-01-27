@@ -3,6 +3,10 @@
 /**
  * BuddyPress - Members Single Settings
  *
+ * Changes to the default template:
+ * - Reordered labels and inputs
+ * - Wrapped settings in div.settings-field
+ *
  * @package Zeta
  * @subpackage BuddyPress
  */
