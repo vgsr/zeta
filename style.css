@@ -2671,8 +2671,8 @@ input.search-field {
 			flex: 1 0 33.33%;
 		}
 
-			body.with-sidebar .widget:not(.full-width):first-child ~ .widget:not(.full-width):nth-child(2),
-			body.with-sidebar .widget:not(.full-width):first-child ~ .widget:not(.full-width):nth-child(3) {
+			.footer-area .widget:not(.full-width):first-child ~ .widget:not(.full-width):nth-child(2),
+			.footer-area .widget:not(.full-width):first-child ~ .widget:not(.full-width):nth-child(3) {
 				border: 0;
 			}
 
