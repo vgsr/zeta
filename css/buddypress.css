@@ -1135,6 +1135,10 @@
 			border-top: 1px solid #f9f9f9;
 		}
 
+		.js #buddypress .activity .activity-comments .ac-form {
+			display: none;
+		}
+
 			#buddypress .activity .activity-comments .ac-form .ac-reply-avatar {
 				position: inherit;
 			}
