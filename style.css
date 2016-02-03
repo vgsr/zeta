@@ -722,6 +722,7 @@ body.fixed-header.admin-bar #site-tools {
 					width: 100%;
 					padding: 35px 25px 20px;
 					text-shadow: 0px 2px rgba(0, 0, 0, .15);
+					font-size: .8em;
 
 					/* Dark gradient below the text for better contrast */
 					background: -moz-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%); /* FF3.6+ */
@@ -732,10 +733,17 @@ body.fixed-header.admin-bar #site-tools {
 					background: linear-gradient(to bottom, rgba(0,0,0,0) 50%,rgba(0,0,0,0.5) 100%); /* W3C */
 				}
 
-				#header-aside .slides .slide-inner .slide-details h2 {
-					font-size: 2.2em;
-					margin-bottom: 0;
-				}
+					#header-aside .slides .slide-inner .slide-details h2 {
+						margin-bottom: 0;
+						font-size: 2.2em;
+						line-height: 1.3em;
+						word-wrap: break-word;
+					}
+
+					#header-aside .slides .slide-inner .slide-details .byline {
+						display: inline-block;
+						margin-top: 0.5em;
+					}
 
 				#header-aside .slides a.slide-inner:focus .slide-details {
 					color: #e1e1e1;
@@ -1125,7 +1133,8 @@ body.fixed-header.admin-bar #site-tools {
 			}
 
 		#header-aside .slides .slide-inner .slide-details {
-			padding: 35px 150px 35px 35px;
+			/*padding: 35px 150px 35px 35px;*/
+			font-size: 1em;
 		}
 
 		#header-aside .loading .slides .slide-inner .slide-details {
