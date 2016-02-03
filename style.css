@@ -1393,7 +1393,7 @@ body.front-page.admin-bar #content {
 	}
 
 		body.front-page .widget-area .widget {
-			font-size: inherit;
+			font-size: inherit; /* Keep original font size as it is the page's main content */
 		}
 
 body.front-page #colophon {
@@ -2618,6 +2618,20 @@ input.search-field {
 
 	body.front-page .widget:not(.full-width):first-child ~ .widget:not(.full-width):nth-child(3) {
 		border: 0;
+	}
+}
+
+/* Front Page: Footer area: columns of min-width: 230px */
+@media screen and (min-width: 690px) and (max-width: 740px), (min-width: 881px) {
+	body.front-page .footer-area .widget:not(.full-width) {
+		flex-basis: 33.33%;
+	}
+}
+
+/* Front Page: Footer area: columns of min-width: 230px */
+@media screen and (min-width: 1468px) {
+	body.front-page .footer-area .widget:not(.full-width) {
+		flex-basis: 25%;
 	}
 }
 
