@@ -84,6 +84,11 @@ function zeta_setup() {
 	add_theme_support( 'yoast-seo-breadcrumbs' );
 
 	/*
+	 * Register styles for the TinyMCE editor.
+	 */
+	add_editor_style( array( 'editor-style.css', zeta_fonts_url() ) );
+
+	/*
 	 * Register theme image sizes
 	 */
 	zeta_add_image_sizes();
