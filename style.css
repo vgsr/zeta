@@ -3681,10 +3681,22 @@ object {
 /*--------------------------------------------------------------
 13.4 Gravity Forms
 --------------------------------------------------------------*/
+
+/* Most styles are a correction for GF's formsmain.css */
+
 #page .gform_wrapper {
 	margin: 0;
 	max-width: inherit;
 }
+
+	#page .gform_wrapper .gform_heading {
+		width: 100%;
+		margin: 0 0 1.5em;
+	}
+
+	#page .gform_wrapper .gfield_label {
+		font-family: 'Montserrat', Arial, sans-serif;
+	}
 
 	#page .gform_wrapper .gfield_label,
 	#page .gform_wrapper .gfield_label + .ginput_container {
@@ -3696,9 +3708,18 @@ object {
 		margin: 0;
 	}
 
-	#page .gform_wrapper .gform_footer {
+	#page .gform_wrapper .gfield_description {
+		width: 100%;
 		padding: 0;
-		margin: 1.5em 0 0;
+		margin: .5em 0 0;
+	}
+
+	#page .gform_wrapper .gfield_radio li input {
+		margin: .1em 1em 0 0;
+	}
+
+	#page .gform_wrapper .gfield_radio li label {
+		margin-left: 1em;
 	}
 
 	#page .gform_wrapper input[type=text],
@@ -3708,7 +3729,19 @@ object {
 	#page .gform_wrapper input[type=number],
 	#page .gform_wrapper input[type=password] {
 		text-indent: inherit;
-		font-size: 
+		width: 100%;
+		padding: 6px 10px;
+	}
+
+	#page .gform_wrapper .gform_footer {
+		padding: 0;
+		margin: 1.5em 0 0;
+	}
+
+	.widget.gform_widget .gform_wrapper ul {
+		   -moz-column-count: 1;
+		-webkit-column-count: 1;
+		        column-count: 1;
 	}
 
 /*--------------------------------------------------------------
