@@ -99,7 +99,8 @@ class Zeta_Customize_Multi_Image_Control extends WP_Customize_Image_Control {
 	public function enqueue() {
 		parent::enqueue();
 
-		wp_enqueue_script( 'zeta_customize_controls', get_template_directory_uri() . '/js/customize-controls.js', array( 'jquery', 'customize-controls', 'media-models', 'media-views' ), '20150820', true );
+		wp_enqueue_script( 'zeta-media', get_template_directory_uri() . '/js/media.js', array( 'jquery', 'media-models', 'media-views' ), '20160208', true );
+		wp_enqueue_script( 'zeta-customize-controls', get_template_directory_uri() . '/js/customize-controls.js', array( 'jquery', 'customize-controls', 'zeta-media' ), '20150820', true );
 
 		/**
 		 * Mimic styles for media handling controls 
