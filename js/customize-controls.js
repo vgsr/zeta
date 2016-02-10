@@ -3,8 +3,11 @@
  *
  * Contains the logic for the theme's custom controls in the Customizer.
  *
- * global wp, jQuery
+ * @package Zeta
+ * @subpackage Customizer
  */
+
+/* global wp, jQuery */
 ( function( wp, $ ) {
 	var api = wp.customize,
 	    media = wp.media,
@@ -61,7 +64,7 @@
 				states: [
 
 					// Display the media browser state
-					new media.controller.ZetaMultiImageLibrary({
+					new media.controller.ZetaCustomizeMultiImageLibrary({
 						title: this.params.button_labels.frame_title,
 
 						// Query the requested media items
@@ -83,14 +86,12 @@
 						// Enable multi-select mode
 						multiple: 'add',
 						search: true,
-						editable: true
-					})
-				],
+						editable: true,
 
-				// Send the current Control object along. This provides
-				// for using the Control's parameters in the context of
-				// the media modal.
-				control: this 
+						// Provide control context
+						control: this
+					})
+				]
 			});
 
 			// When the selection is confirmed, run a callback

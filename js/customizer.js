@@ -3,8 +3,11 @@
  *
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  *
- * global wp, jQuery
+ * @package Zeta
+ * @subpackage Customizer
  */
+
+/* global wp, jQuery */
 ( function( wp, $ ) {
 
 	// Site title and description.

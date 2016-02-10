@@ -3,15 +3,19 @@
  *
  * Contains the logic for custom Media Library interfaces
  *
- * global wp, jQuery
+ * @package Zeta
+ * @subpackage Media
  */
+
+/* global wp, jQuery */
 ( function( wp, $ ) {
 	var media = wp.media,
 	    Select = media.view.MediaFrame.Select,
 	    Library = media.controller.Library,
+	    Attachments = media.model.Attachments,
 	    l10n = media.view.l10n;
 
-	/** Zeta Multi Image Control */
+	/** Zeta Multi Image Selector */
 
 	/**
 	 * Custom implementation of the Select view
@@ -148,7 +152,7 @@
 				}
 			};
 
-			// Add all items in the seleciton to the library, so any selected
+			// Add all items in the selection to the library, so any selected
 			// images that are not initially loaded still appear.
 			library.observe( this.get('selection') );
 		},
@@ -159,7 +163,7 @@
 		 * @since 1.0.0
 		 */
 		activate: function() {
-		 	//Update the library's selection when activating
+			// Update the library's selection when activating
 			this.updateSelection();
 			this.frame.on( 'open', this.updateSelection, this );
 
@@ -182,18 +186,43 @@
 		 *
 		 * @since 1.0.0
 		 */
+		updateSelection: function() { /* Needs overwriting */ }
+	});
+
+	/**
+	 * Construct implementation of the ZetaMultiImageLibrary modal controller
+	 * for the Customizer context.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @see wp.media.controller.ZetaMultiImageLibrary
+	 *
+	 * @class
+	 * @augments wp.media.controller.ZetaMultiImageLibrary
+	 * @augments wp.media.controller.Library
+	 * @augments wp.media.controller.State
+	 * @augments Backbone.Model
+	 */
+	media.controller.ZetaCustomizeMultiImageLibrary = media.controller.ZetaMultiImageLibrary.extend({
+
+		/**
+		 * Overload the controller's native selection updater method
+		 *
+		 * @since 1.0.0
+		 */
 		updateSelection: function() {
 			var selection = this.frame.state().get('selection'),
+			    control = this.get('control'),
 				attachment;
 
-			_.each( _.pluck( this.frame.options.control.params.attachments, 'id' ), function( id ) {
+			_.each( _.pluck( control.params.attachments, 'id' ), function( id ) {
 				attachment = media.attachment( id );
 				attachment.fetch();
 
 				selection.add( attachment ? [ attachment ] : [] );
 			});
-		},
-	});
+		}
+	})
 
 	/**
 	 * Custom implementation of the Query model
@@ -204,7 +233,7 @@
 	 * @augments wp.media.model.Attachments
 	 * @augments Backbone.Collection
 	 */
-	media.model.ZetaMultiImageQuery = media.model.Attachments.extend({
+	media.model.ZetaMultiImageQuery = Attachments.extend({
 
 		/**
 		 * Extend the media item validator by checking for proper dimensions
