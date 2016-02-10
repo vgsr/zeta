@@ -218,6 +218,25 @@ function zeta_fonts_url() {
 endif;
 
 /**
+ * Register common theme scripts
+ */
+function zeta_common_scripts() {
+
+	/**
+	 * Register media script
+	 */
+	wp_register_script( 'zeta-media', get_template_directory_uri() . '/js/media.js', array( 'jquery', 'media-models', 'media-views' ), '20160210', true );
+	wp_localize_script( 'zeta-media', 'zetaMedia', apply_filters( 'zeta_media_localize', array(
+		'l10n' => array(
+			'multiImageFrameTitle'  => __( 'Select Images', 'zeta' ),
+			'multiImageFrameButton' => __( 'Choose Images', 'zeta' ),
+		),
+	) ) );
+}
+add_action( 'wp_enqueue_scripts',    'zeta_common_scripts' );
+add_action( 'admin_enqueue_scripts', 'zeta_common_scripts' );
+
+/**
  * Enqueue scripts and styles.
  */
 function zeta_scripts() {

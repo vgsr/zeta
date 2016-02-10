@@ -7,7 +7,7 @@
  * @subpackage Media
  */
 
-/* global wp, jQuery */
+/* global wp, jQuery, zetaMedia */
 ( function( wp, $ ) {
 	var media = wp.media,
 	    Select = media.view.MediaFrame.Select,
@@ -123,6 +123,15 @@
 	 * @augments Backbone.Model
 	 */
 	media.controller.ZetaMultiImageLibrary = Library.extend({
+
+		/**
+		 * Define controller defaults
+		 *
+		 * @since 1.0.0
+		 */
+		defaults: _.defaults({
+			title: zetaMedia.l10n.multiImageFrameTitle
+		}, Library.prototype.defaults ),
 
 		/**
 		 * Listen for the library's selection updates

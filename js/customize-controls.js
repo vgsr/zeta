@@ -59,13 +59,12 @@
 			// Setup the media modal frame
 			this.frame = new media.view.MediaFrame.ZetaMultiImageFrame({
 				button: {
-					text: this.params.button_labels.frame_button
+					text: zetaMedia.l10n.multiImageFrameButton
 				},
 				states: [
 
 					// Display the media browser state
 					new media.controller.ZetaCustomizeMultiImageLibrary({
-						title: this.params.button_labels.frame_title,
 
 						// Query the requested media items
 						library: new media.model.ZetaMultiImageQuery( null, {
