@@ -383,53 +383,6 @@ function zeta_get_post_images( $post = 0, $size = false ) {
 	return $collection;
 }
 
-	/**
-	 * Add connected images to the current post's image collection
-	 *
-	 * @since 1.0.0
-	 *
-	 * @todo Move this to a plugin
-	 * 
-	 * @param array $images
-	 * @param WP_Post $post The current post
-	 * @param string|array $size
-	 * @return array Post images. Ids or image paths
-	 */
-	function zeta_p2p_post_images( $images, $post, $size ) {
-
-		// Bail when P2P is not active
-		if ( ! did_action( 'p2p_init' ) )
-			return $images;
-
-		// BP user profile
-		if ( function_exists( 'buddypress' ) && bp_is_user() ) {
-			$connected_item  = bp_displayed_user_id();
-			$connection_type = 'user';
-
-		// Posts
-		} else {
-			$connected_item  = $post->ID;
-			$connection_type = $post->post_type;
-		}
-
-		// Tagged images
-		if ( $tagged = new WP_Query( array(
-			'fields'          => 'ids',
-			'connected_type'  => $connection_type . '_media',
-			'connected_items' => $connected_item,
-			'post_mime_type'  => 'image',
-			'posts_per_page'  => 5,
-			'orderby'         => 'rand'
-		) ) ) {
-			foreach ( $tagged->posts as $post_id ) {
-				$images[] = $post_id;
-			}
-		}
-
-		return $images;
-	}
-	add_filter( 'zeta_get_post_images', 'zeta_p2p_post_images', 10, 3 );
-
 /**
  * Return the first image associated with the given post
  *
