@@ -310,56 +310,59 @@ function zeta_get_post_images( $post = 0, $size = false ) {
 	if ( ! $post = get_post( $post ) )
 		return array();
 
-	$collection = array();
+	// Passing a non-empty array will effectively short ciruit the native logic
+	$collection = (array) apply_filters( 'zeta_pre_get_post_images', array(), $post, $size );
+	if ( ! empty( $collection ) ) {
 
-	// 1. Featured image
-	if ( has_post_thumbnail( $post->ID ) ) {
-		$collection[] = get_post_thumbnail_id( $post->ID );
-	}
+		// 1. Featured image
+		if ( has_post_thumbnail( $post->ID ) ) {
+			$collection[] = get_post_thumbnail_id( $post->ID );
+		}
 
-	// 2. Galleries
-	if ( zeta_has_post_gallery( $post ) ) {
+		// 2. Galleries
+		if ( zeta_has_post_gallery( $post ) ) {
 
-		// Walk all post's galleries
-		foreach ( get_post_galleries_images( $post->ID ) as $srcs ) {
-			foreach ( $srcs as $image_src ) {
+			// Walk all post's galleries
+			foreach ( get_post_galleries_images( $post->ID ) as $srcs ) {
+				foreach ( $srcs as $image_src ) {
 
-				// Find the image's attachment ID 
-				if ( $image_att_id = zeta_get_attachment_id_from_url( $image_src ) ) {
-					$collection[] = $image_att_id;
+					// Find the image's attachment ID 
+					if ( $image_att_id = zeta_get_attachment_id_from_url( $image_src ) ) {
+						$collection[] = $image_att_id;
 
-				// Use the image src
-				} else {
-					$collection[] = $image_src;
+					// Use the image src
+					} else {
+						$collection[] = $image_src;
+					}
 				}
 			}
 		}
-	}
 
-	// 3. Embedded images
-	if ( $embedded = get_media_embedded_in_content( $post->post_content, 'img' ) ) {
-		$doc = new DOMDocument();
+		// 3. Embedded images
+		if ( $embedded = get_media_embedded_in_content( $post->post_content, 'img' ) ) {
+			$doc = new DOMDocument();
 
-		// Walk all found <img>s in the content
-		foreach ( $embedded as $embedded_image ) {
-			$doc->loadHTML( $embedded_image );
-			foreach ( $doc->getElementsByTagName( 'img' ) as $tag ) {
-				$image_src = $tag->getAttribute( 'src' );
+			// Walk all found <img>s in the content
+			foreach ( $embedded as $embedded_image ) {
+				$doc->loadHTML( $embedded_image );
+				foreach ( $doc->getElementsByTagName( 'img' ) as $tag ) {
+					$image_src = $tag->getAttribute( 'src' );
 
-				// Find the image's attachment ID
-				if ( $image_att_id = zeta_get_attachment_id_from_url( $image_src ) ) {
-					$collection[] = $image_att_id;
+					// Find the image's attachment ID
+					if ( $image_att_id = zeta_get_attachment_id_from_url( $image_src ) ) {
+						$collection[] = $image_att_id;
 
-				// Use the image src
-				} else {
-					$collection[] = $image_src;
+					// Use the image src
+					} else {
+						$collection[] = $image_src;
+					}
 				}
 			}
 		}
-	}
 
-	// 4. Attached images
-	// $collection += array_filter( wp_list_pluck( (array) get_attached_media( 'image', $post->ID ), 'ID' ) );
+		// 4. Attached images
+		// $collection += array_filter( wp_list_pluck( (array) get_attached_media( 'image', $post->ID ), 'ID' ) );
+	}
 
 	// Filter image collection
 	$collection = apply_filters( 'zeta_get_post_images', $collection, $post, $size );
@@ -382,6 +385,45 @@ function zeta_get_post_images( $post = 0, $size = false ) {
 
 	return $collection;
 }
+
+/**
+ * Support Featured Images plugin
+ *
+ * When the post has Featured Images, let those take
+ * precedence over other associated images.
+ *
+ * @since 1.0.0
+ *
+ * @uses get_featured_images()
+ * @uses has_post_thumbnail()
+ * @uses get_post_thumbnail_id()
+ *
+ * @param array $images Attachment ids
+ * @param WP_Post $post Post object
+ * @param string|array $size
+ * @return array Attachment ids
+ */
+function zeta_get_featured_images( $images, $post, $size ) {
+
+	// When using Featured Images plugin
+	if ( function_exists( 'featured_images' ) ) {
+
+		// When the post has featured images
+		if ( $featured = get_featured_images( $post->ID ) ) {
+
+			// Prepend post thumbnail
+			if ( has_post_thumbnail( $post->ID ) ) {
+				$images[] = get_post_thumbnail_id( $post->ID );
+			}
+
+			// Get other featured images
+			$images = array_merge( $images, $featured );
+		}
+	}
+
+	return $images;
+}
+add_filter( 'zeta_pre_get_post_images', 'zeta_get_featured_images', 10, 3 );
 
 /**
  * Return the first image associated with the given post

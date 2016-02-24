@@ -16,14 +16,6 @@ function zeta_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
-	// Include control classes
-	require_once( get_template_directory() . '/inc/classes/class-zeta-customize-multi-image-control.php' );
-	require_once( get_template_directory() . '/inc/classes/class-zeta-customize-image-radio-control.php' );
-
-	// Register control classes
-	$wp_customize->register_control_type( 'Zeta_Customize_Multi_Image_Control' );
-	$wp_customize->register_control_type( 'Zeta_Customize_Image_Radio_Control' );
-
 	/* Theme Settings */
 
 	// Add control section
@@ -31,6 +23,10 @@ function zeta_customize_register( $wp_customize ) {
 		'title'       => __( 'Theme Settings', 'zeta' ),
 		'priority'    => 70
 	) );
+
+	// Include and register control class
+	require_once( get_template_directory() . '/inc/classes/class-zeta-customize-image-radio-control.php' );
+	$wp_customize->register_control_type( 'Zeta_Customize_Image_Radio_Control' );
 
 	// Default layout
 	$wp_customize->add_setting( 'default_layout', array( 
@@ -53,35 +49,37 @@ function zeta_customize_register( $wp_customize ) {
 		)
 	) );
 
-	/* Background Image */
+	/* Background Image using Featured Images plugin */
+	if ( function_exists( 'featured_images' ) ) {
 
-	// Add control section
-	$wp_customize->add_section( 'background_image', array(
-		'title'       => __( 'Default Background', 'zeta' ),
-		'description' => __( 'Select images that serve as a background fallback when the current page has no images or slides to show. By default all selected images will be shown in the image slider in random order.', 'zeta' ),
-		'priority'    => 80
-	) );
+		// Add control section
+		$wp_customize->add_section( 'background_image', array(
+			'title'       => __( 'Default Background', 'zeta' ),
+			'description' => __( 'Select images that serve as a background fallback when the current page has no images or slides to show. By default all selected images will be shown in the image slider in random order.', 'zeta' ),
+			'priority'    => 80
+		) );
 
-	// Add Images control setting
-	$wp_customize->add_setting( 'background_image', array( 'capability' => 'edit_theme_options' ) );
-	$wp_customize->add_control( new Zeta_Customize_Multi_Image_Control( 
-		$wp_customize,
-		'background_image',
-		array(
-			'label'       => __( 'Background Image', 'zeta' ),
-			'section'     => 'background_image',
-			'min_width'   => 1200,
-			'min_height'  => 900
-		)
-	) );
+		// Add Images control setting
+		$wp_customize->add_setting( 'background_image', array( 'capability' => 'edit_theme_options' ) );
+		$wp_customize->add_control( new Customize_Featured_Images_Control(
+			$wp_customize,
+			'background_image',
+			array(
+				'label'       => __( 'Background Image', 'zeta' ),
+				'section'     => 'background_image',
+				'min_width'   => 1200,
+				'min_height'  => 900
+			)
+		) );
 
-	// Add Rotate All checkbox control setting
-	$wp_customize->add_setting( 'background_image_single', array( 'capability' => 'edit_theme_options' ) );
-	$wp_customize->add_control( 'background_image_single', array(
-		'label'   => __( 'Display only a single image', 'zeta' ),
-		'section' => 'background_image',
-		'type'    => 'checkbox'
-	) );
+		// Add Rotate All checkbox control setting
+		$wp_customize->add_setting( 'background_image_single', array( 'capability' => 'edit_theme_options' ) );
+		$wp_customize->add_control( 'background_image_single', array(
+			'label'   => __( 'Display only a single image', 'zeta' ),
+			'section' => 'background_image',
+			'type'    => 'checkbox'
+		) );
+	}
 }
 add_action( 'customize_register', 'zeta_customize_register' );
 
