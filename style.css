@@ -1326,7 +1326,7 @@ body.front-page.admin-bar #content {
 	}
 
 		body.front-page .entry-title {
-			font-size: 5em;
+			font-size: 3em;
 			text-shadow: 0 0 5px rgba( 0, 0, 0, .3 );
 		}
 
@@ -1417,6 +1417,10 @@ body.front-page #colophon {
 		margin-top: calc( 100vh - 46px - 76px + 35px );
 	}
 
+		body.front-page .entry-title {
+			font-size: 4em;
+		}
+
 		body.front-page .content-area .site-main > * {
 			background-color: transparent;
 		}
@@ -1461,6 +1465,10 @@ body.front-page #colophon {
 	body.front-page.admin-bar #content {
 		margin-top: calc( 100vh - 46px - 45px + 35px );
 	}
+
+		body.front-page .entry-title {
+			font-size: 5em;
+		}
 
 		body.front-page .content-area {
 			padding: calc( 45px + 35px ) 174px 35px;
