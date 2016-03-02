@@ -2141,16 +2141,30 @@ a:active {
 .posts-navigation .nav-previous,
 .post-navigation .nav-previous {
 	float: left;
-	width: 50%;
+	width: 100%;
 }
 
 .comment-navigation .nav-next,
 .posts-navigation .nav-next,
 .post-navigation .nav-next {
+	position: relative;
 	float: right;
 	text-align: right;
-	width: 50%;
+	width: 100%;
+	margin-top: 35px;
+	padding-top: 35px;
 }
+
+	.comment-navigation .nav-next:before,
+	.posts-navigation .nav-next:before,
+	.post-navigation .nav-next:before {
+		content: '';
+		position: absolute;
+		border-top: 1px dashed #ddd;
+		left: -35px;
+		right: -35px;
+		top: 0;
+	}
 
 	.comment-navigation .nav-previous a:before,
 	.comment-navigation .nav-next a:before,
@@ -2173,6 +2187,31 @@ a:active {
 		.post-navigation .nav-next a:hover:before {
 			color: #aaa;
 		}
+
+/* Content width = 549px == content width at 741px screen-width */
+@media screen and (min-width: 636px) {
+	.comment-navigation .nav-previous,
+	.posts-navigation .nav-previous,
+	.post-navigation .nav-previous,
+	.comment-navigation .nav-next,
+	.posts-navigation .nav-next,
+	.post-navigation .nav-next {
+		width: 50%;
+	}
+
+	.comment-navigation .nav-next,
+	.posts-navigation .nav-next,
+	.post-navigation .nav-next {
+		margin-top: 0;
+		padding-top: 0;
+	}
+
+		.comment-navigation .nav-next:before,
+		.posts-navigation .nav-next:before,
+		.post-navigation .nav-next:before {
+			content: none;
+		}
+}
 
 /*--------------------------------------------------------------
 4.3 Breadcrumb
