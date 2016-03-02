@@ -10,20 +10,6 @@
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
-// Bail when plugin is not active
-if ( ! function_exists( 'buddypress' ) ) :
-/**
- * Provide a backup function when BuddyPress is not active
- *
- * @since 1.0.0
- *
- * @return bool False
- */
-function is_buddypress() {
-	return false;
-}
-endif;
-
 /** Entry ******************************************************************/
 
 /**
@@ -42,7 +28,7 @@ endif;
 function zeta_bp_entry_meta() {
 
 	// Bail when this is not BuddyPress
-	if ( ! is_buddypress() )
+	if ( ! function_exists( 'buddypress' ) || ! is_buddypress() )
 		return;
 
 	// Single user
