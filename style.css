@@ -2151,13 +2151,18 @@ a:active {
 	float: right;
 	text-align: right;
 	width: 100%;
+}
+
+.comment-navigation .nav-previous + .nav-next,
+.posts-navigation .nav-previous + .nav-next,
+.post-navigation .nav-previous + .nav-next {
 	margin-top: 35px;
 	padding-top: 35px;
 }
 
-	.comment-navigation .nav-next:before,
-	.posts-navigation .nav-next:before,
-	.post-navigation .nav-next:before {
+	.comment-navigation .nav-previous + .nav-next:before,
+	.posts-navigation .nav-previous + .nav-next:before,
+	.post-navigation .nav-previous + .nav-next:before {
 		content: '';
 		position: absolute;
 		border-top: 1px dashed #ddd;
