@@ -2162,6 +2162,7 @@ a:active {
 		width: 100%;
 		color: #ddd;
 		font-family: 'Montserrat', Arial, sans-serif;
+		pointer-events: none;
 	}
 
 		.comment-navigation .nav-previous a:hover:before,
