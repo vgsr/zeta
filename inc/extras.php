@@ -483,6 +483,34 @@ function zeta_gallery_post_excerpt( $content ) {
 add_filter( 'the_content', 'zeta_gallery_post_excerpt', 8 );
 
 /**
+ * Filter the gallery post's excerpt image link
+ *
+ * @since 1.0.0
+ *
+ * @uses is_singular()
+ * @uses doing_action()
+ * @uses has_post_format()
+ * @uses get_the_permalink()
+ *
+ * @param string $url The attachment url
+ * @param int $post_id Post ID
+ * @return string Attachment link url
+ */
+function zeta_gallery_post_excerpt_image_link( $url, $post_id ) {
+
+	// Only when this is not a single view
+	// The 'post_gallery' hook is used by the Tiled Gallery module to short-circuit the gallery logic.
+	if ( ! is_singular() && doing_action( 'the_content' ) && has_post_format( 'gallery' ) && doing_action( 'post_gallery' ) ) {
+
+		// Define the url as the gallery post's permalink
+		$url = get_the_permalink();
+	}
+
+	return $url;
+}
+add_filter( 'attachment_link', 'zeta_gallery_post_excerpt_image_link', 10, 6 );
+
+/**
  * Display the gallery post's image count
  *
  * @since 1.0.0
