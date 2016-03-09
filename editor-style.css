@@ -2,15 +2,12 @@
  * Theme Name: Zeta
  * Description: Styles for use in the TinyMCE editor.
  */
-
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 1.0 Normalize
 2.0 Typography
 3.0 Elements
-	3.1 Layout
-	3.2 Front Page
 4.0 Navigation
 	4.1 Links
 5.0 Forms
@@ -69,7 +66,7 @@ dfn {
 
 h1 {
 	font-size: 2em;
-	margin: 0.67em 0;
+	margin: .67em 0;
 }
 
 mark {
@@ -90,11 +87,11 @@ sup {
 }
 
 sup {
-	top: -0.5em;
+	top: -.5em;
 }
 
 sub {
-	bottom: -0.25em;
+	bottom: -.25em;
 }
 
 img {
@@ -199,7 +196,7 @@ input[type="search"]::-webkit-search-decoration {
 fieldset {
 	border: 1px solid #c0c0c0;
 	margin: 0 2px;
-	padding: 0.35em 0.625em 0.75em;
+	padding: .35em .625em .75em;
 }
 
 legend {
@@ -279,7 +276,7 @@ pre {
 	background: #eee;
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	font-size: 15px;
-	font-size: 0.9375rem;
+	font-size: .9375rem;
 	line-height: 1.6;
 	margin: 1.6em 0 0;
 	max-width: 100%;
@@ -293,7 +290,7 @@ tt,
 var {
 	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 	font-size: 15px;
-	font-size: 0.9375rem;
+	font-size: .9375rem;
 }
 
 abbr,
@@ -321,7 +318,8 @@ html {
 
 *,
 *:before,
-*:after { /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+*:after {
+	/* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
 	box-sizing: inherit;
 }
 
@@ -351,10 +349,10 @@ blockquote p ~ p:last-child {
 	margin-top: .5em;
 }
 
-	blockquote p ~ p:last-child:before {
-		content: '\2014';
-		margin: 0 10px 0 0;
-	}
+blockquote p ~ p:last-child:before {
+	content: '\2014';
+	margin: 0 10px 0 0;
+}
 
 hr {
 	background-color: #ccc;
@@ -425,7 +423,7 @@ table {
 	}
 
 	table th {
-		font-family: 'Montserrat', Arial, sans-serif
+		font-family: 'Montserrat', Arial, sans-serif;
 	}
 
 		table tbody tr:nth-of-type(odd) td:before {
@@ -488,12 +486,12 @@ a:active {
 .screen-reader-text:focus {
 	background-color: #f1f1f1;
 	border-radius: 3px;
-	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, .6);
 	clip: auto !important;
 	color: #21759b;
 	display: block;
 	font-size: 14px;
-	font-size: 0.875rem;
+	font-size: .875rem;
 	font-weight: bold;
 	height: auto;
 	left: 5px;
@@ -546,6 +544,28 @@ ul,
 ol {
 	margin-left: 0;
 	padding-left: 2em;
+}
+
+body.front-page a {
+	font-family: 'Montserrat', Arial, sans-serif;
+	text-transform: uppercase;
+	font-size: .75em;
+	margin: 0 5px 10px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+body.front-page a,
+body.front-page a:visited {
+	padding: 8px 12px;
+	color: #fff;
+	border: 0;
+	background-color: rgba(191, 38, 105, .8);
+}
+
+body.front-page a:hover,
+body.front-page a:hover {
+	background-color: rgba(191, 38, 105, 1);
 }
 
 /*--------------------------------------------------------------
@@ -603,14 +623,14 @@ object {
 	padding: 0 3px 3px 0;
 }
 
-.gallery-item a,
-.gallery-item a img {
-	float: left;
-}
+	.gallery-item a,
+	.gallery-item a img {
+		float: left;
+	}
 
-.gallery-item a {
-	position: relative;
-}
+	.gallery-item a {
+		position: relative;
+	}
 
 	.gallery-item a:before {
 		content: '';
@@ -652,7 +672,6 @@ object {
 		.gallery-item a:active:after {
 			background: #333;
 		}
-
 
 .gallery-columns-2 .gallery-item {
 	max-width: 50%;
