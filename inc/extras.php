@@ -41,7 +41,7 @@ function zeta_body_classes( $classes ) {
 		}
 
 		// Sidebar-Content. Not for BuddyPress
-		if ( 'sidebar-content' == $layout && ! is_buddypress() ) {
+		if ( 'sidebar-content' == $layout && ( ! function_exists( 'buddypress' ) || ! is_buddypress() ) ) {
 			$classes[] = 'sidebar-content';
 		}
 	}
