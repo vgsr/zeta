@@ -35,7 +35,7 @@
 4.0 Navigation
 	4.1 Links
 	4.2 Menus
-	4.3 Breadcrumb
+	4.3 Breadcrumbs
 5.0 Forms
 6.0 Accessibility
 7.0 Alignments
@@ -2219,7 +2219,7 @@ a:active {
 }
 
 /*--------------------------------------------------------------
-4.3 Breadcrumb
+4.3 Breadcrumbs
 --------------------------------------------------------------*/
 #breadcrumb {
 	font-family: 'Montserrat', Arial, sans-serif;

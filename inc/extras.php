@@ -11,6 +11,14 @@
 /**
  * Adds custom classes to the array of body classes.
  *
+ * @uses get_the_ID()
+ * @uses is_multi_author()
+ * @uses zeta_get_site_tools()
+ * @uses is_front_page()
+ * @uses is_404()
+ * @uses is_active_sidebar()
+ * @uses is_buddypress()
+ *
  * @param array $classes Classes for the body element.
  * @return array
  */
