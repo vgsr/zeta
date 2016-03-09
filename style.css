@@ -1526,6 +1526,16 @@ body.front-page #colophon {
 	body.front-page #page ~ p {
 		padding: 0 calc( 174px + 35px );
 	}
+
+	body.front-page .widget-area,
+	body.front-page .footer-area,
+	body.front-page #colophon .site-info,
+	body.front-page #page ~ p {
+		float: none;
+		max-width: 1024px;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
 
 /*--------------------------------------------------------------
