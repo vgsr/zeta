@@ -1278,7 +1278,7 @@ body.front-page #content {
 	width: 100%;
 	margin: calc( 100vh - 62px + 35px ) 0 0;
 	padding: 0;
-	background-color: #f9f9f9;
+	background-color: transparent;
 	pointer-events: none;
 	/* Vertically center */
 	align-items: center;
