@@ -17,7 +17,7 @@
 function zeta_body_classes( $classes ) {
 
 	// Adds a more distinctive class for the front page
-	if ( is_front_page() ) {
+	if ( 'page' == get_option( 'show_on_front') && get_option( 'page_on_front' ) == get_the_ID() ) {
 		$classes[] = 'front-page';
 	}
 
@@ -61,10 +61,9 @@ add_filter( 'body_class', 'zeta_body_classes' );
  * @return array Editor args
  */
 function zeta_editor_body_classes( $mce ) {
-	var_dump( get_the_ID(), get_option( 'page_on_front' ) );
 
 	// Adds a more distinctive class for the front page
-	if ( get_option( 'page_on_front' ) == get_the_ID() ) {
+	if ( 'page' == get_option( 'show_on_front') && get_option( 'page_on_front' ) == get_the_ID() ) {
 		$mce['body_class'] .= ' front-page';
 	}
 
