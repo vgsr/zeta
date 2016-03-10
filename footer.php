@@ -14,9 +14,9 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 
-		<?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
+		<?php if ( is_active_sidebar( 'zeta-footer-1' ) ) : ?>
 		<div id="tertiary" class="footer-area" role="complementary">
-			<?php dynamic_sidebar( 'footer-1' ); ?>
+			<?php dynamic_sidebar( 'zeta-footer-1' ); ?>
 		</div><!-- #tertiary -->
 		<?php endif; ?>
 

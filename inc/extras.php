@@ -44,7 +44,7 @@ function zeta_body_classes( $classes ) {
 		$layout = get_theme_mod( 'default_layout' );
 
 		// Non-single layout and sidebar is present
-		if ( 'single-column' != $layout && is_active_sidebar( 'sidebar-1' ) ) {
+		if ( 'single-column' != $layout && is_active_sidebar( 'zeta-sidebar-1' ) ) {
 			$classes[] = 'with-sidebar';
 		}
 
