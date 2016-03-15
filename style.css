@@ -3645,6 +3645,21 @@ object {
 	padding: 0;
 }
 
+.entity-list {
+	letter-spacing: -5px; /* Remove spacing between children */
+}
+
+	.entity-list .hentry {
+		width: 100%;
+		display: inline-block;
+		text-align: center;
+		letter-spacing: 0.02em; /* Put back letter-spacing */
+	}
+
+	.entity-list .entry-content {
+		text-align: left;
+	}
+
 @media screen and (min-width: 480px) and (max-width: 674px), (min-width: 741px) and (max-width: 779px) {
 	.entity-details .entity-logo {
 		float: left;
@@ -3656,10 +3671,21 @@ object {
 		float: left;
 		width: 50%;
 	}
+}
 
+@media screen and (min-width: 480px) {
 	.entity-details .entity-logo ~ div:nth-child(2n-1) {
 		clear: both;
 		padding-right: 35px;
+	}
+
+	.entity-list .hentry:not(.type-dispuut) {
+		width: calc( ( 100% - 35px ) / 2 );
+		margin-right: 35px;
+	}
+
+	.entity-list .hentry:not(.type-dispuut):nth-child( 2n ) {
+		margin-right: 0;
 	}
 }
 
@@ -3671,6 +3697,27 @@ object {
 		max-width: 45%;
 		margin: 0 0 1.5em 1.5em;
 		padding: 0;
+	}
+
+	.entity-list .hentry.type-dispuut {
+		width: calc( ( 100% - 35px ) / 2 );
+		margin-right: 35px;
+	}
+
+	.entity-list .hentry.type-dispuut:nth-child( 2n ) {
+		margin-right: 0;
+	}
+
+	.entity-list .hentry:not(.type-dispuut) {
+		width: calc( ( 100% - 70px ) / 3 );
+	}
+
+	.entity-list .hentry:not(.type-dispuut):nth-child( 2n ) {
+		margin-right: 35px;
+	}
+
+	.entity-list .hentry:not(.type-dispuut):nth-child( 3n ) {
+		margin-right: 0;
 	}
 }
 
