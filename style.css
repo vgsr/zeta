@@ -2577,6 +2577,17 @@ input[type="radio"] {
 		margin-top: 1.5em;
 	}
 
+	.widget > *:first-child:not(.widget-title):not(p):not(ul):not(ol):not(table) {
+		margin-top: -1.5em;
+	}
+
+	.widget > p:first-child,
+	.widget > ul:first-child,
+	.widget > ol:first-child,
+	.widget > table:first-child {
+		margin-top: 0;
+	}
+
 	.widget ul {
 		list-style: none;
 		margin-left: 0;
