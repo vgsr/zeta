@@ -59,12 +59,12 @@
 
 .contact-card .contact-body .contact-title,
 .contact-card .contact-details {
-	padding: 0 109px 0 15px;
+	padding: 0 104px 0 15px;
 }
 
 .contact-card.avatar-left .contact-title,
 .contact-card.avatar-left .contact-details {
-	padding: 0 15px 0 109px;
+	padding: 0 15px 0 104px;
 }
 
 	.contact-card .contact-details dl {
@@ -85,4 +85,5 @@
 		.contact-card .contact-details dd {
 			display: inline-block;
 			margin: 0;
+			word-break: break-word;
 		}
