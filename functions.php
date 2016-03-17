@@ -102,7 +102,7 @@ endif; // zeta_setup
 add_action( 'after_setup_theme', 'zeta_setup' );
 
 /**
- * Register additional image sizes
+ * Regirster additional image sizes
  *
  * @since 1.0.0
  */
@@ -126,24 +126,38 @@ function zeta_add_image_sizes() {
  */
 function zeta_widgets_init() {
 
-	// Walk all sidebars
-	foreach ( array(
-		'zeta-sidebar-1'    => __( 'Sidebar',    'zeta' ),
-		'zeta-front-page-1' => __( 'Front Page', 'zeta' ),
-		'zeta-footer-1'     => __( 'Footer',     'zeta' ),
-	) as $sidebar_id => $sidebar_name ) {
+	// Main sidebar
+	register_sidebar( array(
+		'name'          => __( 'Sidebar', 'zeta' ),
+		'id'            => 'sidebar-1',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
 
-		// Register the sidebar
-		register_sidebar( array(
-			'name'          => $sidebar_name,
-			'id'            => $sidebar_id,
-			'description'   => '',
-			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</aside>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>',
-		) );		
-	}
+	// Front Page sidebar
+	register_sidebar( array(
+		'name'          => __( 'Front Page', 'zeta' ),
+		'id'            => 'front-page-1',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
+
+	// Footer sidebar
+	register_sidebar( array(
+		'name'          => __( 'Footer', 'zeta' ),
+		'id'            => 'footer-1',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
 }
 add_action( 'widgets_init', 'zeta_widgets_init' );
 
