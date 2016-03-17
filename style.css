@@ -1387,10 +1387,11 @@ body.front-page.admin-bar #content {
 				}
 
 	body.front-page .widget-area {
+		position: relative;
+		z-index: 1; /* Above .site-content */
 		margin-top: -35px;
 		background: #fff;
 		pointer-events: visible;
-		z-index: 1; /* Above .site-content */
 	}
 
 		body.front-page .widget-area .widget {
@@ -1398,6 +1399,7 @@ body.front-page.admin-bar #content {
 		}
 
 body.front-page #colophon {
+	position: relative;
 	z-index: 1; /* Above #content */
 	background: #e9e9e9;
 }
