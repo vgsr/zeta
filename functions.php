@@ -219,6 +219,12 @@ function zeta_scripts() {
 		wp_enqueue_style( 'zeta-buddypress', get_template_directory_uri() . '/css/buddypress.css', array( 'buddypress' ) );
 	}
 
+	// Contact Card
+	if ( function_exists( 'contact_card' ) ) {
+		wp_deregister_style( 'contact-card' );
+		wp_register_style( 'contact-card', get_template_directory_uri() . '/css/contact-card.css' );
+	}
+
 	// Navigation menu for small screens
 	wp_enqueue_script( 'zeta-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 	wp_localize_script( 'zeta-navigation', 'screenReaderText', array(

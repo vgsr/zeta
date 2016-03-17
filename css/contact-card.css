@@ -1,0 +1,88 @@
+/**
+ * Contact Card styles
+ *
+ * @package Zeta
+ * @subpackage Contact Card
+ */
+
+.contact-card {
+	margin: 1.5em auto 0;
+	text-align: center;
+}
+
+.contact-card .contact-body {
+	display: inline-block;
+	width: 100%;
+	max-width: 438px;
+	min-height: 104px;
+	padding: 10px;
+	text-align: left;
+	background: #f9f9f9;
+	border: 1px solid #f9f9f9;
+	border-radius: 4px;
+}
+
+.contact-card .contact-header {
+	position: relative;
+}
+
+.contact-card .contact-body .contact-photo {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: inline-block;
+	width: 84px;
+	height: 84px;
+	padding: 2px;
+	background: #fff;
+	border-radius: 50%;
+}
+
+	.contact-card.avatar-left .contact-body .contact-photo {
+		left: 0;
+		right: auto;
+	}
+
+	.contact-card .contact-body .contact-photo img {
+		width: 80px;
+		height: 80px;
+		border-radius: 50%;
+	}
+
+.contact-card .contact-body .contact-title {
+	margin-top: .25em;
+}
+
+.contact-card .contact-details {
+	font-size: .9em;
+}
+
+.contact-card .contact-body .contact-title,
+.contact-card .contact-details {
+	padding: 0 109px 0 15px;
+}
+
+.contact-card.avatar-left .contact-title,
+.contact-card.avatar-left .contact-details {
+	padding: 0 15px 0 109px;
+}
+
+	.contact-card .contact-details dl {
+		margin-top: .5em;
+	}
+
+	.contact-card .detail {
+		display: inline-block;
+		width: 100%;
+	}
+
+		.contact-card .contact-details dt {
+			display: inline-block;
+			width: 20%;
+			padding-right: 15px;
+		}
+
+		.contact-card .contact-details dd {
+			display: inline-block;
+			margin: 0;
+		}
