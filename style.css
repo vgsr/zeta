@@ -1838,6 +1838,7 @@ a:active {
 		font-smoothing: antialiased;
 		font-size: 2.2em;
 		line-height: 45px;
+		-ms-font-feature-settings: "liga" 1; /* Fix display in IE 10+ */
 	}
 
 	.main-navigation .menu-social a[href*="digg.com"]:before {
@@ -1920,6 +1921,18 @@ a:active {
 	.main-navigation .menu-social a[href$="/feed/"]:before {
 		content: "rss";
 	}
+
+/* Disable social menu for FF */
+@-moz-document url-prefix() {
+	.menu-social {
+		display: none;
+	}
+}
+
+/* Disable social menu for IE 9- */
+.menu-social {
+	display: none\9;
+}
 
 /* Breakpoint 1 */
 @media screen and (min-width: 561px) {
