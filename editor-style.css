@@ -2,6 +2,7 @@
  * Theme Name: Zeta
  * Description: Styles for use in the TinyMCE editor.
  */
+
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
@@ -36,7 +37,7 @@ body {
 	font-size: 16px;
 	line-height: 1.5em;
 	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust:     100%;
+	-ms-text-size-adjust: 100%;
 	margin: 15px 35px;
 	max-width: 569px;
 	vertical-align: baseline;
@@ -87,11 +88,11 @@ sup {
 }
 
 sup {
-	top: -.5em;
+	top: -0.5em;
 }
 
 sub {
-	bottom: -.25em;
+	bottom: -0.25em;
 }
 
 img {
@@ -405,41 +406,41 @@ table {
 	table-layout: fixed;
 }
 
-	table tr {
-		position: relative;
-		width: 100%;
-		z-index: 0;
-		padding: 10px 0;
-	}
+table tr {
+	position: relative;
+	width: 100%;
+	z-index: 0;
+	padding: 10px 0;
+}
 
-	table th,
-	table td {
-		position: relative;
-		padding: 10px 0;
-		text-align: left;
-		vertical-align: top;
-		word-wrap: break-word;
-		z-index: 0;
-	}
+table th,
+table td {
+	position: relative;
+	padding: 10px 0;
+	text-align: left;
+	vertical-align: top;
+	word-wrap: break-word;
+	z-index: 0;
+}
 
-	table th {
-		font-family: 'Montserrat', Arial, sans-serif;
-	}
+table th {
+	font-family: 'Montserrat', Arial, sans-serif;
+}
 
-		table tbody tr:nth-of-type(odd) td:before {
-			position: absolute;
-			content: '';
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			background-color: #f9f9f9;
-			z-index: -1;
-		}
+table tbody tr:nth-of-type(odd) td:before {
+	position: absolute;
+	content: '';
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #f9f9f9;
+	z-index: -1;
+}
 
-		table td p:first-child {
-			margin: 0;
-		}
+table td p:first-child {
+	margin: 0;
+}
 
 /*--------------------------------------------------------------
 4.0 Navigation
@@ -562,12 +563,12 @@ body.front-page a:visited {
 	padding: 8px 12px;
 	color: #fff;
 	border: 0;
-	background-color: rgba(191, 38, 105, .8);
+	background-color: rgba(191, 38, 105, 0.8);
 }
 
 body.front-page a:hover,
 body.front-page a:hover {
-	background-color: rgba(191, 38, 105, 1);
+	background-color: #bf2669;
 }
 
 /*--------------------------------------------------------------
@@ -625,55 +626,57 @@ object {
 	padding: 0 3px 3px 0;
 }
 
-	.gallery-item a,
-	.gallery-item a img {
-		float: left;
-	}
+.gallery-item a,
+.gallery-item a img {
+	float: left;
+}
 
-	.gallery-item a {
-		position: relative;
-	}
+.gallery-item a {
+	position: relative;
+}
 
-	.gallery-item a:before {
-		content: '';
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		background-color: rgba(255, 255, 255, .15);
-	}
+.gallery-item a:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(255, 255, 255, 0.15);
+}
 
-	.gallery-item a:after {
-		content: '\f177'; /* dashicons-visibility */
-		position: absolute;
-		top: calc( 50% - 25px );
-		left: calc( 50% - 25px );
-		width: 50px;
-		height: 50px;
-		padding: 10px;
-		background: rgba(51, 165, 55, 1);
-		border-radius: 50%;
-		font: 30px/30px dashicons;
-		color: #fff;
-		box-shadow: 0px 0px 4px rgba(0, 0, 0, .5);
-	}
+.gallery-item a:after {
+	content: '\f177'; /* dashicons-visibility */
+	position: absolute;
+	top: calc(25%);
+	left: calc(25%);
+	width: 50px;
+	height: 50px;
+	padding: 10px;
+	background: #33a537;
+	border-radius: 50%;
+	font: 30px/30px dashicons;
+	color: #fff;
+	-moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+}
 
-		.gallery-item a:before,
-		.gallery-item a:after {
-			opacity: 0;
-			-webkit-transition: opacity .2s ease-in;
-			transition: opacity .2s ease-in;
-		}
+.gallery-item a:before,
+.gallery-item a:after {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s ease-in;
+	transition: opacity 0.2s ease-in;
+}
 
-		.gallery-item a:hover:before,
-		.gallery-item a:hover:after {
-			opacity: 1;
-		}
+.gallery-item a:hover:before,
+.gallery-item a:hover:after {
+	opacity: 1;
+}
 
-		.gallery-item a:active:after {
-			background: #333;
-		}
+.gallery-item a:active:after {
+	background: #333;
+}
 
 .gallery-columns-2 .gallery-item {
 	max-width: 50%;
