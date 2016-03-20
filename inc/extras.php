@@ -184,7 +184,7 @@ function zeta_breadcrumbs() {
 		remove_filter( 'bbp_breadcrumb_separator', '__return_empty_string' );
 	}
 }
-add_action( 'zeta_pre_content', 'zeta_breadcrumbs', 6 );
+add_action( 'zeta_before_content', 'zeta_breadcrumbs', 6 );
 
 	/**
 	 * Modify the crumbs collection of Yoast SEO

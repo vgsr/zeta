@@ -265,10 +265,10 @@ endif;
  *
  * @since 1.0.0
  *
- * @uses do_action() Calls 'zeta_pre_content'
+ * @uses do_action() Calls 'zeta_before_content'
  */
-function zeta_pre_content() {
-	do_action( 'zeta_pre_content' );
+function zeta_before_content() {
+	do_action( 'zeta_before_content' );
 }
 
 /**

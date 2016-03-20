@@ -11,7 +11,7 @@ get_header(); ?>
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
-		<?php zeta_pre_content(); ?>
+		<?php zeta_before_content(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
