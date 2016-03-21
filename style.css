@@ -609,22 +609,27 @@ body.fixed-header.admin-bar .site-header {
 	.site-branding {
 		position: absolute;
 		width: 100%;
-		padding: 15px 25px;
+		padding: 15px 15px;
 	}
 
 		.site-branding .site-title {
+			width: calc( 100% - 32px - 15px - 64px - 15px );
 			margin: 0;
 			font-size: 1.3em;
+			line-height: 1em;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 
 			.site-branding .site-title a {
-				display: block;
+				display: inline;
 				background: url(images/logo-wit.png) no-repeat;
 				background-size: 32px;
 				width: 32px;
 				height: 32px;
 				line-height: 32px;
-				padding-left: 48px;
+				padding-left: 47px;
 			}
 
 		.site-branding .site-description {
@@ -931,10 +936,11 @@ body.fixed-header.admin-bar #site-tools {
 /* Breakpoint 1 */
 @media screen and (min-width: 561px) {
 	.site-branding {
-		padding: 15px 35px;
+		padding: 15px 15px 15px 20px;
 	}
 
 		.site-branding .site-title {
+			width: calc( 100% - 46px - 15px - 92px - 15px );
 			font-size: 2em;
 		}
 
@@ -942,7 +948,7 @@ body.fixed-header.admin-bar #site-tools {
 			background-size: 46px;
 			width: 46px;
 			height: 46px;
-			padding-left: 68px;
+			padding-left: 66px;
 			line-height: 46px;
 		}
 
@@ -1052,6 +1058,7 @@ body.fixed-header.admin-bar #site-tools {
 		}
 
 		.site-branding .site-title {
+			width: auto;
 			margin: 0;
 		}
 
@@ -1708,7 +1715,7 @@ a:active {
 /* Small menu. */
 .menu-toggle {
 	position: absolute;
-	right: 25px;
+	right: 15px;
 	top: 15px;
 	width: 32px;
 	height: 32px;
@@ -1752,7 +1759,7 @@ a:active {
 	display: block;
 	position: absolute;
 	top: 15px;
-	right: calc( 25px + 32px + 15px );
+	right: calc( 15px + 32px + 15px );
 	width: auto;
 	padding: 0;
 }
@@ -1956,7 +1963,7 @@ a:active {
 
 		/* Small menu. */
 		.menu-toggle {
-			right: 35px;
+			right: 15px;
 			width: 46px;
 			height: 46px;
 			padding: 13px;
@@ -1973,7 +1980,7 @@ a:active {
 		}
 
 		.main-navigation ul.tools-nav {
-			right: calc( 35px + 46px + 25px );
+			right: calc( 15px + 46px + 15px );
 		}
 
 			.tools-nav a {
