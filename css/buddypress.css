@@ -495,6 +495,10 @@
 		margin-top: 1.5em;
 	}
 
+/**
+ * Item list
+ */
+
 #buddypress .item-list {
 	list-style: none;
 	padding: 0;
@@ -698,6 +702,152 @@
 	}
 }
 
+/* .fixed-bp-single-item appears only on small screens! */
+@media screen and (max-width: 740px) {
+	body.fixed-bp-single-item .entry-header {
+		position: fixed;
+		top: 62px;
+		left: 0;
+		right: 0;
+		height: 55px;
+		font-size: 1rem;
+		padding: 11px 58px 11px 68px; /* 15px|25px + 32px + 11px */
+		overflow: hidden;
+		background: #fff;
+		border-bottom: 1px solid #f9f9f9;
+		text-align: left;
+		-moz-box-shadow: 0 0 5px rgba(64, 64, 64, .5);
+		-webkit-box-shadow: 0 0 5px rgba(64, 64, 64, .5);
+		box-shadow: 0 0 5px rgba(64, 64, 64, .5);
+		z-index: 10; /* along with #item-header-avatar */
+	}
+
+	body.fixed-bp-single-item .entry-title {
+		font-size: 1em;
+	}
+
+	body.fixed-bp-single-item .entry-meta {
+		margin-top: -4px;
+		font-size: .8em;
+	}
+
+		body.fixed-bp-single-item .entry-meta > span {
+			display: inline;
+		}
+
+	body.fixed-bp-single-item .entry-title,
+	body.fixed-bp-single-item .entry-meta {
+		text-align: left;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	body.fixed-bp-single-item #buddypress #item-header-avatar {
+		position: fixed;
+		top: 73px;
+		left: 25px;
+		transform: none;
+	}
+
+		body.fixed-bp-single-item #buddypress #item-header-avatar .item-avatar {
+			width: 32px;
+			height: 32px;
+			padding: 0;
+		}
+
+			body.fixed-bp-single-item #buddypress #item-header-avatar .item-avatar,
+			body.fixed-bp-single-item #buddypress #item-header-avatar img.avatar {
+				border-radius: 4px; /* rounded square */
+			}
+
+	body.fixed-bp-single-item #buddypress .item-actions-toggle {
+		position: fixed;
+		top: 73px;
+		z-index: 10;
+	}
+
+		body.js.fixed-bp-single-item #buddypress #item-actions {
+			position: fixed;
+			top: 116px;
+			z-index: 11;
+		}
+
+		body.js.fixed-bp-single-item.item-actions-toggled #buddypress #item-actions {
+			top: 126px;
+		}
+
+	/* Animation */
+	body.fixed-bp-single-item .entry-header,
+	body.fixed-bp-single-item #buddypress #item-header-avatar,
+	body.fixed-bp-single-item #buddypress .item-actions-toggle {
+		-webkit-animation: slide-in .3s ease;
+		animation: slide-in .3s ease;
+	}
+
+	@-webkit-keyframes slide-in {
+		0% {	transform: translateY( -55px ); }
+		100% {  transform: translateY( 0px ); }
+	}
+
+	@keyframes slide-in {
+		0% {	transform: translateY( -55px ); }
+		100% {  transform: translateY( 0px ); }
+	}
+}
+
+/* Larger fixed header, fixed entry header */
+@media screen and (min-width: 561px) and (max-width: 740px) {
+	body.fixed-bp-single-item .entry-header {
+		top: 76px;
+		padding: 11px 91px 11px 78px;
+	}
+
+	body.fixed-bp-single-item #buddypress #item-header-avatar {
+		top: 87px;
+		left: 35px;
+	}
+
+	body.fixed-bp-single-item #buddypress .item-actions-toggle {
+		top: 87px;
+		right: 48px;
+		/* Shrink button again */
+		width: 32px;
+		height: 32px;
+		padding: 5px;
+		line-height: 32px;
+	}
+
+		body.fixed-bp-single-item #buddypress #item-actions {
+			top: 130px;
+			right: 42px;
+		}
+
+		body.js.fixed-bp-single-item.item-actions-toggled #buddypress #item-actions {
+			top: 140px;
+		}
+}
+
+/* Fixed admin bar, fixed header, fixed entry header */
+@media screen and (min-width: 601px) and (max-width: 740px) {
+	body.fixed-bp-single-item .entry-header {
+		top: 122px;
+	}
+
+	body.fixed-bp-single-item #buddypress #item-header-avatar,
+	body.fixed-bp-single-item #buddypress .item-actions-toggle {
+		top: 133px;
+	}
+
+		body.js.fixed-bp-single-item #buddypress #item-actions {
+			top: 176px;
+		}
+
+		body.js.fixed-bp-single-item.item-actions-toggled #buddypress #item-actions {
+			top: 186px;
+		}
+}
+
 /*--------------------------------------------------------------
 2.3 Item list (members/groups)
 --------------------------------------------------------------*/
@@ -784,7 +934,7 @@
 /*--------------------------------------------------------------
 3.1 User Profile
 --------------------------------------------------------------*/
-.buddypress.bp-user .entry-content {
+.bp-user .entry-content {
 	margin-top: 0;
 }
 
