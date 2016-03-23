@@ -770,7 +770,7 @@
 		body.js.fixed-bp-single-item #buddypress #item-actions {
 			position: fixed;
 			top: 116px;
-			z-index: 11;
+			z-index: 9;
 		}
 
 		body.js.fixed-bp-single-item.item-actions-toggled #buddypress #item-actions {
