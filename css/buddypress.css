@@ -355,9 +355,9 @@
 	#buddypress #item-header-avatar .item-avatar {
 		position: relative;
 		display: inline-block;
-		width: 130px;
-		height: 130px;
-		padding: 5px;
+		width: 126px;
+		height: 126px;
+		padding: 3px;
 		background-color: #fff;
 	}
 
@@ -627,14 +627,15 @@
 				word-wrap: break-word;
 			}
 
+/* Breakpoint 1 */
 @media screen and (min-width: 561px) {
 	#buddypress #item-header-avatar {
 		top: -135px;
 	}
 
 		#buddypress #item-header-avatar .item-avatar {
-			width: 160px;
-			height: 160px;
+			width: 156px;
+			height: 156px;
 		}
 
 	.js #buddypress #item-actions,
@@ -664,6 +665,7 @@
 	}
 }
 
+/* Breakpoint 2 */
 @media screen and (min-width: 741px) {
 	#buddypress #item-header-avatar {
 		top: 35px;
@@ -680,29 +682,29 @@
 	}
 }
 
-/* 174 + (160 - 25) + 640 = 949px + 17 for the scrollbar = 966px */
-@media screen and (min-width: 966px) {
+/* 174 + (156 - 25) + 640 = 949px + 17 for the scrollbar = 962px */
+@media screen and (min-width: 962px) {
 	#buddypress #item-header-avatar {
 		-webkit-transform: translateX(25px);
 		transform: translateX(25px);
 	}
 }
 
-@media screen and (min-width: 998px) {
+@media screen and (min-width: 994px) {
 	body.with-sidebar #buddypress #item-header-avatar {
 		-webkit-transform: translateX(25px) translateY(160px);
 		transform: translateX(25px) translateY(160px);
 	}
 }
 
-@media screen and (min-width: 1268px) {
+@media screen and (min-width: 1264px) {
 	body.with-sidebar #buddypress #item-header-avatar {
 		-webkit-transform: translateX(25px);
 		transform: translateX(25px);
 	}
 }
 
-/* .fixed-bp-single-item appears only on small screens! */
+/* Up to Breakpoint 2. .fixed-bp-single-item appears only on small screens! */
 @media screen and (max-width: 740px) {
 	body.fixed-bp-single-item .entry-header {
 		position: fixed;
@@ -796,7 +798,7 @@
 	}
 }
 
-/* Larger fixed header, fixed entry header */
+/* Breakpoint 1 up to Breakpoint 2 */
 @media screen and (min-width: 561px) and (max-width: 740px) {
 	body.fixed-bp-single-item .entry-header {
 		top: 76px;
@@ -828,7 +830,7 @@
 		}
 }
 
-/* Fixed admin bar, fixed header, fixed entry header */
+/* Up to Breakpoint 2 with fixed .admin-bar */
 @media screen and (min-width: 601px) and (max-width: 740px) {
 	body.fixed-bp-single-item .entry-header {
 		top: 122px;
