@@ -781,16 +781,16 @@
 	body.fixed-bp-single-item .entry-header,
 	body.fixed-bp-single-item #buddypress #item-header-avatar,
 	body.fixed-bp-single-item #buddypress .item-actions-toggle {
-		-webkit-animation: slide-in .3s ease;
-		animation: slide-in .3s ease;
+		-webkit-animation: slide-bp-fixed-entry-header .3s ease;
+		animation: slide-bp-fixed-entry-header .3s ease;
 	}
 
-	@-webkit-keyframes slide-in {
+	@-webkit-keyframes slide-bp-fixed-entry-header {
 		0% {	transform: translateY( -55px ); }
 		100% {  transform: translateY( 0px ); }
 	}
 
-	@keyframes slide-in {
+	@keyframes slide-bp-fixed-entry-header {
 		0% {	transform: translateY( -55px ); }
 		100% {  transform: translateY( 0px ); }
 	}
