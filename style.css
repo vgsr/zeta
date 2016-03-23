@@ -921,6 +921,11 @@ body.fixed-header.admin-bar #site-tools {
 	font-size: .75em;
 }
 
+	#colophon .site-info span:not(:first-child):before {
+		content: '\2022'; /* dot */
+		margin-right: 4px;
+	}
+
 /*
  * Anchor targets need to fall below the fixed admin-bar + fixed header
  * @see http://stackoverflow.com/a/28824157/3601434
@@ -2450,7 +2455,7 @@ input[type="radio"] {
 	}
 
 	input[type="radio"]:checked:before {
-		content: '\2022';
+		content: '\2022'; /* dot */
 		width: 8px;
 		height: 8px;
 		margin: 5px;
@@ -3036,7 +3041,7 @@ body.front-page .entry-content {
 		}
 
 		.entry-meta > *:not(:first-child):not(.byline):before {
-			content: '\2022'; /* dot separator */
+			content: '\2022'; /* dot */
 			margin: 0 5px;
 		}
 

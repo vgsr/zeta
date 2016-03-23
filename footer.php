@@ -22,7 +22,7 @@
 
 		<div class="site-info">
 			<span><?php printf( __( 'Built with %s', 'zeta' ), '<a href="http://wordpress.org/">WordPress</a>' ); ?></span>
-			<span><?php printf( __( 'Theme: %1$s by %2$s.', 'zeta' ), sprintf( '<a href="%s">Zeta</a>', wp_get_theme()->get( 'ThemeURI' ) ), sprintf( '<a href="%s" rel="designer">MMC der VGSR</a>', 'https://github.com/vgsr' ) ); ?></span>
+			<span><?php printf( __( '<a href="%2$s">Design</a> by %1$s', 'zeta' ), '<a href="https://github.com/vgsr" rel="designer">MMC der VGSR</a>', wp_get_theme()->get( 'ThemeURI' ) ); ?></span>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
