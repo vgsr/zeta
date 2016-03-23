@@ -295,15 +295,15 @@ th {
 
 /* Mono Social Icon Font */
 @font-face {
-    font-family: 'monosocial';
-    src: url('css/fonts/monosocial/MonoSocialIconsFont-1.10.eot');
-    src: url('css/fonts/monosocial/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
-         url('css/fonts/monosocial/MonoSocialIconsFont-1.10.woff') format('woff'),
-         url('css/fonts/monosocial/MonoSocialIconsFont-1.10.ttf') format('truetype'),
-         url('css/fonts/monosocial/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
-    src: url('css/fonts/monosocial/MonoSocialIconsFont-1.10.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'monosocial';
+	src: url('css/fonts/monosocial/MonoSocialIconsFont-1.10.eot');
+	src: url('css/fonts/monosocial/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
+	     url('css/fonts/monosocial/MonoSocialIconsFont-1.10.woff') format('woff'),
+	     url('css/fonts/monosocial/MonoSocialIconsFont-1.10.ttf') format('truetype'),
+	     url('css/fonts/monosocial/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+	src: url('css/fonts/monosocial/MonoSocialIconsFont-1.10.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 
 body,
@@ -1846,6 +1846,8 @@ a:active {
 		display: inline-block;
 		width: 35px;
 		height: 45px;
+		font-size: 2.2em;
+		line-height: 45px;
 		font-family: monosocial;
 		-webkit-text-rendering: optimizeLegibility;
 		-moz-text-rendering: optimizeLegibility;
@@ -1857,9 +1859,9 @@ a:active {
 		-ms-font-smoothing: antialiased;
 		-o-font-smoothing: antialiased;
 		font-smoothing: antialiased;
-		font-size: 2.2em;
-		line-height: 45px;
-		-ms-font-feature-settings: "liga" 1; /* Fix display in IE 10+ */
+		-ms-font-feature-settings: 'liga' 1;
+		-webkit-font-feature-settings: 'liga' 1;
+		font-feature-settings: 'liga' 1;
 	}
 
 	.main-navigation .menu-social a[href*="digg.com"]:before {
@@ -1942,13 +1944,6 @@ a:active {
 	.main-navigation .menu-social a[href$="/feed/"]:before {
 		content: "rss";
 	}
-
-/* Disable social menu for FF */
-@-moz-document url-prefix() {
-	.menu-social {
-		display: none;
-	}
-}
 
 /* Disable social menu for IE 9- */
 .menu-social {
