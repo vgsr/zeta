@@ -592,9 +592,9 @@ body.fixed-header.admin-bar .site-header {
 }
 
 .menu-toggled .site-header {
-	-moz-box-shadow: 0 0 5px rgba(64, 64, 64, .15);
-	-webkit-box-shadow: 0 0 5px rgba(64, 64, 64, .15);
-	box-shadow: 0 0 5px rgba(64, 64, 64, .15);
+	-moz-box-shadow: 0 0 5px rgba(64, 64, 64, .5);
+	-webkit-box-shadow: 0 0 5px rgba(64, 64, 64, .5);
+	box-shadow: 0 0 5px rgba(64, 64, 64, .5);
 }
 
 	.site-header a,
