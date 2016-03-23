@@ -3,6 +3,11 @@
 /**
  * BuddyPress - Groups Single Members
  *
+ * @todo Requires update to latest bp-legacy
+ *
+ * Changes from the default bp-legacy template:
+ * - Wrap .item-list elements details in .item-{detail} divs
+ *
  * @package Zeta
  * @subpackage BuddyPress
  */

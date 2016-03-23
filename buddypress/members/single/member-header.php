@@ -4,13 +4,13 @@
  * BuddyPress - Users Header
  *
  * Changes to the default template:
- * - Changed avatar link to profile/change-avatar when `bp_is_my_profile()`
- * - Added profile/change-avatar link
+ * - Changed url of header avatar to point to profile/change-avatar when `bp_is_my_profile()`
+ * - Added profile/change-avatar link for `bp_is_my_profile()`
  * - Moved 'bp_profile_header_meta' hook to entry meta {@see zeta_bp_entry_meta()}
- * - Moved user @-mention name and last activity to entry meta
+ * - Moved user @-mention name and last activity to `zeta_bp_entry_meta()`
  * - Removed #item-meta, brought #latest-update and #item-buttons one level up
  * - Renamed #item-buttons to #item-actions
- * - Added actions toggle button
+ * - Added actions toggle button .item-actions-toggle
  *
  * @package Zeta
  * @subpackage BuddyPress
@@ -30,9 +30,7 @@ do_action( 'bp_before_member_header' ); ?>
 
 <div id="item-header-avatar">
 	<a class="item-avatar" href="<?php bp_is_my_profile() ? bp_members_component_link( 'profile', 'change-avatar' ) : bp_displayed_user_link(); ?>">
-
 		<?php bp_displayed_user_avatar( 'type=full' ); ?>
-
 	</a>
 
 	<?php if ( bp_is_my_profile() ) : ?>
