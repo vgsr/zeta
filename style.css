@@ -296,12 +296,12 @@ th {
 /* Mono Social Icon Font */
 @font-face {
     font-family: 'monosocial';
-    src: url('monosocial/MonoSocialIconsFont-1.10.eot');
-    src: url('monosocial/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
-         url('monosocial/MonoSocialIconsFont-1.10.woff') format('woff'),
-         url('monosocial/MonoSocialIconsFont-1.10.ttf') format('truetype'),
-         url('monosocial/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
-    src: url('monosocial/MonoSocialIconsFont-1.10.ttf') format('truetype');
+    src: url('css/fonts/monosocial/MonoSocialIconsFont-1.10.eot');
+    src: url('css/fonts/monosocial/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
+         url('css/fonts/monosocial/MonoSocialIconsFont-1.10.woff') format('woff'),
+         url('css/fonts/monosocial/MonoSocialIconsFont-1.10.ttf') format('truetype'),
+         url('css/fonts/monosocial/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+    src: url('css/fonts/monosocial/MonoSocialIconsFont-1.10.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
