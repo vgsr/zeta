@@ -1676,12 +1676,12 @@ a:active {
 
 .dropdown-toggle {
 	position: absolute;
-	top: 5px;
+	top: 5.5px;
 	right: 0;
 	background-color: transparent;
 	height: 32px;
 	width: 32px;
-	padding: 0;
+	padding: 6px;
 	border: 0;
 	text-transform: lowercase; /* Stop screen readers to read the text as capital letters */
 	-moz-box-shadow: none;
