@@ -1039,6 +1039,12 @@ body.fixed-header.admin-bar #site-tools {
 		font-size: .8rem;
 	}
 
+	.menu-toggled .site-header {
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+
 	body.admin-bar .site-header {
 		top: 46px;
 	}
