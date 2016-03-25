@@ -258,6 +258,16 @@ function zeta_scripts() {
 add_action( 'wp_enqueue_scripts', 'zeta_scripts' );
 
 /**
+ * Enqueue scripts and styles in the Dashboard.
+ */
+function zeta_admin_scripts() {
+
+	// Add custom fonts, used in the editor.
+	wp_enqueue_style( 'zeta-fonts', zeta_fonts_url(), array(), null );
+}
+add_action( 'admin_enqueue_scripts', 'zeta_admin_scripts' );
+
+/**
  * Add additional inline styles.
  *
  * @since Zeta 1.0.0
