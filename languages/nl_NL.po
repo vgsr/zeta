@@ -1,0 +1,858 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Zeta v0.6.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2016-03-25 14:15:03+0000\n"
+"Last-Translator: LM Offereins <lmoffereins@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-Country: NETHERLANDS\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: 404.php:18
+#@ zeta
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Helaas! Die pagina kunnen we niet vinden."
+
+#: 404.php:22
+#@ zeta
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Het lijkt er op dat we hier niets hebben gevonden. Misschien kan je een van de onderstaande links proberen of een zoekopdracht?"
+
+#: buddypress/groups/single/members.php:101
+#@ buddypress
+msgid "No members were found."
+msgstr ""
+
+#: buddypress/members/members-loop.php:77
+#: buddypress/members/single/member-header.php:78
+#@ zeta
+msgid "Actions"
+msgstr "Acties"
+
+#: buddypress/members/members-loop.php:107
+#@ buddypress
+msgid "Sorry, no members were found."
+msgstr ""
+
+#: buddypress/members/single/member-header.php:39
+#@ zeta
+msgid "Change your profile photo"
+msgstr "Wijzig je profielfoto"
+
+#: buddypress/members/single/profile/edit.php:24
+#, php-format
+#@ buddypress
+msgid "Editing '%s' Profile Group"
+msgstr ""
+
+#: buddypress/members/single/profile/edit.php:48
+#: buddypress/members/single/settings/general.php:61
+#@ buddypress
+msgid "Save Changes"
+msgstr ""
+
+#: buddypress/members/single/settings/general.php:24
+#@ zeta
+msgid "Current Password"
+msgstr "Huidig wachtwoord"
+
+#: buddypress/members/single/settings/general.php:27
+#@ zeta
+msgid "Required to update email or change current password."
+msgstr "Nodig om je e-mail of wachtwoord te kunnen wijzigen."
+
+#: buddypress/members/single/settings/general.php:28
+#@ buddypress
+msgid "Password Lost and Found"
+msgstr ""
+
+#: buddypress/members/single/settings/general.php:28
+#@ buddypress
+msgid "Lost your password?"
+msgstr ""
+
+#: buddypress/members/single/settings/general.php:35
+#@ buddypress
+msgid "Account Email"
+msgstr ""
+
+#: buddypress/members/single/settings/general.php:40
+#@ zeta
+msgid "Change Password"
+msgstr "Wijzig wachtwoord"
+
+#: buddypress/members/single/settings/general.php:43
+#@ zeta
+msgid "Leave blank for no change."
+msgstr "Laat leeg om niets te wijzigen."
+
+#: buddypress/members/single/settings/general.php:47
+#@ buddypress
+msgid "Repeat New Password"
+msgstr ""
+
+#: comments.php:30
+#, php-format
+#@ zeta
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "Een reactie op $ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s reacties op &ldquo%2$s&rdquo;"
+
+#: comments.php:37
+#: comments.php:60
+#@ zeta
+msgid "Comment navigation"
+msgstr "Blader door reacties"
+
+#: comments.php:40
+#: comments.php:63
+#@ zeta
+msgid "Older Comments"
+msgstr "Oudere reacties"
+
+#: comments.php:41
+#: comments.php:64
+#@ zeta
+msgid "Newer Comments"
+msgstr "Nieuwere reacties"
+
+#: comments.php:76
+#@ zeta
+msgid "Comments are closed."
+msgstr "Je kunt niet meer reageren."
+
+#: comments.php:84
+#@ default
+msgctxt "noun"
+msgid "Comment"
+msgstr ""
+
+#: comments.php:84
+#, php-format
+#@ zeta
+msgid "Reply as %s"
+msgstr "Reageer als %s"
+
+#: comments.php:85
+#@ zeta
+msgid "Cancel"
+msgstr "Annuleer"
+
+#: comments.php:86
+#@ zeta
+msgctxt "noun"
+msgid "Post"
+msgstr "Reageer"
+
+#: content-none.php:15
+#@ zeta
+msgid "Nothing Found"
+msgstr "Niets gevonden"
+
+#: content-none.php:21
+#, php-format
+#@ zeta
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Klaar om je eerste bericht te schrijven? <a href=\\\"%1$s\\\">Begin hier</a>."
+
+#: content-none.php:25
+#@ zeta
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Vervelend, je zoekwoorden konden we niet matchen. Probeer het anders opnieuw met andere woorden."
+
+#: content-none.php:29
+#@ zeta
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Het lijkt er op dat we niet gevonden hebben waar je voor kwam. Misschien helpt een zoekopdracht."
+
+#: content-page.php:20
+#: content-single.php:24
+#: content.php:31
+#@ zeta
+msgid "Pages:"
+msgstr "Pagina's:"
+
+#. translators: %s: Name of current post
+#: content.php:24
+#, php-format
+#@ zeta
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Lees verder %s <span class=\\\"meta-nav\\\">&rarr;</span>"
+
+#: event-organiser/loop-event-day.php:16
+#: event-organiser/loop-list-day.php:18
+#@ zeta
+msgctxt "Daily event section header"
+msgid "D jS"
+msgstr "D j"
+
+#: event-organiser/loop-event-month.php:17
+#@ zeta
+msgctxt "Monthly event section header with year context"
+msgid "F Y"
+msgstr "F Y"
+
+#: event-organiser/loop-event-month.php:18
+#@ zeta
+msgctxt "Monthly event section header"
+msgid "F"
+msgstr "F"
+
+#. translators: 1. Event title 2. Event time
+#. translators: 1. Event title 2. Event time
+#: event-organiser/loop-list-event.php:16
+#: event-organiser/loop-single-event.php:18
+#: inc/event-organiser.php:673
+#, php-format
+#@ zeta
+msgid "%2$s &mdash; %1$s"
+msgstr "%2$s &mdash; %1$s"
+
+#: event-organiser/loop-list-month.php:18
+#@ zeta
+msgctxt "Monthly event section header"
+msgid "F Y"
+msgstr "F Y"
+
+#: event-organiser/shortcode-event-list.php:32
+#@ zeta
+msgid "There are no events found."
+msgstr "Er zijn geen activiteiten gevonden."
+
+#: footer.php:24
+#, php-format
+#@ zeta
+msgid "Built with %s"
+msgstr "Gemaakt met %s"
+
+#: footer.php:25
+#, php-format
+#@ zeta
+msgid "<a href=\"%2$s\">Design</a> by %1$s"
+msgstr "<a href=\\\"%2$s\\\">Design</a> door %1$s"
+
+#: functions.php:54
+#@ zeta
+msgid "Primary Menu"
+msgstr "Hoofdmenu"
+
+#: functions.php:55
+#@ zeta
+msgid "Social Links Menu"
+msgstr "Sociale-linksmenu"
+
+#: functions.php:131
+#@ zeta
+msgid "Sidebar"
+msgstr "Zijbalk"
+
+#: functions.php:142
+#@ zeta
+msgid "Front Page"
+msgstr "Voorpagina"
+
+#: functions.php:153
+#@ zeta
+msgid "Footer"
+msgstr "Voettekst"
+
+#: functions.php:181
+#@ zeta
+msgctxt "Noto Sans font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:189
+#@ zeta
+msgctxt "Noto Serif font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:197
+#@ zeta
+msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
+msgid "no-subset"
+msgstr "no-subset"
+
+#: functions.php:245
+#@ zeta
+msgid "Expand child menu"
+msgstr "Submenu openklappen"
+
+#: functions.php:246
+#@ zeta
+msgid "Collapse child menu"
+msgstr "Submenu dichtklappen"
+
+#: functions.php:289
+#@ zeta
+msgid "Previous"
+msgstr "Vorige"
+
+#: functions.php:290
+#@ zeta
+msgid "Next"
+msgstr "Volgende"
+
+#: header.php:24
+#@ zeta
+msgid "Skip to content"
+msgstr "Ga verder naar de inhoud"
+
+#: header.php:50
+#@ zeta
+msgid "Menu"
+msgstr "Menu"
+
+#: inc/buddypress.php:99
+#@ zeta
+msgid "Edit this profile field group"
+msgstr "Deze profielgroep bewerken"
+
+#: inc/buddypress.php:152
+#: inc/classes/class-zeta-walker-comment.php:74
+#, php-format
+#@ default
+msgctxt "1: date, 2: time"
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: inc/classes/class-zeta-walker-comment.php:54
+#@ default
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: inc/classes/class-zeta-walker-comment.php:69
+#: inc/template-tags.php:160
+#@ default
+#@ zeta
+msgid "Edit"
+msgstr "Bewerken"
+
+#: inc/customizer.php:39
+#: inc/extras.php:973
+#@ zeta
+msgid "Theme Settings"
+msgstr "Thema-instellingen"
+
+#: inc/customizer.php:57
+#@ zeta
+msgid "Default Layout"
+msgstr "Standaard Layout"
+
+#: inc/customizer.php:58
+#@ zeta
+msgid "This setting can be overridden on a per-page basis."
+msgstr "Deze instelling kan op elke pagina worden overschreven."
+
+#: inc/customizer.php:61
+#@ zeta
+msgid "Sidebar - Content"
+msgstr "Zijbalk - Inhoud"
+
+#: inc/customizer.php:62
+#@ zeta
+msgid "Single Column"
+msgstr "Enkele Kolom"
+
+#: inc/customizer.php:63
+#@ zeta
+msgid "Content - Sidebar"
+msgstr "Inhoud - Zijbalk"
+
+#: inc/customizer.php:73
+#@ zeta
+msgid "Default Background"
+msgstr "Standaard Achtergrond"
+
+#: inc/customizer.php:74
+#@ zeta
+msgid "Select images that serve as a background fallback when the current page has no images or slides to show. By default all selected images will be shown in the image slider in random order."
+msgstr "Kies de afbeeldingen die getoond worden wanneer de pagina zelf geen afbeeldingen heeft om te tonen. De afbeeldingen worden standaard in willekeurige volgorde getoond."
+
+#: inc/customizer.php:84
+#@ zeta
+msgid "Background Image"
+msgstr "Achtergrondafbeelding"
+
+#: inc/customizer.php:94
+#@ zeta
+msgid "Display only a single image"
+msgstr "Alleen een enkele afbeelding tonen"
+
+#: inc/event-organiser.php:75
+#: inc/event-organiser.php:90
+#, php-format
+#@ zeta
+msgid "Events: %s"
+msgstr "Activiteiten: %s"
+
+#: inc/event-organiser.php:80
+#, php-format
+#@ zeta
+msgid "Events by tag: %s"
+msgstr "Activiteiten per tag: %s"
+
+#: inc/event-organiser.php:85
+#, php-format
+#@ zeta
+msgid "Events at %s"
+msgstr "Activiteiten in %s"
+
+#: inc/event-organiser.php:94
+#@ zeta
+msgctxt "Event archives title: Year"
+msgid "Y"
+msgstr "Y"
+
+#: inc/event-organiser.php:98
+#@ zeta
+msgctxt "Event archives title: Month"
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/event-organiser.php:102
+#@ zeta
+msgctxt "Event archives title: Day"
+msgid "jS F Y"
+msgstr "j F Y"
+
+#: inc/event-organiser.php:106
+#@ zeta
+msgid "Events"
+msgstr "Activiteiten"
+
+#: inc/event-organiser.php:204
+#@ zeta
+msgid "Events navigation"
+msgstr "Activiteitennavigatie"
+
+#: inc/event-organiser.php:208
+#: inc/event-organiser.php:517
+#@ zeta
+msgid "Older events"
+msgstr "Oudere activiteiten"
+
+#: inc/event-organiser.php:214
+#: inc/event-organiser.php:517
+#@ zeta
+msgid "Newer events"
+msgstr "Nieuwere activiteiten"
+
+#: inc/event-organiser.php:380
+#, php-format
+#@ zeta
+msgctxt "Adjacent post navigation label"
+msgid "%1$s \\a\\t %2$s"
+msgstr "%1$s \\o\\m %2$s"
+
+#: inc/event-organiser.php:489
+#, php-format
+#@ zeta
+msgctxt "For yearly archives"
+msgid "Events in %s"
+msgstr "Activiteiten in %s"
+
+#: inc/event-organiser.php:498
+#, php-format
+#@ zeta
+msgctxt "For monthly archives"
+msgid "Events in %s"
+msgstr "Activiteiten in %s"
+
+#: inc/event-organiser.php:507
+#, php-format
+#@ zeta
+msgctxt "For daily archives"
+msgid "Events on %s"
+msgstr "Activiteiten op %s"
+
+#. translators: 1. date format 2. time format. Please slash any other characters
+#: inc/event-organiser.php:705
+#, php-format
+#@ zeta
+msgctxt "Event meta date"
+msgid "%1$s \\a\\t %2$s"
+msgstr "%1$s \\o\\m %2$s"
+
+#: inc/event-organiser.php:720
+#@ zeta
+msgctxt "Reoccuring event status"
+msgid "Passed"
+msgstr "Geweest"
+
+#: inc/event-organiser.php:732
+#@ zeta
+msgid "Reoccurring"
+msgstr "Herhalend"
+
+#. translators: venue directive
+#: inc/event-organiser.php:738
+#, php-format
+#@ zeta
+msgid "@ <a href=\"%s\">%s</a>"
+msgstr "@ <a href=\\\"%s\\\">%s</a>"
+
+#. translators: 1. date format 2. time format. Please slash any other characters
+#: inc/event-organiser.php:788
+#, php-format
+#@ zeta
+msgctxt "Upcoming events date"
+msgid "%1$s \\a\\t %2$s"
+msgstr "%1$s \\o\\m %2$s"
+
+#: inc/event-organiser.php:791
+#@ zeta
+msgid "Upcoming Dates"
+msgstr "Geplande data"
+
+#: inc/event-organiser.php:808
+#@ zeta
+msgid "There are no more following occurrences scheduled of this event."
+msgstr "Er zijn geen verdere geplande data voor deze activiteit."
+
+#. translators: used between list items, there is a space after the comma
+#: inc/event-organiser.php:831
+#: inc/event-organiser.php:837
+#: inc/template-tags.php:133
+#: inc/template-tags.php:139
+#@ zeta
+msgid ", "
+msgstr ", "
+
+#: inc/event-organiser.php:833
+#: inc/template-tags.php:135
+#, php-format
+#@ zeta
+msgid "Posted in %s"
+msgstr "Geplaatst in %s"
+
+#: inc/event-organiser.php:839
+#: inc/template-tags.php:141
+#, php-format
+#@ zeta
+msgid "Tagged %s"
+msgstr "Getagd met %s"
+
+#: inc/extras.php:112
+#, php-format
+#@ zeta
+msgid "Page %s"
+msgstr "Pagina %s"
+
+#: inc/extras.php:171
+#@ bbpress
+msgid "Home"
+msgstr ""
+
+#: inc/extras.php:558
+#, php-format
+#@ zeta
+msgctxt "Gallery post-format image count"
+msgid "%d Image"
+msgid_plural "%d Images"
+msgstr[0] "%d Foto"
+msgstr[1] "%d Foto's"
+
+#: inc/extras.php:851
+#@ zeta
+msgid "Members"
+msgstr "Profielen"
+
+#: inc/extras.php:856
+#@ zeta
+msgid "Groups"
+msgstr "Groepen"
+
+#: inc/extras.php:864
+#@ zeta
+msgctxt "Search context"
+msgid "All"
+msgstr "Alles"
+
+#: inc/extras.php:980
+#@ zeta
+msgid "Use the full content width for this widget on larger screens."
+msgstr "Gebruik de volledige breedte voor widgets op grotere schermen."
+
+#: inc/template-tags.php:23
+#@ zeta
+msgid "Posts navigation"
+msgstr "Berichtennavigatie"
+
+#: inc/template-tags.php:27
+#@ zeta
+msgid "Older posts"
+msgstr "Oudere berichten"
+
+#: inc/template-tags.php:31
+#@ zeta
+msgid "Newer posts"
+msgstr "Nieuwere berichten"
+
+#: inc/template-tags.php:56
+#@ zeta
+msgid "Post navigation"
+msgstr "Berichtnavigatie"
+
+#: inc/template-tags.php:87
+#, php-format
+#@ zeta
+msgctxt "post author"
+msgid "Posted by %s"
+msgstr "Geplaatst door %s"
+
+#: inc/template-tags.php:91
+#, php-format
+#@ zeta
+msgctxt "post date"
+msgid "Posted on %s"
+msgstr "Geplaatst op %s"
+
+#: inc/template-tags.php:156
+#@ zeta
+msgid "Leave a comment"
+msgstr "Schrijf een reactie"
+
+#: inc/template-tags.php:156
+#@ zeta
+msgid "1 Comment"
+msgstr "1 Reactie"
+
+#: inc/template-tags.php:156
+#@ zeta
+msgid "% Comments"
+msgstr "% Reacties"
+
+#: inc/template-tags.php:164
+#@ zeta
+msgid "Scroll down"
+msgstr "Scroll naar beneden"
+
+#: inc/template-tags.php:182
+#, php-format
+#@ zeta
+msgid "Category: %s"
+msgstr "Categorie: %s"
+
+#: inc/template-tags.php:184
+#, php-format
+#@ zeta
+msgid "Tag: %s"
+msgstr "Tag: %s"
+
+#: inc/template-tags.php:186
+#, php-format
+#@ zeta
+msgid "Author: %s"
+msgstr "Auteur: %s"
+
+#: inc/template-tags.php:188
+#, php-format
+#@ zeta
+msgid "Year: %s"
+msgstr "Jaar: %s"
+
+#: inc/template-tags.php:188
+#@ zeta
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: inc/template-tags.php:190
+#, php-format
+#@ zeta
+msgid "Month: %s"
+msgstr "Maand: %s"
+
+#: inc/template-tags.php:190
+#@ zeta
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/template-tags.php:192
+#, php-format
+#@ zeta
+msgid "Day: %s"
+msgstr "Dag: %s"
+
+#: inc/template-tags.php:192
+#@ zeta
+msgctxt "daily archives date format"
+msgid "F j, Y"
+msgstr "j F Y"
+
+#: inc/template-tags.php:195
+#@ zeta
+msgctxt "post format archive title"
+msgid "Asides"
+msgstr "Zijdelings"
+
+#: inc/template-tags.php:197
+#@ zeta
+msgctxt "post format archive title"
+msgid "Galleries"
+msgstr "Galerijen"
+
+#: inc/template-tags.php:199
+#@ zeta
+msgctxt "post format archive title"
+msgid "Images"
+msgstr "Afbeeldingen"
+
+#: inc/template-tags.php:201
+#@ zeta
+msgctxt "post format archive title"
+msgid "Videos"
+msgstr "Video's"
+
+#: inc/template-tags.php:203
+#@ zeta
+msgctxt "post format archive title"
+msgid "Quotes"
+msgstr "Citaten"
+
+#: inc/template-tags.php:205
+#@ zeta
+msgctxt "post format archive title"
+msgid "Links"
+msgstr "Links"
+
+#: inc/template-tags.php:207
+#@ zeta
+msgctxt "post format archive title"
+msgid "Statuses"
+msgstr "Statussen"
+
+#: inc/template-tags.php:209
+#@ zeta
+msgctxt "post format archive title"
+msgid "Audio"
+msgstr "Audio"
+
+#: inc/template-tags.php:211
+#@ zeta
+msgctxt "post format archive title"
+msgid "Chats"
+msgstr "Gesprekken"
+
+#: inc/template-tags.php:214
+#, php-format
+#@ zeta
+msgid "Archives: %s"
+msgstr "Archieven: %s"
+
+#. translators: 1: Taxonomy singular name, 2: Current taxonomy term
+#: inc/template-tags.php:218
+#, php-format
+#@ zeta
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: inc/template-tags.php:220
+#@ zeta
+msgid "Archives"
+msgstr "Archieven"
+
+#: inc/template-tags.php:482
+#: inc/template-tags.php:483
+#@ zeta
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+#: inc/template-tags.php:485
+#: inc/template-tags.php:486
+#@ zeta
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: inc/template-tags.php:488
+#@ zeta
+msgid "Remember Me"
+msgstr "Onthoud mij"
+
+#: inc/template-tags.php:490
+#: inc/template-tags.php:536
+#@ zeta
+msgid "Log In"
+msgstr "Inloggen"
+
+#: inc/template-tags.php:493
+#, php-format
+#@ zeta
+msgid "<a href=\"%s\" title=\"Register for a new account\">Register</a>"
+msgstr "<a href=\"%s\" title=\"Registreer voor een nieuw account\">Registreren</a>"
+
+#: inc/template-tags.php:529
+#@ zeta
+msgid "Search the site"
+msgstr "Doorzoek de site"
+
+#: inc/template-tags.php:536
+#@ zeta
+msgid "Log Out"
+msgstr "Uitloggen"
+
+#: inc/template-tags.php:670
+#, php-format
+#@ zeta
+msgid "Posted on %s"
+msgstr "Geplaatst op %s"
+
+#: inc/template-tags.php:703
+#, php-format
+#@ zeta
+msgid "Created by %s"
+msgstr "Gemaakt door %s"
+
+#: inc/tiled-gallery/tiled-gallery.php:173
+#@ jetpack
+msgid "Tiled Mosaic"
+msgstr ""
+
+#: inc/tiled-gallery/tiled-gallery.php:174
+#@ jetpack
+msgid "Square Tiles"
+msgstr ""
+
+#: inc/tiled-gallery/tiled-gallery.php:175
+#@ jetpack
+msgid "Circles"
+msgstr ""
+
+#: inc/tiled-gallery/tiled-gallery.php:176
+#@ jetpack
+msgid "Tiled Columns"
+msgstr ""
+
+#: inc/tiled-gallery/tiled-gallery.php:202
+#@ jetpack
+msgid "Tiled Galleries"
+msgstr ""
+
+#: inc/tiled-gallery/tiled-gallery.php:209
+#@ jetpack
+msgid "Display all your gallery pictures in a cool mosaic."
+msgstr ""
+
+#: search.php:19
+#, php-format
+#@ zeta
+msgid "Search Results for: %s"
+msgstr "Zoekresultaten voor: %s"
+
