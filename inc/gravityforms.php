@@ -99,7 +99,15 @@ function zeta_gf_enqueue_scripts( $form, $ajax = false ) {
 		wp_enqueue_style( 'gforms_datepicker_css', GFCommon::get_base_url() . '/css/datepicker.min.css', null, GFCommon::$version );
 	}
 
-	// Form has multiple pages
+	/**
+	 * Form has multiple pages
+	 *
+	 * The CSS counter `form-field`, which handles the field numbering, ignores the
+	 * fields within hidden elements. Because all non-current viewed form's pages
+	 * are hidden with 'display:none;', this leads each page to count only his
+	 * own fields, starting with 1. To prevent this, the CSS counter must know
+	 * how many fields reside within the anterior hidden pages.
+	 */
 	if ( zeta_gf_form_has_field( $form, array( 'type' => 'page' ) ) ) {
 		$counter = 0;
 		$css = '';
