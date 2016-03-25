@@ -43,7 +43,7 @@ function zeta_setup() {
 	add_theme_support( 'title-tag' );
 
 	/*
-	 * Enable support for Post Thumbnails on posts and pages.
+	 * Declare support for Post Thumbnails on posts and pages.
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
@@ -64,7 +64,7 @@ function zeta_setup() {
 	) );
 
 	/*
-	 * Enable support for Post Formats.
+	 * Declare support for Post Formats.
 	 *
 	 * See http://codex.wordpress.org/Post_Formats
 	 */
@@ -73,13 +73,18 @@ function zeta_setup() {
 	) );
 
 	/*
-	 * Enable support for the Event Organiser plugin.
+	 * Declare support for the Event Organiser plugin.
 	 * By adding theme support, we declare that this theme handles page templates.
 	 */
 	add_theme_support( 'event-organiser' );
 
 	/*
-	 * Enable support for Yoast SEO's breadcrumbs.
+	 * Declare support for the Customizer's selective refresh for widgets.
+	 */
+	add_theme_support( 'customize-selective-refresh-widgets' );
+
+	/*
+	 * Declare support for Yoast SEO's breadcrumbs.
 	 */
 	add_theme_support( 'yoast-seo-breadcrumbs' );
 
