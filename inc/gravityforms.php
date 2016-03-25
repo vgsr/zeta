@@ -46,14 +46,7 @@ function zeta_gf_form_has_field( $form, $args = array() ) {
 
 					// Field type
 					case 'type' :
-
-						// Get field type
-						$type = ( $field instanceof GField )
-							? $field->get_input_type()
-							: ( empty( $field['inputType'] ) ? $field['type'] : $field['inputType'] );
-
-						// Match field type
-						$matches[] = ( $type == $value );
+						$matches[] = ( GFFormsModel::get_input_type( $field ) == $value );
 						break;
 					default :
 						$matches[] = isset( $field->{$key} ) ? ( $field->{$key} == $value ) : false;
@@ -83,10 +76,35 @@ function zeta_gf_form_has_field( $form, $args = array() ) {
 function zeta_gf_enqueue_scripts( $form, $ajax = false ) {
 	wp_enqueue_style( 'gforms_formsmain_css', get_template_directory_uri() . '/css/gravityforms.css' );
 
-	// Enqueue datepicker style
+	// Form has date field with datepicker UI
 	if ( zeta_gf_form_has_field( $form, array( 'type' => 'date', 'dateType' => 'datepicker' ) ) ) {
+
+		// Enqueue datepicker style
 		wp_enqueue_style( 'gforms_datepicker_css', GFCommon::get_base_url() . '/css/datepicker.min.css', null, GFCommon::$version );
 	}
 
+	// Form has multiple pages
+	if ( zeta_gf_form_has_field( $form, array( 'type' => 'page' ) ) ) {
+		$counter = 0;
+		$css = '';
+
+		// Walk form fields
+		foreach ( $form['fields'] as $field ) {
+
+			// Increment counter for regular fields
+			if ( ! in_array( GFFormsModel::get_input_type( $field ), array( 'page', 'section', 'html' ) ) ) {
+				$counter++;
+
+			// Add counter increment for page field. Don't reset `$counter`
+			} elseif ( 'page' == GFFormsModel::get_input_type( $field ) && $counter ) {
+				$css .= "#gform_page_{$form['id']}_{$field->pageNumber} { counter-increment: form-field {$counter}; }\n";
+			}
+		}
+
+		// Add style
+		if ( ! empty( $css ) ) {
+			wp_add_inline_style( 'gforms_formsmain_css', $css );
+		}
+	}
 }
 add_action( 'gform_enqueue_scripts', 'zeta_gf_enqueue_scripts', 10, 2 );
