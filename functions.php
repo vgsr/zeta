@@ -338,5 +338,6 @@ require( get_template_directory() . '/inc/customizer.php' );
  */
 require( get_template_directory() . '/inc/buddypress.php' );
 require( get_template_directory() . '/inc/event-organiser.php' );
+require( get_template_directory() . '/inc/gravityforms.php' );
 require( get_template_directory() . '/inc/jetpack.php' );
 require( get_template_directory() . '/inc/vgsr-entity.php' );
