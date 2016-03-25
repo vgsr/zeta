@@ -284,7 +284,7 @@ i {
 }
 
 blockquote {
-	margin: 0 1.5em 0 0;
+	margin: 1.5em 1.5em 0 1.5em;
 	padding-left: 1.5em;
 	border-left: 2px solid #ddd;
 	font-style: italic;
@@ -361,6 +361,7 @@ blockquote p:before {
 	content: open-quote;
 }
 
+blockquote p:nth-child(1):nth-last-child(1):after,
 blockquote p:nth-last-child(2):after {
 	content: close-quote;
 }
@@ -368,7 +369,7 @@ blockquote p:nth-last-child(2):after {
 /* Assuming the last <p> holds the quote source */
 blockquote p ~ p:last-child {
 	font-style: normal;
-	margin-top: .5em;
+	margin-top: .5em !important;
 }
 
 blockquote p ~ p:last-child:before {
