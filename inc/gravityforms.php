@@ -107,6 +107,9 @@ function zeta_gf_enqueue_scripts( $form, $ajax = false ) {
 	 * are hidden with 'display:none;', this leads each page to count only his
 	 * own fields, starting with 1. To prevent this, the CSS counter must know
 	 * how many fields reside within the anterior hidden pages.
+	 *
+	 * NB: the issue also occurs when conditionally showing/hiding fields. I do
+	 * not know yet how to deal with that. Perhaps CSS counter is not that helpful?
 	 */
 	if ( zeta_gf_form_has_field( $form, array( 'type' => 'page' ) ) ) {
 		$counter = 0;
