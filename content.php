@@ -19,10 +19,11 @@
 
 	<div class="entry-content">
 		<?php
-			/* translators: %s: Name of current post */
+			/* translators: 1. Name of current post 2. Arrow */
 			the_content( sprintf(
-				__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'zeta' ),
-				the_title( '<span class="screen-reader-text">"', '"</span>', false )
+				__( 'Continue reading %1$s $2%s', 'zeta' ),
+				the_title( '<span class="screen-reader-text">"', '"</span>', false ),
+				'<span class="meta-nav">' . _x( '&rarr;', 'Continue reading arrow', 'zeta' ) . '</span>',
 			) );
 		?>
 
