@@ -27,6 +27,8 @@ add_filter( 'pre_option_rg_gforms_disable_css', 'zeta_gf_disable_plugin_styles' 
  *
  * @since 1.0.0
  *
+ * @uses GFFormsModel::get_input_type()
+ *
  * @param array $form Form data
  * @param array $args Field arguments
  * @return bool Form has field
@@ -36,7 +38,10 @@ function zeta_gf_form_has_field( $form, $args = array() ) {
 	// Define local variable
 	$retval = false;
 
+	// Form has fields, args are provided
 	if ( ! empty( $form['fields'] ) && ! empty( $args ) ) {
+
+		// Walk form fields
 		foreach ( $form['fields'] as $field ) {
 			$matches = array();
 
@@ -44,12 +49,18 @@ function zeta_gf_form_has_field( $form, $args = array() ) {
 			foreach ( $args as $key => $value ) {
 				switch ( $key ) {
 
-					// Field type
+					// Handle field type
 					case 'type' :
 						$matches[] = ( GFFormsModel::get_input_type( $field ) == $value );
 						break;
 					default :
-						$matches[] = isset( $field->{$key} ) ? ( $field->{$key} == $value ) : false;
+
+						// Serving `null` will check for detail absence
+						if ( null === $value ) {
+							$matches[] = ! isset( $field->{$key} );
+						} else {
+							$matches[] = isset( $field->{$key} ) ? ( $field->{$key} == $value ) : false;
+						}
 						break;
 				}
 			}
@@ -72,6 +83,11 @@ function zeta_gf_form_has_field( $form, $args = array() ) {
  *
  * @uses wp_enqueue_style()
  * @uses zeta_gf_form_has_field()
+ * @uses GFFormsModel::get_input_type()
+ * @uses wp_add_inline_style()
+ *
+ * @param array $form Form data for which to load the scripts
+ * @param bool $ajax Whether the form uses AJAX
  */
 function zeta_gf_enqueue_scripts( $form, $ajax = false ) {
 	wp_enqueue_style( 'gforms_formsmain_css', get_template_directory_uri() . '/css/gravityforms.css' );
