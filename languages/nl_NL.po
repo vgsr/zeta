@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zeta v0.6.0\n"
+"Project-Id-Version: Zeta v0.7.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-03-25 14:15:03+0000\n"
+"PO-Revision-Date: 2016-03-25 20:45:47+0000\n"
 "Last-Translator: LM Offereins <lmoffereins@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -181,17 +181,10 @@ msgstr "Het lijkt er op dat we niet gevonden hebben waar je voor kwam. Misschien
 
 #: content-page.php:20
 #: content-single.php:24
-#: content.php:31
+#: content.php:32
 #@ zeta
 msgid "Pages:"
 msgstr "Pagina's:"
-
-#. translators: %s: Name of current post
-#: content.php:24
-#, php-format
-#@ zeta
-msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
-msgstr "Lees verder %s <span class=\\\"meta-nav\\\">&rarr;</span>"
 
 #: event-organiser/loop-event-day.php:16
 #: event-organiser/loop-list-day.php:18
@@ -255,55 +248,55 @@ msgstr "Hoofdmenu"
 msgid "Social Links Menu"
 msgstr "Sociale-linksmenu"
 
-#: functions.php:131
+#: functions.php:136
 #@ zeta
 msgid "Sidebar"
 msgstr "Zijbalk"
 
-#: functions.php:142
+#: functions.php:147
 #@ zeta
 msgid "Front Page"
 msgstr "Voorpagina"
 
-#: functions.php:153
+#: functions.php:158
 #@ zeta
 msgid "Footer"
 msgstr "Voettekst"
 
-#: functions.php:181
+#: functions.php:186
 #@ zeta
 msgctxt "Noto Sans font: on or off"
 msgid "on"
 msgstr "on"
 
-#: functions.php:189
+#: functions.php:194
 #@ zeta
 msgctxt "Noto Serif font: on or off"
 msgid "on"
 msgstr "on"
 
-#: functions.php:197
+#: functions.php:202
 #@ zeta
 msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
 msgid "no-subset"
 msgstr "no-subset"
 
-#: functions.php:245
+#: functions.php:250
 #@ zeta
 msgid "Expand child menu"
 msgstr "Submenu openklappen"
 
-#: functions.php:246
+#: functions.php:251
 #@ zeta
 msgid "Collapse child menu"
 msgstr "Submenu dichtklappen"
 
-#: functions.php:289
+#: functions.php:294
 #@ zeta
 msgid "Previous"
 msgstr "Vorige"
 
-#: functions.php:290
+#: functions.php:295
 #@ zeta
 msgid "Next"
 msgstr "Volgende"
@@ -796,7 +789,7 @@ msgstr "Inloggen"
 #, php-format
 #@ zeta
 msgid "<a href=\"%s\" title=\"Register for a new account\">Register</a>"
-msgstr "<a href=\"%s\" title=\"Registreer voor een nieuw account\">Registreren</a>"
+msgstr "<a href=\\\"%s\\\" title=\\\"Registreer voor een nieuw account\\\">Registreren</a>"
 
 #: inc/template-tags.php:529
 #@ zeta
@@ -855,4 +848,17 @@ msgstr ""
 #@ zeta
 msgid "Search Results for: %s"
 msgstr "Zoekresultaten voor: %s"
+
+#. translators: 1. Name of current post 2. Arrow
+#: content.php:24
+#, php-format
+#@ zeta
+msgid "Continue reading %1$s $2%s"
+msgstr "Verder lezen %1$s $2%s"
+
+#: content.php:26
+#@ zeta
+msgctxt "Continue reading arrow"
+msgid "&rarr;"
+msgstr "&rarr;"
 
