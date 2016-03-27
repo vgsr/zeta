@@ -1675,7 +1675,10 @@ a:active {
 
 .main-navigation .current_page_item > a,
 .main-navigation .current-menu-item > a,
-.main-navigation .current_page_ancestor > a {
+.main-navigation .current_page_parent > a,
+.main-navigation .current-menu-parent > a,
+.main-navigation .current_page_ancestor > a,
+.main-navigation .current-menu-ancestor > a {
 	font-weight: bold;
 }
 
@@ -2127,7 +2130,10 @@ a:active {
 
 	.main-navigation .current_page_item > a,
 	.main-navigation .current-menu-item > a,
-	.main-navigation .current_page_ancestor > a {
+	.main-navigation .current_page_parent > a,
+	.main-navigation .current-menu-parent > a,
+	.main-navigation .current_page_ancestor > a,
+	.main-navigation .current-menu-ancestor > a {
 		background-color: rgba(35, 115, 38, 1);
 		font-weight: normal;
 	}
