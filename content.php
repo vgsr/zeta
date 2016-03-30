@@ -23,7 +23,7 @@
 			the_content( sprintf(
 				__( 'Continue reading %1$s $2%s', 'zeta' ),
 				the_title( '<span class="screen-reader-text">"', '"</span>', false ),
-				'<span class="meta-nav">' . _x( '&rarr;', 'Continue reading arrow', 'zeta' ) . '</span>',
+				'<span class="meta-nav">' . _x( '&rarr;', 'Continue reading arrow', 'zeta' ) . '</span>'
 			) );
 		?>
 
