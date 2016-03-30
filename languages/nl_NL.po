@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zeta v0.7.0\n"
+"Project-Id-Version: Zeta v0.7.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-03-25 20:45:47+0000\n"
+"PO-Revision-Date: 2016-03-30 15:32:23+0000\n"
 "Last-Translator: LM Offereins <lmoffereins@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -167,7 +167,7 @@ msgstr "Niets gevonden"
 #, php-format
 #@ zeta
 msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
-msgstr "Klaar om je eerste bericht te schrijven? <a href=\\\"%1$s\\\">Begin hier</a>."
+msgstr "Klaar om je eerste bericht te schrijven? <a href=\"%1$s\">Begin hier</a>."
 
 #: content-none.php:25
 #@ zeta
@@ -236,7 +236,7 @@ msgstr "Gemaakt met %s"
 #, php-format
 #@ zeta
 msgid "<a href=\"%2$s\">Design</a> by %1$s"
-msgstr "<a href=\\\"%2$s\\\">Design</a> door %1$s"
+msgstr "<a href=\"%2$s\">Design</a> door %1$s"
 
 #: functions.php:54
 #@ zeta
@@ -498,7 +498,7 @@ msgstr "Herhalend"
 #, php-format
 #@ zeta
 msgid "@ <a href=\"%s\">%s</a>"
-msgstr "@ <a href=\\\"%s\\\">%s</a>"
+msgstr "@ <a href=\"%s\">%s</a>"
 
 #. translators: 1. date format 2. time format. Please slash any other characters
 #: inc/event-organiser.php:788
@@ -789,7 +789,7 @@ msgstr "Inloggen"
 #, php-format
 #@ zeta
 msgid "<a href=\"%s\" title=\"Register for a new account\">Register</a>"
-msgstr "<a href=\\\"%s\\\" title=\\\"Registreer voor een nieuw account\\\">Registreren</a>"
+msgstr "<a href=\"%s\" title=\"Registreer voor een nieuw account\">Registreren</a>"
 
 #: inc/template-tags.php:529
 #@ zeta
