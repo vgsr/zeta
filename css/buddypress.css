@@ -397,12 +397,21 @@
 		transition: top .25s ease-in, opacity .25s ease-in;
 	}
 
+	.js #buddypress .item-list .action {
+		top: 37px;
+		right: 5px;
+	}
+
 	.item-actions-toggled #buddypress #item-actions,
 	#buddypress .item-list li.actions-toggled .action {
 		top: 62px; /* Animate position */
 		opacity: 1;
 		visibility: visible;
 		pointer-events: inherit;
+	}
+
+	#buddypress .item-list li.actions-toggled .action {
+		top: 47px;
 	}
 
 		.js #buddypress #item-actions:before,
@@ -506,6 +515,7 @@
 
 #buddypress .item-list {
 	list-style: none;
+	margin-top: 0;
 	padding: 0;
 }
 
@@ -530,13 +540,13 @@
 			position: absolute;
 			top: 10px;
 			left: 10px;
-			width: calc( 100% - 20px );
+			width: 22%;
 		}
 
 			#buddypress .dir-list .item-list > li .item-avatar a {
 				display: inline-block;
-				width: 22%;
-				height: 22%;
+				width: 100%;
+				height: 100%;
 				padding: 2px;
 				background-color: #fff;
 				border-radius: 50%;
