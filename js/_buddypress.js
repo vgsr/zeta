@@ -91,7 +91,7 @@
 } )( jQuery );
 
 /**
- * Handles toggling the item actions menu for all screens.
+ * Handles toggling the single item actions menu for all screens.
  */
 ( function() {
 	var container, button, actions;
@@ -129,3 +129,37 @@
 	};
 
 } )();
+
+/**
+ * Handles toggling the list item actions menu for all screens.
+ */
+( function( $ ) {
+
+	$( '.dir-list .item-list > li' ).each( function() {
+		var $item = $(this),
+		    $actions = $item.find( '.action' ),
+		    $button = $item.find( 'button.action-toggle' );
+
+
+		// Bail when no actions are present
+		if ( $actions.is( ':empty' ) ) {
+			$button.hide();
+			return;
+		}
+
+		// Toggle item actions
+		$button.on( 'click', function( e ) {
+			e.preventDefault();
+			if ( $item.hasClass( 'actions-toggled' ) ) {
+				$item.removeClass( 'actions-toggled' );
+				$button.attr( 'aria-expanded', 'false' );
+				$actions.attr( 'aria-expanded', 'false' );
+			} else {
+				$item.addClass( 'actions-toggled' );
+				$button.attr( 'aria-expanded', 'true' );
+				$actions.attr( 'aria-expanded', 'true' );
+			}
+		});
+	});
+
+} )( jQuery );
