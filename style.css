@@ -3022,6 +3022,7 @@ body.front-page .entry-content {
 	font-family: 'Montserrat', Arial, sans-serif;
 	font-size: .9em;
 	text-align: center;
+	color: rgba(64, 64, 64, .5);
 }
 
 	.entry-meta:not(:empty),
