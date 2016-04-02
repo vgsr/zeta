@@ -3747,6 +3747,10 @@ object {
 		text-align: left;
 	}
 
+.entity-details .bestuur-positions h4 {
+	display: none;
+}
+
 @media screen and (min-width: 480px) and (max-width: 674px), (min-width: 741px) and (max-width: 779px) {
 	.entity-details .entity-logo {
 		float: left;
