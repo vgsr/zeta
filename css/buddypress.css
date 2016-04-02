@@ -183,13 +183,13 @@
 				position: absolute;
 				top: 4px;
 				right: 3px;
+				min-width: 15px;
+				height: 15px;
 				padding: 1px 4px;
 				background: rgba(191, 38, 105, .8);
+				border-radius: 8px;
 				color: #fff;
 				font-size: 9px;
-				border-radius: 50%;
-				min-width: 15px;
-				max-width: 15px;
 				text-align: center;
 			}
 
