@@ -235,7 +235,7 @@ function zeta_scripts() {
 
 	// BuddyPress
 	if ( function_exists( 'buddypress' ) && is_buddypress() ) {
-		wp_enqueue_script( 'zeta-buddypress', get_template_directory_uri() . '/js/buddypress.js', array( 'jquery' ) );
+		wp_enqueue_script( 'zeta-buddypress', get_template_directory_uri() . '/js/_buddypress.js', array( 'jquery' ), '20150402', true );
 		wp_enqueue_style( 'zeta-buddypress', get_template_directory_uri() . '/css/buddypress.css', array( 'buddypress' ) );
 	}
 
@@ -246,7 +246,7 @@ function zeta_scripts() {
 	}
 
 	// Navigation menu for small screens
-	wp_enqueue_script( 'zeta-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	wp_enqueue_script( 'zeta-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20120206', true );
 	wp_localize_script( 'zeta-navigation', 'screenReaderText', array(
 		'expand'   => '<span class="screen-reader-text">' . __( 'Expand child menu',   'zeta' ) . '</span>',
 		'collapse' => '<span class="screen-reader-text">' . __( 'Collapse child menu', 'zeta' ) . '</span>',
