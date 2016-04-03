@@ -135,6 +135,7 @@
  */
 ( function( $ ) {
 
+	// For all dir-list items
 	$( '.dir-list .item-list > li' ).each( function() {
 		var $item = $(this),
 		    $actions = $item.find( '.action' ),
@@ -160,6 +161,25 @@
 				$actions.attr( 'aria-expanded', 'true' );
 			}
 		});
+	});
+
+	// Toggle button when clicking outside
+	$( document ).on( 'click', function( e ) {
+		var $this = $( e.target );
+
+		// Not when clicking an item action
+		if ( ! $this.is( '.dir-list .item-list > li.actions-toggled .action a' ) ) {
+
+			// Mimic click on button.action-toggle
+			$( '.dir-list .item-list > li.actions-toggled' ).not( $this.parents( '.dir-list .item-list > li' ) )
+				.removeClass( 'actions-toggled' )
+				.find( 'button.action-toggle')
+					.attr( 'aria-expanded', 'false' )
+					.end()
+				.find( '.action' )
+					.attr( 'aria-expanded', 'false' )
+					.end();
+		}
 	});
 
 } )( jQuery );
