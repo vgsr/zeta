@@ -5,6 +5,11 @@
  *
  * Querystring is set via AJAX in _inc/ajax.php - bp_legacy_theme_object_filter()
  *
+ * Changes to the default template:
+ * - Removed whitespace in .action
+ * - Added button.action-toggle for displaying item actions
+ * - Removed div.clear
+ *
  * @package Zeta
  * @subpackage BuddyPress
  */
@@ -51,33 +56,30 @@
 					<span class="activity"><?php bp_member_last_active(); ?></span>
 
 					<?php if ( bp_get_member_latest_update() ) : ?>
-
 						<span class="update"><?php bp_member_latest_update(); ?></span>
-
 					<?php endif; ?>
 
 				</div>
 
-				<?php do_action( 'bp_directory_members_item' ); ?>
-
 				<?php
-				 /***
+
+				 /**
 				  * If you want to show specific profile fields here you can,
 				  * but it'll add an extra query for each member in the loop
 				  * (only one regardless of the number of fields you show):
 				  *
 				  * bp_member_profile_data( 'field=the field name' );
 				  */
+				do_action( 'bp_directory_members_item' );
+
 				?>
 			</div>
 
-			<div class="action">
+			<div class="action"><?php
+				do_action( 'bp_directory_members_actions' );
+			?></div>
 
-				<?php do_action( 'bp_directory_members_actions' ); ?>
-
-			</div>
-
-			<div class="clear"></div>
+			<button class="action-toggle" aria-controls="actions" aria-expanded="false"><?php _e( 'Actions', 'zeta' ); ?></button>
 		</li>
 
 	<?php endwhile; ?>
