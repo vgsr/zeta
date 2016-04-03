@@ -73,15 +73,15 @@ function zeta_setup() {
 	) );
 
 	/*
+	 * Declare support for the Customizer's selective refresh for widgets.
+	 */
+	add_theme_support( 'customize-selective-refresh-widgets' );
+
+	/*
 	 * Declare support for the Event Organiser plugin.
 	 * By adding theme support, we declare that this theme handles page templates.
 	 */
 	add_theme_support( 'event-organiser' );
-
-	/*
-	 * Declare support for the Customizer's selective refresh for widgets.
-	 */
-	add_theme_support( 'customize-selective-refresh-widgets' );
 
 	/*
 	 * Declare support for Yoast SEO's breadcrumbs.
