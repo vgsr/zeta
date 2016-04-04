@@ -280,6 +280,7 @@
 			position: relative;
 			display: block;
 			float: left;
+			min-width: 21px;
 			height: 100%;
 			padding: 0 4px;
 			color: #404040;
@@ -288,6 +289,7 @@
 		}
 
 			#buddypress .pagination .pagination-links .page-numbers.dots {
+				min-width: auto;
 				padding: 0;
 			}
 
@@ -298,7 +300,8 @@
 
 			#buddypress .pagination .pagination-links .page-numbers.current,
 			#buddypress .pagination .pagination-links .page-numbers.current:hover {
-				background-color: #efefef;
+				background-color: rgba(191, 38, 105, .8);
+				color: #fff;
 			}
 
 @media screen and (min-width: 741px) {
