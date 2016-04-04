@@ -578,7 +578,7 @@
 	}
 
 	/* Limit .item-avatar max-width 84px */
-	@media only screen and (min-width: 470px) and (max-width: 551px), (min-width: 561px) and (max-width: 642px), (min-width: 741px) and (max-width: 747px) {
+	@media only screen and (min-width: 452px) and (max-width: 551px), (min-width: 561px) and (max-width: 642px), (min-width: 741px) and (max-width: 747px) {
 		#buddypress .dir-list .item-list > li .item-avatar a {
 			width: 84px;
 			height: 84px;
