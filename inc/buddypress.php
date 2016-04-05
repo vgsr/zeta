@@ -158,15 +158,15 @@ add_action( 'bp_activity_comment_options', 'zeta_bp_activity_comment_options' );
 /** Directory **************************************************************/
 
 /**
- * Filter the item classes in the loop
+ * Filter the member classes in the loop
  *
  * @since 1.0.0
  *
  * @param array $classes Collection of classes
  * @return array Classes
  */
-function zeta_bp_item_class( $classes ) {
-	global $members_template, $groups_template;
+function zeta_bp_member_class( $classes ) {
+	global $members_template;
 
 	// This is a members loop
 	if ( isset( $members_template->member ) ) {
@@ -180,6 +180,21 @@ function zeta_bp_item_class( $classes ) {
 			$classes[] = 'has-actions';
 		}
 	}
+
+	return $classes;
+}
+add_filter( 'bp_get_member_class', 'zeta_bp_member_class' );
+
+/**
+ * Filter the group classes in the loop
+ *
+ * @since 1.0.0
+ *
+ * @param array $classes Collection of classes
+ * @return array Classes
+ */
+function zeta_bp_group_class( $classes ) {
+	global $groups_template;
 
 	// This is a groups loop
 	if ( isset( $groups_template->group ) ) {
@@ -196,5 +211,4 @@ function zeta_bp_item_class( $classes ) {
 
 	return $classes;
 }
-add_filter( 'bp_get_member_class', 'zeta_bp_item_class' );
-add_filter( 'bp_get_group_class',  'zeta_bp_item_class' );
+add_filter( 'bp_get_group_class',  'zeta_bp_group_class' );
