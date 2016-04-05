@@ -1621,6 +1621,14 @@
 				content: '\f466'; /* dashicons-email-alt */
 			}
 
+			#buddypress .generic-button a.join-group:before {
+				content: '\f132'; /* dashicons-plus */
+			}
+
+			#buddypress .generic-button a.leave-group:before {
+				content: '\f460'; /* dashicons-minus */
+			}
+
 			#buddypress .button.acomment-reply:before,
 			#buddypress a.acomment-reply:before {
 				content: '\f125'; /* dashicons-format-chat */
