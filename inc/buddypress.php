@@ -154,3 +154,47 @@ function zeta_bp_activity_comment_options() {
 	);
 }
 add_action( 'bp_activity_comment_options', 'zeta_bp_activity_comment_options' );
+
+/** Directory **************************************************************/
+
+/**
+ * Filter the item classes in the loop
+ *
+ * @since 1.0.0
+ *
+ * @param array $classes Collection of classes
+ * @return array Classes
+ */
+function zeta_bp_item_class( $classes ) {
+	global $members_template, $groups_template;
+
+	// This is a members loop
+	if ( isset( $members_template->member ) ) {
+
+		// Collect member actions
+		ob_start();
+		do_action( 'bp_directory_members_actions' );
+
+		// Add class when the current item does have classes
+		if ( ob_get_clean() ) {
+			$classes[] = 'has-actions';
+		}
+	}
+
+	// This is a groups loop
+	if ( isset( $groups_template->group ) ) {
+
+		// Collect group actions
+		ob_start();
+		do_action( 'bp_directory_groups_actions' );
+
+		// Add class when the current item does have classes
+		if ( ob_get_clean() ) {
+			$classes[] = 'has-actions';
+		}
+	}
+
+	return $classes;
+}
+add_filter( 'bp_get_member_class', 'zeta_bp_item_class' );
+add_filter( 'bp_get_group_class',  'zeta_bp_item_class' );

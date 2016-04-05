@@ -601,6 +601,9 @@
 
 			#buddypress .dir-list .item-list > li .item-title {
 				margin-top: .25em;
+			}
+
+			#buddypress .dir-list .item-list > li.has-actions .item-title {
 				padding-right: 32px; /* for button.action-toggle */
 			}
 
