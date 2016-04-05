@@ -1163,6 +1163,10 @@
 		color: rgba(64, 64, 64, .8); /* Don't use `opacity`, as it cannot be overriden positively */
 	}
 
+		#buddypress .activity .activity-header a br {
+			display: none;
+		}
+
 	#buddypress #latest-update,
 	#buddypress .activity .activity-inner {
 		padding: 10px;
