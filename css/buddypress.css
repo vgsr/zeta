@@ -327,7 +327,8 @@
  * so the #item-header-avatar positions nicely between
  * #header-aside and the page title.
  */
-.buddypress.bp-user .site-main {
+.buddypress.bp-user .site-main,
+.buddypress.groups.single-item .site-main {
 	/* Flex the inner content */
 	display: -webkit-box;
 	display: -moz-box;
@@ -337,7 +338,8 @@
 	flex-direction: column;
 }
 
-	.buddypress.bp-user:not(.activity-permalink) #breadcrumb {
+	.buddypress.bp-user:not(.activity-permalink) #breadcrumb,
+	.buddypress.groups.single-item #breadcrumb {
 		order: 2;
 		border: 0;
 		border-top: 1px dashed #ddd;
