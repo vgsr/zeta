@@ -99,20 +99,17 @@
 		}
 
 		#buddypress .item-list-tabs ul li[role="search"] input[type="text"] {
-			padding: 8px 18px;
+			padding: 9px 18px;
+			margin-top: -1px;
+			background: none;
+			border: none;
+			font-size: 1em;
 		}
 
 		#buddypress .item-list-tabs ul li[role="search"] input[type="text"]:not(:focus) {
-			border-top: none;
-			border-color: #efefef;
-			border-right-color: transparent;
 			-moz-box-shadow: none;
 			-webkit-box-shadow: none;
 			box-shadow: none;
-		}
-
-		#buddypress .item-list-tabs ul li[role="search"] input[type="text"]:focus {
-			margin-top: -1px;
 		}
 
 	#buddypress .item-list-tabs ul li.filter,
