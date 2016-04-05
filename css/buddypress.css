@@ -613,7 +613,7 @@
 				}
 
 		#buddypress .dir-list .item-list > li .item {
-			padding: 0 5px 0 calc( 22% + 15px );
+			padding: 0 5px 0 calc( 22% + 19px );
 		}
 
 	/* Set .dir-list li as min-width 225px */
@@ -633,15 +633,19 @@
 
 	/* Limit .item-avatar max-width 84px */
 	@media only screen and (min-width: 452px) and (max-width: 551px), (min-width: 561px) and (max-width: 642px), (min-width: 741px) and (max-width: 747px) {
-		#buddypress .dir-list .item-list > li .item-avatar a {
+		#buddypress .dir-list .item-list > li .item-avatar {
 			width: 84px;
-			height: 84px;
 		}
 
-			#buddypress .dir-list .item-list > li .item-avatar a img {
-				width: 80px;
-				height: 80px;
+			#buddypress .dir-list .item-list > li .item-avatar a {
+				width: 84px;
+				height: 84px;
 			}
+
+				#buddypress .dir-list .item-list > li .item-avatar a img {
+					width: 80px;
+					height: 80px;
+				}
 
 		#buddypress .dir-list .item-list > li .item {
 			padding: 0 5px 0 99px;
