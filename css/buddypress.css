@@ -269,20 +269,22 @@
 	#buddypress .pagination .pag-count {
 		float: left;
 		font-size: .9em;
+		padding: 4px 0;
 	}
 
 	#buddypress .pagination .pagination-links {
 		float: right;
 		font-size: .9em;
+		margin-left: 35px;
 	}
 
 		#buddypress .pagination .pagination-links .page-numbers {
 			position: relative;
 			display: block;
 			float: left;
-			min-width: 21px;
+			min-width: 29px;
 			height: 100%;
-			padding: 0 4px;
+			padding: 4px;
 			color: #404040;
 			text-align: center;
 			text-decoration: none;
