@@ -516,6 +516,53 @@
 		margin-top: 1.5em;
 	}
 
+	#buddypress #item-admins {
+		display: inline;
+	}
+
+		#buddypress #item-admins h2 {
+			font-size: 0.8em;
+			font-weight: normal;
+		}
+
+			#buddypress #item-admins h2:after {
+				content: ':';
+			}
+
+		#buddypress #item-admins h2 ~ h2 {
+			margin-top: 0;
+		}
+
+		#buddypress #item-admins ul {
+			display: inline;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+			/* Force line break after this element */
+			#buddypress #item-admins ul:after {
+				content: '\A'; /* ASCII 0x0A = line feed escape */
+				white-space: pre;
+			}
+
+			#buddypress #item-admins ul li {
+				display: inline-block;
+				width: 24px;
+				margin-right: 5px;
+			}
+
+				#buddypress #item-admins ul li a {
+					display: inline-block;
+					width: 24px;
+					height: 24px;
+					border-radius: 50%;
+				}
+
+					#buddypress #item-admins ul li a img {
+						border-radius: 50%;
+					}
+
 /**
  * Item list
  */
