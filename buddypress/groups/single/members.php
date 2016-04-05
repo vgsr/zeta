@@ -6,7 +6,12 @@
  * @todo Requires update to latest bp-legacy
  *
  * Changes from the default bp-legacy template:
- * - Wrap .item-list elements details in .item-{detail} divs
+ * - Added `bp_member_class()` to the list element
+ * - Wrapped item title in .item-title
+ * - Wrapped item joined since in .item-meta
+ * - Removed whitespace from .action
+ * - Moved the friends condition inside .action
+ * - Added button.action-toggle for displaying item actions
  *
  * @package Zeta
  * @subpackage BuddyPress
@@ -16,7 +21,14 @@
 
 <?php if ( bp_group_has_members( bp_ajax_querystring( 'group_members' ) ) ) : ?>
 
-	<?php do_action( 'bp_before_group_members_content' ); ?>
+	<?php
+
+	/**
+	 * Fires before the display of the group members content.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_before_group_members_content' ); ?>
 
 	<div id="pag-top" class="pagination">
 
@@ -34,13 +46,20 @@
 
 	</div>
 
-	<?php do_action( 'bp_before_group_members_list' ); ?>
+	<?php
+
+	/**
+	 * Fires before the display of the group members list.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_before_group_members_list' ); ?>
 
 	<ul id="member-list" class="item-list" role="main">
 
 		<?php while ( bp_group_members() ) : bp_group_the_member(); ?>
 
-			<li>
+			<li <?php bp_member_class(); ?>>
 				<div class="item-avatar">
 					<a href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar( array( 'width' => 80, 'height' => 80 ) ); ?></a>
 				</div>
@@ -54,28 +73,49 @@
 						<span class="activity"><?php bp_group_member_joined_since(); ?></span>
 					</div>
 
-					<?php do_action( 'bp_group_members_list_item' ); ?>
+					<?php
+
+					/**
+					 * Fires inside the listing of an individual group member listing item.
+					 *
+					 * @since 1.1.0
+					 */
+					do_action( 'bp_group_members_list_item' ); ?>
 
 				</div>
 
-				<?php if ( bp_is_active( 'friends' ) ) : ?>
+				<div class="action"><?php
 
-					<div class="action">
+					if ( bp_is_active( 'friends' ) ) :
 
-						<?php bp_add_friend_button( bp_get_group_member_id(), bp_get_group_member_is_friend() ); ?>
+						bp_add_friend_button( bp_get_group_member_id(), bp_get_group_member_is_friend() );
 
-						<?php do_action( 'bp_group_members_list_item_action' ); ?>
+					endif;
 
-					</div>
+					/**
+					 * Fires inside the action section of an individual group member listing item.
+					 *
+					 * @since 1.1.0
+					 */
+					do_action( 'bp_group_members_list_item_action' );
 
-				<?php endif; ?>
+				?></div>
+
+				<button class="action-toggle" aria-controls="actions" aria-expanded="false"><?php _e( 'Actions', 'zeta' ); ?></button>
 			</li>
 
 		<?php endwhile; ?>
 
 	</ul>
 
-	<?php do_action( 'bp_after_group_members_list' ); ?>
+	<?php
+
+	/**
+	 * Fires after the display of the group members list.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_after_group_members_list' ); ?>
 
 	<div id="pag-bottom" class="pagination">
 
@@ -93,7 +133,14 @@
 
 	</div>
 
-	<?php do_action( 'bp_after_group_members_content' ); ?>
+	<?php
+
+	/**
+	 * Fires after the display of the group members content.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_after_group_members_content' ); ?>
 
 <?php else: ?>
 
