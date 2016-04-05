@@ -48,7 +48,7 @@ function zeta_bp_entry_meta() {
 		}
 
 		/**
-		 * Fires after the group header actions section.
+		 * Fires after the member header actions section.
 		 *
 		 * If you'd like to show specific profile fields here use:
 		 * bp_member_profile_data( 'field=About Me' ); -- Pass the name of the field
@@ -59,6 +59,30 @@ function zeta_bp_entry_meta() {
 
 		// User activity
 		printf( '<span class="activity">%s</span>', bp_get_last_activity( bp_displayed_user_id() ) );
+	}
+
+	// Single group
+	if ( bp_is_group() ) {
+
+		// Get current group
+		$group_id = groups_get_current_group();
+	
+		// Group type
+		printf( '<span class="group-type">%s</span>', bp_get_group_type( $group_id ) );
+
+		// Member count
+		$count = bp_get_group_total_members( $group_id );
+		printf( '<span class="member-count">%s</span>', sprintf( _n( '%s member', '%s members', $count, 'buddypress' ), bp_core_number_format( $count ) ) );
+
+		/**
+		 * Fires after the group header actions section.
+		 *
+		 * @since 1.2.0
+		 */
+		do_action( 'bp_group_header_meta' );
+
+		// Group activity
+		printf( '<span class="activity">%s</span>', sprintf( __( 'active %s', 'buddypress' ), bp_get_group_last_active( $group_id ) ) );
 	}
 }
 add_action( 'zeta_entry_meta', 'zeta_bp_entry_meta' );
@@ -162,6 +186,8 @@ add_action( 'bp_activity_comment_options', 'zeta_bp_activity_comment_options' );
  *
  * @since 1.0.0
  *
+ * @uses do_action() Calls 'bp_directory_members_actions'
+ *
  * @param array $classes Collection of classes
  * @return array Classes
  */
@@ -189,6 +215,8 @@ add_filter( 'bp_get_member_class', 'zeta_bp_member_class' );
  * Filter the group classes in the loop
  *
  * @since 1.0.0
+ *
+ * @uses do_action() Calls 'bp_directory_groups_actions'
  *
  * @param array $classes Collection of classes
  * @return array Classes
