@@ -1143,7 +1143,8 @@ body.fixed-header.admin-bar #site-tools {
 		border-bottom: 1px dashed #ddd;
 	}
 
-	body.admin-bar #site-tools {
+	body.admin-bar #site-tools,
+	body.fixed-header.admin-bar #site-tools {
 		margin-top: 0;
 	}
 
