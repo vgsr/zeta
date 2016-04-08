@@ -26,7 +26,6 @@
  *
  * @since 1.2.0
  */
-
 do_action( 'bp_before_member_header' ); ?>
 
 <div id="item-header-avatar">

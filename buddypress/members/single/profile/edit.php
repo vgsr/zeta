@@ -4,7 +4,9 @@
  * BuddyPress - Members Single Profile Edit
  *
  * Changes to the default template:
+ * - Removed div.clear
  * - Removed field visibility settings
+ * - Removed use of variable for `bp_xprofile_create_field_type()`
  *
  * @package Zeta
  * @subpackage BuddyPress
@@ -12,14 +14,24 @@
 
 ?>
 
-<?php do_action( 'bp_before_profile_edit_content' ); ?>
+<?php
 
-<?php if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) ) : ?>
-<?php while ( bp_profile_groups() ) : bp_the_profile_group(); ?>
+/**
+ * Fires after the display of member profile edit content.
+ *
+ * @since 1.1.0
+ */
+do_action( 'bp_before_profile_edit_content' );
+
+if ( bp_has_profile( array( 'profile_group_id' => bp_get_current_profile_group_id() ) ) ) :
+	while ( bp_profile_groups() ) : bp_the_profile_group(); ?>
 
 <form action="<?php bp_the_profile_group_edit_form_action(); ?>" method="post" id="profile-edit-form" class="standard-form <?php bp_the_profile_group_slug(); ?>">
 
-	<?php do_action( 'bp_before_profile_field_content' ); ?>
+	<?php
+
+		/** This action is documented in bp-templates/bp-legacy/buddypress/members/single/profile/profile-wp.php */
+		do_action( 'bp_before_profile_field_content' ); ?>
 
 		<h4><?php printf( __( "Editing '%s' Profile Group", "buddypress" ), bp_get_the_profile_group_name() ); ?></h4>
 
@@ -33,16 +45,26 @@
 
 			<div <?php bp_field_css_class( 'editfield' ); ?>>
 
-				<?php bp_xprofile_create_field_type( bp_get_the_profile_field_type() )->edit_field_html(); ?>
+				<?php
 
-				<?php do_action( 'bp_custom_profile_edit_fields' ); ?>
+					bp_xprofile_create_field_type( bp_get_the_profile_field_type() )->edit_field_html();
+
+					/**
+					 * Fires after the visibility options for a field.
+					 *
+					 * @since 1.1.0
+					 */
+					do_action( 'bp_custom_profile_edit_fields' ); ?>
 
 				<p class="description"><?php bp_the_profile_field_description(); ?></p>
 			</div>
 
 		<?php endwhile; ?>
 
-	<?php do_action( 'bp_after_profile_field_content' ); ?>
+	<?php
+
+	/** This action is documented in bp-templates/bp-legacy/buddypress/members/single/profile/profile-wp.php */
+	do_action( 'bp_after_profile_field_content' ); ?>
 
 	<div class="submit">
 		<input type="submit" name="profile-group-edit-submit" id="profile-group-edit-submit" value="<?php esc_attr_e( 'Save Changes', 'buddypress' ); ?> " />
@@ -56,4 +78,11 @@
 
 <?php endwhile; endif; ?>
 
-<?php do_action( 'bp_after_profile_edit_content' ); ?>
+<?php
+
+/**
+ * Fires after the display of member profile edit content.
+ *
+ * @since 1.1.0
+ */
+do_action( 'bp_after_profile_edit_content' ); ?>

@@ -3,14 +3,13 @@
 /**
  * BuddyPress - Groups Single Members
  *
- * @todo Requires update to latest bp-legacy
- *
  * Changes from the default bp-legacy template:
  * - Added `bp_member_class()` to the list element
  * - Wrapped item title in .item-title
  * - Wrapped item joined since in .item-meta
  * - Removed whitespace from .action
- * - Moved the friends condition inside .action
+ * - Removed the friends condition and add-friend button
+ * - Removed the 'bp_group_members_list_item_action' hook
  * - Added button.action-toggle for displaying item actions
  *
  * @package Zeta
@@ -78,26 +77,24 @@
 					/**
 					 * Fires inside the listing of an individual group member listing item.
 					 *
+					 * In bp-legacy this hook is called 'bp_group_members_list_item'.
+					 *
 					 * @since 1.1.0
 					 */
-					do_action( 'bp_group_members_list_item' ); ?>
+					do_action( 'bp_directory_members_item' ); ?>
 
 				</div>
 
 				<div class="action"><?php
 
-					if ( bp_is_active( 'friends' ) ) :
-
-						bp_add_friend_button( bp_get_group_member_id(), bp_get_group_member_is_friend() );
-
-					endif;
-
 					/**
 					 * Fires inside the action section of an individual group member listing item.
 					 *
+					 * In bp-legacy this hook is called 'bp_group_members_list_item_action'.
+					 *
 					 * @since 1.1.0
 					 */
-					do_action( 'bp_group_members_list_item_action' );
+					do_action( 'bp_directory_members_actions' );
 
 				?></div>
 

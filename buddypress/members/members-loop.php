@@ -87,9 +87,8 @@ do_action( 'bp_before_members_loop' ); ?>
 				 *
 				 * @since 1.1.0
 				 */
-				do_action( 'bp_directory_members_item' );
+				do_action( 'bp_directory_members_item' ); ?>
 
-				?>
 			</div>
 
 			<div class="action"><?php
