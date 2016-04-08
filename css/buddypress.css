@@ -303,6 +303,10 @@
 				color: #fff;
 			}
 
+	#buddypress .info p:first-child {
+		margin-top: 35px;
+	}
+
 @media screen and (min-width: 741px) {
 	#buddypress .dir-search {
 		position: absolute;
