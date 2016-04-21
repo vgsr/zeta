@@ -158,11 +158,6 @@ function zeta_entry_footer() {
 	}
 
 	edit_post_link( __( 'Edit', 'zeta' ), '<span class="edit-link">', '</span>' );
-
-	// Front page scroll down button
-	if ( is_front_page() ) {
-		printf( '<button id="page-scroll-down"><span class="screen-reader-text">%s</span></button>', __( 'Scroll down', 'zeta' ) );
-	}
 }
 endif;
 

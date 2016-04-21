@@ -22,6 +22,10 @@ get_header(); ?>
 		<?php zeta_after_content(); ?>
 
 		</main><!-- #main -->
+
+		<div id="page-scroll-down">
+			<button><span class="screen-reader-text"><?php _e( 'Scroll down', 'zeta' ); ?></span></button>
+		</div>
 	</div><!-- #primary -->
 
 	<?php if ( is_active_sidebar( 'front-page-1' ) ) : ?>

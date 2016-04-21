@@ -131,7 +131,7 @@
 		return;
 
 	// When clicking the scroll-down button
-	$( '#page-scroll-down' ).on( 'click', function( e ) {
+	$( '#page-scroll-down button' ).on( 'click', function( e ) {
 		e.preventDefault();
 
 		// Get window proportions
