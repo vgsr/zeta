@@ -3018,6 +3018,16 @@ body.front-page .entry-content {
 		text-decoration: none;
 	}
 
+.entry-content p a {
+	text-decoration: none;
+	border-bottom: 1px solid rgba(64, 64, 64, .5);
+}
+
+	.entry-content p a:hover {
+		text-decoration: none;
+		border-color: #404040;
+	}
+
 .entry-meta,
 .entry-footer {
 	font-family: 'Montserrat', Arial, sans-serif;
