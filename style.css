@@ -1356,11 +1356,11 @@ body.front-page.admin-bar #content {
 			width: 100%;
 			max-width: 640px;
 			pointer-events: auto;
-			margin-top: 116px;
+			margin-top: 86px;
 		}
 
 		body.front-page.admin-bar .content-area .site-main {
-			margin-top: 70px;
+			margin-top: 40px;
 		}
 
 	body.front-page .content-area .site-main > * {
@@ -1573,7 +1573,7 @@ body.front-page #colophon {
 		}
 
 			body.front-page.admin-bar .content-area .site-main {
-				margin-top: 84px;
+				margin-top: 54px;
 			}
 }
 
