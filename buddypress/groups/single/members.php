@@ -4,6 +4,7 @@
  * BuddyPress - Groups Single Members
  *
  * Changes from the default bp-legacy template:
+ * - Renamed list #member-list to #members-list
  * - Added `bp_member_class()` to the list element
  * - Wrapped item title in .item-title
  * - Wrapped item joined since in .item-meta
@@ -54,7 +55,7 @@
 	 */
 	do_action( 'bp_before_group_members_list' ); ?>
 
-	<ul id="member-list" class="item-list" role="main">
+	<ul id="members-list" class="item-list" role="main">
 
 		<?php while ( bp_group_members() ) : bp_group_the_member(); ?>
 
