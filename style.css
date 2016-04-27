@@ -2643,6 +2643,10 @@ input[type="radio"] {
 		font-size: 1.5em;
 	}
 
+	body.front-page .widget-area .widget-title {
+		line-height: 1em;
+	}
+
 	.footer-area .widget-title {
 		font-size: 1.1em;
 	}
