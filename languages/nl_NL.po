@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zeta v0.7.1\n"
+"Project-Id-Version: Zeta v0.7.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-03-30 15:32:23+0000\n"
+"PO-Revision-Date: 2016-04-27 14:54:45+0000\n"
 "Last-Translator: LM Offereins <lmoffereins@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,18 +30,21 @@ msgstr "Helaas! Die pagina kunnen we niet vinden."
 msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
 msgstr "Het lijkt er op dat we hier niets hebben gevonden. Misschien kan je een van de onderstaande links proberen of een zoekopdracht?"
 
-#: buddypress/groups/single/members.php:101
+#: buddypress/groups/single/members.php:146
 #@ buddypress
 msgid "No members were found."
 msgstr ""
 
-#: buddypress/members/members-loop.php:77
+#: buddypress/groups/groups-loop.php:103
+#: buddypress/groups/single/group-header.php:104
+#: buddypress/groups/single/members.php:102
+#: buddypress/members/members-loop.php:105
 #: buddypress/members/single/member-header.php:78
 #@ zeta
 msgid "Actions"
 msgstr "Acties"
 
-#: buddypress/members/members-loop.php:107
+#: buddypress/members/members-loop.php:142
 #@ buddypress
 msgid "Sorry, no members were found."
 msgstr ""
@@ -51,13 +54,13 @@ msgstr ""
 msgid "Change your profile photo"
 msgstr "Wijzig je profielfoto"
 
-#: buddypress/members/single/profile/edit.php:24
+#: buddypress/members/single/profile/edit.php:36
 #, php-format
 #@ buddypress
 msgid "Editing '%s' Profile Group"
 msgstr ""
 
-#: buddypress/members/single/profile/edit.php:48
+#: buddypress/members/single/profile/edit.php:70
 #: buddypress/members/single/settings/general.php:61
 #@ buddypress
 msgid "Save Changes"
@@ -206,7 +209,6 @@ msgid "F"
 msgstr "F"
 
 #. translators: 1. Event title 2. Event time
-#. translators: 1. Event title 2. Event time
 #: event-organiser/loop-list-event.php:16
 #: event-organiser/loop-single-event.php:18
 #: inc/event-organiser.php:673
@@ -281,22 +283,22 @@ msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
 msgid "no-subset"
 msgstr "no-subset"
 
-#: functions.php:250
+#: functions.php:251
 #@ zeta
 msgid "Expand child menu"
 msgstr "Submenu openklappen"
 
-#: functions.php:251
+#: functions.php:252
 #@ zeta
 msgid "Collapse child menu"
 msgstr "Submenu dichtklappen"
 
-#: functions.php:294
+#: functions.php:295
 #@ zeta
 msgid "Previous"
 msgstr "Vorige"
 
-#: functions.php:295
+#: functions.php:296
 #@ zeta
 msgid "Next"
 msgstr "Volgende"
@@ -311,12 +313,12 @@ msgstr "Ga verder naar de inhoud"
 msgid "Menu"
 msgstr "Menu"
 
-#: inc/buddypress.php:99
+#: inc/buddypress.php:123
 #@ zeta
 msgid "Edit this profile field group"
 msgstr "Deze profielgroep bewerken"
 
-#: inc/buddypress.php:152
+#: inc/buddypress.php:176
 #: inc/classes/class-zeta-walker-comment.php:74
 #, php-format
 #@ default
@@ -337,7 +339,7 @@ msgid "Edit"
 msgstr "Bewerken"
 
 #: inc/customizer.php:39
-#: inc/extras.php:973
+#: inc/extras.php:986
 #@ zeta
 msgid "Theme Settings"
 msgstr "Thema-instellingen"
@@ -552,7 +554,7 @@ msgstr "Pagina %s"
 msgid "Home"
 msgstr ""
 
-#: inc/extras.php:558
+#: inc/extras.php:571
 #, php-format
 #@ zeta
 msgctxt "Gallery post-format image count"
@@ -561,23 +563,23 @@ msgid_plural "%d Images"
 msgstr[0] "%d Foto"
 msgstr[1] "%d Foto's"
 
-#: inc/extras.php:851
+#: inc/extras.php:864
 #@ zeta
 msgid "Members"
 msgstr "Profielen"
 
-#: inc/extras.php:856
+#: inc/extras.php:869
 #@ zeta
 msgid "Groups"
 msgstr "Groepen"
 
-#: inc/extras.php:864
+#: inc/extras.php:877
 #@ zeta
 msgctxt "Search context"
 msgid "All"
 msgstr "Alles"
 
-#: inc/extras.php:980
+#: inc/extras.php:993
 #@ zeta
 msgid "Use the full content width for this widget on larger screens."
 msgstr "Gebruik de volledige breedte voor widgets op grotere schermen."
@@ -631,183 +633,183 @@ msgstr "1 Reactie"
 msgid "% Comments"
 msgstr "% Reacties"
 
-#: inc/template-tags.php:164
+#: front-page.php:27
 #@ zeta
 msgid "Scroll down"
 msgstr "Scroll naar beneden"
 
-#: inc/template-tags.php:182
+#: inc/template-tags.php:177
 #, php-format
 #@ zeta
 msgid "Category: %s"
 msgstr "Categorie: %s"
 
-#: inc/template-tags.php:184
+#: inc/template-tags.php:179
 #, php-format
 #@ zeta
 msgid "Tag: %s"
 msgstr "Tag: %s"
 
-#: inc/template-tags.php:186
+#: inc/template-tags.php:181
 #, php-format
 #@ zeta
 msgid "Author: %s"
 msgstr "Auteur: %s"
 
-#: inc/template-tags.php:188
+#: inc/template-tags.php:183
 #, php-format
 #@ zeta
 msgid "Year: %s"
 msgstr "Jaar: %s"
 
-#: inc/template-tags.php:188
+#: inc/template-tags.php:183
 #@ zeta
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr "Y"
 
-#: inc/template-tags.php:190
+#: inc/template-tags.php:185
 #, php-format
 #@ zeta
 msgid "Month: %s"
 msgstr "Maand: %s"
 
-#: inc/template-tags.php:190
+#: inc/template-tags.php:185
 #@ zeta
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr "F Y"
 
-#: inc/template-tags.php:192
+#: inc/template-tags.php:187
 #, php-format
 #@ zeta
 msgid "Day: %s"
 msgstr "Dag: %s"
 
-#: inc/template-tags.php:192
+#: inc/template-tags.php:187
 #@ zeta
 msgctxt "daily archives date format"
 msgid "F j, Y"
 msgstr "j F Y"
 
-#: inc/template-tags.php:195
+#: inc/template-tags.php:190
 #@ zeta
 msgctxt "post format archive title"
 msgid "Asides"
 msgstr "Zijdelings"
 
-#: inc/template-tags.php:197
+#: inc/template-tags.php:192
 #@ zeta
 msgctxt "post format archive title"
 msgid "Galleries"
 msgstr "Galerijen"
 
-#: inc/template-tags.php:199
+#: inc/template-tags.php:194
 #@ zeta
 msgctxt "post format archive title"
 msgid "Images"
 msgstr "Afbeeldingen"
 
-#: inc/template-tags.php:201
+#: inc/template-tags.php:196
 #@ zeta
 msgctxt "post format archive title"
 msgid "Videos"
 msgstr "Video's"
 
-#: inc/template-tags.php:203
+#: inc/template-tags.php:198
 #@ zeta
 msgctxt "post format archive title"
 msgid "Quotes"
 msgstr "Citaten"
 
-#: inc/template-tags.php:205
+#: inc/template-tags.php:200
 #@ zeta
 msgctxt "post format archive title"
 msgid "Links"
 msgstr "Links"
 
-#: inc/template-tags.php:207
+#: inc/template-tags.php:202
 #@ zeta
 msgctxt "post format archive title"
 msgid "Statuses"
 msgstr "Statussen"
 
-#: inc/template-tags.php:209
+#: inc/template-tags.php:204
 #@ zeta
 msgctxt "post format archive title"
 msgid "Audio"
 msgstr "Audio"
 
-#: inc/template-tags.php:211
+#: inc/template-tags.php:206
 #@ zeta
 msgctxt "post format archive title"
 msgid "Chats"
 msgstr "Gesprekken"
 
-#: inc/template-tags.php:214
+#: inc/template-tags.php:209
 #, php-format
 #@ zeta
 msgid "Archives: %s"
 msgstr "Archieven: %s"
 
 #. translators: 1: Taxonomy singular name, 2: Current taxonomy term
-#: inc/template-tags.php:218
+#: inc/template-tags.php:213
 #, php-format
 #@ zeta
 msgid "%1$s: %2$s"
 msgstr ""
 
-#: inc/template-tags.php:220
+#: inc/template-tags.php:215
 #@ zeta
 msgid "Archives"
 msgstr "Archieven"
 
-#: inc/template-tags.php:482
-#: inc/template-tags.php:483
+#: inc/template-tags.php:477
+#: inc/template-tags.php:478
 #@ zeta
 msgid "Username"
 msgstr "Gebruikersnaam"
 
-#: inc/template-tags.php:485
-#: inc/template-tags.php:486
+#: inc/template-tags.php:480
+#: inc/template-tags.php:481
 #@ zeta
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: inc/template-tags.php:488
+#: inc/template-tags.php:483
 #@ zeta
 msgid "Remember Me"
 msgstr "Onthoud mij"
 
-#: inc/template-tags.php:490
-#: inc/template-tags.php:536
+#: inc/template-tags.php:485
+#: inc/template-tags.php:531
 #@ zeta
 msgid "Log In"
 msgstr "Inloggen"
 
-#: inc/template-tags.php:493
+#: inc/template-tags.php:488
 #, php-format
 #@ zeta
 msgid "<a href=\"%s\" title=\"Register for a new account\">Register</a>"
 msgstr "<a href=\"%s\" title=\"Registreer voor een nieuw account\">Registreren</a>"
 
-#: inc/template-tags.php:529
+#: inc/template-tags.php:524
 #@ zeta
 msgid "Search the site"
 msgstr "Doorzoek de site"
 
-#: inc/template-tags.php:536
+#: inc/template-tags.php:531
 #@ zeta
 msgid "Log Out"
 msgstr "Uitloggen"
 
-#: inc/template-tags.php:670
+#: inc/template-tags.php:665
 #, php-format
 #@ zeta
 msgid "Posted on %s"
 msgstr "Geplaatst op %s"
 
-#: inc/template-tags.php:703
+#: inc/template-tags.php:698
 #, php-format
 #@ zeta
 msgid "Created by %s"
@@ -849,16 +851,46 @@ msgstr ""
 msgid "Search Results for: %s"
 msgstr "Zoekresultaten voor: %s"
 
-#. translators: 1. Name of current post 2. Arrow
-#: content.php:24
-#, php-format
-#@ zeta
-msgid "Continue reading %1$s $2%s"
-msgstr "Verder lezen %1$s $2%s"
-
 #: content.php:26
 #@ zeta
 msgctxt "Continue reading arrow"
 msgid "&rarr;"
 msgstr "&rarr;"
+
+#: buddypress/groups/groups-loop.php:75
+#: inc/buddypress.php:85
+#, php-format
+#@ buddypress
+msgid "active %s"
+msgstr ""
+
+#: buddypress/groups/groups-loop.php:138
+#@ buddypress
+msgid "There were no groups found."
+msgstr ""
+
+#: buddypress/groups/single/group-header.php:55
+#@ buddypress
+msgid "Group Admins"
+msgstr ""
+
+#: buddypress/groups/single/group-header.php:75
+#@ buddypress
+msgid "Group Mods"
+msgstr ""
+
+#. translators: 1. Name of current post 2. Arrow
+#: content.php:24
+#, php-format
+#@ zeta
+msgid "Continue reading %1$s %2$s"
+msgstr "%1$s Verder lezen %2$s"
+
+#: inc/buddypress.php:75
+#, php-format
+#@ buddypress
+msgid "%s member"
+msgid_plural "%s members"
+msgstr[0] ""
+msgstr[1] ""
 
