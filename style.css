@@ -3023,12 +3023,14 @@ body.front-page .entry-content {
 		text-decoration: none;
 	}
 
-.entry-content p a {
+.entry-content p a,
+.widget p a {
 	text-decoration: none;
 	border-bottom: 1px solid rgba(64, 64, 64, .5);
 }
 
-	.entry-content p a:hover {
+	.entry-content p a:hover,
+	.widget p a:hover {
 		text-decoration: none;
 		border-color: #404040;
 	}
