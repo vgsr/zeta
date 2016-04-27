@@ -214,6 +214,19 @@ add_action( 'zeta_before_content', 'zeta_breadcrumbs', 6 );
 		return $crumbs;
 	}
 
+/**
+ * Modify the excerpt more text
+ *
+ * @since 1.0.0
+ *
+ * @param string $more
+ * @return string Excerpt more
+ */
+function zeta_excerpt_more( $more ) {
+	return '&hellip;';
+}
+add_filter( 'excerpt_more', 'zeta_excerpt_more' );
+
 /** Comments ***************************************************************/
 
 /**
