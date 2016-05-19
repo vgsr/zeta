@@ -2381,7 +2381,9 @@ input[type="submit"]:hover {
 .site-content a.button:focus,
 input[type="button"]:focus,
 input[type="reset"]:focus,
-input[type="submit"]:focus,
+input[type="submit"]:focus {
+}
+
 .site-content button:active,
 .site-content a.button:active,
 input[type="button"]:active,
