@@ -1050,6 +1050,7 @@
 
 	/* Floating is used because of inline-block space issue */
 	.buddypress.profile-edit .editfield label:first-child,
+	.buddypress.profile-edit .editfield fieldset legend,
 	.buddypress.settings .settings-field label:first-child {
 		display: block;
 		float: left;
@@ -1057,8 +1058,15 @@
 		padding: 6px 15px 0 0;
 	}
 
-	.buddypress.profile-edit .editfield label ~ *,
-	.buddypress.settings .settings-field label ~ * {
+	.buddypress.profile-edit .editfield fieldset {
+		border: 0;
+		margin: 0;
+		padding: 0;
+	}
+
+	.buddypress.profile-edit .editfield label ~ *:not(.bp-screen-reader-text),
+	.buddypress.profile-edit .editfield fieldset ~ *:not(.bp-screen-reader-text),
+	.buddypress.settings .settings-field label ~ *:not(.bp-screen-reader-text) {
 		display: block;
 		float: left;
 		width: 60%;
@@ -1082,8 +1090,7 @@
 
 	.buddypress.profile-edit .editfield .datebox select {
 		padding: 6px;
-		margin-bottom: 5px;
-		margin-left: 0;
+		margin: 0;
 	}
 
 		.buddypress.profile-edit .editfield .datebox select:nth-of-type(1) {
