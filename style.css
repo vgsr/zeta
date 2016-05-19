@@ -2630,7 +2630,8 @@ input[type="radio"] {
 	font-size: 1rem;
 }
 
-	body.front-page .widget:first-child {
+	body.front-page .widget:first-child,
+	.footer-area .widget {
 		border: 0;
 	}
 
