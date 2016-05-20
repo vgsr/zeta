@@ -1218,6 +1218,10 @@
 			margin-top: 0;
 		}
 
+		#buddypress .activity .item-list .load-more {
+			text-align: center;
+		}
+
 	#buddypress .activity .button:before,
 	#buddypress .activity .button:before {
 		margin-right: 3px;
