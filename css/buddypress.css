@@ -1054,8 +1054,9 @@
 	.buddypress.settings .settings-field label:first-child {
 		display: block;
 		float: left;
-		width: 40%;
-		padding: 6px 15px 0 0;
+		width: 100%;
+		padding: 6px 0 0;
+		margin-bottom: .5em;
 	}
 
 	.buddypress.profile-edit .editfield fieldset {
@@ -1070,14 +1071,7 @@
 	.buddypress.profile-edit .editfield fieldset legend + div {
 		display: block;
 		float: left;
-		width: 60%;
-		margin-left: 40%;
-	}
-
-	.buddypress.profile-edit .editfield label:first-child + *,
-	.buddypress.settings .settings-field label:first-child + *,
-	.buddypress.profile-edit .editfield fieldset legend + div {
-		margin-left: 0;
+		width: 100%;
 	}
 
 	.required-field .bp-required-field-label {
@@ -1110,17 +1104,17 @@
 		}
 
 		.buddypress.profile-edit .editfield .datebox select:nth-of-type(1) {
-			width: 13%;
+			width: 21.67%;
 		}
 
 		.buddypress.profile-edit .editfield .datebox select:nth-of-type(2) {
-			width: 25%;
-			margin-left: 2%;
-			margin-right: 2%;
+			width: 41.67%;
+			margin-left: 3.33%;
+			margin-right: 3.33%;
 		}
 
 		.buddypress.profile-edit .editfield .datebox select:nth-of-type(3) {
-			width: 18%;
+			width: 30%;
 		}
 
 	.buddypress #pass-strength-result {
@@ -1140,8 +1134,45 @@
 			display: none;
 		}
 
-@media screen and (min-width: 500px) {
-	/* Upto here set profile labels and inputs width at 100% */
+/* Upto here set profile labels and inputs at full width (content-width: 550px) */
+@media screen and (min-width: 637px) {
+
+	/* Floating is used because of inline-block space issue */
+	.buddypress.profile-edit .editfield > label:first-child,
+	.buddypress.profile-edit .editfield fieldset legend,
+	.buddypress.settings .settings-field label:first-child {
+		width: 40%;
+		padding: 6px 15px 0 0;
+		margin: 0;
+	}
+
+	.buddypress.profile-edit .editfield > label ~ *:not(.bp-screen-reader-text),
+	.buddypress.profile-edit .editfield fieldset ~ *:not(.bp-screen-reader-text),
+	.buddypress.settings .settings-field label ~ *:not(.bp-screen-reader-text),
+	.buddypress.profile-edit .editfield fieldset legend + div {
+		width: 60%;
+		margin-left: 40%;
+	}
+
+	.buddypress.profile-edit .editfield label:first-child + *,
+	.buddypress.settings .settings-field label:first-child + *,
+	.buddypress.profile-edit .editfield fieldset legend + div {
+		margin-left: 0;
+	}
+
+		.buddypress.profile-edit .editfield .datebox select:nth-of-type(1) {
+			width: 13%;
+		}
+
+		.buddypress.profile-edit .editfield .datebox select:nth-of-type(2) {
+			width: 25%;
+			margin-left: 2%;
+			margin-right: 2%;
+		}
+
+		.buddypress.profile-edit .editfield .datebox select:nth-of-type(3) {
+			width: 18%;
+		}
 }
 
 /*--------------------------------------------------------------
