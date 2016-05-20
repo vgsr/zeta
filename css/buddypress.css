@@ -1117,6 +1117,12 @@
 			width: 30%;
 		}
 
+	.buddypress.profile-edit .editfield .clear-value {
+		margin-top: .5em;
+		font-size: .8em;
+		text-align: right;
+	}
+
 	.buddypress #pass-strength-result {
 		/* @todo */
 	}
