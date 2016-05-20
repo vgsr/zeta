@@ -1251,13 +1251,13 @@
 	margin-top: 35px;
 }
 
-	#buddypress .activity .item-list.activity-list > li {
+	#buddypress .activity .item-list > li {
 		width: 100%;
 		padding: 0 0 0 52px;
 		border: 0;
 	}
 
-	#buddypress .activity .item-list.activity-list > li:not(:first-child) {
+	#buddypress .activity .item-list > li:not(:first-child) {
 		padding-top: 20px;
 		margin-top: 20px;
 		border-top: 1px solid #f9f9f9;
@@ -1271,9 +1271,18 @@
 			margin-top: 0;
 		}
 
+		#buddypress .activity .item-list .load-newest,
 		#buddypress .activity .item-list .load-more {
-			text-align: center;
+			padding: 0;
 		}
+
+			#buddypress .activity .item-list .load-newest a,
+			#buddypress .activity .item-list .load-more a {
+				display: inline-block;
+				width: 100%;
+				text-align: center;
+				padding: 10px 20px;
+			}
 
 	#buddypress .activity .button:before,
 	#buddypress .activity .button:before {
@@ -1448,7 +1457,7 @@
 @media screen and (min-width: 440px) {
 	.activity-greeting,
 	#whats-new-content,
-	#buddypress .activity .item-list.activity-list > li {
+	#buddypress .activity .item-list > li {
 		padding-left: 75px;
 	}
 
