@@ -1080,6 +1080,17 @@
 		margin-left: 0;
 	}
 
+	.required-field .bp-required-field-label {
+		display: none;
+	}
+
+	.required-field > label:after,
+	.required-field legend:after {
+		content: '*';
+		margin-left: -4px;
+		color: #a00;
+	}
+
 		.buddypress.profile-edit .editfield .radio label,
 		.buddypress.profile-edit .editfield .checkbox label {
 			float: left;
