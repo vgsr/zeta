@@ -1612,7 +1612,7 @@ a:focus {
 a:hover,
 a:active {
 	outline: 0;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 /*--------------------------------------------------------------
@@ -2248,6 +2248,15 @@ a:active {
 		left: -35px;
 		right: -35px;
 		top: 0;
+	}
+
+	.comment-navigation .nav-previous a:hover,
+	.comment-navigation .nav-next a:hover,
+	.posts-navigation .nav-previous a:hover,
+	.posts-navigation .nav-next a:hover,
+	.post-navigation .nav-previous a:hover,
+	.post-navigation .nav-next a:hover {
+		border-bottom: 1px solid;
 	}
 
 	.comment-navigation .nav-previous a:before,
@@ -3026,16 +3035,14 @@ body.front-page .entry-content {
 		text-decoration: none;
 	}
 
-.entry-content p a,
-.entry-content td a,
-.widget p a {
+p a,
+td a {
 	text-decoration: none;
 	border-bottom: 1px solid rgba(64, 64, 64, .5);
 }
 
-	.entry-content p a:hover,
-	.entry-content td a:hover,
-	.widget p a:hover {
+	p a:hover,
+	td a:hover {
 		text-decoration: none;
 		border-color: #404040;
 	}
@@ -3216,11 +3223,17 @@ body.front-page .entry-content {
 		.comment-author-link {
 			display: inline;
 			font-family: 'Montserrat', Arial, sans-serif;
-			font-size: .9em;
-			font-weight: bold;
-			opacity: .8;
+			font-size: .8em;
 			letter-spacing: 0px;
+			color: rgba(64, 64, 64, .5);
+			border: 0;
 		}
+
+			a.comment-author:hover,
+			a.comment-author-link:hover {
+				color: rgba(64, 64, 64, .9);
+				text-decoration: none;
+			}
 
 	.comment-content p:first-child {
 		margin-top: 0;

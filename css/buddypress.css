@@ -1229,7 +1229,8 @@
 		color: rgba(64, 64, 64, .8); /* Don't use `opacity`, as it cannot be overriden positively */
 	}
 
-		#buddypress .activity .activity-header a {
+		#buddypress .activity .activity-header a,
+		#buddypress .activity .activity-comments a.comment-author {
 			border: 0;
 		}
 
@@ -1259,8 +1260,8 @@
 			vertical-align: bottom;
 			font-family: 'Montserrat', Arial, sans-serif;
 			font-size: .8em;
-			border: 0;
 			color: rgba(64, 64, 64, .5); /* Don't use `opacity`, as it cannot be overriden positively */
+			border: 0;
 			-webkit-transition: none;
 			transition: none;
 		}
@@ -1328,6 +1329,10 @@
 				padding: 15px 0 0;
 				border-top: 1px solid #f9f9f9;
 			}
+
+				#buddypress .activity .activity-comments .comment-author {
+					font-size: .8em;
+				}
 
 				#buddypress .activity .activity-comments .acomment-meta {
 					display: none;
