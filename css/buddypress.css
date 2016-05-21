@@ -154,6 +154,7 @@
 	}
 
 		#buddypress .item-list-tabs ul li a,
+		#buddypress .item-list-tabs ul li > span,
 		#buddypress .button-nav li a {
 			float: left;
 			position: relative;
@@ -1600,12 +1601,57 @@
 /*--------------------------------------------------------------
 4.0 Groups
 --------------------------------------------------------------*/
+#buddypress .standard-form .item-list-tabs + .item-body > *:first-child {
+	margin-top: 35px;
+}
+
+#buddypress .standard-form div > label,
+#buddypress .standard-form > label {
+	display: inline-block;
+	margin: 1.5em 0 .5em;
+}
+
+#buddypress .standard-form .radio label {
+	display: inline-block;
+	width: 100%;
+	margin: 0;
+	padding-top: 6px;
+}
+
+#buddypress .standard-form .radio label:first-child,
+#buddypress .standard-form .radio ul + label {
+	margin: 1.5em 0 0;
+	padding-top: 0;
+}
+
+#buddypress .standard-form .radio ul {
+	margin: 0.5em 0 0;
+	padding-left: 3em;
+	font-size: .9em;
+	font-style: italic;
+}
+
+#buddypress .standard-form hr {
+	display: none;
+}
+
+#buddypress .standard-form .left-menu {
+	float: right;
+	margin-top: 0 !important;
+	margin-left: .5em;
+}
+
+#buddypress .standard-form .left-menu + .main-menu p:first-child {
+	margin-top: 35px;
+}
 
 /*--------------------------------------------------------------
 5.0 Change Photo
 --------------------------------------------------------------*/
 #buddypress .bp-avatar-nav {
-	font: .9em 'Montserrat', Arial, sans-serif;
+	margin-top: 1.5em;
+	font-family: 'Montserrat', Arial, sans-serif;
+	font-size: .9em;
 }
 
 	#buddypress .bp-avatar-nav li.current a {
@@ -1657,7 +1703,7 @@
 		#buddypress .button,
 		#buddypress .acomment-options a {
 			display: inline-block;
-			padding-right: 6px;
+			/*padding-right: 6px;*/
 		}
 
 		#buddypress .generic-button a:before,
