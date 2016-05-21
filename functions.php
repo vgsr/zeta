@@ -259,7 +259,7 @@ function zeta_scripts() {
 	}
 
 	// Flexslider
-	wp_register_script( 'flexslider', get_template_directory_uri() . '/js/jquery.flexslider.min.js', array( 'jquery' ), '2.3.0', true );
+	wp_register_script( 'flexslider', get_template_directory_uri() . '/js/jquery.flexslider.min.js', array( 'jquery' ), '2.6.1', true );
 }
 add_action( 'wp_enqueue_scripts', 'zeta_scripts' );
 
