@@ -3674,6 +3674,7 @@ object {
 	font-family: 'Montserrat', Arial, sans-serif;
 	font-weight: bold;
 	color: #fff;
+	border: 0;
 }
 
 	.eo_widget_calendar table td.event a:hover {
