@@ -1734,10 +1734,6 @@
 				opacity: .9;
 			}
 
-			#buddypress .generic-button.friendship-button a:before {
-				content: '\f132'; /* dashicons-plus */
-			}
-
 			#buddypress .generic-button#user_switching_switch_to a:before {
 				content: '\f463'; /* dashicons-update */
 			}
@@ -1750,12 +1746,26 @@
 				content: '\f466'; /* dashicons-email-alt */
 			}
 
-			#buddypress .generic-button a.join-group:before {
+			#buddypress .generic-button.friendship-button a:before,
+			#buddypress .generic-button a.join-group:before,
+			#buddypress .generic-button a.mod-promote-to-admin:before,
+			#buddypress .generic-button a.member-promote-to-admin:before,
+			#buddypress .generic-button a.member-promote-to-mod:before {
 				content: '\f132'; /* dashicons-plus */
 			}
 
-			#buddypress .generic-button a.leave-group:before {
+			#buddypress .generic-button a.leave-group:before,
+			#buddypress .generic-button a.admin-demote-to-mod:before,
+			#buddypress .generic-button a.mod-promote-to-member:before {
 				content: '\f460'; /* dashicons-minus */
+			}
+
+			#buddypress .generic-button a.member-unban:before {
+				content: '\f147'; /* dashicons-yes */
+			}
+
+			#buddypress .generic-button a.member-ban:before {
+				content: '\f158'; /* dashicons-no */
 			}
 
 			#buddypress .button.acomment-reply:before,
