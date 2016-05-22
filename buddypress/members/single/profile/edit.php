@@ -30,36 +30,38 @@ if ( bp_has_profile( array( 'profile_group_id' => bp_get_current_profile_group_i
 
 	<?php
 
-		/** This action is documented in bp-templates/bp-legacy/buddypress/members/single/profile/profile-wp.php */
-		do_action( 'bp_before_profile_field_content' ); ?>
+	/** This action is documented in bp-templates/bp-legacy/buddypress/members/single/profile/profile-wp.php */
+	do_action( 'bp_before_profile_field_content' ); ?>
 
-		<h4><?php printf( __( "Editing '%s' Profile Group", "buddypress" ), bp_get_the_profile_group_name() ); ?></h4>
+	<h4><?php printf( __( "Editing '%s' Profile Group", "buddypress" ), bp_get_the_profile_group_name() ); ?></h4>
 
-		<?php if ( bp_profile_has_multiple_groups() ) : ?>
-			<ul class="button-nav">
-				<?php bp_profile_group_tabs(); ?>
-			</ul>
-		<?php endif ;?>
+	<?php if ( bp_profile_has_multiple_groups() ) : ?>
 
-		<?php while ( bp_profile_fields() ) : bp_the_profile_field(); ?>
+		<ul class="button-nav">
+			<?php bp_profile_group_tabs(); ?>
+		</ul>
 
-			<div <?php bp_field_css_class( 'editfield' ); ?>>
+	<?php endif ;?>
 
-				<?php
+	<?php while ( bp_profile_fields() ) : bp_the_profile_field(); ?>
 
-					bp_xprofile_create_field_type( bp_get_the_profile_field_type() )->edit_field_html();
+		<div <?php bp_field_css_class( 'editfield' ); ?>>
 
-					/**
-					 * Fires after the visibility options for a field.
-					 *
-					 * @since 1.1.0
-					 */
-					do_action( 'bp_custom_profile_edit_fields' ); ?>
+			<?php
 
-				<p class="description"><?php bp_the_profile_field_description(); ?></p>
-			</div>
+				bp_xprofile_create_field_type( bp_get_the_profile_field_type() )->edit_field_html();
 
-		<?php endwhile; ?>
+				/**
+				 * Fires after the visibility options for a field.
+				 *
+				 * @since 1.1.0
+				 */
+				do_action( 'bp_custom_profile_edit_fields' ); ?>
+
+			<p class="description"><?php bp_the_profile_field_description(); ?></p>
+		</div>
+
+	<?php endwhile; ?>
 
 	<?php
 

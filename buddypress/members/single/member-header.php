@@ -1,7 +1,7 @@
 <?php
 
 /**
- * BuddyPress - Users Header
+ * BuddyPress - Member Header
  *
  * Changes to the default template:
  * - Changed url of header avatar to point to profile/change-avatar when `bp_is_my_profile()`

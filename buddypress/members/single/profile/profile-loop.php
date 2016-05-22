@@ -12,8 +12,10 @@
 
 ?>
 
-<?php /** This action is documented in bp-templates/bp-legacy/buddypress/members/single/profile/profile-wp.php */ ?>
-<?php do_action( 'bp_before_profile_loop_content' ); ?>
+<?php
+
+/** This action is documented in bp-templates/bp-legacy/buddypress/members/single/profile/profile-wp.php */
+do_action( 'bp_before_profile_loop_content' ); ?>
 
 <?php if ( bp_has_profile() ) : ?>
 
