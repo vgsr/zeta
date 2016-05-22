@@ -1601,47 +1601,47 @@
 /*--------------------------------------------------------------
 4.0 Groups
 --------------------------------------------------------------*/
-#buddypress .standard-form .item-list-tabs + .item-body > *:first-child {
+.buddypress.groups .standard-form .item-list-tabs + .item-body > *:first-child {
 	margin-top: 35px;
 }
 
-#buddypress .standard-form div > label,
-#buddypress .standard-form > label {
+.buddypress.groups .standard-form div > label,
+.buddypress.groups .standard-form > label {
 	display: inline-block;
 	margin: 1.5em 0 .5em;
 }
 
-#buddypress .standard-form .radio label {
+.buddypress.groups .standard-form .radio label {
 	display: inline-block;
 	width: 100%;
 	margin: 0;
 	padding-top: 6px;
 }
 
-#buddypress .standard-form .radio label:first-child,
-#buddypress .standard-form .radio ul + label {
+.buddypress.groups .standard-form .radio label:first-child,
+.buddypress.groups .standard-form .radio ul + label {
 	margin: 1.5em 0 0;
 	padding-top: 0;
 }
 
-#buddypress .standard-form .radio ul {
+.buddypress.groups .standard-form .radio ul {
 	margin: 0.5em 0 0;
 	padding-left: 3em;
 	font-size: .9em;
 	font-style: italic;
 }
 
-#buddypress .standard-form hr {
+.buddypress.groups .standard-form hr {
 	display: none;
 }
 
-#buddypress .standard-form .left-menu {
+.buddypress.groups .standard-form .left-menu {
 	float: right;
 	margin-top: 0 !important;
 	margin-left: .5em;
 }
 
-#buddypress .standard-form .left-menu + .main-menu p:first-child {
+.buddypress.groups .standard-form .left-menu + .main-menu p:first-child {
 	margin-top: 35px;
 }
 
