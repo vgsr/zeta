@@ -182,6 +182,23 @@ add_action( 'bp_activity_comment_options', 'zeta_bp_activity_comment_options' );
 /** Directory **************************************************************/
 
 /**
+ * Display the members directory search in the sub navigation
+ *
+ * @since 1.0.0
+ *
+ * @uses bp_directory_members_search_form()
+ */
+function zeta_bp_members_dir_search() { ?>
+
+	<li class="members-dir-search" role="search">
+		<?php bp_directory_members_search_form(); ?>
+	</li>
+
+	<?php
+}
+add_action( 'bp_members_directory_member_sub_types', 'zeta_bp_members_dir_search', 1 );
+
+/**
  * Filter the member classes in the loop
  *
  * @since 1.0.0
