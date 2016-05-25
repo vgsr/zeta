@@ -990,7 +990,7 @@
 }
 
 #buddypress .item-list-tabs + form > label {
-	margin-top: 1.5em;
+	margin: 1.5em 0 .5em;
 	display: inline-block;
 }
 
@@ -1560,7 +1560,9 @@
 }
 
 #buddypress .notifications th.bulk-select-all,
-#buddypress .notifications td.bulk-select-check {
+#buddypress .notifications td.bulk-select-check,
+#buddypress .messages th.bulk-select-all,
+#buddypress .messages td.bulk-select-check {
 	width: 50px;
 }
 
@@ -1568,7 +1570,8 @@
 	margin: 1.5em 0 0;
 }
 
-	#buddypress .notifications-options-nav select {
+	#buddypress .notifications-options-nav select,
+	#buddypress .messages-options-nav select {
 		width: auto;
 		vertical-align: middle;
 	}
@@ -1585,6 +1588,36 @@
 		width: auto;
 		vertical-align: middle;
 	}
+
+	#buddypress .messages .thread-star {
+		width: 50px;
+	}
+
+		#buddypress .messages .thread-star a {
+			border: 0;
+		}
+
+			#buddypress .messages .thread-star .icon:before {
+				content: '';
+				vertical-align: bottom;
+				font-family: dashicons;
+				font-size: 1.2em;
+				line-height: 1.2em;
+			}
+
+			#buddypress .messages .thread-star .icon:before,
+			#buddypress .messages .thread-star a.message-action-star:hover .icon:before {
+				content: '\f155';
+			}
+
+			#buddypress .messages .thread-star a.message-action-star .icon:before {
+				content: '\f154';
+			}
+
+			#buddypress .messages .thread-star a.message-action-unstar .icon:before,
+			#buddypress .messages .thread-star a.message-action-star:hover .icon:before {
+				color: gold;
+			}
 
 /*--------------------------------------------------------------
 3.7 Settings

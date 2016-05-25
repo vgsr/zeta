@@ -259,7 +259,7 @@ function zeta_bp_group_class( $classes ) {
 add_filter( 'bp_get_group_class',  'zeta_bp_group_class' );
 
 /**
- * Wrap the Starred Messages template content in .messages
+ * Wrap the Starred Messages template content with .messages
  *
  * This harmonizes the starred messages markup with the Inbox screen.
  *
