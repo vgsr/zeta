@@ -257,3 +257,20 @@ function zeta_bp_group_class( $classes ) {
 	return $classes;
 }
 add_filter( 'bp_get_group_class',  'zeta_bp_group_class' );
+
+/**
+ * Wrap the Starred Messages template content in .messages
+ *
+ * This harmonizes the starred messages markup with the Inbox screen.
+ *
+ * @since 1.0.0
+ */
+function zeta_bp_messages_screen_star_wrap() {
+	add_action( 'bp_before_member_plugin_template', function() {
+		echo '<div class="messages">';
+	}, 0 );
+	add_action( 'bp_after_member_plugin_template', function() {
+		echo '</div>';
+	}, 99 );
+}
+add_action( 'bp_messages_screen_star', 'zeta_bp_messages_screen_star_wrap' );
