@@ -1116,6 +1116,7 @@ body.fixed-header.admin-bar #site-tools {
 			width: 104px;
 			padding: 0 17px 17px;
 			text-align: center;
+			border: 0;
 		}
 
 	.site-header,
