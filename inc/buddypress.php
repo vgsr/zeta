@@ -274,3 +274,71 @@ function zeta_bp_messages_screen_star_wrap() {
 	}, 99 );
 }
 add_action( 'bp_messages_screen_star', 'zeta_bp_messages_screen_star_wrap' );
+
+/** Notifications **********************************************************/
+
+/**
+ * Modify the notifications mark read link
+ *
+ * @since 1.0.0
+ *
+ * @uses bp_get_the_notification_mark_read_url()
+ *
+ * @param string $link Mark read link
+ * @return string Mark read link
+ */
+function zeta_bp_notifications_mark_read_link( $link ) {
+
+	// Rewrite the link
+	$link = sprintf( '<a href="%s" class="mark-read primary"><span class="icon"></span><span class="bp-screen-reader-text">%s</span></a>',
+		esc_url( bp_get_the_notification_mark_read_url() ),
+		__( 'Mark notification as read', 'zeta' )
+	);
+
+	return $link;
+}
+add_filter( 'bp_get_the_notification_mark_read_link', 'zeta_bp_notifications_mark_read_link' );
+
+/**
+ * Modify the notifications mark unread link
+ *
+ * @since 1.0.0
+ *
+ * @uses bp_get_the_notification_mark_unread_url()
+ *
+ * @param string $link Mark unread link
+ * @return string Mark unread link
+ */
+function zeta_bp_notifications_mark_unread_link( $link ) {
+
+	// Rewrite the link
+	$link = sprintf( '<a href="%s" class="mark-unread"><span class="icon"></span><span class="bp-screen-reader-text">%s</span></a>',
+		esc_url( bp_get_the_notification_mark_unread_url() ),
+		__( 'Mark notification as unread', 'zeta' )
+	);
+
+	return $link;
+}
+add_filter( 'bp_get_the_notification_mark_unread_link', 'zeta_bp_notifications_mark_unread_link' );
+
+/**
+ * Modify the notifications delete link
+ *
+ * @since 1.0.0
+ *
+ * @uses bp_get_the_notification_delete_url()
+ *
+ * @param string $link Delete link
+ * @return string Delete link
+ */
+function zeta_bp_notifications_delete_link( $link ) {
+
+	// Rewrite the link
+	$link = sprintf( '<a href="%s" class="delete secondary confirm"><span class="icon"></span><span class="bp-screen-reader-text">%s</span></a>',
+		esc_url( bp_get_the_notification_delete_url() ),
+		__( 'Delete notification', 'zeta' )
+	);
+
+	return $link;
+}
+add_filter( 'bp_get_the_notification_delete_link', 'zeta_bp_notifications_delete_link' );
