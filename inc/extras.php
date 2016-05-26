@@ -225,7 +225,8 @@ add_action( 'zeta_before_content', 'zeta_breadcrumbs', 6 );
 function zeta_excerpt_more( $more ) {
 	return '&hellip;';
 }
-add_filter( 'excerpt_more', 'zeta_excerpt_more' );
+add_filter( 'excerpt_more',           'zeta_excerpt_more' );
+add_filter( 'bp_excerpt_append_text', 'zeta_excerpt_more' );
 
 /** Comments ***************************************************************/
 
