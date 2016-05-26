@@ -2021,9 +2021,8 @@
 			#buddypress .button.delete-activity:before,
 			#buddypress .button.delete-activity-single:before,
 			#buddypress a.acomment-delete:before {
-				content: '\f158'; /* dashicons-no */
-				margin-right: 1px;
-				margin-left: -3px;
+				content: '\f182'; /* dashicons-trash */
+				margin-right: 2px;
 			}
 
 				#buddypress .button.delete-activity:hover,
@@ -2049,7 +2048,7 @@
 
 			#buddypress .thread-options .delete .icon:before,
 			#buddypress .notification-actions .delete .icon:before {
-				content: '\f158'; /* dashicons-no */
+				content: '\f182'; /* dashicons-trash */
 			}
 
 /*--------------------------------------------------------------
