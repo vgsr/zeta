@@ -258,6 +258,8 @@ function zeta_bp_group_class( $classes ) {
 }
 add_filter( 'bp_get_group_class',  'zeta_bp_group_class' );
 
+/** Messages ***************************************************************/
+
 /**
  * Wrap the Starred Messages template content with .messages
  *
@@ -274,6 +276,73 @@ function zeta_bp_messages_screen_star_wrap() {
 	}, 99 );
 }
 add_action( 'bp_messages_screen_star', 'zeta_bp_messages_screen_star_wrap' );
+
+/**
+ * Modify the messages thread last post date
+ *
+ * Returns shortened version like HH:mm for today's dates and dd-MM for others.
+ *
+ * @since 1.0.0
+ *
+ * @uses bp_get_message_thread_last_post_date()
+ * @uses date_i18n()
+ *
+ * @param string $formatted_date Formatted date
+ * @return string Formatted date
+ */
+function zeta_bp_messages_thread_last_post_date( $formatted_date ) {
+
+	// Get the date timestamp
+	$time = strtotime( bp_get_message_thread_last_post_date_raw() );
+
+	// Date is today
+	if ( date( 'Ymd' ) == date( 'Ymd', $time ) ) {
+		$date = date_i18n( 'HH:mm', $time );
+	} else {
+		$date = date_i18n( 'j M', $time );
+	}
+
+	return $date;
+}
+add_filter( 'bp_get_message_thread_last_post_date', 'zeta_bp_messages_thread_last_post_date' );
+
+/**
+ * Implements a modified version of BuddyPress's equivalent which is without a filter
+ *
+ * @see bp_message_thread_total_and_unread_count()
+ *
+ * @since 1.0.0
+ *
+ * @uses bp_get_message_thread_total_count()
+ * @uses bp_get_message_thread_unread_count()
+ * @uses number_format_i18n()
+ *
+ * @param int $thread_id Thread ID
+ */
+function zeta_bp_message_thread_total_and_unread_count( $thread_id = 0 ) {
+	if ( ! $thread_id ) {
+		$thread_id = bp_get_message_thread_id();
+	}
+
+	// Define local variables
+	$total  = bp_get_message_thread_total_count( $thread_id );
+	$unread = bp_get_message_thread_unread_count( $thread_id );
+	$text   = '<span class="bp-screen-reader-text">%2$s</span>';
+
+	// Only display count when there is more than 1 message in the thread
+	if ( $total > 1 ) {
+		$text = '<span class="thread-count">%1$s</span> ' . $text;
+	}
+
+	// Parse counts
+	$count = sprintf(
+		$text,
+		number_format_i18n( $total ),
+		sprintf( _n( '%d unread', '%d unread', $unread, 'buddypress' ), number_format_i18n( $unread ) )
+	);
+
+	echo $count;
+}
 
 /** Notifications **********************************************************/
 
