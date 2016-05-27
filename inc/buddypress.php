@@ -188,7 +188,13 @@ add_action( 'bp_activity_comment_options', 'zeta_bp_activity_comment_options' );
  *
  * @uses bp_directory_members_search_form()
  */
-function zeta_bp_members_dir_search() { ?>
+function zeta_bp_members_dir_search() {
+
+	// Bail when not on the Members page
+	if ( ! bp_is_members_component() )
+		return;
+
+	?>
 
 	<li class="members-dir-search" role="search">
 		<?php bp_directory_members_search_form(); ?>
