@@ -804,6 +804,10 @@
 				border-radius: 4px; /* rounded square */
 			}
 
+		body.fixed-bp-single-item #buddypress #item-header-avatar .change-avatar {
+			display: none;
+		}
+
 	body.fixed-bp-single-item #buddypress .item-actions-toggle {
 		position: fixed;
 		top: 73px;
