@@ -1702,11 +1702,11 @@
 	}
 
 	#buddypress .messages .table-list ul li {
-		display: inline-block;
+		display: block;
 	}
 
 	#buddypress .messages .thread-from {
-		width: calc( 100% - 75px - 60px - 10px );
+		width: calc( 100% - 75px - 60px - 30px );
 	}
 
 		#buddypress .messages .thread-from .avatar {
@@ -1720,50 +1720,57 @@
 	#buddypress .messages .table-list li.thread-star,
 	#buddypress .messages .table-list li.thread-activity,
 	#buddypress .messages .table-list li.thread-options {
-		float: right;
-		margin-left: 10px;
+		position: absolute;
+		margin-left: 0;
 	}
 
 	#buddypress .messages .table-list .thread-star {
-		width: 1.2em;
+		top: 0;
+		right: 0;
 	}
 
 		#buddypress .messages .thread-star a {
-			position: relative;
 			border: 0;
 		}
 
-			#buddypress .messages .thread-star .icon:before {
+			#buddypress .messages .thread-star .icon:before,
+			#buddypress #message-thread .icon:before {
 				content: '';
-				position: absolute;
-				top: -3px;
 				font-family: dashicons;
 				font-size: 1.2em;
 				line-height: 1.2em;
 			}
 
 			#buddypress .messages .thread-star .icon:before,
-			#buddypress .messages .thread-star a.message-action-star:hover .icon:before {
+			#buddypress .messages .thread-star a.message-action-star:hover .icon:before,
+			#buddypress #message-thread a.message-action-unstar .icon:before,
+			#buddypress #message-thread a.message-action-star:hover .icon:before {
 				content: '\f155'; /* dashicons-star-filled */
 			}
 
-			#buddypress .messages .thread-star a.message-action-star .icon:before {
+			#buddypress .messages .thread-star a.message-action-star .icon:before,
+			#buddypress #message-thread a.message-action-star .icon:before {
 				content: '\f154'; /* dashicons-star-empty */
-				color: rgba(64, 64, 64, .8);
+				color: rgba(64, 64, 64, .5);
 			}
 
 			#buddypress .messages .thread-star a.message-action-unstar .icon:before,
-			#buddypress .messages .thread-star a.message-action-star:hover .icon:before {
+			#buddypress .messages .thread-star a.message-action-star:hover .icon:before,
+			#buddypress #message-thread a.message-action-unstar .icon:before,
+			#buddypress #message-thread a.message-action-star:hover .icon:before {
 				color: gold;
 			}
 
 	#buddypress .messages .table-list .thread-activity {
-		width: 60px;
+		top: 0;
+		right: 30px;
 		text-align: right;
+		font-size: .8em;
+		line-height: 1.8em;
 	}
 
 	#buddypress .messages .table-list .thread-from,
-	#buddypress .messages .table-list .thread-activity,
+	#buddypress .messages .table-list .thread-title,
 	#buddypress .messages .table-list .thread-excerpt {
 		font-size: .9em;
 	}
@@ -1775,23 +1782,131 @@
 
 		#buddypress .messages .table-list .thread-title p,
 		#buddypress .messages .table-list .thread-excerpt p {
-			margin-top: .3em;
 			width: 100%;
+			margin-top: 0.3em;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 		}
 
 		#buddypress .messages .table-list .thread-excerpt p {
+			margin-top: 0.5em;
 			color: rgba(64, 64, 64, .8);
 			font-style: italic;
 		}
+
+	#buddypress .messages .table-list .thread-options {
+		right: 0;
+		bottom: -6px;
+	}
 
 	#buddypress .messages .table-list .unread .thread-from .from,
 	#buddypress .messages .table-list .unread .thread-activity,
 	#buddypress .messages .table-list .unread .thread-title {
 		font-weight: bold;
 	}
+
+#buddypress #message-thread #message-subject,
+#buddypress #message-thread .thread-options {
+	margin-top: 35px;
+}
+
+#buddypress #message-thread .thread-options {
+	float: right;
+}
+
+	#buddypress #message-thread .thread-options .icon {
+		padding: 3px;
+		font-size: inherit;
+	}
+
+#buddypress #message-thread #message-recipients {
+	margin-top: .5em;
+	font-size: .9em;
+	font-style: italic;
+	color: rgba(64, 64, 64, .8);
+}
+
+#buddypress #message-thread .message-box {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #f9f9f9;
+}
+
+	#buddypress #message-thread .message-box .message-metadata {
+		position: relative;
+	}
+
+	#buddypress #message-thread .message-box:not(:last-child) .message-metadata {
+		cursor: pointer;
+	}
+
+		#buddypress #message-thread .message-box .avatar {
+			position: absolute;
+			top: calc( 50% - 15px ); /* img = 30 x 30 */
+			border-radius: 50%;
+		}
+
+		#buddypress #message-thread .message-box .avatar ~ * {
+			display: inline-block;
+			margin-left: 45px;
+		}
+
+		#buddypress #message-thread .message-box .message-sender {
+			display: block;
+			width: calc( 100% - 45px - 60px - 30px );
+			font-weight: bold;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		#buddypress #message-thread .message-box .activity {
+			position: absolute;
+			top: 0;
+			right: 30px;
+			margin: 0;
+			font-size: .8em;
+			line-height: 1.8em;
+			color: rgba(64, 64, 64, .8);
+			text-align: right;
+		}
+
+		#buddypress #message-thread .message-box .message-star-actions {
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 0;
+		}
+
+		#buddypress #message-thread .message-box .reply-title {
+			margin-top: 0;
+		}
+
+		#buddypress #message-thread .message-box .message-content textarea {
+			margin-top: 1.5em;
+		}
+
+#buddypress #message-thread .message-box.collapsed .message-content {
+	height: calc( 1.5em * 3 );
+	padding-top: 1.5em;
+	overflow: hidden;
+	color: rgba(64, 64, 64, .5);
+	text-overflow: ellipsis;
+	cursor: pointer;
+	/* Works on webkit only */
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+	#buddypress #message-thread .message-box.collapsed .message-content p {
+		display: inline;
+	}
+
+		#buddypress #message-thread .message-box.collapsed .message-content p br {
+			display: none;
+		}
 
 /*--------------------------------------------------------------
 3.7 Settings
@@ -1920,7 +2035,7 @@
 		}
 
 		#buddypress .notification-actions .icon,
-		#buddypress .thread-options .icon {
+		#buddypress .messages .thread-options .icon {
 			padding: 3px;
 			line-height: 2em;
 		}
@@ -2042,11 +2157,13 @@
 			}
 
 			#buddypress .thread-options .unread .icon:before,
+			#buddypress #message-thread .unread .icon:before,
 			#buddypress .notification-actions .mark-unread .icon:before {
-				content: '\f466'; /* dashicons-email-alt */
+				content: '\f465'; /* dashicons-email */
 			}
 
 			#buddypress .thread-options .delete .icon:before,
+			#buddypress #message-thread .delete .icon:before,
 			#buddypress .notification-actions .delete .icon:before {
 				content: '\f182'; /* dashicons-trash */
 			}

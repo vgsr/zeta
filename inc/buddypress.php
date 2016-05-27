@@ -278,14 +278,37 @@ function zeta_bp_messages_screen_star_wrap() {
 add_action( 'bp_messages_screen_star', 'zeta_bp_messages_screen_star_wrap' );
 
 /**
- * Modify the messages thread last post date
+ * Return the short date stamp for a given timestamp
  *
- * Returns shortened version like HH:mm for today's dates and dd-MM for others.
+ * Returns shortened version as `H:i` for dates within the last 24 hours
+ * and `j M` for others.
  *
  * @since 1.0.0
  *
- * @uses bp_get_message_thread_last_post_date()
  * @uses date_i18n()
+ *
+ * @param int $timestamp Timestamp in seconds, like results from strtotime()
+ * @return string Date stamp
+ */
+function zeta_bp_get_date_stamp( $timestamp ) {
+
+	// Date is within the last 24 hours
+	if ( ( time() - $timestamp ) <= ( 24 * HOUR_IN_SECONDS ) ) {
+		$date = date_i18n( 'H:i', $timestamp );
+	} else {
+		$date = date_i18n( 'j M', $timestamp );
+	}
+
+	return $date;
+}
+
+/**
+ * Modify the messages thread last post date
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_bp_get_date_stamp()
+ * @uses bp_get_message_thread_last_post_date_raw()
  *
  * @param string $formatted_date Formatted date
  * @return string Formatted date
@@ -293,18 +316,101 @@ add_action( 'bp_messages_screen_star', 'zeta_bp_messages_screen_star_wrap' );
 function zeta_bp_messages_thread_last_post_date( $formatted_date ) {
 
 	// Get the date timestamp
-	$time = strtotime( bp_get_message_thread_last_post_date_raw() );
-
-	// Date is today
-	if ( date( 'Ymd' ) == date( 'Ymd', $time ) ) {
-		$date = date_i18n( 'HH:mm', $time );
-	} else {
-		$date = date_i18n( 'j M', $time );
-	}
+	$date = zeta_bp_get_date_stamp( strtotime( bp_get_message_thread_last_post_date_raw() ) );
 
 	return $date;
 }
 add_filter( 'bp_get_message_thread_last_post_date', 'zeta_bp_messages_thread_last_post_date' );
+
+/**
+ * Modify the messages message post date
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_bp_get_date_stamp()
+ * @uses bp_get_the_thread_message_date_sent()
+ *
+ * @param string $formatted_date Formatted date
+ * @return string Formatted date
+ */
+function zeta_bp_get_the_thread_message_time_since( $formatted_date ) {
+
+	// Get the date timestamp
+	$date = zeta_bp_get_date_stamp( bp_get_the_thread_message_date_sent() );
+
+	return $date;
+}
+add_filter( 'bp_get_the_thread_message_time_since', 'zeta_bp_get_the_thread_message_time_since' );
+
+/**
+ * Output the messages thread date stamp
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_bp_get_thread_message_date_stamp()
+ */
+function zeta_bp_message_thread_date_stamp() {
+	echo zeta_bp_get_message_thread_date_stamp();
+}
+
+	/**
+	 * Returns the messages thread date stamp
+	 *
+	 * @since 1.0.0
+	 *
+	 * @uses bp_get_message_thread_last_post_date_raw()
+	 * @uses bp_get_message_thread_last_post_date()
+	 * @return string Date stamp
+	 */
+	function zeta_bp_get_message_thread_date_stamp() {
+
+		// Get the SQL date stamp
+		$date = bp_get_message_thread_last_post_date_raw();
+
+		// Parse markup
+		$stamp = sprintf( '<time datetime="%s" title="%s">%s</time>',
+			mysql2date( 'c', $date ),
+			sprintf( _x( '%1$s at %2$s', '1: date, 2: time' ), mysql2date( get_option( 'date_format' ), $date ), mysql2date( get_option( 'time_format' ), $date ) ),
+			bp_get_message_thread_last_post_date()
+		);
+
+		return $stamp;
+	}
+
+/**
+ * Output the thread message date stamp
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_bp_get_the_thread_message_date_stamp()
+ */
+function zeta_bp_the_thread_message_date_stamp() {
+	echo zeta_bp_get_the_thread_message_date_stamp();
+}
+
+	/**
+	 * Returns the thread message date stamp
+	 *
+	 * @since 1.0.0
+	 *
+	 * @uses bp_get_the_thread_message_time_since()
+	 * @return string Date stamp
+	 */
+	function zeta_bp_get_the_thread_message_date_stamp() {
+		global $thread_template;
+
+		// Get the SQL date stamp
+		$date = $thread_template->message->date_sent;
+
+		// Parse markup
+		$stamp = sprintf( '<time datetime="%s" title="%s">%s</time>',
+			mysql2date( 'c', $date ),
+			sprintf( _x( '%1$s at %2$s', '1: date, 2: time' ), mysql2date( get_option( 'date_format' ), $date ), mysql2date( get_option( 'time_format' ), $date ) ),
+			bp_get_the_thread_message_time_since()
+		);
+
+		return $stamp;
+	}
 
 /**
  * Implements a modified version of BuddyPress's equivalent which is without a filter
@@ -343,6 +449,72 @@ function zeta_bp_message_thread_total_and_unread_count( $thread_id = 0 ) {
 
 	echo $count;
 }
+
+/**
+ * Display the current thread's mark unread url
+ *
+ * @since 1.0.0
+ *
+ * @see bp_the_message_thread_mark_unread_url()
+ *
+ * @uses zeta_bp_get_the_thread_mark_unread_url()
+ */
+function zeta_bp_the_thread_mark_unread_url() {
+	echo esc_url( zeta_bp_get_the_thread_mark_unread_url() );
+}
+
+	/**
+	 * Return the current thread's mark unread url
+	 *
+	 * @since 1.0.0
+	 *
+	 * @see bp_get_the_message_thread_mark_unread_url()
+	 *
+	 * @uses bp_get_the_thread_id()
+	 * @return string Thread mark unread url
+	 */
+	function zeta_bp_get_the_thread_mark_unread_url() {
+
+		// Get the thread ID.
+		$id = bp_get_the_thread_id();
+
+		// Get the args to add to the URL.
+		$args = array(
+			'action'     => 'unread',
+			'message_id' => $id
+		);
+
+		// Base unread URL.
+		$url = trailingslashit( bp_loggedin_user_domain() . bp_get_messages_slug() . '/inbox/unread' );
+
+		// Add the args to the URL.
+		$url = add_query_arg( $args, $url );
+
+		// Add the nonce.
+		$url = wp_nonce_url( $url, 'bp_message_thread_mark_unread_' . $id );
+
+		return $url;
+	}
+
+/**
+ * Modify the thread message css classes
+ *
+ * @since 1.0.0
+ *
+ * @param array $classes Thread message css classes
+ * @return array CSS classes
+ */
+function zeta_bp_thread_messages_css_class( $classes ) {
+	global $thread_template;
+
+	// Collapse all thread messages but the last one
+	if ( $thread_template->message_count > 1 && $thread_template->current_message + 1 < $thread_template->message_count ) {
+		$classes[] = 'collapsed';
+	}
+
+	return $classes;
+}
+add_filter( 'bp_get_the_thread_message_css_class', 'zeta_bp_thread_messages_css_class' );
 
 /** Notifications **********************************************************/
 

@@ -181,3 +181,19 @@
 	});
 
 } )( jQuery );
+
+/**
+ * Handles toggling the thread messages collapsed state
+ */
+( function( $ ) {
+
+	$( '#message-thread' ).on( 'click', '.message-box:not(:last-child) .message-metadata, .message-box.collapsed .message-content', function( e ) {
+		var $this = $( e.target );
+
+		// Only act when we're not clicking an `<a>` tag
+		if ( ! $this.is( 'a' ) && ! $this.parents( 'a' ).length ) {
+			$this.parents( '.message-box' ).first().toggleClass( 'collapsed' );
+		}
+	});
+
+})( jQuery );

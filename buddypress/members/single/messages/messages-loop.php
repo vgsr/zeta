@@ -10,6 +10,7 @@
  * - Removed the 'From:' and 'To:' title prefixes
  * - Replaced `bp_messages_thread_total_and_unread_count()` with `zeta_bp_message_thread_total_and_unread_count()`
  * - Added .thread-activity and moved .activity into it
+ * - Replaced `bp_message_thread_last_post_date()` with `zeta_bp_message_thread_date_stamp()`
  * - Moved .thread-star after .thread-activity
  * - Split .thread-info into new li.thread-title and new li.thread-excerpt
  * - Modified .thread-options links to contain span.icon and span.bp-screen-reader-text
@@ -87,7 +88,7 @@ do_action( 'bp_before_member_messages_loop' ); ?>
 					<?php endif; ?>
 
 					<li class="thread-activity">
-						<span class="activity"><?php bp_message_thread_last_post_date(); ?></span>
+						<span class="activity"><?php zeta_bp_message_thread_date_stamp(); ?></span>
 					</li>
 
 					<?php if ( bp_is_active( 'messages', 'star' ) ) : ?>
@@ -118,12 +119,12 @@ do_action( 'bp_before_member_messages_loop' ); ?>
 
 					<li class="thread-options">
 						<?php if ( bp_message_thread_has_unread() ) : ?>
-							<a class="read primary" href="<?php bp_the_message_thread_mark_read_url();?>"><span class="icon"></span><span class="bp-screen-reader-text"><?php _e( 'Read', 'buddypress' ); ?></span></a>
+							<a class="read primary" href="<?php bp_the_message_thread_mark_read_url();?>"><span class="icon"></span> <span class="bp-screen-reader-text"><?php _e( 'Read', 'buddypress' ); ?></span></a>
 						<?php else : ?>
-							<a class="unread" href="<?php bp_the_message_thread_mark_unread_url();?>"><span class="icon"></span><span class="bp-screen-reader-text"><?php _e( 'Unread', 'buddypress' ); ?></span></a>
+							<a class="unread" href="<?php bp_the_message_thread_mark_unread_url();?>"><span class="icon"></span> <span class="bp-screen-reader-text"><?php _e( 'Unread', 'buddypress' ); ?></span></a>
 						<?php endif; ?>
 
-						<a class="delete secondary confirm" href="<?php bp_message_thread_delete_link(); ?>"><span class="icon"></span><span class="bp-screen-reader-text"><?php _e( 'Delete', 'buddypress' ); ?></span></a>
+						<a class="delete secondary confirm" href="<?php bp_message_thread_delete_link(); ?>"><span class="icon"></span> <span class="bp-screen-reader-text"><?php _e( 'Delete', 'buddypress' ); ?></span></a>
 
 						<?php
 
