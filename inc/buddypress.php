@@ -507,6 +507,9 @@ function zeta_bp_the_thread_mark_unread_url() {
  *
  * @since 1.0.0
  *
+ * @uses bp_messages_is_message_starred()
+ * @uses bp_get_the_thread_message_id()
+ *
  * @param array $classes Thread message css classes
  * @return array CSS classes
  */
@@ -514,7 +517,10 @@ function zeta_bp_thread_messages_css_class( $classes ) {
 	global $thread_template;
 
 	// Collapse all thread messages but the last one
-	if ( $thread_template->message_count > 1 && $thread_template->current_message + 1 < $thread_template->message_count ) {
+	if ( $thread_template->message_count > 1 && $thread_template->current_message + 1 < $thread_template->message_count
+		// And the message is not starred
+		&& ! bp_messages_is_message_starred( bp_get_the_thread_message_id() )
+	) {
 		$classes[] = 'collapsed';
 	}
 
