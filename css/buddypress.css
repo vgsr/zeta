@@ -1713,12 +1713,13 @@
 		width: calc( 100% - 75px - 60px - 30px );
 	}
 
-		#buddypress .messages .thread-from .avatar {
-			width: 25px;
-			height: 25px;
-			border-radius: 50%;
-			vertical-align: middle;
-			margin-right: 5px;
+		#buddypress .messages .thread-from .thread-count {
+			font-family: 'Montserrat', Arial, sans-serif;
+			color: rgba(64, 64, 64, .5);
+		}
+
+		#buddypress .messages .unread .thread-from .thread-count {
+			color: rgba(64, 64, 64, .8);
 		}
 
 	#buddypress .messages .table-list li.thread-star,
