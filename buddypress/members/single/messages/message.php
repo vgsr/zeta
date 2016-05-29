@@ -7,6 +7,7 @@
  * display each message and when a new message is created via AJAX.
  *
  * Changes to the default template:
+ * - Added #message-{$id} to the .message-box container
  * - Avatar args in array format
  * - Changed message sender strong wrapper into span.message-sender
  * - Replaced `bp_the_thread_message_time_since()` with `zeta_bp_the_thread_message_date_stamp()`
@@ -18,7 +19,7 @@
 
 ?>
 
-			<div class="message-box <?php bp_the_thread_message_css_class(); ?>">
+			<div id="message-<?php bp_the_thread_message_id(); ?>" class="message-box <?php bp_the_thread_message_css_class(); ?>">
 
 				<div class="message-metadata">
 
