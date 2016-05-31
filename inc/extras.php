@@ -611,7 +611,7 @@ function zeta_get_attachment_id_from_url( $attachment_url ) {
 		global $wpdb;
 
 		// If this is the URL of an auto-generated thumbnail, get the URL of the original image
-		$attachment_url = preg_replace( '/-\d+x\d+(?=\.(jpg|jpeg|png|gif)$)/i', '', $attachment_url );
+		$attachment_url = strtok( $attachment_url, '?' );
 
 		// Remove the upload path base directory from the attachment URL
 		$attachment_url = str_replace( $upload_dir_paths['baseurl'] . '/', '', $attachment_url );
