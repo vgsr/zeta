@@ -883,6 +883,7 @@ function zeta_map_slide( $slides ) {
  * @param bool $echo Optional. Whether to output the content
  */
 function zeta_media_users( $post_id, $echo = true ) {
+	global $members_template;
 
 	// Bail when BP or P2P is not active
 	if ( ! did_action( 'bp_init' ) || ! did_action( 'p2p_init' ) )
@@ -896,6 +897,9 @@ function zeta_media_users( $post_id, $echo = true ) {
 		'exclude'         => bp_displayed_user_id()
 	) ) )
 		return;
+
+	// Keep the original template global
+	$old_members_template = $members_template;
 
 	// Start output buffer
 	ob_start();
@@ -928,6 +932,9 @@ function zeta_media_users( $post_id, $echo = true ) {
 
 	// End output buffer
 	$retval = ob_get_clean();
+
+	// Reset template global
+	$members_template = $old_members_template;
 
 	if ( $echo ) {
 		echo $retval;
