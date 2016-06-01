@@ -3048,6 +3048,19 @@ td a {
 		border-color: #404040;
 	}
 
+	.site-content li a:hover {
+		border-bottom: 1px solid;
+	}
+
+	.site-content h1 a:hover,
+	.site-content h2 a:hover,
+	.site-content h3 a:hover,
+	.site-content h4 a:hover,
+	.site-content h5 a:hover,
+	.site-content h6 a:hover {
+		border-bottom: 2px solid;
+	}
+
 .entry-meta,
 .entry-footer {
 	font-family: 'Montserrat', Arial, sans-serif;
