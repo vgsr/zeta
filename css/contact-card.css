@@ -112,3 +112,10 @@
 .widget .contact-card.avatar-left .contact-details {
 	padding-left: 69px;
 }
+
+body:not(.front-page) .widget-area .widget .contact-card .contact-body,
+.footer-area .widget .contact-card .contact-body {
+	padding: 0;
+	background: none;
+	border: 0;
+}
