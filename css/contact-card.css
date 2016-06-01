@@ -50,14 +50,14 @@
 	}
 
 .contact-card .contact-body .contact-title {
-	margin-top: .25em;
+	margin: .25em 0 0;
 }
 
 .contact-card .contact-details {
 	font-size: .9em;
 }
 
-.contact-card .contact-body .contact-title,
+.contact-card .contact-title,
 .contact-card .contact-details {
 	padding: 0 104px 0 15px;
 }
@@ -76,6 +76,10 @@
 		width: 100%;
 	}
 
+	.contact-card .detail a:hover {
+		border-bottom: 1px solid;
+	}
+
 		.contact-card .contact-details dt {
 			display: inline-block;
 			width: 20%;
@@ -87,3 +91,24 @@
 			margin: 0;
 			word-break: break-word;
 		}
+
+.widget .contact-card .contact-body .contact-photo {
+	top: -1px;
+	width: 54px;
+	height: 54px;
+}
+
+	.widget .contact-card .contact-body .contact-photo img {
+		width: 50px;
+		height: 50px;
+	}
+
+.widget .contact-card:not(.avatar-left) .contact-title,
+.widget .contact-card:not(.avatar-left) .contact-details {
+	padding-right: 69px;
+}
+
+.widget .contact-card.avatar-left .contact-title,
+.widget .contact-card.avatar-left .contact-details {
+	padding-left: 69px;
+}
