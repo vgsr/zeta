@@ -818,6 +818,54 @@ function zeta_get_media_embedded_in_content_allowed( $types ) {
 }
 add_filter( 'get_media_embedded_in_content_allowed', 'zeta_get_media_embedded_in_content_allowed' );
 
+/**
+ * Short-circuit the post thumbnail ID when it doens't have one and
+ * serve another image.
+ *
+ * @since 1.0.0
+ *
+ * @uses zeta_get_first_post_image()
+ *
+ * @param mixed|null $value Short-circuit value.
+ * @param int $object_id Object ID
+ * @param string $meta_key Meta key
+ * @param bool $single Whether to query one or multiple values
+ * @return int|null Thumbnail ID or null to skip the short-circuit
+ */
+function zeta_post_thumbnail_id( $value, $object_id, $meta_key, $single ) {
+
+	// Querying the thumbnail ID in the front
+	if ( null === $value && '_thumbnail_id' == $meta_key && ! is_admin() ) {
+		global $wpdb, $wp_current_filter;
+
+		// Prevent infinite looping
+		$counts = array_count_values( $wp_current_filter );
+		if ( $counts['get_post_metadata'] > 1 ) {
+			return $value;
+		}
+
+		// Try fetching from the cache
+		$meta_cache = wp_cache_get( $object_id, 'post_meta' );
+		if ( $meta_cache && isset( $meta_cache[ $meta_key ] ) ) {
+			return null;
+		}
+
+		// Does the post have a thumbnail?
+		$sql = $wpdb->prepare( "SELECT TOP 1 1 FROM {$wpdb->postmeta} WHERE post_id = %d AND meta_key = %s", $object_id, $meta_key );
+		$has_thumbnail =  $wpdb->get_var( $sql );
+
+		// When without thumbnail, get our own version
+		if ( ! $has_thumbnail && $image = zeta_get_first_post_image( $object_id ) ) {
+			if ( is_numeric( $image ) ) {
+				$value = (int) $image;
+			}
+		}
+	}
+
+	return $value;
+}
+add_filter( 'get_post_metadata', 'zeta_post_thumbnail_id', 10, 4 );
+
 /** Search *****************************************************************/
 
 /**
