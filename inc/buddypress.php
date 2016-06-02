@@ -286,8 +286,8 @@ add_action( 'bp_messages_screen_star', 'zeta_bp_messages_screen_star_wrap' );
 /**
  * Return the short date stamp for a given timestamp
  *
- * Returns shortened version as `H:i` for dates within the last 24 hours
- * and `j M` for others.
+ * Returns different versions of the date for within last 24 hours, within
+ * the current year or otherwise.
  *
  * @since 1.0.0
  *
@@ -298,11 +298,20 @@ add_action( 'bp_messages_screen_star', 'zeta_bp_messages_screen_star_wrap' );
  */
 function zeta_bp_get_date_stamp( $timestamp ) {
 
+	// Get this moment
+	$now = time();
+
 	// Date is within the last 24 hours
-	if ( ( time() - $timestamp ) <= ( 24 * HOUR_IN_SECONDS ) ) {
+	if ( ( $now - $timestamp ) <= ( 24 * HOUR_IN_SECONDS ) ) {
 		$date = date_i18n( 'H:i', $timestamp );
-	} else {
+
+	// Date is in the same year
+	} elseif ( date( 'Y', $now ) == date( 'Y', $timestamp ) ) {
 		$date = date_i18n( 'j M', $timestamp );
+
+	// Fallback to 01-01-01
+	} else {
+		$date = date_i18n( 'd-m-y', $timestamp );
 	}
 
 	return $date;
