@@ -1362,8 +1362,13 @@
 			border: 0;
 		}
 
-			#buddypress .activity .activity-header a br {
+			#buddypress .activity .activity-header br {
 				display: none;
+			}
+
+			#buddypress .activity .activity-header .avatar {
+				margin-right: 4px;
+				border-radius: 50%;
 			}
 
 	#buddypress #latest-update,
