@@ -1227,20 +1227,6 @@
 	.buddypress.profile-edit .editfield fieldset legend + div {
 		margin-left: 0;
 	}
-
-		.buddypress.profile-edit .editfield .datebox select:nth-of-type(1) {
-			width: 13%;
-		}
-
-		.buddypress.profile-edit .editfield .datebox select:nth-of-type(2) {
-			width: 25%;
-			margin-left: 2%;
-			margin-right: 2%;
-		}
-
-		.buddypress.profile-edit .editfield .datebox select:nth-of-type(3) {
-			width: 18%;
-		}
 }
 
 /*--------------------------------------------------------------
