@@ -42,7 +42,11 @@ function zeta_bp_entry_meta() {
 		// User member types
 		if ( $member_types = bp_get_member_type( bp_displayed_user_id(), false ) ) {
 			foreach ( (array) $member_types as $member_type ) :
-				$member_type = bp_get_member_type_object( $member_type );
+
+				// Skip when the member type does not exist
+				if ( ! $member_type = bp_get_member_type_object( $member_type ) )
+					continue;
+
 				printf( '<span class="member-type member-type-%s">%s</span>', esc_attr( $member_type->name ), esc_html( $member_type->labels['singular_name'] ) );
 			endforeach;
 		}
