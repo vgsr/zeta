@@ -98,6 +98,8 @@
 
 body:not(.front-page) .widget-area .widget .contact-card .contact-body,
 .footer-area .widget .contact-card .contact-body {
+	max-width: none;
+	min-height: 54px;
 	padding: 0;
 	background: none;
 	border: 0;
