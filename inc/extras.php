@@ -194,7 +194,7 @@ add_action( 'zeta_before_content', 'zeta_breadcrumbs', 6 );
 	 *
 	 * @since 1.0.0
 	 *
-	 * @uses get_home_url()
+	 * @uses WPSEO_Utils::home_url()
 	 *
 	 * @param array $crumbs Crumbs
 	 * @return array Crumbs
@@ -205,7 +205,7 @@ add_action( 'zeta_before_content', 'zeta_breadcrumbs', 6 );
 		foreach ( $crumbs as $k => $crumb ) {
 
 			// Wrap the Home crumb in screen-reader-text
-			if ( get_home_url() === $crumb['url'] ) {
+			if ( WPSEO_Utils::home_url() === $crumb['url'] ) {
 				$crumbs[ $k ]['text'] = '<span class="screen-reader-text">' . $crumb['text'] . '</span>';
 				break;
 			}
