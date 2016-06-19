@@ -245,6 +245,11 @@ function zeta_scripts() {
 		wp_register_style( 'contact-card', get_template_directory_uri() . '/css/contact-card.css' );
 	}
 
+	// Event Organiser
+	if ( defined( 'EVENT_ORGANISER_VER' ) ) {
+		wp_enqueue_style( 'zeta-event-organiser', get_template_directory_uri() . '/css/event-organiser.css' );
+	}
+
 	// Navigation menu for small screens
 	wp_enqueue_script( 'zeta-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20120206', true );
 	wp_localize_script( 'zeta-navigation', 'screenReaderText', array(

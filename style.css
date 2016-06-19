@@ -52,10 +52,9 @@
 	12.1 Captions
 	12.2 Galleries
 13.0 Plugins
-	13.1 Event Organiser
-	13.2 VGSR Entity
-	13.3 VGSR Widgets
-	13.4 Column Shortcodes
+	13.1 VGSR Entity
+	13.2 VGSR Widgets
+	13.3 Column Shortcodes
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -3557,206 +3556,8 @@ object {
 /*--------------------------------------------------------------
 13.0 Plugins
 --------------------------------------------------------------*/
-
 /*--------------------------------------------------------------
-13.1 Event Organiser :: wp-event-organiser.com
---------------------------------------------------------------*/
-
-/* Single event */
-
-.entry-content .eo-venue-map {
-	z-index: 498; /* below site header */
-	margin-top: 1.5em;
-}
-
-/* Event archives */
-
-.event-section.section-month > .section-header {
-	padding-bottom: 35px;
-}
-
-.event-section.section-day {
-	display: flex;
-	flex-direction: column;
-}
-
-.event-section.section-month .section-day:not(:last-child) {
-	margin-bottom: 1.5em;
-}
-
-	.event-section.section-day .section-header {
-		width: 100%;
-		flex: 1 0 auto;
-	}
-
-	.post-type-archive-event .entry-title, /* Daily archives */
-	.event-section .section-title,
-	.event-section .entry-title {
-		font-size: 1em;
-	}
-
-	.event-section.section-day .entry-title {
-		font-family: inherit;
-		font-weight: normal;
-	}
-
-	.event-section .section-header + .event {
-		margin: 0;
-	}
-
-	.event-section .section-content {
-		width: 100%;
-		margin-top: 1.5em;
-	}
-
-	.event-section .section-content .event {
-		margin-top: 0;
-	}
-
-	.event-section .section-content .entry-title {
-		text-align: left;
-	}
-
-	/* When without post content */
-	.post-type-archive-event .entry-meta {
-		margin-top: .5em;
-	}
-
-@media screen and (min-width: 480px) {
-	.event-section.section-day {
-		flex-direction: row;
-	}
-
-		.event-section.section-day .section-header {
-			width: 5em;
-		}
-
-		.event-section .section-content {
-			width: calc( 100% - 5em );
-			padding-left: 35px;
-		}
-
-		.event-section .section-content {
-			margin-top: 0;
-		}
-}
-
-/* List view */
-
-.event-list ul {
-	float: left;
-	width: 100%;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-	.event-list .section-title {
-		line-height: 1.5em;
-		font-size: inherit;
-	}
-
-	.event-list li.section-month {
-		float: left;
-		width: 100%;
-		margin-top: 1.5em;
-	}
-
-	.event-list ul.children {
-		margin-top: 0;
-	}
-
-	.event-list ul.children .children {
-		padding-left: 35px;
-	}
-
-/* Calendar view */
-
-.eo_widget_calendar {
-	float: left;
-}
-
-.eo_widget_calendar table td.event {
-	padding: 0;
-}
-
-.eo_widget_calendar table td.event a {
-	position: relative;
-	display: block;
-	padding: 10px 0;
-	background-color: rgba(2, 144, 7, .3);
-	font-family: 'Montserrat', Arial, sans-serif;
-	font-weight: bold;
-	color: #fff;
-	border: 0;
-}
-
-	.eo_widget_calendar table td.event a:hover {
-		text-decoration: none;
-		background-color: rgba(2, 144, 7, .6);
-	}
-
-	.eo_widget_calendar table td.event a:before,
-	.eo_widget_calendar table td.event a:after {
-		position: absolute;
-		bottom: 100%;
-		left: 50%;
-		visibility: hidden;
-		opacity: 0;
-		pointer-events: none;
-		/* Animation */
-		-webkit-transition: all .25s ease-in;
-		transition: all .25s ease-in;
-	}
-
-	.eo_widget_calendar table td.event a:before {
-		content: attr(title);
-		-webkit-transform: translateX(-50%);
-		transform: translateX(-50%);
-		background: #404040;
-		margin-bottom: 5px;
-		padding: 5px 8px;
-		color: #fff;
-		font-size: 11px;
-	}
-
-	.eo_widget_calendar table td.event a:after {
-		content: '';
-		margin-left: -5px;
-		border-top: 5px solid #404040;
-		border-left: 5px solid transparent;
-		border-right: 5px solid transparent;
-	}
-
-		.eo_widget_calendar table td.event a:hover:before,
-		.eo_widget_calendar table td.event a:hover:after {
-			visibility: visible;
-			opacity: 1;
-			bottom: calc( 100% + 5px );
-		}
-
-.eo_widget_calendar table tr:nth-child(odd) td.today:after {
-	content: '';
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: -1;
-}
-
-.eo_widget_calendar table td.today,
-.eo_widget_calendar table td.today.event a {
-	color: #fff;
-}
-
-.eo_widget_calendar table tr:nth-child(even) td.today,
-.eo_widget_calendar table tr:nth-child(odd) td.today:after {
-	background-color: rgba(2, 144, 7, .8);
-}
-
-/*--------------------------------------------------------------
-13.2 VGSR Entity
+13.1 VGSR Entity
 --------------------------------------------------------------*/
 
 .entry-content .entity-details {
@@ -3864,7 +3665,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-13.3 VGSR Widgets
+13.2 VGSR Widgets
 --------------------------------------------------------------*/
 
 .entry-content .vgsr-subpages {
@@ -3932,7 +3733,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-13.4 Column Shortcodes
+13.3 Column Shortcodes
 --------------------------------------------------------------*/
 
 .entry-content .content-column {
