@@ -19,15 +19,19 @@
 	text-align: center;
 }
 
-.widget .gform_wrapper .gform_title {
-	margin: 0;
-	font-size: 1.5em;
-	text-align: left;
+.widget .gform_wrapper .gform_heading {
+	margin-top: 1.5em;
 }
 
-	.widget .widget-title  ~ .gform_wrapper .gform_title {
-		font-size: 1.17em;
+	.widget .gform_wrapper .gform_title {
+		margin: 0;
+		font-size: 1.5em;
+		text-align: left;
 	}
+
+		.widget .widget-title  ~ .gform_wrapper .gform_title {
+			font-size: 1.17em;
+		}
 
 .gform_wrapper .gsection_title {
 	padding-bottom: .5em;
