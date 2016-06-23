@@ -1697,8 +1697,8 @@
 				border: 2px solid #fff;
 				transform: scale(0.75);
 				opacity: 0;
-				-webkit-transition: transform .3s;
-				transition: transform .3s;
+				-webkit-transition: transform .3s cubic-bezier(.4,2.4,.55,.44);
+				transition: transform .3s cubic-bezier(.4,2.4,.55,.44);
 			}
 
 			#buddypress .table-list > li:nth-child(odd) .bulk-select-check .message-check + .thread-avatar:before {
