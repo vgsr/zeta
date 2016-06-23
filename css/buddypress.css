@@ -2101,6 +2101,10 @@
 				content: '\f466'; /* dashicons-email-alt */
 			}
 
+			#buddypress .generic-button a.dashboard-profile:before {
+				content: '\f110'; /* dashicons-admin-users */
+			}
+
 			#buddypress .generic-button.friendship-button a:before,
 			#buddypress .generic-button a.join-group:before,
 			#buddypress .generic-button a.mod-promote-to-admin:before,
