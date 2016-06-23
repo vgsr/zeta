@@ -1898,7 +1898,8 @@
 			margin-top: 0;
 		}
 
-		#buddypress #message-thread .message-box .message-content textarea {
+		#buddypress #message-thread .message-box .message-content textarea,
+		#buddypress #message-thread .message-box .message-content .wp-editor-wrap {
 			margin-top: 1.5em;
 		}
 

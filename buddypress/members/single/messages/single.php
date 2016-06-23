@@ -9,7 +9,7 @@
  * - Removed .avatar-box and moved avatar out of it
  * - Avatar args in array format
  * - Changed reply section title to h4.reply-title and moved it out of .avatar-box
- * - Changed the amount of textarea rows to 5
+ * - Replaced textarea with {@link zeta_editor()}
  *
  * @package Zeta
  * @subpackage BuddyPress
@@ -126,7 +126,7 @@
 					do_action( 'bp_before_message_reply_box' ); ?>
 
 					<label for="message_content" class="bp-screen-reader-text"><?php _e( 'Reply to Message', 'buddypress' ); ?></label>
-					<textarea name="content" id="message_content" rows="5" cols="40"></textarea>
+					<?php zeta_editor( '', 'message_content', array( 'textarea_name' => 'content' ) ); ?>
 
 					<?php
 
