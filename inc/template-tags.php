@@ -942,3 +942,119 @@ function zeta_media_users( $post_id, $echo = true ) {
 		return $retval;
 	}
 }
+
+/**
+ * Output a modified version of the TinyMCE content editor
+ *
+ * @since 1.0.0
+ *
+ * @uses wp_editor()
+ *
+ * @param string $content Content to edit
+ * @param string $textarea_id ID value for textarea element
+ * @param array $args Editor arguments
+ */
+function zeta_editor( $content, $textarea_id, $args = array() ) {
+
+	// Enable additional TinyMCE plugins before outputting the editor
+	add_filter( 'tiny_mce_plugins',   'zeta_get_tiny_mce_plugins'   );
+	add_filter( 'teeny_mce_plugins',  'zeta_get_tiny_mce_plugins'   );
+	add_filter( 'teeny_mce_buttons',  'zeta_get_teeny_mce_buttons'  );
+	add_filter( 'quicktags_settings', 'zeta_get_quicktags_settings' );
+
+	// Output the editor
+	wp_editor( $content, $textarea_id, wp_parse_args( $args, array(
+		'media_buttons' => false,
+		'quicktags'     => false,
+		'textarea_rows' => '12',
+	) ) );
+
+	// Remove additional TinyMCE plugins after outputting the editor
+	remove_filter( 'tiny_mce_plugins',   'zeta_get_tiny_mce_plugins'   );
+	remove_filter( 'teeny_mce_plugins',  'zeta_get_tiny_mce_plugins'   );
+	remove_filter( 'teeny_mce_buttons',  'zeta_get_teeny_mce_buttons'  );
+	remove_filter( 'quicktags_settings', 'zeta_get_quicktags_settings' );
+}
+
+/**
+ * Edit TinyMCE plugins to match core behaviour
+ *
+ * @since 1.0.0
+ *
+ * @see bbPress
+ *
+ * @param array $plugins
+ * @see tiny_mce_plugins, teeny_mce_plugins
+ * @return array
+ */
+function zeta_get_tiny_mce_plugins( $plugins = array() ) {
+
+	// Unset fullscreen
+	foreach ( $plugins as $key => $value ) {
+		if ( 'fullscreen' === $value ) {
+			unset( $plugins[$key] );
+			break;
+		}
+	}
+
+	// Add the tabfocus plugin
+	$plugins[] = 'tabfocus';
+
+	return $plugins;
+}
+
+/**
+ * Edit TeenyMCE buttons to match allowedtags
+ *
+ * @since 1.0.0
+ *
+ * @see bbPress
+ *
+ * @param array $buttons
+ * @see teeny_mce_buttons
+ * @return array
+ */
+function zeta_get_teeny_mce_buttons( $buttons = array() ) {
+
+	// Remove some buttons from TeenyMCE
+	$buttons = array_diff( $buttons, array(
+		'underline',
+		'justifyleft',
+		'justifycenter',
+		'justifyright'
+	) );
+
+	// Images
+	array_push( $buttons, 'image' );
+
+	return $buttons;
+}
+
+/**
+ * Edit TinyMCE quicktags buttons to match allowedtags
+ *
+ * @since 1.0.0
+ *
+ * @see bbPress
+ *
+ * @param array $buttons
+ * @see quicktags_settings
+ * @return array Quicktags settings
+ */
+function zeta_get_quicktags_settings( $settings = array() ) {
+
+	// Get buttons out of settings
+	$buttons_array = explode( ',', $settings['buttons'] );
+
+	// Diff the ones we don't want out
+	$buttons = array_diff( $buttons_array, array(
+		'ins',
+		'more',
+		'spell'
+	) );
+
+	// Put them back into a string in the $settings array
+	$settings['buttons'] = implode( ',', $buttons );
+
+	return $settings;
+}

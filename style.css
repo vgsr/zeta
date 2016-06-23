@@ -3060,6 +3060,20 @@ td a {
 		border-bottom: 2px solid;
 	}
 
+.site-content .wp-editor-wrap {
+	border: 1px solid #ddd;
+}
+
+.site-content .wp-editor-wrap button {
+	background: none;
+	border: none;
+}
+
+	.site-content .wp-editor-wrap button:hover {
+		background: none;
+		color: inherit;
+	}
+
 .entry-meta,
 .entry-footer {
 	font-family: 'Montserrat', Arial, sans-serif;
