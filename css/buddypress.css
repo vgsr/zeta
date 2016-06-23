@@ -994,6 +994,7 @@
 		padding: 10px 25px;
 	}
 
+	/* Last child is the bulk selection row */
 	#buddypress .table-list > li:nth-child(odd):not(:last-child) {
 		background-color: #f9f9f9;
 	}
@@ -1674,25 +1675,30 @@
 			}
 
 		#buddypress .bulk-select-check .message-check:checked + .thread-avatar {
-			/*border-color: rgb(52, 166, 56);*/
+			position: relative;
 		}
 
 			#buddypress .bulk-select-check .message-check:checked + .thread-avatar:before {
+				position: absolute;
+				bottom: -5px;
+				right: -5px;
 				content: '\f147';
 				display: block;
-				width: 50px;
-				height: 50px;
+				width: 20px;
+				height: 20px;
 				background: rgb(52, 166, 56);
 				font-family: dashicons;
 				color: #fff;
 				text-align: center;
-				font-size: 1.7em;
-				line-height: 1.8em;
+				font-size: 16px;
+				line-height: 16px;
+				text-indent: -1px;
 				border-radius: 50%;
+				border: 2px solid #fff;
 			}
 
-			#buddypress .bulk-select-check .message-check:checked + .thread-avatar img {
-				display: none;
+			#buddypress .table-list > li:nth-child(odd) .bulk-select-check .message-check:checked + .thread-avatar:before {
+				border-color: #f9f9f9;
 			}
 
 	#buddypress .messages .table-list .bulk-select-check ~ li,
