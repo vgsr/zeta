@@ -3262,6 +3262,10 @@ td a {
 				text-decoration: none;
 			}
 
+	.comment-list *:not(p) > a:hover {
+		border: 0; /* Cancel anchor borders in all but comment paragraphs */
+	}
+
 	.comment-content p:first-child {
 		margin-top: 0;
 	}
