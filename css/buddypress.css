@@ -49,7 +49,7 @@
 	width: 60%;
 }
 
-.site-content #buddypress li a:hover {
+.site-content #buddypress *:not(p) > a:hover {
 	border: 0;
 }
 
@@ -1344,8 +1344,7 @@
 		color: rgba(64, 64, 64, .8); /* Don't use `opacity`, as it cannot be overriden positively */
 	}
 
-		#buddypress .activity .activity-header a,
-		#buddypress .activity .activity-comments a.comment-author {
+		#buddypress .activity .activity-header a {
 			border: 0;
 		}
 
