@@ -851,7 +851,7 @@ function zeta_post_thumbnail_id( $value, $object_id, $meta_key, $single ) {
 		}
 
 		// Does the post have a thumbnail?
-		$sql = $wpdb->prepare( "SELECT TOP 1 1 FROM {$wpdb->postmeta} WHERE post_id = %d AND meta_key = %s", $object_id, $meta_key );
+		$sql = $wpdb->prepare( "SELECT 1 FROM {$wpdb->postmeta} WHERE post_id = %d AND meta_key = %s", $object_id, $meta_key );
 		$has_thumbnail =  $wpdb->get_var( $sql );
 
 		// When without thumbnail, get our own version
