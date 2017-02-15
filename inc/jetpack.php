@@ -98,7 +98,7 @@ function zeta_tiled_gallery() {
 	require( get_template_directory() . '/inc/tiled-gallery/tiled-gallery.php' );
 
 	// A little help for my friend
-	add_action( 'wp_enqueue_scripts', 'zeta_tiled_gallery_register_scripts' );
+	add_action( 'wp_enqueue_scripts', 'zeta_tiled_gallery_register_scripts', 5 );
 }
 add_action( 'after_setup_theme', 'zeta_tiled_gallery' );
 
