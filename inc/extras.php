@@ -877,7 +877,6 @@ add_filter( 'get_post_metadata', 'zeta_post_thumbnail_id', 10, 4 );
  * @uses get_post_type_object()
  * @uses post_type_exists()
  * @uses is_buddypress()
- * @uses is_user_vgsr()
  * @uses apply_filters() Calls 'zeta_search_contexts'
  * @uses is_search()
  * 
@@ -909,12 +908,12 @@ function zeta_search_context_select( $form ) {
 		}
 
 		// Search members
-		if ( function_exists( 'vgsr' ) && is_user_vgsr() ) {
+		if ( zeta_check_access() ) {
 			$contexts['bp-members'] = __( 'Members', 'zeta' );
 		}
 
 		// Search groups
-		if ( bp_is_active( 'groups' ) && 0 < groups_get_total_group_count() ) {
+		if ( zeta_check_access() && bp_is_active( 'groups' ) && 0 < groups_get_total_group_count() ) {
 			$contexts['bp-groups'] = __( 'Groups', 'zeta' );
 		}
 	}
@@ -947,7 +946,6 @@ add_filter( 'get_search_form', 'zeta_search_context_select' );
  *
  * @uses is_search()
  * @uses bp_core_get_directory_page_ids()
- * @uses is_user_vgsr()
  * @uses get_permalink()
  * @uses apply_filters() Calls 'zeta_search_context_redirect'
  * @uses wp_safe_redirect()
@@ -958,23 +956,25 @@ function zeta_search_context_redirect() {
 	if ( ! is_search() || ! isset( $_GET['context'] ) )
 		return;
 
+	// Define local variable(s)
 	$location = false;
 	$context  = esc_attr( $_GET['context'] );
 	$s        = esc_attr( $_GET['s'] );
+	$bp       = function_exists( 'buddypress' ) ? buddypress() : false;
 
-	if ( function_exists( 'buddypress' ) ) {
+	if ( $bp ) {
 		$page_ids = bp_core_get_directory_page_ids( 'all' );
 	}
 
 	switch ( $context ) {
 		case 'bp-members' :
-			if ( function_exists( 'buddypress' ) && function_exists( 'vgsr' ) && is_user_vgsr() ) {
+			if ( $bp && zeta_check_access() ) {
 				$location = add_query_arg( 's', $s, get_permalink( $page_ids['members'] ) ); // Members index page
 			}
 			break;
 
 		case 'bp-groups' :
-			if ( function_exists( 'buddypress' ) && bp_is_active( 'groups' ) ) {
+			if ( $bp && zeta_check_access() && bp_is_active( 'groups' ) ) {
 				$location = add_query_arg( 's', $s, get_permalink( $page_ids['groups'] ) ); // Groups index page
 			}
 			break;

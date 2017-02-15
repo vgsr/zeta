@@ -330,6 +330,24 @@ function zeta_search_form_modify( $html ) {
 add_filter( 'get_search_form', 'zeta_search_form_modify' );
 
 /**
+ * Return whether the user has access
+ *
+ * @since 1.0.0
+ *
+ * @param int $user_id Optional. Defaults to the current user.
+ * @return bool Has the user access?
+ */
+function zeta_check_access( $user_id = 0 ) {
+
+	// Default to the current user
+	if ( empty( $user_id ) ) {
+		$user_id = get_current_user_id();
+	}
+
+	return function_exists( 'vgsr' ) && is_user_vgsr( $user_id );
+}
+
+/**
  * Custom template tags for this theme.
  */
 require( get_template_directory() . '/inc/template-tags.php' );
