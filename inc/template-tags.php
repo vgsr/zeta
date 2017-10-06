@@ -88,7 +88,7 @@ function zeta_posted_on() {
 		$time_string
 	);
 
-	echo '<span class="posted-on">' . sprintf( _x( 'Posted on %s', 'post date', 'zeta' ), $posted_on ) . '</span>';
+	echo '<span class="posted-on">' . sprintf( _x( '<span class="screen-reader-text">Posted on </span>%s', 'post date', 'zeta' ), $posted_on ) . '</span>';
 }
 endif;
 
@@ -664,7 +664,7 @@ function zeta_background_slider() {
 
 			// 'Posted on' only for posts
 			if ( 'post' == $post->post_type ) {
-				$slide['byline']  = sprintf( __( 'Posted on %s', 'zeta' ), get_the_date( '', $post->ID ) );
+				$slide['byline']  = sprintf( __( '<span class="screen-reader-text">Posted on </span>%s', 'zeta' ), get_the_date( '', $post->ID ) );
 			}
 		}
 
@@ -740,7 +740,7 @@ function zeta_background_slider() {
 
 			// Append byline
 			if ( $args['byline'] ) {
-				$slide .= '<span class="byline">' . esc_html( $args['byline'] ) . '</span>';
+				$slide .= '<span class="byline">' . $args['byline'] . '</span>';
 			}
 
 			$slide .= '</header>';
