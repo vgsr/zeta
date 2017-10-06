@@ -770,7 +770,6 @@ body.fixed-header.admin-bar #site-tools {
 
 					#header-aside .slides .slide-inner .slide-details .byline {
 						display: inline-block;
-						margin-top: 0.5em;
 					}
 
 				#header-aside .slides a.slide-inner:focus .slide-details {
@@ -1176,7 +1175,7 @@ body.fixed-header.admin-bar #site-tools {
 			}
 
 		#header-aside .slides .slide-inner .slide-details {
-			/*padding: 35px 150px 35px 35px;*/
+			padding: 35px 150px 35px 35px;
 			font-size: 1em;
 		}
 
