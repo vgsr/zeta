@@ -2312,7 +2312,15 @@ a:active {
 #breadcrumb {
 	font-family: 'Montserrat', Arial, sans-serif;
 	font-size: .8em;
+	padding: 25px 35px;
 }
+
+	/* Home icon */
+	.yoast-breadcrumb span[typeof="v:Breadcrumb"]:not([rel="v:child"]) > a,
+	.bbp-breadcrumb .bbp-breadcrumb-home {
+		padding: 25px;
+		margin: 0px -25px;
+	}
 
 	.yoast-breadcrumb span[typeof="v:Breadcrumb"]:not([rel="v:child"]) > a:hover,
 	.bbp-breadcrumb .bbp-breadcrumb-home:hover {
@@ -2351,6 +2359,10 @@ a:active {
 		#breadcrumb a:hover {
 			opacity: 1;
 		}
+
+#breadcrumb + .page-header {
+	display: none;
+}
 
 /*--------------------------------------------------------------
 5.0 Forms
