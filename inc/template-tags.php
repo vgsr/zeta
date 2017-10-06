@@ -137,7 +137,7 @@ if ( ! function_exists( 'zeta_entry_footer' ) ) :
 function zeta_entry_footer() {
 
 	// Show category and tag text for posts
-	if ( 'post' == get_post_type() ) {
+	if ( 'post' == get_post_type() && is_single() ) {
 
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( __( ', ', 'zeta' ) );
