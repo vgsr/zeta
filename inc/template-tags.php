@@ -117,6 +117,16 @@ function zeta_entry_meta() {
 	 * @since 1.0.0
 	 */
 	do_action( 'zeta_entry_meta' );
+
+	// Comments
+	if ( ! is_single() && ! post_password_required() && get_comments_number() ) {
+		echo '<span class="comments-link">';
+		comments_popup_link( __( 'Leave a comment', 'zeta' ), __( '1 Comment', 'zeta' ), __( '% Comments', 'zeta' ) );
+		echo '</span>';
+	}
+
+	// Edit link
+	edit_post_link( __( 'Edit', 'zeta' ), '<span class="edit-link">', '</span>' );
 }
 endif;
 
@@ -150,14 +160,6 @@ function zeta_entry_footer() {
 	 * @since 1.0.0
 	 */
 	do_action( 'zeta_entry_footer' );
-
-	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo '<span class="comments-link">';
-		comments_popup_link( __( 'Leave a comment', 'zeta' ), __( '1 Comment', 'zeta' ), __( '% Comments', 'zeta' ) );
-		echo '</span>';
-	}
-
-	edit_post_link( __( 'Edit', 'zeta' ), '<span class="edit-link">', '</span>' );
 }
 endif;
 
