@@ -961,6 +961,7 @@ body.fixed-header.admin-bar #site-tools {
 @media screen and (min-width: 561px) {
 	.site-branding {
 		padding: 15px 15px 15px 20px;
+		height: 76px;
 	}
 
 		.site-branding .site-title {
@@ -1072,6 +1073,7 @@ body.fixed-header.admin-bar #site-tools {
 		position: absolute;
 		top: 45px;
 		left: 35px;
+		height: auto;
 		width: 104px;
 		padding: 0;
 		background-color: rgba(2, 144, 7, .8);
@@ -1634,6 +1636,10 @@ body.menu-toggled {
 	background: rgba(255, 255, 255, .95);
 }
 
+.admin-bar.menu-toggled .main-navigation {
+	height: calc( 100vh - 46px - 62px );
+}
+
 .menu-toggled #header-aside,
 .menu-toggled #content {
 	-webkit-filter: blur(3px);
@@ -2011,6 +2017,10 @@ body.menu-toggled {
 
 	.menu-toggled .main-navigation {
 		height: calc( 100vh - 76px );
+	}
+
+	.admin-bar.menu-toggled .main-navigation {
+		height: calc( 100vh - 46px - 76px );
 	}
 
 		/* Small menu. */
