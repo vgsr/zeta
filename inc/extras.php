@@ -71,7 +71,7 @@ add_filter( 'body_class', 'zeta_body_classes' );
 function zeta_editor_body_classes( $mce ) {
 
 	// For the front page, add a class to the editor body
-	if ( 'page' == get_option( 'show_on_front') && get_option( 'page_on_front' ) == get_the_ID() ) {
+	if ( zeta_is_static_front_page() ) {
 		$mce['body_class'] .= ' front-page';
 	}
 
@@ -129,6 +129,25 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	}
 	add_action( 'wp_head', 'zeta_render_title' );
 endif;
+
+/**
+ * Return whether the page is the static front page
+ *
+ * @since 1.0.0
+ *
+ * @param WP_Post|int $post Optional. Post object or ID. Defaults to the current page.
+ * @return bool Is this the static front page?
+ */
+function zeta_is_static_front_page( $post = false ) {
+	if ( $post ) {
+		$post     = get_post( $post );
+		$is_front = $post && 'page' == get_option( 'show_on_front') && get_option( 'page_on_front' ) == $post->ID;
+	} else {
+		$is_front = is_front_page() && ! is_home();
+	}
+
+	return $is_front;
+}
 
 /**
  * Output a breadcrumbs trail before the page's content
