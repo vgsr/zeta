@@ -593,10 +593,8 @@ body.admin-bar #page {
 	float: left;
 	width: 100%;
 	padding: 0;
-	color: #fff;
 	font-size: 1.2rem;
 	z-index: 499; /* Below the admin bar. */
-	background: rgb(52, 166, 56); /* rgba(2, 144, 7, .8) on #fff background */
 
 	/* Fixed */
 	position: fixed;
@@ -630,6 +628,8 @@ body.fixed-header.admin-bar .site-header {
 		position: absolute;
 		width: 100%;
 		padding: 15px 15px;
+		color: #fff;
+		background: rgb(52, 166, 56); /* rgba(2, 144, 7, .8) on #fff background */
 	}
 
 		.site-branding .site-title {
@@ -677,7 +677,7 @@ body.fixed-header.admin-bar #site-tools {
 		display: none;
 		position: relative;
 		overflow: hidden;
-		padding: 35px 25px;
+		padding: 25px;
 		background-color: #f9f9f9;
 	}
 
@@ -903,7 +903,7 @@ body.fixed-header.admin-bar #site-tools {
 	.content-area .site-main > * {
 		position: relative;
 		margin: 0;
-		padding: 35px 25px;
+		padding: 25px;
 	}
 
 		.content-area .site-main > :not(:last-child) {
@@ -982,7 +982,7 @@ body.fixed-header.admin-bar #site-tools {
 	}
 
 		#site-tools .site-tool {
-			padding: 35px;
+			padding: 25px 35px;
 		}
 
 	#header-aside {
@@ -1621,12 +1621,29 @@ a:active {
 	clear: both;
 	margin-top: 62px;
 	font-size: .8em;
+	background: #fff;
+}
+
+body.menu-toggled {
+	overflow-y: hidden;
+}
+
+.menu-toggled .main-navigation {
+	height: calc( 100vh - 62px );
+	overflow-y: scroll;
+	background: rgba(255, 255, 255, .95);
+}
+
+.menu-toggled #header-aside,
+.menu-toggled #content {
+	-webkit-filter: blur(3px);
+	-o-filter: blur(3px);
+	filter: blur(3px);
 }
 
 .main-navigation .menu {
 	display: none;
 	float: left;
-	background: #fff;
 }
 
 	.site-header .menu a,
@@ -1992,6 +2009,10 @@ a:active {
 		margin-top: 76px;
 	}
 
+	.menu-toggled .main-navigation {
+		height: calc( 100vh - 76px );
+	}
+
 		/* Small menu. */
 		.menu-toggle {
 			right: 15px;
@@ -2039,6 +2060,24 @@ a:active {
 		margin: 0;
 		padding: 0;
 		font-size: 1em;
+		background: none;
+	}
+
+	body.menu-toggled {
+		overflow-y: inherit;
+	}
+
+	.menu-toggled #header-aside,
+	.menu-toggled #content {
+		-webkit-filter: none;
+		-o-filter: none;
+		filter: none;
+	}
+
+	.menu-toggled .main-navigation {
+		height: auto;
+		overflow-y: inherit;
+		background: none;
 	}
 
 		.main-navigation > div {
@@ -2052,7 +2091,6 @@ a:active {
 			height: 45px;
 			margin: 0;
 			padding: 0;
-			background-color: transparent;
 		}
 
 		.menu-toggle {
