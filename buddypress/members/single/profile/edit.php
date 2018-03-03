@@ -57,8 +57,6 @@ if ( bp_has_profile( array( 'profile_group_id' => bp_get_current_profile_group_i
 				 * @since 1.1.0
 				 */
 				do_action( 'bp_custom_profile_edit_fields' ); ?>
-
-			<p class="description"><?php bp_the_profile_field_description(); ?></p>
 		</div>
 
 	<?php endwhile; ?>
