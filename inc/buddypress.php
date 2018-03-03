@@ -35,9 +35,9 @@ function zeta_bp_entry_meta() {
 	if ( bp_is_user() ) {
 
 		// User mention nicename
-		if ( bp_activity_do_mentions() ) :
+		if ( bp_is_active( 'activity' ) && bp_activity_do_mentions() ) {
 			printf( '<span class="user-nicename">@%s</span>', bp_get_displayed_user_mentionname() );
-		endif;
+		}
 
 		// User member types
 		if ( $member_types = bp_get_member_type( bp_displayed_user_id(), false ) ) {
