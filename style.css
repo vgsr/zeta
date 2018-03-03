@@ -3483,6 +3483,11 @@ body.logged-in #comments > #respond:first-child {
 11.0 Blocks
 --------------------------------------------------------------*/
 
+.wp-block-columns {
+	grid-auto-columns: 1fr!important; /* Fit naturally within .entry-content */
+	grid-gap: 0px 35px;
+}
+
 /*--------------------------------------------------------------
 12.0 Infinite scroll
 --------------------------------------------------------------*/
