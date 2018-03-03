@@ -3484,9 +3484,64 @@ body.logged-in #comments > #respond:first-child {
 11.0 Blocks
 --------------------------------------------------------------*/
 
+.wp-block-image.alignfull {
+	margin-left: -25px;
+	margin-right: -25px;
+}
+
+.wp-block-cover-image {
+	margin: 1.5em -25px 0px;
+	width: auto;
+	height: 250px;
+}
+
+	.wp-block-cover-image h2 {
+		margin: 1.5em 0px;
+	}
+
+.wp-block-gallery {
+	margin: calc(1.5em - 8px) -8px -8px;
+}
+
+.wp-block-quote cite {
+	display: inline-block;
+}
+
+.wp-block-pullquote {
+	margin: 2.5em 5em 0px;
+	border-left: none;
+	border-width: 1px;
+	border-color: #ddd;
+}
+
+	.wp-block-pullquote + *:not(:empty) {
+		margin-top: 2.5em;
+	}
+
+	.wp-block-pullquote p:first-child {
+		margin: 0px;
+	}
+
+.wp-block-button {
+	margin: 1.5em 0px 0px;
+}
+
+.wp-block-separator {
+	border-width: 1px;
+}
+
 .wp-block-columns {
 	grid-auto-columns: 1fr!important; /* Fit naturally within .entry-content */
 	grid-gap: 0px 35px;
+}
+
+@media all and (min-width: 561px) {
+
+	.wp-block-image.alignfull,
+	.wp-block-cover-image {
+		margin-left: -35px;
+		margin-right: -35px;
+	}
 }
 
 /*--------------------------------------------------------------
