@@ -2383,7 +2383,7 @@ body.menu-toggled {
 		}
 
 	.yoast-breadcrumb span[rel="v:child"]:before,
-	.yoast-breadcrumb span.breadcrumb_last:before,
+	.yoast-breadcrumb .breadcrumb_last:before,
 	.bbp-breadcrumb > span:not(:last-child):after {
 		content: '\f345'; /* dashicons-arrow-right-alt2 */
 		font-family: dashicons;
@@ -2393,7 +2393,7 @@ body.menu-toggled {
 	}
 
 	.yoast-breadcrumb span[rel="v:child"]:before,
-	.yoast-breadcrumb span.breadcrumb_last:before {
+	.yoast-breadcrumb .breadcrumb_last:before {
 		margin: 0 9px 0 5px; /* Compensate for spaces between elements */
 	}
 
