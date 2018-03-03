@@ -3025,13 +3025,17 @@ input.search-field {
 .entry-content h5,
 .entry-content h6 {
 	display: inline-block;
-	margin: 1.5em 0 0 0;
+	margin: 1.5em 0px 0px;
 }
 
 .entry-content ul,
 .entry-content ol {
 	margin-left: 0;
 	padding-left: 2em;
+}
+
+.entry-content figure {
+	margin: 1.5em 0px 0px;
 }
 
 body.front-page .entry-content {
