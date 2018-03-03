@@ -2366,8 +2366,8 @@ body.menu-toggled {
 	/* Home icon */
 	.yoast-breadcrumb span[typeof="v:Breadcrumb"]:not([rel="v:child"]) > a,
 	.bbp-breadcrumb .bbp-breadcrumb-home {
-		padding: 25px;
-		margin: 0px -25px;
+		padding: 15px;
+		margin: 0px -15px;
 	}
 
 	.yoast-breadcrumb span[typeof="v:Breadcrumb"]:not([rel="v:child"]) > a:hover,
