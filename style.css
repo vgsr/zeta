@@ -47,14 +47,15 @@
 	10.1 Posts and pages
 	10.2 Asides
 	10.3 Comments
-11.0 Infinite scroll
-12.0 Media
-	12.1 Captions
-	12.2 Galleries
-13.0 Plugins
-	13.1 VGSR Entity
-	13.2 VGSR Widgets
-	13.3 Column Shortcodes
+11.0 Blocks
+12.0 Infinite scroll
+13.0 Media
+	13.1 Captions
+	13.2 Galleries
+14.0 Plugins
+	14.1 VGSR Entity
+	14.2 VGSR Widgets
+	14.3 Column Shortcodes
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -3479,7 +3480,11 @@ body.logged-in #comments > #respond:first-child {
 }
 
 /*--------------------------------------------------------------
-11.0 Infinite scroll
+11.0 Blocks
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+12.0 Infinite scroll
 --------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
 .infinite-scroll .posts-navigation, /* Older / Newer Posts Navigation (always hidden) */
@@ -3493,7 +3498,7 @@ body.logged-in #comments > #respond:first-child {
 }
 
 /*--------------------------------------------------------------
-12.0 Media
+13.0 Media
 --------------------------------------------------------------*/
 .entry-content .wp-smiley,
 .comment-content .wp-smiley {
@@ -3511,7 +3516,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-12.1 Captions
+13.1 Captions
 --------------------------------------------------------------*/
 .wp-caption {
 	margin-bottom: 1.5em;
@@ -3532,7 +3537,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-12.2 Galleries
+13.2 Galleries
 --------------------------------------------------------------*/
 .gallery,
 .tiled-gallery {
@@ -3638,10 +3643,10 @@ object {
 }
 
 /*--------------------------------------------------------------
-13.0 Plugins
+14.0 Plugins
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
-13.1 VGSR Entity
+14.1 VGSR Entity
 --------------------------------------------------------------*/
 
 .entry-content .entity-details {
@@ -3749,7 +3754,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-13.2 VGSR Widgets
+14.2 VGSR Widgets
 --------------------------------------------------------------*/
 
 .entry-content .vgsr-subpages {
@@ -3817,7 +3822,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-13.3 Column Shortcodes
+14.3 Column Shortcodes
 --------------------------------------------------------------*/
 
 .entry-content .content-column {
