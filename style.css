@@ -692,12 +692,13 @@ body.fixed-header.admin-bar #site-tools {
 		display: none;
 	}
 
-	#site-tools #wp-login-widget-form .forgetmenot {
+	#site-tools #wp-login-widget-form input#wp-login-widget-submit {
 		float: left;
 	}
 
-	#site-tools #wp-login-widget-form input#wp-login-widget-submit {
-		float: right;
+	#site-tools #wp-login-widget-form .lostpassword a {
+		display: inline-block;
+		padding: 7px 12px;
 	}
 
 #header-aside {

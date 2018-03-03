@@ -482,9 +482,8 @@ function zeta_tools_content() {
 					<label for="wp-login-widget-user-pass"><?php _e( 'Password', 'zeta' ); ?></label>
 					<input type="password" name="pwd" id="wp-login-widget-user-pass" class="input" value="" placeholder="<?php esc_attr_e( 'Password', 'zeta' ); ?>" />
 
-					<div class="forgetmenot"><label><input name="rememberme" type="checkbox" id="wp-login-widget-rememberme" value="forever" /> <?php _e( 'Remember Me', 'zeta' ); ?></label></div>
-
 					<input type="submit" name="wp-submit" id="wp-login-widget-submit" value="<?php esc_attr_e( 'Log In', 'zeta' ); ?>" />
+					<div class="lostpassword"><?php printf( '<a href="%s">%s</a>', esc_url( network_site_url( 'wp-login.php?action=lostpassword', 'login_post' ) ), __( 'Lost Password?', 'zeta' ) ); ?></div>
 
 					<?php if ( function_exists( 'buddypress' ) && bp_get_signup_allowed() ) : ?>
 						<span class="wp-login-widget-register-link"><?php printf( __( '<a href="%s" title="Register for a new account">Register</a>', 'zeta' ), bp_get_signup_page() ); ?></span>
