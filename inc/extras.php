@@ -643,7 +643,7 @@ function zeta_get_attachment_id_from_url( $attachment_url ) {
 }
 
 /**
- * Return whether the given image can be used
+ * Return whether the given image matches the required size
  *
  * @since 1.0.0
  *

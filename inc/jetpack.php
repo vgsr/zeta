@@ -86,11 +86,37 @@ function zeta_tiled_gallery() {
 		 * Return empty when requesting the Jetpack Photon url
 		 *
 		 * @since 1.0.0.
+		 * @since 1.1.0 Returns the first parameter untouched.
 		 *
-		 * @return string Empty
+		 * @param string $src Original file source
+		 * @param array $args File request arguments
+		 * @return string Original file source
 		 */
-		function jetpack_photon_url() {
-			return '';
+		function jetpack_photon_url( $src, $args ) {
+
+			// Try to find a matching size'd image
+			if ( isset( $args['w'], $args['h'] ) ) {
+				$sizes = zeta_get_larger_image_sizes( array( $args['w'], $args['h'] ) );
+
+				// Remove cropped sizes
+				if ( ! isset( $args['crop'] ) || ! $args['crop'] ) {
+					foreach ( $sizes as $k => $size ) {
+						if ( $size['crop'] ) {
+							unset( $sizes[ $k ] );
+						}
+					}
+				}
+
+				// Sizes left, find image match by attachment id from url
+				if ( $sizes ) {
+					if ( $attid = zeta_get_attachment_id_from_url( $src ) ) {
+						$src = wp_get_attachment_image_src( $attid, key( $sizes ) );
+						$src = $src[0];
+					}
+				}
+			}
+
+			return $src;
 		}
 	}
 
