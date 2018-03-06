@@ -2405,6 +2405,11 @@ body.menu-toggled {
 		transition: opacity .2s ease-in;
 	}
 
+	#breadcrumb [rel="v:child"] a {
+		padding: 15px;
+		margin: 0px -15px;
+	}
+
 		#breadcrumb a:hover {
 			opacity: 1;
 		}
