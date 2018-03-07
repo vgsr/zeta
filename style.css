@@ -2365,12 +2365,6 @@ body.menu-toggled {
 }
 
 	/* Home icon */
-	.yoast-breadcrumb span[typeof="v:Breadcrumb"]:not([rel="v:child"]) > a,
-	.bbp-breadcrumb .bbp-breadcrumb-home {
-		padding: 15px;
-		margin: 0px -15px;
-	}
-
 	.yoast-breadcrumb span[typeof="v:Breadcrumb"]:not([rel="v:child"]) > a:hover,
 	.bbp-breadcrumb .bbp-breadcrumb-home:hover {
 		text-decoration: none;
@@ -2403,9 +2397,6 @@ body.menu-toggled {
 		opacity: .8;
 		-webkit-transition: opacity .2s ease-in;
 		transition: opacity .2s ease-in;
-	}
-
-	#breadcrumb [rel="v:child"] a {
 		padding: 15px;
 		margin: 0px -15px;
 	}
