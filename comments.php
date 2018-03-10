@@ -80,10 +80,10 @@ if ( post_password_required() ) {
 
 		// Define comment form arguments
 		$args = array(
-			'logged_in_as'  => '<div class="comment-reply-avatar">' . get_avatar( get_current_user_id(), 50 ) . '</div>',
-			'comment_field' => '<div class="comment-form-comment"><label for="comment" class="screen-reader-text">' . _x( 'Comment', 'noun' ) . '</label> <textarea id="comment" name="comment" aria-required="true" required="required" placeholder="' . ( is_user_logged_in() ? sprintf( __( 'Reply as %s', 'zeta' ), get_userdata( get_current_user_id() )->display_name ) : '' ) . '"></textarea></div>',
-			'submit_button' => '<input name="%1$s" type="submit" id="%2$s" class="%3$s" value="%4$s" /> &nbsp; ' . get_cancel_comment_reply_link( __( 'Cancel', 'zeta' ) ),
-			'label_submit'  => _x( 'Post', 'noun', 'zeta' ),
+			'submit_button' => is_user_logged_in()
+				? '<button name="%1$s" type="submit" id="%2$s" class="%3$s"><span class="screen-reader-text">%4$s</span></button>'
+				// Use `get_cancel_comment_reply_link()` before it is used in `comment_form()`
+				: '<input name="%1$s" type="submit" id="%2$s" class="%3$s" value="%4$s" /> &nbsp; ' . get_cancel_comment_reply_link( __( 'Cancel', 'zeta' ) ),
 		);
 
 		// Prevent rendering of default cancel comment reply link in the comment form

@@ -292,6 +292,99 @@ function zeta_comment_text( $content, $comment = 0, $args = array() ) {
 }
 add_filter( 'comment_text', 'zeta_comment_text', 4, 3 );
 
+/**
+ * Modify the default comment form arguments
+ *
+ * @since 1.0.0
+ *
+ * @param  array $defaults Default comment form arguments
+ * @return array Default comment form arguments
+ */
+function zeta_comment_form_defaults( $defaults ) {
+
+	// Define local variables
+	$req = get_option( 'require_name_email' );
+	$name_map = array(
+		'author' => __( 'Name' ) . ( $req ? ' *' : '' ),
+		'email'  => __( 'Email' ) . ( $req ? ' *' : '' ),
+		'url'    => __( 'Website' )
+	);
+
+	// Modify fields
+	foreach ( $defaults['fields'] as $name => $field ) {
+
+		// Skip cookies checkbox
+		if ( 'cookies' === $name )
+			continue;
+
+		// Add screen reader class
+		$field = str_replace( '<label', '<label class="screen-reader-text-small-screen"', $field );
+
+		// Add input placeholder
+		if ( isset( $name_map[ $name ] ) ) {
+			$field = str_replace( '<input', sprintf( '<input placeholder="%s"', $name_map[ $name ] ), $field );
+		}
+
+		$defaults['fields'][ $name ] = $field;
+	}
+
+	$defaults = wp_parse_args( array(
+		'logged_in_as'  => '<div class="comment-reply-avatar">' . get_avatar( get_current_user_id(), 50 ) . '</div>',
+		'comment_field' => '<div class="comment-form-comment"><label for="comment" class="screen-reader-text">' . _x( 'Comment', 'noun' ) . '</label> <textarea id="comment" name="comment" aria-required="true" required="required" placeholder="' . ( is_user_logged_in() ? sprintf( __( 'Reply as %s', 'zeta' ), get_userdata( get_current_user_id() )->display_name ) : '' ) . '" rows="' . ( is_user_logged_in() ? '1' : '3' ) . '"></textarea></div>',
+	), $defaults );
+
+	// For logged-in users
+	if ( is_user_logged_in() ) {
+		$defaults = wp_parse_args( array(
+			'title_reply_before' => '<h3 id="reply-title" class="comment-reply-title screen-reader-text">', // Hide reply title
+			'submit_field'       => '<div class="form-submit">%1$s %2$s</div>'
+		), $defaults );
+	}
+
+	return $defaults;
+}
+add_filter( 'comment_form_defaults', 'zeta_comment_form_defaults' );
+
+/**
+ * Append markup to the comment form
+ *
+ * @since 1.0.0
+ *
+ * @param  int $post_id Current post ID
+ */
+function zeta_comment_form( $post_id ) {
+
+	// Bail when there is no logged-in user
+	if ( ! is_user_logged_in() )
+		return;
+
+	// Unhook temp filter. See ../comments.php
+	remove_filter( 'cancel_comment_reply_link', '__return_empty_string' );
+
+	/**
+	 * Hack to add markup _after_ the comment form.
+	 *
+	 * There are no hooks provided to insert markup after the comment form, so
+	 * we're using the last hook for appending markup within the comment form.
+	 * Here we manually close the comment form and add our markup. The remaining
+	 * closing form tag in `comment_form()` will be preceded by a hidden form tag
+	 * which has no other purpose than to provide a matching opening tag.
+	 */
+
+	?>
+	</form>
+
+	<div class="comment-actions">
+		<span class="cancel-reply"><?php cancel_comment_reply_link( __( 'Cancel', 'zeta' ) ); ?></span>
+	</div>
+
+	<form class="hidden"><?php /* Nothing happens here */
+
+	// Rehook temp filter. See ../comments.php
+	add_filter( 'cancel_comment_reply_link', '__return_empty_string' );
+}
+add_action( 'comment_form', 'zeta_comment_form', 99 );
+
 /** Media ******************************************************************/
 
 /**
