@@ -22,6 +22,9 @@
  * This theme has 2 key visible breakpoints:
  * 1 @ min-width: 561px; (extra content padding)
  * 2 @ min-width: 741px; (full-screen mode: banner, slider on the left)
+ *
+ * Additional breakpoints:
+ * * @ min-width: 440px; (size comment section small/large)
  */
 
 /*--------------------------------------------------------------
@@ -3123,16 +3126,18 @@ body.front-page .entry-content {
 		text-decoration: none;
 	}
 
-p a,
-td a {
+.site-content p a,
+.site-content td a {
 	text-decoration: none;
 	border-bottom: 1px solid rgba(64, 64, 64, .5);
 }
 
-	p a:hover,
-	td a:hover {
+	.site-content p a:not(.comment-author):hover,
+	.site-content td a:hover {
 		text-decoration: none;
 		border-color: #404040;
+		color: #fff;
+		background: #404040;
 	}
 
 	.site-content li a:hover {
