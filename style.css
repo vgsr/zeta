@@ -67,7 +67,7 @@
 html {
 	font-family: 'PT Serif', Georgia, Times, serif;
 	letter-spacing: .02em;
-	font-size: 16px;
+	font-size: 14px;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust:     100%;
 }
@@ -316,7 +316,7 @@ select,
 textarea {
 	color: #404040;
 	font-size: 1rem;
-	line-height: 1.5;
+	line-height: 1.7;
 }
 
 h1,
@@ -639,7 +639,7 @@ body.fixed-header.admin-bar .site-header {
 		.site-branding .site-title {
 			width: calc( 100% - 32px - 15px - 64px - 15px );
 			margin: 0;
-			font-size: 1.3em;
+			font-size: 1.4em;
 			line-height: 1em;
 			white-space: nowrap;
 			overflow: hidden;
@@ -653,13 +653,14 @@ body.fixed-header.admin-bar .site-header {
 				width: 32px;
 				height: 32px;
 				line-height: 32px;
-				padding-left: 47px;
+				padding: 2px 0px 2px 47px;
 			}
 
 		.site-branding .site-description {
 			font-weight: normal;
 			display: none;
 			font-family: Georgia, Times, serif;
+			font-size: 12.8px;
 		}
 
 #site-tools {
@@ -767,9 +768,9 @@ body.fixed-header.admin-bar #site-tools {
 				}
 
 					#header-aside .slides .slide-inner .slide-details h2 {
-						margin-bottom: 0;
-						font-size: 2.2em;
-						line-height: 1.3em;
+						margin-bottom: 0.4em;
+						font-size: 1.8em;
+						line-height: 1.2em;
 						word-wrap: break-word;
 					}
 
@@ -971,14 +972,14 @@ body.fixed-header.admin-bar #site-tools {
 
 		.site-branding .site-title {
 			width: calc( 100% - 46px - 15px - 92px - 15px );
-			font-size: 2em;
+			font-size: 1.9em;
 		}
 
 		.site-branding .site-title a {
 			background-size: 46px;
 			width: 46px;
 			height: 46px;
-			padding-left: 66px;
+			padding: 5px 0px 5px 66px;
 			line-height: 46px;
 		}
 
@@ -1004,12 +1005,12 @@ body.fixed-header.admin-bar #site-tools {
 			}
 
 	#content {
-		padding: 35px;
+		padding: 25px 35px;
 		background-color: transparent;
 	}
 
 		.content-area .site-main > * {
-			padding: 35px;
+			padding: 35px 35px 25px;
 		}
 
 		.widget-area {
@@ -1182,8 +1183,8 @@ body.fixed-header.admin-bar #site-tools {
 			}
 
 		#header-aside .slides .slide-inner .slide-details {
-			padding: 35px 150px 35px 35px;
-			font-size: 1em;
+			padding: 35px;
+			font-size: .9em;
 		}
 
 		#header-aside .loading .slides .slide-inner .slide-details {
