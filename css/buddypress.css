@@ -712,41 +712,79 @@
 
 /* Breakpoint 2 */
 @media screen and (min-width: 741px) {
+	.bp-user .entry-header {
+		text-align: left;
+		padding-left: 75px;
+	}
+
 	#buddypress #item-header-avatar {
-		top: 35px;
+		top: 0px;
 		left: auto;
 		right: 100%;
 		width: auto;
 		margin: 0;
-		-webkit-transform: translateX(25px) translateY(160px);
-		transform: translateX(25px) translateY(160px);
+		-webkit-transform: translateX(95px) translateY(20px);
+		transform: translateX(95px) translateY(20px);
 	}
+
+		#buddypress #item-header-avatar .item-avatar {
+			width: 116px;
+			height: 116px;
+		}
 
 	#buddypress #item-header-content {
 		text-align: left;
 	}
 }
 
-/* 174 + (156 - 25) + 640 = 949px + 17 for the scrollbar = 962px */
-@media screen and (min-width: 962px) {
+/* 174 + (126 - 25) + 640 = 949px + 17 for the scrollbar = 962px */
+@media screen and (min-width: 932px) {
+	.bp-user .entry-header {
+		padding-left: 0px;
+	}
+
 	#buddypress #item-header-avatar {
-		-webkit-transform: translateX(25px);
-		transform: translateX(25px);
+		-webkit-transform: translateX(25px) translateY(15px);
+		transform: translateX(25px) translateY(15px);
 	}
+
+		#buddypress #item-header-avatar .item-avatar {
+			width: 126px;
+			height: 126px;
+		}
 }
 
-@media screen and (min-width: 994px) {
-	body.with-sidebar #buddypress #item-header-avatar {
-		-webkit-transform: translateX(25px) translateY(160px);
-		transform: translateX(25px) translateY(160px);
+@media screen and (min-width: 998px) {
+	.bp-user .entry-header {
+		padding-left: 75px;
 	}
+
+	body.with-sidebar #buddypress #item-header-avatar {
+		-webkit-transform: translateX(95px) translateY(20px);
+		transform: translateX(95px) translateY(20px);
+	}
+
+		#buddypress #item-header-avatar .item-avatar {
+			width: 116px;
+			height: 116px;
+		}
 }
 
-@media screen and (min-width: 1264px) {
-	body.with-sidebar #buddypress #item-header-avatar {
-		-webkit-transform: translateX(25px);
-		transform: translateX(25px);
+/* 174 + (126 - 25) + 640 + 290 = 1205 + 17 for the scrollbar = 1222px */
+@media screen and (min-width: 1222px) {
+	.bp-user .entry-header {
+		padding-left: 0px;
 	}
+
+	body.with-sidebar #buddypress #item-header-avatar {
+		-webkit-transform: translateX(25px) translateY(15px);
+		transform: translateX(25px) translateY(15px);
+	}
+
+		body.with-sidebar #buddypress #item-header-avatar .item-avatar {
+			width: 126px;
+			height: 126px;
+		}
 }
 
 /* Up to Breakpoint 2. .fixed-bp-single-item appears only on small screens! */
