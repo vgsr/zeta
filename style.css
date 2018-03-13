@@ -3306,7 +3306,7 @@ body.front-page .entry-content {
 	#comments ol > li:not(:first-child) {
 		margin: 1.5em 0px 0px 52px;
 		padding-top: 1.5em;
-		border-top: 1px dashed #ddd;
+		border-top: 1px solid #f4f4f4;
 	}
 
 	#comments ol > li {
@@ -3419,7 +3419,7 @@ body.front-page .entry-content {
 .comment-list + #respond,
 .comment-list #respond {
 	position: relative;
-	border-top: 1px dashed #ddd;
+	border-top: 1px solid #f4f4f4;
 	padding: 0;
 }
 
