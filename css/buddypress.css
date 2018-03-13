@@ -796,7 +796,7 @@
 		right: 0;
 		height: 55px;
 		font-size: 1rem;
-		padding: 13px 25px 11px 75px; /* 15px|25px + 32px + 11px */
+		padding: 13px 62px 11px 75px; /* 15px + 32px + 15px | 75px */
 		overflow: hidden;
 		background: #fff;
 		border-bottom: 1px solid #f9f9f9;
@@ -830,14 +830,14 @@
 
 	body.fixed-bp-single-item #buddypress #item-header-avatar {
 		position: fixed;
-		top: 73px;
+		top: 72px;
 		left: 27px; /* 25px padding-left + 2px border-width of activity list avatars */
 		transform: none;
 	}
 
 		body.fixed-bp-single-item #buddypress #item-header-avatar .item-avatar {
-			width: 32px;
-			height: 32px;
+			width: 34px;
+			height: 34px;
 			padding: 0;
 		}
 
@@ -889,12 +889,12 @@
 @media screen and (min-width: 561px) and (max-width: 740px) {
 	body.fixed-bp-single-item .entry-header {
 		top: 76px;
-		padding: 11px 91px 11px 78px;
+		padding: 13px 91px 11px 145px;
 	}
 
 	body.fixed-bp-single-item #buddypress #item-header-avatar {
 		top: 87px;
-		left: 35px;
+		left: 80px;
 	}
 
 	body.fixed-bp-single-item #buddypress .item-actions-toggle {
