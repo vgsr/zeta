@@ -787,7 +787,7 @@
 		}
 }
 
-/* Up to Breakpoint 2. .fixed-bp-single-item appears only on small screens! */
+/* Up to Breakpoint 2. .fixed-bp-single-item only for small screens! */
 @media screen and (max-width: 740px) {
 	body.fixed-bp-single-item .entry-header {
 		position: fixed;
@@ -796,7 +796,7 @@
 		right: 0;
 		height: 55px;
 		font-size: 1rem;
-		padding: 11px 58px 11px 68px; /* 15px|25px + 32px + 11px */
+		padding: 13px 25px 11px 75px; /* 15px|25px + 32px + 11px */
 		overflow: hidden;
 		background: #fff;
 		border-bottom: 1px solid #f9f9f9;
@@ -831,7 +831,7 @@
 	body.fixed-bp-single-item #buddypress #item-header-avatar {
 		position: fixed;
 		top: 73px;
-		left: 25px;
+		left: 27px; /* 25px padding-left + 2px border-width of activity list avatars */
 		transform: none;
 	}
 
