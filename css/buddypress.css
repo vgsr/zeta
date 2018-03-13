@@ -1198,23 +1198,23 @@
 			margin-right: 10px;
 		}
 
-		.buddypress.profile-edit .editfield .datebox select {
+		.buddypress.profile-edit .editfield .datebox-selects select {
 			float: left;
 			padding: 6px;
 			margin: 0;
 		}
 
-		.buddypress.profile-edit .editfield .datebox select:nth-of-type(1) {
+		.buddypress.profile-edit .editfield .datebox-selects select:nth-of-type(1) {
 			width: 21.67%;
 		}
 
-		.buddypress.profile-edit .editfield .datebox select:nth-of-type(2) {
+		.buddypress.profile-edit .editfield .datebox-selects select:nth-of-type(2) {
 			width: 41.67%;
 			margin-left: 3.33%;
 			margin-right: 3.33%;
 		}
 
-		.buddypress.profile-edit .editfield .datebox select:nth-of-type(3) {
+		.buddypress.profile-edit .editfield .datebox-selects select:nth-of-type(3) {
 			width: 30%;
 		}
 
