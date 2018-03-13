@@ -1790,7 +1790,7 @@
 				content: '';
 				font-family: dashicons;
 				font-size: 1.2em;
-				line-height: 1.2em;
+				line-height: 1.5em;
 			}
 
 			#buddypress .messages .thread-star .icon:before,
@@ -2103,7 +2103,7 @@
 				margin-right: 8px;
 				font-family: dashicons;
 				font-size: 1.2em;
-				line-height: 1.2em;
+				line-height: 1.5em;
 				opacity: .5;
 			}
 
