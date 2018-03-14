@@ -21,14 +21,14 @@
 .bbp-forums ul,
 .bbp-topics ul {
 	float: left;
-	padding: 0;
-	margin: 0;
+	padding: 0px;
+	margin: 0px;
 	list-style: none;
 }
 
 .bbp-forums,
 .bbp-topics {
-	margin: 1.5em -35px 0;
+	margin: 1.5em -35px 0px;
 }
 
 	.bbp-forums ul,
@@ -45,14 +45,14 @@
 		.bbp-topics > li {
 			float: left;
 			width: 100%;
-			margin-bottom: 0;
+			margin-bottom: 0px;
 		}
 
 			.bbp-forums > li li,
 			.bbp-topics > li li {
 				position: relative;
 				float: left;
-				padding: 0;
+				padding: 0px;
 			}
 
 				/* The main column */
@@ -64,7 +64,7 @@
 
 					.bbp-forums li p:first-child,
 					.bbp-topics li p:first-child {
-						margin-top: 0;
+						margin-top: 0px;
 					}
 
 					.bbp-body li:first-child .bbp-forum-title,
@@ -81,8 +81,8 @@
 				.bbp-body   li:not(:first-child) p {
 					float: none;
 					display: inline;
-					padding: 0;
-					margin: 0;
+					padding: 0px;
+					margin: 0px;
 				}
 
 					/* Show detail icon */
@@ -139,7 +139,7 @@
 		}
 
 			.bbp-header ul {
-				border-width: 1px 0;
+				border-width: 1px 0px;
 				border-style: dashed;
 				border-color: #ddd;
 			}
@@ -148,13 +148,13 @@
 		.bbp-topics > li li {
 			position: relative;
 			float: left;
-			padding: 0 15px 0 0;
+			padding: 0px 15px 0px 0px;
 		}
 
 			.bbp-header li:first-child,
 			.bbp-body   li:first-child {
 				width: 50%;
-				margin-bottom: 0;
+				margin-bottom: 0px;
 			}
 
 			.bbp-header li:not(:first-child),
@@ -166,7 +166,7 @@
 
 				.bbp-body li:not(:first-child) p {
 					display: block;
-					margin: 0;
+					margin: 0px;
 				}
 
 				/* Hide table header titles */
@@ -188,7 +188,7 @@
 					}
 
 					.bbp-body li:not(:first-child):not(:nth-child(2)):before {
-						margin: 0;
+						margin: 0px;
 					}
 
 			.bbp-forums li.bbp-forum-topic-count,
@@ -201,6 +201,6 @@
 			.bbp-forums li.bbp-forum-freshness,
 			.bbp-forums li.bbp-topic-freshness {
 				width: 26%;
-				padding-right: 0;
+				padding-right: 0px;
 			}
 }

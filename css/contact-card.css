@@ -6,7 +6,7 @@
  */
 
 .contact-card {
-	margin: 1.5em auto 0;
+	margin: 1.5em auto 0px;
 	text-align: center;
 }
 
@@ -28,8 +28,8 @@
 
 .contact-card .contact-body .contact-photo {
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: 0px;
+	right: 0px;
 	display: inline-block;
 	width: 84px;
 	height: 84px;
@@ -39,7 +39,7 @@
 }
 
 	.contact-card.avatar-left .contact-body .contact-photo {
-		left: 0;
+		left: 0px;
 		right: auto;
 	}
 
@@ -50,7 +50,7 @@
 	}
 
 .contact-card .contact-body .contact-title {
-	margin: .25em 0 0;
+	margin: .25em 0px 0px;
 }
 
 .contact-card .contact-details {
@@ -59,12 +59,12 @@
 
 .contact-card .contact-title,
 .contact-card .contact-details {
-	padding: 0 104px 0 15px;
+	padding: 0px 104px 0px 15px;
 }
 
 .contact-card.avatar-left .contact-title,
 .contact-card.avatar-left .contact-details {
-	padding: 0 15px 0 104px;
+	padding: 0px 15px 0px 104px;
 }
 
 	.contact-card .contact-details dl {
@@ -88,7 +88,7 @@
 
 		.contact-card .contact-details dd {
 			display: inline-block;
-			margin: 0;
+			margin: 0px;
 			word-break: break-word;
 		}
 
@@ -100,9 +100,9 @@ body:not(.front-page) .widget-area .widget .contact-card .contact-body,
 .footer-area .widget .contact-card .contact-body {
 	max-width: none;
 	min-height: 54px;
-	padding: 0;
+	padding: 0px;
 	background: none;
-	border: 0;
+	border: 0px;
 }
 
 	.widget .contact-card .contact-body .contact-photo {

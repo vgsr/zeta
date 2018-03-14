@@ -38,7 +38,7 @@
 #buddypress .groups        > *:last-child,
 #buddypress .dir-list      > *:last-child,
 #buddypress .standard-form > *:last-child {
-	margin-bottom: 0;
+	margin-bottom: 0px;
 }
 
 #buddypress table td.label {
@@ -50,7 +50,7 @@
 }
 
 .site-content #buddypress *:not(p) > a:hover {
-	border: 0;
+	border: 0px;
 }
 
 /*--------------------------------------------------------------
@@ -60,21 +60,21 @@
 #buddypress .button-nav {
 	position: relative;
 	font-family: 'Montserrat', Arial, sans-serif;
-	margin: 1.5em -25px 0;
+	margin: 1.5em -25px 0px;
 }
 
 	#buddypress .item-list-tabs ul,
 	#buddypress .button-nav {
 		list-style: none;
 		display: inline-block;
-		padding: 0 17px;
+		padding: 0px 17px;
 		background-color: #f9f9f9;
 		font-size: .9em;
 	}
 
 	#buddypress .item-list-tabs ul {
 		width: 100%;
-		margin: 0;
+		margin: 0px;
 		vertical-align: bottom;
 	}
 
@@ -95,7 +95,7 @@
 	}
 
 	#buddypress .item-list-tabs ul li[role="search"] {
-		margin: 0 0 -1px 0;
+		margin: 0px 0px -1px;
 	}
 
 		#buddypress .item-list-tabs ul li:first-child[role="search"] {
@@ -119,18 +119,18 @@
 	#buddypress .item-list-tabs ul li.filter,
 	#buddypress .item-list-tabs ul li.last {
 		float: right;
-		padding: 0 10px;
-		margin: 0;
+		padding: 0px 10px;
+		margin: 0px;
 		color: #b0b0b0;
 	}
 
 		#buddypress .item-list-tabs ul li.filter select,
 		#buddypress .item-list-tabs ul li.last select {
 			width: auto;
-			padding: 8.5px 0;
+			padding: 8.5px 0px;
 			margin-left: 5px;
 			background: none;
-			border: 0;
+			border: 0px;
 			font-size: 1em;
 		}
 
@@ -147,7 +147,7 @@
 	#buddypress .button-nav li.current,
 	#buddypress .button-nav li.selected {
 		background: none;
-		margin: 0 10px;
+		margin: 0px 10px;
 	}
 
 	#buddypress .item-list-tabs ul li.current:first-child,
@@ -205,7 +205,7 @@
 
 #buddypress #subnav {
 	font-size: .9em;
-	margin-top: 0;
+	margin-top: 0px;
 }
 
 	#buddypress #subnav ul {
@@ -215,7 +215,7 @@
 
 		#buddypress #subnav ul li.current,
 		#buddypress #subnav ul li.selected {
-			margin: 0;
+			margin: 0px;
 		}
 
 			#buddypress #subnav ul li.current a,
@@ -227,12 +227,12 @@
 @media screen and (min-width: 561px) {
 	#buddypress .item-list-tabs,
 	#buddypress .button-nav {
-		margin: 1.5em -35px 0;
+		margin: 1.5em -35px 0px;
 	}
 
 	#buddypress .item-list-tabs ul,
 	#buddypress .button-nav {
-		padding: 0 27px;
+		padding: 0px 27px;
 	}
 
 		#buddypress .button-nav {
@@ -271,7 +271,7 @@
 	#buddypress .pagination .pag-count {
 		float: left;
 		font-size: .9em;
-		padding: 4px 0;
+		padding: 4px 0px;
 	}
 
 	#buddypress .pagination .pagination-links {
@@ -294,7 +294,7 @@
 
 			#buddypress .pagination .pagination-links .page-numbers.dots {
 				min-width: auto;
-				padding: 0;
+				padding: 0px;
 			}
 
 			#buddypress .pagination .pagination-links .page-numbers:not(.dots):hover {
@@ -317,7 +317,7 @@
 		position: absolute;
 		top: 35px;
 		right: 35px;
-		margin: 0;
+		margin: 0px;
 	}
 }
 
@@ -347,12 +347,12 @@
 	.buddypress.bp-user:not(.activity-permalink) #breadcrumb,
 	.buddypress.groups.single-item #breadcrumb {
 		order: 2;
-		border: 0;
+		border: 0px;
 		border-top: 1px dashed #ddd;
 	}
 
 #buddypress #item-header {
-	padding: 0;
+	padding: 0px;
 }
 
 #buddypress #item-header-avatar {
@@ -361,7 +361,7 @@
 	left: 50%;
 	-webkit-transform: translateX(-50%);
 	transform: translateX(-50%);
-	margin: 0;
+	margin: 0px;
 	z-index: 10;
 }
 
@@ -456,7 +456,7 @@
 					.js #buddypress .item-list .action .generic-button a:before {
 						position: absolute;
 						left: 8px;
-						margin: 0;
+						margin: 0px;
 					}
 
 	#buddypress .item-actions-toggle,
@@ -473,7 +473,7 @@
 		-moz-box-shadow: none;
 		-webkit-box-shadow: none;
 		box-shadow: none;
-		border-radius: 0;
+		border-radius: 0px;
 		color: rgba(64, 64, 64, .9);
 		text-shadow: none;
 		line-height: 32px;
@@ -536,13 +536,13 @@
 			}
 
 		#buddypress #item-admins h2 ~ h2 {
-			margin-top: 0;
+			margin-top: 0px;
 		}
 
 		#buddypress #item-admins ul {
 			display: inline;
-			margin: 0;
-			padding: 0;
+			margin: 0px;
+			padding: 0px;
 			list-style: none;
 		}
 
@@ -575,16 +575,16 @@
 
 #buddypress .item-list {
 	list-style: none;
-	margin-top: 0;
-	padding: 0;
+	margin-top: 0px;
+	padding: 0px;
 }
 
 	#buddypress .item-list > li {
 		position: relative;
 		display: inline-block;
 		width: 100%;
-		margin: 1.5em 0 0;
-		font-size: 0.9em;
+		margin: 1.5em 0px 0px;
+		font-size: .9em;
 		vertical-align: top;
 	}
 
@@ -619,7 +619,7 @@
 				}
 
 		#buddypress .dir-list .item-list > li .item {
-			padding: 0 5px 0 calc( 22% + 19px );
+			padding: 0px 5px 0px calc( 22% + 19px );
 		}
 
 	/* Set .dir-list li as min-width 225px */
@@ -654,7 +654,7 @@
 				}
 
 		#buddypress .dir-list .item-list > li .item {
-			padding: 0 5px 0 99px;
+			padding: 0px 5px 0px 99px;
 		}
 	}
 
@@ -722,7 +722,7 @@
 		left: auto;
 		right: 100%;
 		width: auto;
-		margin: 0;
+		margin: 0px;
 		-webkit-transform: translateX(95px) translateY(20px);
 		transform: translateX(95px) translateY(20px);
 	}
@@ -792,8 +792,8 @@
 	body.fixed-bp-single-item .entry-header {
 		position: fixed;
 		top: 62px;
-		left: 0;
-		right: 0;
+		left: 0px;
+		right: 0px;
 		height: 55px;
 		font-size: 1rem;
 		padding: 13px 62px 11px 75px; /* 15px + 32px + 15px | 75px */
@@ -801,9 +801,9 @@
 		background: #fff;
 		border-bottom: 1px solid #f9f9f9;
 		text-align: left;
-		-moz-box-shadow: 0 0 5px rgba(64, 64, 64, .5);
-		-webkit-box-shadow: 0 0 5px rgba(64, 64, 64, .5);
-		box-shadow: 0 0 5px rgba(64, 64, 64, .5);
+		-moz-box-shadow: 0px 0px 5px rgba(64, 64, 64, .5);
+		-webkit-box-shadow: 0px 0px 5px rgba(64, 64, 64, .5);
+		box-shadow: 0px 0px 5px rgba(64, 64, 64, .5);
 		z-index: 10; /* along with #item-header-avatar */
 	}
 
@@ -838,7 +838,7 @@
 		body.fixed-bp-single-item #buddypress #item-header-avatar .item-avatar {
 			width: 34px;
 			height: 34px;
-			padding: 0;
+			padding: 0px;
 		}
 
 			body.fixed-bp-single-item #buddypress #item-header-avatar .item-avatar,
@@ -946,7 +946,7 @@
 	display: inline-block; /* no floating */
 	width: 50px;
 	height: 50px;
-	margin: 0 3px 7px 0; /* 4px space in between */
+	margin: 0px 3px 7px 0px; /* 4px space in between */
 }
 
 	.avatar-block .item-avatar a:before,
@@ -986,7 +986,7 @@
 	.bp-item-list li .item-title:after {
 		content: '';
 		position: absolute;
-		bottom: 0;
+		bottom: 0px;
 		margin-left: -5px;
 		border-top: 5px solid #404040;
 		border-left: 5px solid transparent;
@@ -1023,12 +1023,12 @@
 #buddypress .table-list,
 #buddypress .table-list ul {
 	list-style: none;
-	margin: 1.5em 0 0;
-	padding: 0;
+	margin: 1.5em 0px 0px;
+	padding: 0px;
 }
 
 	#buddypress .table-list > li {
-		margin: 0 -25px;
+		margin: 0px -25px;
 		padding: 10px 25px;
 	}
 
@@ -1040,13 +1040,13 @@
 	#buddypress .table-list > li:last-child {
 		background-color: none;
 		margin-top: 1.5em;
-		padding-top: 0;
-		padding-bottom: 0;
+		padding-top: 0px;
+		padding-bottom: 0px;
 	}
 
 		#buddypress .table-list > li ul {
 			position: relative;
-			margin: 0;
+			margin: 0px;
 		}
 
 			#buddypress .table-list .bulk-select-check,
@@ -1062,7 +1062,7 @@
 
 @media screen and (min-width: 561px) {
 	#buddypress .table-list > li {
-		margin: 0 -35px;
+		margin: 0px -35px;
 		padding: 10px 35px;
 	}
 }
@@ -1078,7 +1078,7 @@
 3.1 User Profile
 --------------------------------------------------------------*/
 .bp-user .entry-content {
-	margin-top: 0;
+	margin-top: 0px;
 }
 
 #buddypress .item-list-tabs + form > label:first-child {
@@ -1086,7 +1086,7 @@
 }
 
 #buddypress .item-list-tabs + form > label {
-	margin: 1.5em 0 .5em;
+	margin: 1.5em 0px .5em;
 	display: inline-block;
 }
 
@@ -1130,9 +1130,9 @@
 		padding: 11px 10px 9px;
 		color: #fff;
 		outline: 0;
-		-moz-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15), inset 0 2px 5px rgba(0, 0, 0, 0.35);
-		-webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15), inset 0 2px 5px rgba(0, 0, 0, 0.35);
-		box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15), inset 0 2px 5px rgba(0, 0, 0, 0.35);
+		-moz-box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.15), inset 0px 2px 5px rgba(0, 0, 0, 0.35);
+		-webkit-box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.15), inset 0px 2px 5px rgba(0, 0, 0, 0.35);
+		box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.15), inset 0px 2px 5px rgba(0, 0, 0, 0.35);
 	}
 
 .buddypress.my-profile a.edit-field-group:before {
@@ -1146,7 +1146,7 @@
 .buddypress.settings .settings-field {
 	display: inline-block;
 	width: 100%;
-	margin: 1em 0 0;
+	margin: 1.5em 0px 0px;
 }
 
 	/* Floating is used because of inline-block space issue */
@@ -1156,18 +1156,16 @@
 		display: block;
 		float: left;
 		width: 100%;
-		padding: 6px 0 0;
+		padding: 6px 0px 0px;
 		margin-bottom: .5em;
 	}
 
 	.buddypress.profile-edit .editfield fieldset {
-		border: 0;
-		margin: 0;
-		padding: 0;
+		border: 0px;
+		margin: 0px;
+		padding: 0px;
 	}
 
-	.buddypress.profile-edit .editfield > label ~ *:not(.bp-screen-reader-text),
-	.buddypress.profile-edit .editfield fieldset ~ *:not(.bp-screen-reader-text),
 	.buddypress.settings .settings-field label ~ *:not(.bp-screen-reader-text),
 	.buddypress.profile-edit .editfield fieldset legend + div {
 		display: block;
@@ -1201,7 +1199,7 @@
 		.buddypress.profile-edit .editfield .datebox-selects select {
 			float: left;
 			padding: 6px;
-			margin: 0;
+			margin: 0px;
 		}
 
 		.buddypress.profile-edit .editfield .datebox-selects select:nth-of-type(1) {
@@ -1230,8 +1228,8 @@
 
 	.buddypress.profile-edit .editfield .description,
 	.buddypress.settings .settings-field .description {
-		margin-top: .5em;
-		font-size: 0.9em;
+		margin-top: 1em;
+		font-size: .9em;
 		font-style: italic;
 		color: #999;
 	}
@@ -1280,7 +1278,7 @@
 	#whats-new-form:after {
 		content: '';
 		position: absolute;
-		bottom: 0;
+		bottom: 0px;
 		left: -25px;
 		width: calc( 100% + 50px );
 		border-bottom: 1px solid #f4f4f4;
@@ -1291,7 +1289,7 @@
 .ac-reply-avatar,
 .acomment-avatar {
 	position: absolute;
-	left: 0;
+	left: 0px;
 	z-index: 1;
 }
 
@@ -1340,8 +1338,8 @@
 
 	#buddypress .activity .item-list > li {
 		width: 100%;
-		padding: 0 0 0 52px;
-		border: 0;
+		padding: 0px 0px 0px 52px;
+		border: 0px;
 	}
 
 	#buddypress .activity .item-list > li:not(:first-child) {
@@ -1351,16 +1349,16 @@
 	}
 
 	#buddypress .activity .item-list > li:first-child {
-		margin-top: 0;
+		margin-top: 0px;
 	}
 
 		#buddypress .activity .item-list > li p:first-child {
-			margin-top: 0;
+			margin-top: 0px;
 		}
 
 		#buddypress .activity .item-list .load-newest,
 		#buddypress .activity .item-list .load-more {
-			padding: 0;
+			padding: 0px;
 		}
 
 			#buddypress .activity .item-list .load-newest a,
@@ -1383,7 +1381,7 @@
 	}
 
 		#buddypress .activity .activity-header a {
-			border: 0;
+			border: 0px;
 		}
 
 			#buddypress .activity .activity-header br {
@@ -1403,11 +1401,11 @@
 	}
 
 	#buddypress .activity .activity-inner {
-		margin: 10px 0;
+		margin: 10px 0px;
 	}
 
 	#buddypress .activity .activity-meta {
-		margin: 5px 0 0;
+		margin: 5px 0px 0px;
 	}
 
 		#buddypress .notification-actions .icon,
@@ -1415,12 +1413,12 @@
 		#buddypress .activity .activity-meta .button,
 		#buddypress .activity .acomment-options a {
 			background: none;
-			padding: 0 5px 0 0;
+			padding: 0px 5px 0px 0px;
 			vertical-align: bottom;
 			font-family: 'Montserrat', Arial, sans-serif;
 			font-size: .8em;
 			color: rgba(64, 64, 64, .5); /* Don't use `opacity`, as it cannot be overriden positively */
-			border: 0;
+			border: 0px;
 			-webkit-transition: none;
 			transition: none;
 		}
@@ -1438,7 +1436,7 @@
 			#buddypress .activity .button:focus,
 			#buddypress .activity .button:active {
 				background: none;
-				padding: 0 5px 0 0;
+				padding: 0px 5px 0px 0px;
 				color: inherit;
 				-moz-box-shadow: none;
 				-webkit-box-shadow: none;
@@ -1475,7 +1473,7 @@
 			width: 100%;
 			vertical-align: bottom;
 			margin-top: 15px;
-			padding: 15px 0 0;
+			padding: 15px 0px 0px;
 			border-top: 1px solid #f4f4f4;
 		}
 
@@ -1487,7 +1485,7 @@
 
 			#buddypress .activity .activity-comments li:not(:first-child) {
 				margin-top: 15px;
-				padding: 15px 0 0;
+				padding: 15px 0px 0px;
 				border-top: 1px solid #f4f4f4;
 			}
 
@@ -1540,7 +1538,7 @@
 				#buddypress .activity .activity-comments .ac-reply-cancel {
 					display: inline-block;
 					vertical-align: middle;
-					padding: 7px 0;
+					padding: 7px 0px;
 				}
 
 					#buddypress .activity .activity-comments .ac-reply-cancel:hover {
@@ -1566,7 +1564,7 @@
 	}
 
 	.mini .activity-avatar a {
-		margin: 0 8px; /* Maintain 54px width */
+		margin: 0px 8px; /* Maintain 54px width */
 	}
 
 	.mini .activity-avatar a,
@@ -1665,14 +1663,14 @@
 #buddypress .notification-settings td.no {
 	width: 15%;
 	text-align: center;
-	padding-right: 0;
+	padding-right: 0px;
 }
 
 /*--------------------------------------------------------------
 3.6 Messages
 --------------------------------------------------------------*/
 #buddypress .message-search {
-	padding: 10px 35px 0;
+	padding: 10px 35px 0px;
 	text-align: right;
 }
 
@@ -1687,7 +1685,7 @@
 	}
 
 		#buddypress .messages .table-list .bulk-select-all input {
-			margin-right: 0;
+			margin-right: 0px;
 		}
 
 	#buddypress .messages .table-list .bulk-select-check {
@@ -1773,16 +1771,16 @@
 	#buddypress .messages .table-list li.thread-activity,
 	#buddypress .messages .table-list li.thread-options {
 		position: absolute;
-		margin-left: 0;
+		margin-left: 0px;
 	}
 
 	#buddypress .messages .table-list .thread-star {
-		top: 0;
-		right: 0;
+		top: 0px;
+		right: 0px;
 	}
 
 		#buddypress .messages .thread-star a {
-			border: 0;
+			border: 0px;
 		}
 
 			#buddypress .messages .thread-star .icon:before,
@@ -1814,7 +1812,7 @@
 			}
 
 	#buddypress .messages .table-list .thread-activity {
-		top: 0;
+		top: 0px;
 		right: 30px;
 		text-align: right;
 		font-size: .8em;
@@ -1848,7 +1846,7 @@
 		}
 
 	#buddypress .messages .table-list .thread-options {
-		right: 0;
+		right: 0px;
 		bottom: -6px;
 	}
 
@@ -1915,9 +1913,9 @@
 
 		#buddypress #message-thread .message-box .activity {
 			position: absolute;
-			top: 0;
+			top: 0px;
 			right: 30px;
-			margin: 0;
+			margin: 0px;
 			font-size: .8em;
 			line-height: 1.8em;
 			color: rgba(64, 64, 64, .8);
@@ -1926,13 +1924,13 @@
 
 		#buddypress #message-thread .message-box .message-star-actions {
 			position: absolute;
-			top: 0;
-			right: 0;
-			margin: 0;
+			top: 0px;
+			right: 0px;
+			margin: 0px;
 		}
 
 		#buddypress #message-thread .message-box .reply-title {
-			margin-top: 0;
+			margin-top: 0px;
 		}
 
 		#buddypress #message-thread .message-box .message-content textarea,
@@ -1987,24 +1985,24 @@
 .buddypress.groups .standard-form div > label,
 .buddypress.groups .standard-form > label {
 	display: inline-block;
-	margin: 1.5em 0 .5em;
+	margin: 1.5em 0px .5em;
 }
 
 .buddypress.groups .standard-form .radio label {
 	display: inline-block;
 	width: 100%;
-	margin: 0;
+	margin: 0px;
 	padding-top: 6px;
 }
 
 .buddypress.groups .standard-form .radio label:first-child,
 .buddypress.groups .standard-form .radio ul + label {
-	margin: 1.5em 0 0;
-	padding-top: 0;
+	margin: 1.5em 0px 0px;
+	padding-top: 0px;
 }
 
 .buddypress.groups .standard-form .radio ul {
-	margin: 0.5em 0 0;
+	margin: 0.5em 0px 0px;
 	padding-left: 3em;
 	font-size: .9em;
 	font-style: italic;
@@ -2016,7 +2014,7 @@
 
 .buddypress.groups .standard-form .left-menu {
 	float: right;
-	margin-top: 0 !important;
+	margin-top: 0px !important;
 	margin-left: .5em;
 }
 
@@ -2038,7 +2036,7 @@
 	}
 
 #buddypress .bp-avatar-status {
-	margin-bottom: 0;
+	margin-bottom: 0px;
 }
 
 #buddypress .bp-avatar-status:empty {
@@ -2058,7 +2056,7 @@
 	.no-js #buddypress .generic-button {
 		display: inline-block;
 		width: auto;
-		margin: 5px 5px 0 0;
+		margin: 5px 5px 0px 0px;
 		vertical-align: bottom;
 	}
 
@@ -2109,7 +2107,7 @@
 
 			#buddypress .notification-actions .icon:before,
 			#buddypress .thread-options .icon:before {
-				margin: 0;
+				margin: 0px;
 				font-size: 1.4em;
 				line-height: 1.5em;
 			}
@@ -2242,9 +2240,9 @@
 .bp-screen-reader-text:focus {
 	background-color: #f1f1f1;
 	border-radius: 3px;
-	-moz-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-	-webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	-moz-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.6);
+	box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.6);
 	clip: auto !important;
 	color: #21759b;
 	display: block;
