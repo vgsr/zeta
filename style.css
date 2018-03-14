@@ -3158,15 +3158,20 @@ body.front-page .entry-content {
 	border: 1px solid #ddd;
 }
 
-.site-content .wp-editor-wrap button {
-	background: none;
-	border: none;
-}
-
-	.site-content .wp-editor-wrap button:hover {
-		background: none;
-		color: inherit;
+	.site-content .wp-editor-wrap .wp-editor-container {
+		border-width: 1px 0px 0px;
 	}
+
+	.site-content .wp-editor-wrap button {
+		margin: 0px;
+		background: none;
+		border: none;
+	}
+
+		.site-content .wp-editor-wrap button:hover {
+			background: none;
+			color: inherit;
+		}
 
 .entry-meta,
 .entry-footer {
