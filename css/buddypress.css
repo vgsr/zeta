@@ -1173,14 +1173,33 @@
 		width: 100%;
 	}
 
-	.required-field .bp-required-field-label {
+	.buddypress.profile-edit .editfield legend {
+		margin: 0px;
+		font-family: 'Montserrat', Arial, sans-serif;
+		font-weight: bold;
+		font-size: .9em;
+	}
+
+	.buddypress.profile-edit .profile-edit-form {
+		counter-reset: form-field;
+	}
+
+	.buddypress.profile-edit .editfield {
+		counter-increment: form-field;
+	}
+
+		.buddypress.profile-edit .editfield legend:before {
+			content: counter(form-field) '. ';
+		}
+
+	.buddypress .required-field .bp-required-field-label {
 		display: none;
 	}
 
-	.required-field > label:after,
-	.required-field legend:after {
+	.buddypress .required-field > label:after,
+	.buddypress .required-field legend:after {
 		content: '*';
-		margin-left: -4px;
+		margin-left: .1em;
 		color: #a00;
 	}
 
@@ -1239,32 +1258,21 @@
 			display: none;
 		}
 
-/* Upto here set profile labels and inputs at full width (content-width: 550px) */
-@media screen and (min-width: 637px) {
-
-	/* Floating is used because of inline-block space issue */
-	.buddypress.profile-edit .editfield > label:first-child,
-	.buddypress.profile-edit .editfield fieldset legend,
-	.buddypress.settings .settings-field label:first-child {
-		width: 40%;
-		padding: 6px 15px 0 0;
-		margin: 0;
+	.buddypress.profile-edit .editfield .description + *,
+	.buddypress.profile-edit .editfield legend + *:not(.description) {
+		margin-top: 1em;
 	}
 
-	.buddypress.profile-edit .editfield > label ~ *:not(.bp-screen-reader-text),
-	.buddypress.profile-edit .editfield fieldset ~ *:not(.bp-screen-reader-text),
-	.buddypress.settings .settings-field label ~ *:not(.bp-screen-reader-text),
-	.buddypress.profile-edit .editfield fieldset legend + div {
-		width: 60%;
-		margin-left: 40%;
+	.buddypress.profile-edit .editfield .input-options .option-label {
+		display: block;
+		width: 100%;
+		margin-top: 5px;
 	}
 
-	.buddypress.profile-edit .editfield label:first-child + *,
-	.buddypress.settings .settings-field label:first-child + *,
-	.buddypress.profile-edit .editfield fieldset legend + div {
-		margin-left: 0;
+	.buddypress.profile-edit .editfield .input-options input[type="checkbox"],
+	.buddypress.profile-edit .editfield .input-options input[type="radio"] {
+		margin-right: 12px;
 	}
-}
 
 /*--------------------------------------------------------------
 3.4 Activity
