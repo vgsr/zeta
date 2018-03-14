@@ -344,8 +344,8 @@
 	flex-direction: column;
 }
 
-	.buddypress.bp-user:not(.activity-permalink) #breadcrumb,
-	.buddypress.groups.single-item #breadcrumb {
+	.buddypress.bp-user:not(.activity-permalink):not(.error404) #breadcrumb,
+	.buddypress.groups.single-item:not(.error404) #breadcrumb {
 		order: 2;
 		border: 0px;
 		border-top: 1px dashed #ddd;
