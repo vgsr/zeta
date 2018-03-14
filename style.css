@@ -3625,8 +3625,10 @@ body.logged-in #comments > #respond:first-child {
 		margin: 1.5em 0px;
 	}
 
-.wp-block-gallery {
+.wp-block-gallery,
+.entry-content .wp-block-gallery {
 	margin: calc(1.5em - 8px) -8px -8px;
+	padding: 0px;
 }
 
 .wp-block-quote cite {
