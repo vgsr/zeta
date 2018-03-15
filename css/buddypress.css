@@ -1451,6 +1451,16 @@
 				box-shadow: none;
 			}
 
+			/* Hide activity comment count when without comments */
+			#buddypress .activity .activity-item:not(.has-comments) .button.acomment-reply {
+				margin-right: -3px;
+			}
+
+				/* Hide activity comment count when without comments */
+				#buddypress .activity .activity-item:not(.has-comments) .button.acomment-reply span {
+					display: none;
+				}
+
 			#buddypress .activity .activity-meta .button.acomment-reply span:before {
 				content: '(';
 			}
