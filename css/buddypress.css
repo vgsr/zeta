@@ -885,6 +885,17 @@
 	}
 }
 
+/* Allowance for larger avatars */
+@media screen and (min-width: 440px) and (max-width: 740px) {
+	body.fixed-bp-single-item .entry-header {
+		padding-left: 100px;
+	}
+
+	body.fixed-bp-single-item #buddypress #item-header-avatar {
+		margin: 0px 8px;
+	}
+}
+
 /* Breakpoint 1 up to Breakpoint 2 */
 @media screen and (min-width: 561px) and (max-width: 740px) {
 	body.fixed-bp-single-item .entry-header {
@@ -894,7 +905,7 @@
 
 	body.fixed-bp-single-item #buddypress #item-header-avatar {
 		top: 87px;
-		left: 80px;
+		left: 72px;
 	}
 
 	body.fixed-bp-single-item #buddypress .item-actions-toggle {
