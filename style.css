@@ -2382,7 +2382,8 @@ body.menu-toggled {
 #breadcrumb {
 	font-family: 'Montserrat', Arial, sans-serif;
 	font-size: .8em;
-	padding: 25px 35px;
+	padding: 17px 35px;
+	line-height: 2.8;
 }
 
 	/* Home icon */
