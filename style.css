@@ -1646,6 +1646,10 @@ body.menu-toggled {
 	height: calc( 100vh - 46px - 62px );
 }
 
+.admin-bar.menu-toggled.fixed-header .main-navigation {
+	height: calc( 100vh - 62px );
+}
+
 .menu-toggled #header-aside,
 .menu-toggled #content {
 	-webkit-filter: blur(3px);
@@ -2024,7 +2028,8 @@ body.menu-toggled {
 		margin-top: 76px;
 	}
 
-	.menu-toggled .main-navigation {
+	.menu-toggled .main-navigation,
+	.admin-bar.menu-toggled.fixed-header .main-navigation {
 		height: calc( 100vh - 76px );
 	}
 
@@ -2062,6 +2067,13 @@ body.menu-toggled {
 			}
 }
 
+/* Breakpoint .admin-bar is fixed */
+@media screen and (min-width: 601px) {
+	.admin-bar.menu-toggled.fixed-header .main-navigation {
+		height: calc( 100vh - 46px - 76px );
+	}
+}
+
 /* Breakpoint 2 */
 @media screen and (min-width: 741px) {
 	.site-header .menu a,
@@ -2093,7 +2105,9 @@ body.menu-toggled {
 		filter: none;
 	}
 
-	.menu-toggled .main-navigation {
+	.menu-toggled .main-navigation,
+	.admin-bar.menu-toggled .main-navigation,
+	.menu-toggled.fixed-header .main-navigation {
 		height: auto;
 		overflow-y: inherit;
 		background: none;
