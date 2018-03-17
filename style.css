@@ -2602,20 +2602,24 @@ input[type="radio"] {
 	display: none;
 }
 
+.search-form.with-context {
+	display: -ms-grid; /* IE 10+ */
+	display: grid;
+	-ms-grid-columns: 1fr auto; /* IE 10+ */
+	grid-auto-columns: 1fr auto;
+}
+
 .search-form.with-context input[type="search"] {
-	display: block;
-	float: left;
-	width: 75%;
+	-ms-grid-column: 1; /* IE 10+ */
+	grid-column: 1;
 }
 
 .search-form.with-context select.zeta-search-context {
-	display: block;
-	float: left;
-	width: 25%;
-	padding: 7px 10px;
+	-ms-grid-column: 2; /* IE 10+ */
+	grid-column: 2;
+	width: 150px;
 	border-left: 0px;
 	color: #a9a9a9;
-	height: calc( 1.6em + 12px ); /* IE?! */
 }
 
 /*--------------------------------------------------------------
