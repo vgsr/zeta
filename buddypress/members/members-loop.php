@@ -6,6 +6,8 @@
  * Querystring is set via AJAX in _inc/ajax.php - bp_legacy_theme_object_filter()
  *
  * Changes to the default template:
+ * - Removed current member type message before the top pagination
+ * - Added size and type modifiers to the item's avatar. Use 'full' avatars, because the default 'thumb' is 50x50.
  * - Removed whitespace in .action
  * - Added button.action-toggle for displaying item actions
  * - Removed div.clear
@@ -58,7 +60,7 @@ do_action( 'bp_before_members_loop' ); ?>
 
 		<li <?php bp_member_class(); ?>>
 			<div class="item-avatar">
-				<a href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar( array( 'width' => 80, 'height' => 80 ) ); ?></a>
+				<a href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar( array( 'type' => 'full', 'width' => 80, 'height' => 80 ) ); ?></a>
 			</div>
 
 			<div class="item">
