@@ -581,15 +581,13 @@
 
 	#buddypress .item-list > li {
 		position: relative;
-		display: inline-block;
-		width: 100%;
 		margin: 1.5em 0px 0px;
 		font-size: .9em;
 		vertical-align: top;
 	}
 
 	#buddypress .dir-list .item-list > li {
-		min-height: 104px;
+		min-height: 76px;
 		padding: 10px;
 		background: #f9f9f9;
 		border: 1px solid #f9f9f9;
@@ -599,8 +597,8 @@
 		#buddypress .dir-list .item-list > li .item-avatar {
 			position: absolute;
 			top: 10px;
-			left: 10px;
-			width: 22%;
+			left: -10px;
+			width: 54px;
 		}
 
 			#buddypress .dir-list .item-list > li .item-avatar a {
@@ -619,44 +617,23 @@
 				}
 
 		#buddypress .dir-list .item-list > li .item {
-			padding: 0px 5px 0px calc( 22% + 19px );
+			padding: 0px 5px 0px 44px;
 		}
 
-	/* Set .dir-list li as min-width 225px */
-	@media only screen and (min-width: 552px) and (max-width: 560px), (min-width: 643px) and (max-width: 740px), (min-width: 748px) {
-		#buddypress .dir-list .item-list > li {
-			width: calc( 50% - .75em );
-		}
-
-		#buddypress .dir-list .item-list > li:nth-child(2n - 1) {
-			margin-right: -5px;
-		}
-
-		#buddypress .dir-list .item-list > li:nth-child(2n) {
-			margin-left: 1.5em;
-		}
-	}
-
-	/* Limit .item-avatar max-width 84px */
-	@media only screen and (min-width: 452px) and (max-width: 551px), (min-width: 561px) and (max-width: 642px), (min-width: 741px) and (max-width: 747px) {
-		#buddypress .dir-list .item-list > li .item-avatar {
-			width: 84px;
-		}
-
-			#buddypress .dir-list .item-list > li .item-avatar a {
-				width: 84px;
-				height: 84px;
+		/* Set .dir-list li as min-width 225px */
+		@media only screen and (min-width: 552px) and (max-width: 560px), (min-width: 643px) and (max-width: 740px), (min-width: 748px) {
+			#buddypress .dir-list .item-list > li {
+				width: calc( 50% - .75em );
 			}
 
-				#buddypress .dir-list .item-list > li .item-avatar a img {
-					width: 80px;
-					height: 80px;
-				}
+			#buddypress .dir-list .item-list > li:nth-child(2n - 1) {
+				margin-right: -5px;
+			}
 
-		#buddypress .dir-list .item-list > li .item {
-			padding: 0px 5px 0px 99px;
+			#buddypress .dir-list .item-list > li:nth-child(2n) {
+				margin-left: 1.5em;
+			}
 		}
-	}
 
 			#buddypress .dir-list .item-list > li .item-title {
 				margin-top: .25em;
@@ -1083,6 +1060,37 @@
 --------------------------------------------------------------*/
 #buddypress #members-dir-search {
 	display: none;
+}
+
+#buddypress #members-list.item-list {
+	display: -ms-grid;
+	display: grid;
+	-ms-grid-columns: 1fr;
+	grid-auto-columns: 1fr;
+	-ms-grid-gap: 1.5em 1.5em;
+	grid-gap: 1.5em 1.5em;
+	margin-top: 1.5em;
+}
+
+	#buddypress #members-list.item-list li:nth-child(2n + 1),
+	#buddypress #members-list.item-list li:nth-child(2n) {
+		-ms-grid-column: 1;
+		grid-column: 1;
+		margin: 0px;
+		width: auto;
+	}
+
+/* Set .dir-list li as min-width 225px */
+@media only screen and (min-width: 552px) and (max-width: 560px), (min-width: 643px) and (max-width: 740px), (min-width: 748px) {
+	#buddypress #members-list.item-list {
+		-ms-grid-columns: 1fr 1fr;
+		grid-auto-columns: 1fr 1fr;
+	}
+
+	#buddypress #members-list.item-list li:nth-child(2n) {
+		-ms-grid-column: 2;
+		grid-column: 2;
+	}
 }
 
 /*--------------------------------------------------------------
