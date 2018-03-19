@@ -455,6 +455,7 @@
 					.js #buddypress #item-actions .generic-button a:before,
 					.js #buddypress .item-list .action .generic-button a:before {
 						position: absolute;
+						top: .4em;
 						left: 8px;
 						margin: 0px;
 					}
