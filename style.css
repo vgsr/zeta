@@ -3477,8 +3477,11 @@ body.logged-in #comments > #respond:first-child {
 	}
 
 	body.logged-in #respond #commentform {
+		display: -ms-grid;
 		display: grid;
-		grid-column-gap: 0px;
+		-ms-grid-gap: 0px;
+		grid-gap: 0px;
+		-ms-grid-columns: 1fr auto;
 		grid-auto-columns: 1fr auto;
 		border: 1px solid #ddd;
 	}
@@ -3493,6 +3496,7 @@ body.logged-in #comments > #respond:first-child {
 
 	body.logged-in .comment-form-comment {
 		margin-top: 0px;
+		-ms-grid-column: 1;
 		grid-column: 1;
 	}
 
@@ -3517,6 +3521,7 @@ body.logged-in #comments > #respond:first-child {
 
 	body.logged-in .form-submit {
 		margin-top: 0px;
+		-ms-grid-column: 2;
 		grid-column: 2;
 		display: -webkit-box;
 		display: -moz-box;
