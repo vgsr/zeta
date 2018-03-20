@@ -312,15 +312,6 @@
 		margin-top: 35px;
 	}
 
-@media screen and (min-width: 741px) {
-	#buddypress .dir-search {
-		position: absolute;
-		top: 35px;
-		right: 35px;
-		margin: 0px;
-	}
-}
-
 /*--------------------------------------------------------------
 2.2 Single item
 --------------------------------------------------------------*/
@@ -1058,7 +1049,7 @@
 /*--------------------------------------------------------------
 3.0 Members
 --------------------------------------------------------------*/
-#buddypress #members-dir-search {
+#buddypress > #members-dir-search {
 	display: none;
 }
 

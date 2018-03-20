@@ -200,7 +200,7 @@ function zeta_bp_members_dir_search() {
 
 	?>
 
-	<li class="members-dir-search" role="search">
+	<li id="members-dir-search" class="dir-search" role="search">
 		<?php bp_directory_members_search_form(); ?>
 	</li>
 
