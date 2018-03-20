@@ -2762,7 +2762,7 @@ input[type="radio"] {
 
 	.widget-title {
 		margin: 0px;
-		font-size: 1.5em;
+		font-size: 1.2em;
 	}
 
 	body.front-page .widget-area .widget-title {
@@ -2776,10 +2776,6 @@ input[type="radio"] {
 	.widget .widget-title ~ *:not(.widget-content),
 	.widget .widget-title + .screen-reader-text + * {
 		margin-top: 1.5em;
-	}
-
-	.widget > *:first-child:not(.widget-title):not(p):not(ul):not(ol):not(table) {
-		margin-top: -1.5em;
 	}
 
 	.widget > p:first-child,
