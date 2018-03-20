@@ -17,10 +17,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @return bool True
  */
-function zeta_gf_disable_plugin_styles() {
-	return true;
-}
-add_filter( 'pre_option_rg_gforms_disable_css', 'zeta_gf_disable_plugin_styles' );
+add_filter( 'pre_option_rg_gforms_disable_css', '__return_true' );
 
 /**
  * Return whether the form has fields matching `$args`
