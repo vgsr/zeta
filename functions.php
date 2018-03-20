@@ -238,7 +238,8 @@ function zeta_scripts() {
 	// BuddyPress
 	if ( function_exists( 'buddypress' ) && is_buddypress() ) {
 		wp_enqueue_script( 'zeta-buddypress', $assets_url . 'js/zeta-buddypress.js', array( 'jquery' ), '0.9.0', true );
-		wp_enqueue_style( 'zeta-buddypress', $assets_url . 'css/buddypress.css', array( 'buddypress' ), '0.9.0' );
+		wp_dequeue_style( 'bp-legacy-css' );
+		wp_enqueue_style( 'zeta-buddypress', $assets_url . 'css/buddypress.css', array(), '0.9.0' );
 	}
 
 	// Contact Card
