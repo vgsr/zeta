@@ -90,7 +90,7 @@ function zeta_gf_form_has_field( $form, $args = array() ) {
  * @param bool $ajax Whether the form uses AJAX
  */
 function zeta_gf_enqueue_scripts( $form, $ajax = false ) {
-	wp_enqueue_style( 'gforms_formsmain_css', get_template_directory_uri() . '/css/gravityforms.css' );
+	wp_enqueue_style( 'gforms_formsmain_css', get_template_directory_uri() . '/assets/css/gravityforms.css' );
 
 	// Form has date field with datepicker UI
 	if ( zeta_gf_form_has_field( $form, array( 'type' => 'date', 'dateType' => 'datepicker' ) ) ) {

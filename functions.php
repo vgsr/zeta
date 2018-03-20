@@ -227,6 +227,8 @@ endif;
  */
 function zeta_scripts() {
 
+	$assets_url = get_template_directory_uri() . '/assets/';
+
 	// Load theme's main styles
 	wp_enqueue_style( 'zeta-style', get_stylesheet_uri(), array( 'tiled-gallery', 'dashicons' ), '0.9.0' );
 
@@ -235,36 +237,36 @@ function zeta_scripts() {
 
 	// BuddyPress
 	if ( function_exists( 'buddypress' ) && is_buddypress() ) {
-		wp_enqueue_script( 'zeta-buddypress', get_template_directory_uri() . '/js/zeta-buddypress.js', array( 'jquery' ), '0.9.0', true );
-		wp_enqueue_style( 'zeta-buddypress', get_template_directory_uri() . '/css/buddypress.css', array( 'buddypress' ), '0.9.0' );
+		wp_enqueue_script( 'zeta-buddypress', $assets_url . 'js/zeta-buddypress.js', array( 'jquery' ), '0.9.0', true );
+		wp_enqueue_style( 'zeta-buddypress', $assets_url . 'css/buddypress.css', array( 'buddypress' ), '0.9.0' );
 	}
 
 	// Contact Card
 	if ( function_exists( 'contact_card' ) ) {
 		wp_deregister_style( 'contact-card' );
-		wp_register_style( 'contact-card', get_template_directory_uri() . '/css/contact-card.css', array(), '0.9.0' );
+		wp_register_style( 'contact-card', $assets_url . 'css/contact-card.css', array(), '0.9.0' );
 	}
 
 	// Event Organiser
 	if ( defined( 'EVENT_ORGANISER_VER' ) ) {
-		wp_enqueue_style( 'zeta-event-organiser', get_template_directory_uri() . '/css/event-organiser.css', array(), '0.9.0' );
+		wp_enqueue_style( 'zeta-event-organiser', $assets_url . 'css/event-organiser.css', array(), '0.9.0' );
 	}
 
 	// Navigation menu for small screens
-	wp_enqueue_script( 'zeta-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '0.9.0', true );
+	wp_enqueue_script( 'zeta-navigation', $assets_url . 'js/navigation.js', array( 'jquery' ), '0.9.0', true );
 	wp_localize_script( 'zeta-navigation', 'screenReaderText', array(
 		'expand'   => '<span class="screen-reader-text">' . __( 'Expand child menu',   'zeta' ) . '</span>',
 		'collapse' => '<span class="screen-reader-text">' . __( 'Collapse child menu', 'zeta' ) . '</span>',
 	) );
 
-	wp_enqueue_script( 'zeta-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+	wp_enqueue_script( 'zeta-skip-link-focus-fix', $assets_url . 'js/skip-link-focus-fix.js', array(), '20130115', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
 	// Flexslider
-	wp_register_script( 'flexslider', get_template_directory_uri() . '/js/jquery.flexslider.min.js', array( 'jquery' ), '2.6.1', true );
+	wp_register_script( 'flexslider', $assets_url . 'js/jquery.flexslider.min.js', array( 'jquery' ), '2.6.1', true );
 }
 add_action( 'wp_enqueue_scripts', 'zeta_scripts' );
 

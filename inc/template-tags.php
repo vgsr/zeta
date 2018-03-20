@@ -855,7 +855,7 @@ function zeta_map_slide( $slides ) {
 		    layer = L.mapbox.featureLayer().addTo( map );
 		
 		// Add data points
-		layer.setGeoJSON( [<?php echo file_get_contents( get_template_directory_uri() . '/js/demo.geojson' ); ?>] );
+		layer.setGeoJSON( [<?php echo file_get_contents( get_template_directory_uri() . '/assets/js/demo.geojson' ); ?>] );
 
 		// Redraw zoom control
 		new L.Control.Zoom({ position: 'bottomleft' }).addTo( map );

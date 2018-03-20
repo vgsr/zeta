@@ -42,7 +42,7 @@ class Zeta_Customize_Image_Radio_Control extends WP_Customize_Control {
 	 * @since 1.0.0
 	 */
 	public function enqueue() {
-		wp_enqueue_style( 'zeta_customizer', get_template_directory_uri() . '/css/customizer.css', array(), '20151022' );
+		wp_enqueue_style( 'zeta_customizer', get_template_directory_uri() . '/assets/css/customizer.css', array(), '20151022' );
 	}
 
 	/**
