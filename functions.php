@@ -107,25 +107,6 @@ endif; // zeta_setup
 add_action( 'after_setup_theme', 'zeta_setup' );
 
 /**
- * Return the theme's current version number
- *
- * @since 1.0.0
- *
- * @return string Version number
- */
-function zeta_get_version() {
-	static $version = null;
-
-	// Get theme version
-	if ( null === $version ) {
-		$theme = wp_get_theme( 'zeta' );
-		$version = $theme->version;
-	}
-
-	return $version;
-}
-
-/**
  * Regirster additional image sizes
  *
  * @since 1.0.0
@@ -246,34 +227,31 @@ endif;
  */
 function zeta_scripts() {
 
-	// Get theme version
-	$version = zeta_get_version();
-
 	// Load theme's main styles
-	wp_enqueue_style( 'zeta-style', get_stylesheet_uri(), array( 'tiled-gallery', 'dashicons' ), $version );
+	wp_enqueue_style( 'zeta-style', get_stylesheet_uri(), array( 'tiled-gallery', 'dashicons' ), '0.9.0' );
 
 	// Add custom fonts, used in the main stylesheet.
 	wp_enqueue_style( 'zeta-fonts', zeta_fonts_url(), array(), null );
 
 	// BuddyPress
 	if ( function_exists( 'buddypress' ) && is_buddypress() ) {
-		wp_enqueue_script( 'zeta-buddypress', get_template_directory_uri() . '/js/zeta-buddypress.js', array( 'jquery' ), $version, true );
-		wp_enqueue_style( 'zeta-buddypress', get_template_directory_uri() . '/css/buddypress.css', array( 'buddypress' ), $version );
+		wp_enqueue_script( 'zeta-buddypress', get_template_directory_uri() . '/js/zeta-buddypress.js', array( 'jquery' ), '0.9.0', true );
+		wp_enqueue_style( 'zeta-buddypress', get_template_directory_uri() . '/css/buddypress.css', array( 'buddypress' ), '0.9.0' );
 	}
 
 	// Contact Card
 	if ( function_exists( 'contact_card' ) ) {
 		wp_deregister_style( 'contact-card' );
-		wp_register_style( 'contact-card', get_template_directory_uri() . '/css/contact-card.css', array(), $version );
+		wp_register_style( 'contact-card', get_template_directory_uri() . '/css/contact-card.css', array(), '0.9.0' );
 	}
 
 	// Event Organiser
 	if ( defined( 'EVENT_ORGANISER_VER' ) ) {
-		wp_enqueue_style( 'zeta-event-organiser', get_template_directory_uri() . '/css/event-organiser.css', array(), $version );
+		wp_enqueue_style( 'zeta-event-organiser', get_template_directory_uri() . '/css/event-organiser.css', array(), '0.9.0' );
 	}
 
 	// Navigation menu for small screens
-	wp_enqueue_script( 'zeta-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), $version, true );
+	wp_enqueue_script( 'zeta-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '0.9.0', true );
 	wp_localize_script( 'zeta-navigation', 'screenReaderText', array(
 		'expand'   => '<span class="screen-reader-text">' . __( 'Expand child menu',   'zeta' ) . '</span>',
 		'collapse' => '<span class="screen-reader-text">' . __( 'Collapse child menu', 'zeta' ) . '</span>',
