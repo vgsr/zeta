@@ -257,7 +257,7 @@ function zeta_scripts() {
 
 	// BuddyPress
 	if ( function_exists( 'buddypress' ) && is_buddypress() ) {
-		wp_enqueue_script( 'zeta-buddypress', get_template_directory_uri() . '/js/_buddypress.js', array( 'jquery' ), $version, true );
+		wp_enqueue_script( 'zeta-buddypress', get_template_directory_uri() . '/js/zeta-buddypress.js', array( 'jquery' ), $version, true );
 		wp_enqueue_style( 'zeta-buddypress', get_template_directory_uri() . '/css/buddypress.css', array( 'buddypress' ), $version );
 	}
 
