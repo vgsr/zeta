@@ -184,7 +184,7 @@
 			#buddypress .item-list-tabs li a span {
 				position: absolute;
 				top: 4px;
-				right: 3px;
+				right: -3px;
 				min-width: 15px;
 				height: 15px;
 				padding: 1px 4px;
@@ -193,6 +193,10 @@
 				color: #fff;
 				font-size: 9px;
 				text-align: center;
+			}
+
+			#buddypress .item-list-tabs li.selected a span {
+				right: 7px;
 			}
 
 			#buddypress .item-list-tabs li:not(.current):not(.selected) a span {
