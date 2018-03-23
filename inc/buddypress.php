@@ -16,14 +16,6 @@ defined( 'ABSPATH' ) || exit;
  * Output entry meta's for a BuddyPress page
  *
  * @since 1.0.0
- *
- * @uses is_buddypress()
- * @uses bp_is_user()
- * @uses bp_activity_do_mentions()
- * @uses bp_get_displayed_user_mentionname()
- * @uses bp_get_member_type()
- * @uses bp_displayed_user_id()
- * @uses bp_get_member_type_object()
  */
 function zeta_bp_entry_meta() {
 
@@ -98,10 +90,6 @@ add_action( 'zeta_entry_meta', 'zeta_bp_entry_meta' );
  *
  * @since 1.0.0
  *
- * @uses bp_is_my_profile()
- * @uses bp_get_the_profile_group_id()
- * @uses bp_displayed_user_domain()
- *
  * @param string $name Group name
  * @return string Group name
  */
@@ -137,10 +125,6 @@ add_filter( 'bp_get_the_profile_group_name', 'zeta_bp_profile_group_edit_link' )
  *
  * @since 1.0.0
  *
- * @uses bp_activity_current_comment()
- * @uses bp_get_activity_comment_user_link()
- * @uses bp_get_activity_comment_name()
- *
  * @param string $content Activity content
  * @return string Activity content
  */
@@ -161,11 +145,6 @@ add_filter( 'bp_get_activity_content', 'zeta_bp_activity_comment_content', 4 );
  * Add links to the activity comment options
  *
  * @since 1.0.0
- *
- * @uses bp_get_activity_comment_date_recorded_raw()
- * @uses bp_get_activity_comment_permalink()
- * @uses mysql2date()
- * @uses bp_get_activity_comment_date_recorded()
  */
 function zeta_bp_activity_comment_options() {
 
@@ -189,8 +168,6 @@ add_action( 'bp_activity_comment_options', 'zeta_bp_activity_comment_options' );
  * Display the members directory search in the sub navigation
  *
  * @since 1.0.0
- *
- * @uses bp_directory_members_search_form()
  */
 function zeta_bp_members_dir_search() {
 
@@ -295,8 +272,6 @@ add_action( 'bp_messages_screen_star', 'zeta_bp_messages_screen_star_wrap' );
  *
  * @since 1.0.0
  *
- * @uses date_i18n()
- *
  * @param int $timestamp Timestamp in seconds, like results from strtotime()
  * @return string Date stamp
  */
@@ -326,9 +301,6 @@ function zeta_bp_get_date_stamp( $timestamp ) {
  *
  * @since 1.0.0
  *
- * @uses zeta_bp_get_date_stamp()
- * @uses bp_get_message_thread_last_post_date_raw()
- *
  * @param string $formatted_date Formatted date
  * @return string Formatted date
  */
@@ -346,9 +318,6 @@ add_filter( 'bp_get_message_thread_last_post_date', 'zeta_bp_messages_thread_las
  *
  * @since 1.0.0
  *
- * @uses zeta_bp_get_date_stamp()
- * @uses bp_get_the_thread_message_date_sent()
- *
  * @param string $formatted_date Formatted date
  * @return string Formatted date
  */
@@ -365,8 +334,6 @@ add_filter( 'bp_get_the_thread_message_time_since', 'zeta_bp_get_the_thread_mess
  * Output the messages thread date stamp
  *
  * @since 1.0.0
- *
- * @uses zeta_bp_get_thread_message_date_stamp()
  */
 function zeta_bp_message_thread_date_stamp() {
 	echo zeta_bp_get_message_thread_date_stamp();
@@ -377,8 +344,6 @@ function zeta_bp_message_thread_date_stamp() {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @uses bp_get_message_thread_last_post_date_raw()
-	 * @uses bp_get_message_thread_last_post_date()
 	 * @return string Date stamp
 	 */
 	function zeta_bp_get_message_thread_date_stamp() {
@@ -400,8 +365,6 @@ function zeta_bp_message_thread_date_stamp() {
  * Output the thread message date stamp
  *
  * @since 1.0.0
- *
- * @uses zeta_bp_get_the_thread_message_date_stamp()
  */
 function zeta_bp_the_thread_message_date_stamp() {
 	echo zeta_bp_get_the_thread_message_date_stamp();
@@ -412,7 +375,6 @@ function zeta_bp_the_thread_message_date_stamp() {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @uses bp_get_the_thread_message_time_since()
 	 * @return string Date stamp
 	 */
 	function zeta_bp_get_the_thread_message_date_stamp() {
@@ -437,10 +399,6 @@ function zeta_bp_the_thread_message_date_stamp() {
  * @see bp_message_thread_total_and_unread_count()
  *
  * @since 1.0.0
- *
- * @uses bp_get_message_thread_total_count()
- * @uses bp_get_message_thread_unread_count()
- * @uses number_format_i18n()
  *
  * @param int $thread_id Thread ID
  */
@@ -472,11 +430,9 @@ function zeta_bp_message_thread_total_and_unread_count( $thread_id = 0 ) {
 /**
  * Display the current thread's mark unread url
  *
- * @since 1.0.0
- *
  * @see bp_the_message_thread_mark_unread_url()
  *
- * @uses zeta_bp_get_the_thread_mark_unread_url()
+ * @since 1.0.0
  */
 function zeta_bp_the_thread_mark_unread_url() {
 	echo esc_url( zeta_bp_get_the_thread_mark_unread_url() );
@@ -485,11 +441,10 @@ function zeta_bp_the_thread_mark_unread_url() {
 	/**
 	 * Return the current thread's mark unread url
 	 *
-	 * @since 1.0.0
-	 *
 	 * @see bp_get_the_message_thread_mark_unread_url()
 	 *
-	 * @uses bp_get_the_thread_id()
+	 * @since 1.0.0
+	 *
 	 * @return string Thread mark unread url
 	 */
 	function zeta_bp_get_the_thread_mark_unread_url() {
@@ -520,9 +475,6 @@ function zeta_bp_the_thread_mark_unread_url() {
  *
  * @since 1.0.0
  *
- * @uses bp_messages_is_message_starred()
- * @uses bp_get_the_thread_message_id()
- *
  * @param array $classes Thread message css classes
  * @return array CSS classes
  */
@@ -548,8 +500,6 @@ add_filter( 'bp_get_the_thread_message_css_class', 'zeta_bp_thread_messages_css_
  *
  * @since 1.0.0
  *
- * @uses bp_get_the_notification_mark_read_url()
- *
  * @param string $link Mark read link
  * @return string Mark read link
  */
@@ -570,8 +520,6 @@ add_filter( 'bp_get_the_notification_mark_read_link', 'zeta_bp_notifications_mar
  *
  * @since 1.0.0
  *
- * @uses bp_get_the_notification_mark_unread_url()
- *
  * @param string $link Mark unread link
  * @return string Mark unread link
  */
@@ -591,8 +539,6 @@ add_filter( 'bp_get_the_notification_mark_unread_link', 'zeta_bp_notifications_m
  * Modify the notifications delete link
  *
  * @since 1.0.0
- *
- * @uses bp_get_the_notification_delete_url()
  *
  * @param string $link Delete link
  * @return string Delete link
