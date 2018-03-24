@@ -1418,6 +1418,33 @@
 					background: #f9f9f9;
 				}
 
+				#buddypress .activity .item-list .load-newest a:active,
+				#buddypress .activity .item-list .load-more a:active {
+					background: #f1f1f1;
+				}
+
+				#buddypress .activity .item-list .load-newest.loading a:before,
+				#buddypress .activity .item-list .load-more.loading a:before {
+					content: '\f463'; /* dashicons-update */
+					font-family: dashicons;
+					position: absolute;
+					display: inline-block;
+					vertical-align: bottom;
+					/* Animation */
+					-webkit-animation: rotateLoading 1s linear infinite;
+					animation: rotateLoading 1s linear infinite;
+				}
+
+				@-webkit-keyframes rotateLoading {
+					0% { -webkit-transform: translateX(-18px) rotate(0deg); }
+					100% { -webkit-transform: translateX(-18px) rotate(360deg); }
+				}
+
+				@keyframes rotateLoading {
+					0% { transform: translateX(-18px) rotate(0deg); }
+					100% { transform: translateX(-18px) rotate(360deg); }
+				}
+
 	#buddypress .activity .button:before,
 	#buddypress .activity .button:before {
 		margin-right: 3px;
