@@ -261,6 +261,10 @@ input[type="search"]::-webkit-search-decoration {
 	-webkit-appearance: none;
 }
 
+form {
+	margin: 0px;
+}
+
 fieldset {
 	border: 1px solid #c0c0c0;
 	margin: 0px 2px;
