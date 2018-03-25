@@ -685,7 +685,7 @@
 
 /* Breakpoint 2 */
 @media screen and (min-width: 741px) {
-	.bp-user:not(.activity-permalink) .entry-header {
+	.bp-user:not(.activity-permalink):not(.error404) .entry-header {
 		padding-left: 75px;
 	}
 
@@ -711,7 +711,7 @@
 
 /* 174 + (126 - 25) + 640 = 949px + 17 for the scrollbar = 962px */
 @media screen and (min-width: 932px) {
-	.bp-user:not(.activity-permalink) .entry-header {
+	.bp-user:not(.activity-permalink):not(.error404) .entry-header {
 		padding-left: 0px;
 	}
 
