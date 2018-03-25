@@ -319,6 +319,10 @@
 /*--------------------------------------------------------------
 2.2 Single item
 --------------------------------------------------------------*/
+.bp-user:not(.activity-permalink):not(.error404) .site-main .hentry {
+	padding-top: 35px;
+}
+
 .buddypress .entry-header {
 	text-align: center;
 }
