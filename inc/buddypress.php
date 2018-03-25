@@ -118,6 +118,28 @@ function zeta_bp_profile_group_edit_link( $name ) {
 }
 add_filter( 'bp_get_the_profile_group_name', 'zeta_bp_profile_group_edit_link' );
 
+/**
+ * Display custom content before the profile loop
+ *
+ * @since 1.0.0
+ */
+function zeta_bp_before_profile_loop_content() {
+
+	// When no profile data is registered
+	if ( ! bp_has_profile() ) {
+
+		// My profile
+		if ( bp_is_my_profile() ) {
+			printf( '<p>' . __( 'You have not yet published any profile information about yourself. Please <a href="%s">update your profile</a> so we can get to know you a little better.', 'zeta' ) . '</p>', trailingslashit( bp_displayed_user_domain() . buddypress()->profile->slug . '/edit' ) );
+
+		// Other's profile
+		} else {
+			echo '<p>' . esc_html__( 'This person has not yet published any profile information about themselves.', 'zeta' ) . '</p>';
+		}
+	}
+}
+add_action( 'bp_before_profile_loop_content', 'zeta_bp_before_profile_loop_content' );
+
 /** Activity ***************************************************************/
 
 /**
