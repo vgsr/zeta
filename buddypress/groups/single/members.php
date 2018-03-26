@@ -12,6 +12,7 @@
  * - Removed the friends condition and add-friend button
  * - Removed the 'bp_group_members_list_item_action' hook
  * - Added button.action-toggle for displaying item actions
+ * - Renamed .activity to .joined-since
  *
  * @package Zeta
  * @subpackage BuddyPress
@@ -70,7 +71,7 @@
 					</div>
 
 					<div class="item-meta">
-						<span class="activity"><?php bp_group_member_joined_since(); ?></span>
+						<span class="joined-since"><?php bp_group_member_joined_since(); ?></span>
 					</div>
 
 					<?php

@@ -12,6 +12,7 @@
  * - Changed message sender strong wrapper into span.message-sender
  * - Replaced `bp_the_thread_message_time_since()` with `zeta_bp_the_thread_message_date_stamp()`
  * - Removed div.clear
+ * - Renamed .activity to .last-activity
  *
  * @package Zeta
  * @subpackage BuddyPress
@@ -44,7 +45,7 @@
 
 					<?php endif; ?>
 
-					<span class="activity"><?php zeta_bp_the_thread_message_date_stamp(); ?></span>
+					<span class="last-activity"><?php zeta_bp_the_thread_message_date_stamp(); ?></span>
 
 					<?php if ( bp_is_active( 'messages', 'star' ) ) : ?>
 						<div class="message-star-actions">

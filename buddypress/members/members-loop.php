@@ -11,6 +11,7 @@
  * - Removed whitespace in .action
  * - Added button.action-toggle for displaying item actions
  * - Removed div.clear
+ * - Renamed .activity to .last-activity
  *
  * @package Zeta
  * @subpackage BuddyPress
@@ -69,7 +70,7 @@ do_action( 'bp_before_members_loop' ); ?>
 				</div>
 
 				<div class="item-meta">
-					<span class="activity"><?php bp_member_last_active(); ?></span>
+					<span class="last-activity"><?php bp_member_last_active(); ?></span>
 
 					<?php if ( bp_get_member_latest_update() ) : ?>
 						<span class="update"><?php bp_member_latest_update(); ?></span>

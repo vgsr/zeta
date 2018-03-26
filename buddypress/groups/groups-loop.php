@@ -10,6 +10,7 @@
  * - Removed whitespace in .action
  * - Added button.action-toggle for displaying item actions
  * - Removed div.clear
+ * - Renamed .activity to .last-activity
  *
  * @package Zeta
  * @subpackage BuddyPress
@@ -74,7 +75,7 @@ do_action( 'bp_before_groups_loop' ); ?>
 				<div class="item-meta">
 					<span class="group-type"><?php bp_group_type(); ?></span>
 					<span class="member-count"><?php bp_group_member_count(); ?></span>
-					<span class="activity"><?php printf( __( 'active %s', 'buddypress' ), bp_get_group_last_active() ); ?></span>
+					<span class="last-activity"><?php printf( __( 'active %s', 'buddypress' ), bp_get_group_last_active() ); ?></span>
 				</div>
 
 				<div class="item-desc"><?php bp_group_description_excerpt(); ?></div>
