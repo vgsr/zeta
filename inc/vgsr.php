@@ -30,3 +30,18 @@ function zeta_vgsr_bp_profile_header_meta() {
 	}
 }
 add_action( 'bp_profile_header_meta', 'zeta_vgsr_bp_profile_header_meta' );
+
+/**
+ * Print members directory loop item meta
+ *
+ * @since 1.0.0
+ */
+function zeta_vgsr_bp_directory_members_item() {
+	$user_id = bp_get_member_user_id();
+
+	// Profile of VGSR user
+	if ( $user_id && is_user_vgsr( $user_id ) && $jaargroep = vgsr_get_jaargroep( $user_id ) ) {
+		echo '<span class="jaargroep">' . sprintf( esc_html__( 'Jaargroep %s', 'vgsr' ), $jaargroep ) . '</span>';
+	}
+}
+add_action( 'bp_directory_members_item', 'zeta_vgsr_bp_directory_members_item' );
