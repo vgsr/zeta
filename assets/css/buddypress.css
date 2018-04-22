@@ -636,7 +636,7 @@
 		}
 
 			#buddypress .dir-list .item-list > li .item-title {
-				margin-top: .25em;
+				margin: .25em 0px .5em;
 			}
 
 			#buddypress .dir-list .item-list > li.has-actions .item-title {
@@ -647,11 +647,6 @@
 					display: inline-block;
 					width: 100%;
 				}
-
-			#buddypress .dir-list .item-list > li .item-meta {
-				margin-top: .5em;
-				word-wrap: break-word;
-			}
 
 /* Breakpoint 1 */
 @media screen and (min-width: 561px) {
