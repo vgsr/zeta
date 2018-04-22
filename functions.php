@@ -373,3 +373,4 @@ require( get_template_directory() . '/inc/event-organiser.php' );
 require( get_template_directory() . '/inc/gravityforms.php' );
 require( get_template_directory() . '/inc/jetpack.php' );
 require( get_template_directory() . '/inc/vgsr-entity.php' );
+require( get_template_directory() . '/inc/vgsr.php' );
