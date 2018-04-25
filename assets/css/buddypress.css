@@ -994,6 +994,11 @@
 		display: inline-block;
 	}
 
+	.avatar-block .item-avatar a:hover,
+	.bp-item-list .item-avatar a:hover {
+		border-bottom: 0px;
+	}
+
 	.avatar-block .item-avatar img,
 	.bp-item-list .item-avatar img {
 		vertical-align: bottom;
