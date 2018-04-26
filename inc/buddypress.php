@@ -530,7 +530,7 @@ function zeta_bp_notifications_mark_read_link( $link ) {
 	// Rewrite the link
 	$link = sprintf( '<a href="%s" class="mark-read primary"><span class="icon"></span><span class="bp-screen-reader-text">%s</span></a>',
 		esc_url( bp_get_the_notification_mark_read_url() ),
-		__( 'Mark notification as read', 'zeta' )
+		esc_html__( 'Mark notification as read', 'zeta' )
 	);
 
 	return $link;
@@ -550,7 +550,7 @@ function zeta_bp_notifications_mark_unread_link( $link ) {
 	// Rewrite the link
 	$link = sprintf( '<a href="%s" class="mark-unread"><span class="icon"></span><span class="bp-screen-reader-text">%s</span></a>',
 		esc_url( bp_get_the_notification_mark_unread_url() ),
-		__( 'Mark notification as unread', 'zeta' )
+		esc_html__( 'Mark notification as unread', 'zeta' )
 	);
 
 	return $link;
@@ -570,7 +570,7 @@ function zeta_bp_notifications_delete_link( $link ) {
 	// Rewrite the link
 	$link = sprintf( '<a href="%s" class="delete secondary confirm"><span class="icon"></span><span class="bp-screen-reader-text">%s</span></a>',
 		esc_url( bp_get_the_notification_delete_url() ),
-		__( 'Delete notification', 'zeta' )
+		esc_html__( 'Delete notification', 'zeta' )
 	);
 
 	return $link;
