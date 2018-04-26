@@ -54,7 +54,7 @@ function zeta_bp_entry_meta() {
 		do_action( 'bp_profile_header_meta' );
 
 		// User activity
-		printf( '<span class="last-activity">%s</span>', bp_get_last_activity( bp_displayed_user_id() ) );
+		// printf( '<span class="last-activity">%s</span>', bp_get_last_activity( bp_displayed_user_id() ) );
 	}
 
 	// Single group
@@ -78,7 +78,7 @@ function zeta_bp_entry_meta() {
 		do_action( 'bp_group_header_meta' );
 
 		// Group activity
-		printf( '<span class="last-activity">%s</span>', sprintf( __( 'active %s', 'buddypress' ), bp_get_group_last_active( $group_id ) ) );
+		// printf( '<span class="last-activity">%s</span>', sprintf( esc_html__( 'active %s', 'buddypress' ), bp_get_group_last_active( $group_id ) ) );
 	}
 }
 add_action( 'zeta_entry_meta', 'zeta_bp_entry_meta' );
