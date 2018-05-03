@@ -3939,7 +3939,7 @@ object {
 	.entry-content .entity-details {
 		float: right;
 		width: auto;
-		max-width: 45%;
+		max-width: 30%;
 		margin: 0px 0px 1.5em 1.5em;
 		padding: 0px;
 	}
