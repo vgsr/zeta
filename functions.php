@@ -77,6 +77,11 @@ function zeta_setup() {
 	 */
 	add_theme_support( 'customize-selective-refresh-widgets' );
 
+	/**
+	 * Force BuddyPress to use the Legacy Templates.
+	 */
+	add_theme_support( 'buddypress-use-legacy' );
+
 	/*
 	 * Declare support for the Event Organiser plugin.
 	 * By adding theme support, we declare that this theme handles page templates.
