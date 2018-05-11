@@ -684,6 +684,10 @@
 
 /* Breakpoint 2 */
 @media screen and (min-width: 741px) {
+	.buddypress .entry-header {
+		min-height: 84px;
+	}
+
 	.bp-user:not(.activity-permalink):not(.error404) .entry-header {
 		padding-left: 75px;
 	}
