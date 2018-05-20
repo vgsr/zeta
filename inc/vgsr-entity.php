@@ -76,7 +76,7 @@ function zeta_vgsr_entity_adjacent_post_navigation_label( $label ) {
 
 		// Make the bestuur's season the navigation label
 		if ( $type = vgsr_entity_get_type( 'bestuur', true ) ) {
-			$label = $type->bestuur->get( 'season', get_adjacent_post( false, '', $previous ) );
+			$label = $type->get( 'season', get_adjacent_post( false, '', $previous ) );
 		}
 	}
 
