@@ -40,8 +40,6 @@ add_filter( 'eventorganiser_template_stack', 'zeta_event_organiser_template_stac
  *
  * @since 1.0.0
  *
- * @uses zeta_event_organiser_archive_title()
- *
  * @param string $title Page title
  * @return string Page title
  */
@@ -58,12 +56,6 @@ add_filter( 'document_title_parts', 'zeta_event_organiser_page_title' );
  * Filter the archive title for events
  *
  * @since 1.0.0
- *
- * @uses is_tax()
- * @uses single_term_title()
- * @uses is_post_type_archive()
- * @uses eo_is_event_archive()
- * @uses eo_get_event_archive_date()
  *
  * @param string $title Archive title
  * @return string Archive title
@@ -116,9 +108,6 @@ add_filter( 'get_the_archive_title', 'zeta_event_organiser_archive_title' );
  *
  * @since 1.0.0
  *
- * @uses eo_get_the_start()
- * @uses eo_get_event_archive_link()
- *
  * @param string $type The archive type to return the url of
  * @param string $date The date to process. Defaults to the current event's date.
  * @return string Event archive url
@@ -159,13 +148,6 @@ function zeta_event_organiser_get_archive_url( $type = 'day', $date = null ) {
  * @see the_posts_navigation()
  *
  * @since 1.0.0
- *
- * @uses zeta_event_organiser_get_previous_archive_link()
- * @uses zeta_event_organiser_get_next_archive_link()
- * @uses get_previous_posts_link()
- * @uses previous_posts_link()
- * @uses get_next_posts_link()
- * @uses next_posts_link()
  */
 function zeta_event_organiser_the_posts_navigation() {
 
@@ -229,9 +211,6 @@ if ( ! function_exists( 'get_adjacent_event' ) ) :
  *
  * @since 1.0.0
  *
- * @uses get_adjacent_post()
- * @uses get_adjacent_occurrence()
- *
  * @param bool         $in_same_term   Optional. Whether post should be in a same taxonomy term.
  * @param array|string $excluded_terms Optional. Array or comma-separated list of excluded term IDs.
  * @param bool         $previous       Optional. Whether to retrieve previous post.
@@ -271,8 +250,6 @@ if ( ! function_exists( 'get_adjacent_occurrence' ) ) :
  * @see eo_get_next_occurrence_of()
  *
  * @since 1.0.0
- *
- * @uses eo_get_blog_timezone()
  *
  * @param int $post_id Post ID
  * @param int $adjacent_id Adjacent post ID
@@ -392,7 +369,6 @@ add_filter( 'zeta_next_post_navigation_label',     'zeta_event_organiser_post_na
  *
  * @since 1.0.0
  *
- * @uses zeta_event_organiser_get_adjacent_archive_link()
  * @return string Archive link
  */
 function zeta_event_organiser_get_next_archive_link() {
@@ -404,7 +380,6 @@ function zeta_event_organiser_get_next_archive_link() {
  *
  * @since 1.0.0
  *
- * @uses zeta_event_organiser_get_adjacent_archive_link()
  * @return string Archive link
  */
 function zeta_event_organiser_get_previous_archive_link() {
@@ -416,9 +391,6 @@ function zeta_event_organiser_get_previous_archive_link() {
  *
  * @since 1.0.0
  *
- * @uses eo_is_event_archive()
- * @uses zeta_event_organiser_get_archive_url()
- * @uses zeta_pagenum_link()
  * @uses apply_filters() Calls '{previous|next}_posts_link_attributes'
  *
  * @param bool $previous Optional. Whether to return the previous or next archive. Default true.
@@ -578,9 +550,6 @@ function zeta_event_organiser_is_date_same_day( $query = false, $check = 'next' 
  *
  * @since 1.0.0
  *
- * @uses zeta_has_posts()
- * @uses eo_get_the_start()
- *
  * @param string             $format Date format. Used to check the date equality.
  * @param bool|WP_Query      $query  Optional. Query object. Defaults to main query global.
  * @param string|int|WP_Post $check  Optional. Which post to check against. Either 'prev'
@@ -654,11 +623,6 @@ function zeta_event_organiser_is_date_same( $format = 'Y-m-d', $query = false, $
  *
  * @since 1.0.0
  *
- * @uses in_the_loop()
- * @uses eo_is_event_archive()
- * @uses eo_is_all_day()
- * @uses eo_get_the_start()
- *
  * @param string $title Post title
  * @return string Post title
  */
@@ -682,19 +646,6 @@ add_filter( 'the_title', 'zeta_event_organiser_event_title' );
  * Print the event's entry meta
  *
  * @since 1.0.0
- *
- * @uses eo_is_all_day()
- * @uses eo_reoccurs()
- * @uses eo_get_current_occurrence_of()
- * @uses eo_get_next_occurrence_of()
- * @uses eo_is_event_archive()
- * @uses eo_get_event_archive_link()
- * @uses eo_get_the_start()
- * @uses human_time_diff()
- * @uses eo_get_the_end()
- * @uses eo_get_venue()
- * @uses eo_get_venue_link()
- * @uses eo_get_venue_name()
  */
 function zeta_event_organiser_event_meta() {
 
@@ -745,16 +696,6 @@ add_action( 'zeta_entry_meta', 'zeta_event_organiser_event_meta' );
  * Filter the post content for events
  *
  * @since 1.0.0
- *
- * @uses in_the_loop()
- * @uses eo_get_venue()
- * @uses eo_get_venue_map()
- * @uses eo_reoccurs()
- * @uses eo_is_all_day()
- * @uses eo_get_event_archive_link()
- * @uses eo_get_the_start()
- *
- * @uses WP_Query
  *
  * @param string $content Post content
  * @return string Post content
@@ -819,8 +760,6 @@ add_filter( 'the_content', 'zeta_event_organiser_event_content' );
  * Display the event's details in the entry footer
  *
  * @since 1.0.0
- *
- * @uses get_the_term_list()
  */
 function zeta_event_organiser_entry_footer() {
 
@@ -848,8 +787,6 @@ add_action( 'zeta_entry_footer', 'zeta_event_organiser_entry_footer' );
  * Print the event loop id attribute
  *
  * @since 1.0.0
- *
- * @uses zeta_event_organiser_loop_arg()
  */
 function zeta_event_organiser_loop_id() {
 	$id = zeta_event_organiser_loop_arg( 'id' );
@@ -862,8 +799,6 @@ function zeta_event_organiser_loop_id() {
  * Print the event loop class attribute
  *
  * @since 1.0.0
- *
- * @uses zeta_event_organiser_loop_arg()
  */
 function zeta_event_organiser_loop_class() {
 	$class = zeta_event_organiser_loop_arg( 'class' );

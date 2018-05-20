@@ -1,18 +1,19 @@
 <?php
 /**
  * Jetpack Compatibility File
- * See: http://jetpack.me/
+ * 
+ * @link http://jetpack.me/
  *
  * @package Zeta
+ * @subpackage Jetpack
  */
 
 /**
  * Add theme support for Infinite Scroll.
- * See: http://jetpack.me/support/infinite-scroll/
+ * 
+ * @link http://jetpack.me/support/infinite-scroll/
  *
  * @since 1.0.0
- *
- * @uses add_theme_support()
  */
 function zeta_jetpack_setup() {
 	add_theme_support( 'infinite-scroll', array(
@@ -85,8 +86,8 @@ function zeta_tiled_gallery() {
 		/**
 		 * Return empty when requesting the Jetpack Photon url
 		 *
-		 * @since 1.0.0.
-		 * @since 1.1.0 Returns the first parameter untouched.
+		 * @since 1.0.0
+		 * @since 1.1.0 Returns the first parameter untouched
 		 *
 		 * @param string $src Original file source
 		 * @param array $args File request arguments
@@ -131,12 +132,9 @@ add_action( 'after_setup_theme', 'zeta_tiled_gallery' );
 /**
  * Register tiled-gallery scripts
  *
- * @since 1.0.0
- *
  * @see Jetpack_Tiled_Gallery::default_scripts_and_styles()
  *
- * @uses wp_register_script()
- * @uses wp_register_style()
+ * @since 1.0.0
  */
 function zeta_tiled_gallery_register_scripts() {
 	$tiled_url = trailingslashit( get_template_directory_uri() . '/inc/tiled-gallery' );

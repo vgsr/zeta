@@ -11,13 +11,7 @@
 /**
  * Adds custom classes to the array of body classes.
  *
- * @uses get_the_ID()
- * @uses is_multi_author()
- * @uses zeta_get_site_tools()
- * @uses is_front_page()
- * @uses is_404()
- * @uses is_active_sidebar()
- * @uses is_buddypress()
+ * @since 1.0.0
  *
  * @param array $classes Classes for the body element.
  * @return array
@@ -63,8 +57,6 @@ add_filter( 'body_class', 'zeta_body_classes' );
  *
  * @since 1.0.0
  *
- * @uses get_the_ID()
- *
  * @param array $mce Editor args
  * @return array Editor args
  */
@@ -86,6 +78,8 @@ add_filter( 'tiny_mce_before_init',  'zeta_editor_body_classes' );
 if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	/**
 	 * Filters wp_title to print a neat <title> tag based on what is being viewed.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param string $title Default title text for current view.
 	 * @param string $sep Optional separator.
@@ -153,10 +147,6 @@ function zeta_is_static_front_page( $post = false ) {
  * Output a breadcrumbs trail before the page's content
  *
  * @since 1.0.0
- *
- * @uses is_front_page()
- * @uses yoast_breadcrumb()
- * @uses bbp_breadcrumb()
  */
 function zeta_breadcrumbs() {
 
@@ -213,8 +203,6 @@ add_action( 'zeta_before_content', 'zeta_breadcrumbs', 6 );
 	 *
 	 * @since 1.0.0
 	 *
-	 * @uses WPSEO_Utils::home_url()
-	 *
 	 * @param array $crumbs Crumbs
 	 * @return array Crumbs
 	 */
@@ -254,9 +242,6 @@ add_filter( 'bp_excerpt_append_text', 'zeta_excerpt_more' );
  *
  * @since 1.0.0
  *
- * @uses in_the_loop()
- * @uses get_comment_author_url()
- * @uses get_comment_author()
  * @uses apply_filters() Calls 'get_comment_author_link'
  *
  * @param string $content Comment content
@@ -392,8 +377,6 @@ add_action( 'comment_form', 'zeta_comment_form', 99 );
  *
  * @since 1.0.0
  *
- * @uses has_shortcode()
- * 
  * @param int|WP_Post $post_id Optional. Post ID or object. Defaults to current post
  * @return bool Post contains a gallery
  */
@@ -409,14 +392,7 @@ function zeta_has_post_gallery( $post_id = 0 ) {
  *
  * @since 1.0.0
  *
- * @uses has_post_thumbnail()
- * @uses get_post_thumbnail_id()
- * @uses zeta_has_post_gallery()
- * @uses get_post_galleries_images()
- * @uses zeta_get_attachment_id_from_url()
- * @uses get_attached_media()
- * @uses get_media_embedded_in_content()
- * @uses zeta_check_image_size()
+ * @uses apply_filters() Calls 'zeta_pre_get_post_images'
  * @uses apply_filters() Calls 'zeta_get_post_images'
  * 
  * @param int|object $post Optional. Post ID or post object. Defaults to the current post.
@@ -511,10 +487,6 @@ function zeta_get_post_images( $post = 0, $size = false ) {
  *
  * @since 1.0.0
  *
- * @uses get_featured_images()
- * @uses has_post_thumbnail()
- * @uses get_post_thumbnail_id()
- *
  * @param array $images Attachment ids
  * @param WP_Post $post Post object
  * @param string|array $size
@@ -547,8 +519,6 @@ add_filter( 'zeta_pre_get_post_images', 'zeta_get_featured_images', 10, 3 );
  *
  * @since 1.0.0
  *
- * @uses zeta_get_post_images()
- * @uses zeta_check_image_size()
  * @uses apply_filters() Calls 'zeta_get_first_post_image'
  * 
  * @param int|object $post Optional. Post ID or post object. Defaults to the current post.
@@ -582,8 +552,6 @@ function zeta_get_first_post_image( $post = 0, $size = '' ) {
  * Return the attachment ids of a post's gallery shortcodes
  *
  * @since 1.0.0
- *
- * @uses get_post_galleries()
  *
  * @param int|WP_Post $post Optional. Post ID. Defaults to the current post
  * @return array Attachment ids
@@ -620,10 +588,6 @@ function zeta_get_post_galleries_attachment_ids( $post = 0 ) {
  * Filter the content for a gallery post's excerpt
  *
  * @since 1.0.0
- *
- * @uses is_singular()
- * @uses has_post_format()
- * @uses zeta_get_post_galleries_attachment_ids()
  */
 function zeta_gallery_post_excerpt( $content ) {
 
@@ -645,11 +609,6 @@ add_filter( 'the_content', 'zeta_gallery_post_excerpt', 8 );
  * Filter the gallery post's excerpt image link
  *
  * @since 1.0.0
- *
- * @uses is_singular()
- * @uses doing_action()
- * @uses has_post_format()
- * @uses get_the_permalink()
  *
  * @param string $url The attachment url
  * @param int $post_id Post ID
@@ -673,9 +632,6 @@ add_filter( 'attachment_link', 'zeta_gallery_post_excerpt_image_link', 10, 6 );
  * Display the gallery post's image count
  *
  * @since 1.0.0
- *
- * @uses has_post_format()
- * @uses zeta_get_post_galleries_attachment_ids()
  */
 function zeta_gallery_post_image_count() {
 
@@ -740,10 +696,6 @@ function zeta_get_attachment_id_from_url( $attachment_url ) {
  *
  * @since 1.0.0
  *
- * @uses zeta_get_image_size()
- * @uses zeta_get_larger_image_sizes()
- * @uses wp_get_attachment_image_src()
- * 
  * @param int|string $image Attachment ID or image src
  * @param string|array $size Optional. Required image size as image size name
  *                            or as an array with width|height values.
@@ -805,8 +757,6 @@ function zeta_check_image_size( $image, $size = 'medium' ) {
  *
  * @since 1.0.0
  *
- * @uses zeta_get_image_sizes()
- * 
  * @param string $size Image size name
  * @return array|bool Image size details or false when size is not found.
  */
@@ -862,7 +812,6 @@ function zeta_get_larger_image_sizes( $size ) {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @uses get_intermediate_image_sizes()
 	 * @return array Image sizes with details
 	 */
 	function zeta_get_image_sizes() {
@@ -936,8 +885,6 @@ add_filter( 'get_media_embedded_in_content_allowed', 'zeta_get_media_embedded_in
  *
  * @since 1.0.0
  *
- * @uses zeta_get_first_post_image()
- *
  * @param mixed|null $value Short-circuit value.
  * @param int $object_id Object ID
  * @param string $meta_key Meta key
@@ -985,12 +932,7 @@ add_filter( 'get_post_metadata', 'zeta_post_thumbnail_id', 10, 4 );
  *
  * @since 1.0.0
  *
- * @uses get_post_type()
- * @uses get_post_type_object()
- * @uses post_type_exists()
- * @uses is_buddypress()
  * @uses apply_filters() Calls 'zeta_search_contexts'
- * @uses is_search()
  * 
  * @param string $form Search form markup
  * @return string Search form markup
@@ -1056,11 +998,7 @@ add_filter( 'get_search_form', 'zeta_search_context_select' );
  *
  * @since 1.0.0
  *
- * @uses is_search()
- * @uses bp_core_get_directory_page_ids()
- * @uses get_permalink()
  * @uses apply_filters() Calls 'zeta_search_context_redirect'
- * @uses wp_safe_redirect()
  */
 function zeta_search_context_redirect() {
 
@@ -1108,10 +1046,6 @@ add_action( 'template_redirect', 'zeta_search_context_redirect' );
  *
  * @since 1.0.0
  *
- * @uses WP_Query::is_main_query()
- * @uses WP_Query::is_search()
- * @uses post_type_exists()
- *
  * @param WP_Query $query The query
  */
 function zeta_search_context_parse_query( $query ) {
@@ -1133,8 +1067,6 @@ add_action( 'parse_query', 'zeta_search_context_parse_query' );
  * Modify the widget's form options
  *
  * @since 1.0.0
- * 
- * @uses WP_Widget::get_field_name()
  * 
  * @param WP_Widget $widget
  * @param string $return Form output markup
@@ -1185,8 +1117,6 @@ add_filter( 'widget_update_callback', 'zeta_widget_update', 10, 4 );
  *
  * @since 1.0.0
  *
- * @uses WP_Widget::get_settings()
- * 
  * @param array $params Widget's sidebar params
  * @return array Widget params
  */
@@ -1220,8 +1150,6 @@ add_filter( 'dynamic_sidebar_params', 'zeta_widget_display_params' );
  *
  * @since 1.0.0
  *
- * @uses wp_get_sidebars_widgets()
- * 
  * @param string $sidebar_id Sidebar ID
  * @param string $key Setting key
  * @param mixed $value Optional. The value to match. Defaults to checking

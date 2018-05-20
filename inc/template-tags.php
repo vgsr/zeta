@@ -327,10 +327,6 @@ if ( ! function_exists( 'zeta_post_format_link' ) ) :
  * Prints HTML for the post's post format link
  *
  * @since 1.0.0
- *
- * @uses get_post_format()
- * @uses get_post_format_link()
- * @uses get_post_format_string()
  */
 function zeta_post_format_link() {
 	if ( ( $format = get_post_format() ) && ! is_tax( 'post_format', "post-format-{$format}" ) ) {
@@ -348,9 +344,6 @@ if ( ! function_exists( 'zeta_post_type' ) ) :
  * Prints HTML for the post's post type
  *
  * @since 1.0.0
- *
- * @uses get_post_type()
- * @uses get_post_type_object()
  */
 function zeta_post_type() {
 	$type = get_post_type();
@@ -365,8 +358,6 @@ endif;
  * that of `wp_nav_menu()`.
  *
  * @since 1.0.0
- *
- * @uses wp_page_menu()
  *
  * @param array $args Menu arguments of `wp_nav_menu()`
  * @return string Page menu
@@ -404,8 +395,6 @@ function zeta_has_posts( $query = false ) {
  * Display collection of site tools for in the site header
  *
  * @since 1.0.0
- *
- * @uses zeta_get_site_tools()
  */
 function zeta_tools_nav() {
 	$tools   = zeta_get_site_tools(); 
@@ -443,8 +432,6 @@ function zeta_tools_nav() {
  *
  * @since 1.0.0
  *
- * @uses zeta_get_site_tools()
- * @uses the_widget()
  * @uses do_action() Calls 'site_{$tool_id}_tool_content'
  */
 function zeta_tools_content() {
@@ -508,10 +495,7 @@ function zeta_tools_content() {
 	 * 
 	 * @since 1.0.0
 	 * 
-	 * @uses is_user_logged_in()
 	 * @uses apply_filters() Calls 'site_tools'
-	 * @uses wp_logout_url()
-	 * @uses wp_login_url()
 	 *
 	 * @return array Site tools collection
 	 */
@@ -541,13 +525,8 @@ function zeta_tools_content() {
  *
  * @since 1.0.0
  *
- * @uses is_singular()
- * @uses get_queried_object()
- * @uses zeta_get_post_images()
- * @uses zeta_get_first_post_image()
  * @uses apply_filters() Calls 'zeta_background_slider_slide'
  * @uses apply_filters() Calls 'zeta_background_slider_slides'
- * @uses wp_enqueue_script()
  */
 function zeta_background_slider() {
 	/**
@@ -825,7 +804,7 @@ function zeta_background_slider() {
  *
  * @since 1.0.0
  *
- * @uses array $slides
+ * @param array $slides
  * @return array
  */
 function zeta_map_slide( $slides ) {
@@ -874,12 +853,6 @@ function zeta_map_slide( $slides ) {
  *
  * @since 1.0.0
  *
- * @uses bp_has_members()
- * @uses bp_member_class()
- * @uses bp_member_permalink()
- * @uses bp_member_avatar()
- * @uses bp_member_name()
- * 
  * @param int $post_id Attachment ID
  * @param bool $echo Optional. Whether to output the content
  */
@@ -948,8 +921,6 @@ function zeta_media_users( $post_id, $echo = true ) {
  * Output a modified version of the TinyMCE content editor
  *
  * @since 1.0.0
- *
- * @uses wp_editor()
  *
  * @param string $content Content to edit
  * @param string $textarea_id ID value for textarea element

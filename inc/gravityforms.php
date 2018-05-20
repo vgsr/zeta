@@ -24,8 +24,6 @@ add_filter( 'pre_option_rg_gforms_disable_css', '__return_true' );
  *
  * @since 1.0.0
  *
- * @uses GFFormsModel::get_input_type()
- *
  * @param array $form Form data
  * @param array $args Field arguments
  * @return bool Form has field
@@ -77,11 +75,6 @@ function zeta_gf_form_has_field( $form, $args = array() ) {
  * Enqueue form scripts
  *
  * @since 1.0.0
- *
- * @uses wp_enqueue_style()
- * @uses zeta_gf_form_has_field()
- * @uses GFFormsModel::get_input_type()
- * @uses wp_add_inline_style()
  *
  * @param array $form Form data for which to load the scripts
  * @param bool $ajax Whether the form uses AJAX

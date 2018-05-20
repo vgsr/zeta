@@ -21,9 +21,6 @@ if ( ! function_exists( 'vgsr_entity' ) || version_compare( vgsr_entity()->versi
  *
  * @since 1.0.0
  *
- * @uses is_entity()
- * @uses is_singular()
- *
  * @param string $template Template file to load
  * @return string Template file
  */
@@ -44,9 +41,6 @@ add_filter( 'template_include', 'zeta_vgsr_entity_template_include' );
  * Print entry meta for VGSR entities
  *
  * @since 1.0.0
- *
- * @uses is_entity()
- * @uses vgsr_entity_get_meta()
  */
 function zeta_vgsr_entity_entry_meta() {
 
@@ -68,10 +62,6 @@ add_action( 'zeta_entry_meta', 'zeta_vgsr_entity_entry_meta' );
  * Filter the adjacent post navigation label
  *
  * @since 1.0.0
- *
- * @uses is_bestuur()
- * @uses is_singular()
- * @uses vgsr_entity()
  *
  * @param string $label Label
  * @return string Label

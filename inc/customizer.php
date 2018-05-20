@@ -111,8 +111,6 @@ add_action( 'customize_preview_init', 'zeta_customize_preview_js' );
  * Render the site title for the selective refresh partial
  *
  * @since 1.0.0
- *
- * @uses bloginfo()
  */
 function zeta_customize_partial_blogname() {
 	bloginfo( 'name' );
@@ -122,8 +120,6 @@ function zeta_customize_partial_blogname() {
  * Render the site description for the selective refresh partial
  *
  * @since 1.0.0
- *
- * @uses bloginfo()
  */
 function zeta_customize_partial_blogdescription() {
 	bloginfo( 'description' );

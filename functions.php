@@ -20,6 +20,8 @@ if ( ! function_exists( 'zeta_setup' ) ) :
  * Note that this function is hooked into the after_setup_theme hook, which
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
+ *
+ * @since 1.0.0
  */
 function zeta_setup() {
 
@@ -131,8 +133,6 @@ function zeta_add_image_sizes() {
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  *
  * @since 1.0.0
- *
- * @uses register_sidebar()
  */
 function zeta_widgets_init() {
 
@@ -229,6 +229,8 @@ endif;
 
 /**
  * Enqueue scripts and styles.
+ *
+ * @since 1.0.0
  */
 function zeta_scripts() {
 
@@ -284,6 +286,8 @@ add_action( 'wp_enqueue_scripts', 'zeta_scripts' );
 
 /**
  * Enqueue scripts and styles in the Dashboard.
+ *
+ * @since 1.0.0
  */
 function zeta_admin_scripts() {
 
@@ -295,11 +299,10 @@ add_action( 'admin_enqueue_scripts', 'zeta_admin_scripts' );
 /**
  * Add additional inline styles.
  *
- * @since Zeta 1.0.0
+ * @since 1.0.0
  *
  * @uses apply_filters() Calls 'zeta_previous_post_navigation_label'
  * @uses apply_filters() Calls 'zeta_next_post_navigation_label'
- * @uses wp_add_inline_style()
  */
 function zeta_inline_styles() {
 
@@ -333,7 +336,7 @@ add_action( 'wp_enqueue_scripts', 'zeta_inline_styles' );
 /**
  * Add a `screen-reader-text` class to the search form's submit button.
  *
- * @since Zeta 1.0.0
+ * @since 1.0.0
  *
  * @param string $html Search form HTML.
  * @return string Modified search form HTML.
