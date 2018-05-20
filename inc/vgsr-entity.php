@@ -27,7 +27,7 @@ if ( ! function_exists( 'vgsr_entity' ) || version_compare( vgsr_entity()->versi
 function zeta_vgsr_entity_template_include( $template ) {
 
 	// Entity: use `single.php` instead of the default `page.php`
-	if ( is_entity() && is_singular() ) {
+	if ( vgsr_is_entity() && is_singular() ) {
 		$template = get_query_template( get_post_type(), array( 'single.php' ) );
 	}
 
@@ -45,8 +45,8 @@ add_filter( 'template_include', 'zeta_vgsr_entity_template_include' );
 function zeta_vgsr_entity_entry_meta() {
 
 	// When this is an entity post
-	if ( is_entity() ) {
-		$type = get_post_type();
+	if ( vgsr_is_entity() ) {
+		$type = vgsr_entity_get_type();
 
 		// Print all entity meta
 		foreach ( vgsr_entity_get_meta() as $key => $args ) {
@@ -59,7 +59,7 @@ add_action( 'zeta_entry_meta', 'zeta_vgsr_entity_entry_meta' );
 /** Navigation *************************************************************/
 
 /**
- * Filter the adjacent post navigation label
+ * Modify the adjacent post navigation label
  *
  * @since 1.0.0
  *
@@ -68,12 +68,16 @@ add_action( 'zeta_entry_meta', 'zeta_vgsr_entity_entry_meta' );
  */
 function zeta_vgsr_entity_adjacent_post_navigation_label( $label ) {
 
-	// Previous or next?
-	$previous = ( 'zeta_previous_post_navigation_label' === current_filter() );
-
 	// Bestuur: display bestuur season
-	if ( is_bestuur() && is_singular() ) {
-		$label = vgsr_entity()->bestuur->get( 'season', get_adjacent_post( false, '', $previous ) );
+	if ( vgsr_is_bestuur() && is_singular() ) {
+
+		// Previous or next?
+		$previous = ( 'zeta_previous_post_navigation_label' === current_filter() );
+
+		// Make the bestuur's season the navigation label
+		if ( $type = vgsr_entity_get_type( 'bestuur', true ) ) {
+			$label = $type->bestuur->get( 'season', get_adjacent_post( false, '', $previous ) );
+		}
 	}
 
 	return $label;
