@@ -50,7 +50,10 @@ function zeta_vgsr_entity_entry_meta() {
 
 		// Print all entity meta
 		foreach ( vgsr_entity_get_meta() as $key => $args ) {
-			printf( '<span class="%s">%s</span>', "{$type}-{$key}", sprintf( $args['label'], $args['value'] ) );
+			printf( '<span class="%s">%s</span>',
+				"{$type}-{$key}",
+				vsprintf( $args['label'], (array) $args['value'] )
+			);
 		}
 	}
 }
