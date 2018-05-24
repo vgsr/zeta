@@ -2431,7 +2431,8 @@ body.menu-toggled {
 			opacity: 1;
 		}
 
-#breadcrumb + .page-header {
+/* Hide page header for searches */
+.search #breadcrumb + .page-header {
 	display: none;
 }
 
