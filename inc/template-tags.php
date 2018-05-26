@@ -9,8 +9,10 @@
 
 /**
  * Prints HTML with meta information for the current post-date/time and author.
+ *
+ * @param bool|string $title Optional. Link title attribute. Defaults to 'Posted by {author}'.
  */
-function zeta_posted_on() {
+function zeta_posted_on( $title = '' ) {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -23,10 +25,11 @@ function zeta_posted_on() {
 		esc_html( get_the_modified_date() )
 	);
 
-	$posted_on = sprintf( '<a href="%s" rel="bookmark" title="%s">%s</a>',
+	$link_html = is_string( $title ) ? '<a href="%1$s" rel="bookmark" title="%3$s">%2$s</a>' : '<a href="%1$s" rel="bookmark">%2$s</a>';
+	$posted_on = sprintf( $link_html,
 		esc_url( get_permalink() ),
-		sprintf( esc_attr_x( 'Posted by %s', 'post author', 'zeta' ), get_the_author() ),
-		$time_string
+		$time_string,
+		$title ? $title : sprintf( esc_attr_x( 'Posted by %s', 'post author', 'zeta' ), get_the_author() )
 	);
 
 	echo '<span class="posted-on">' . sprintf( _x( '<span class="screen-reader-text">Posted on </span>%s', 'post date', 'zeta' ), $posted_on ) . '</span>';
