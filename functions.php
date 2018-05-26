@@ -383,6 +383,7 @@ require( get_template_directory() . '/inc/customizer.php' );
  * Load plugin compatibility files.
  */
 require( get_template_directory() . '/inc/buddypress.php' );
+require( get_template_directory() . '/inc/econozel.php' );
 require( get_template_directory() . '/inc/event-organiser.php' );
 require( get_template_directory() . '/inc/gravityforms.php' );
 require( get_template_directory() . '/inc/jetpack.php' );
