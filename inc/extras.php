@@ -8,6 +8,17 @@
  * @package Zeta
  */
 
+/** Actions ****************************************************************/
+
+add_filter( 'get_the_archive_description', 'wptexturize',                       15 );
+add_filter( 'get_the_archive_description', 'convert_smilies',                   20 );
+add_filter( 'get_the_archive_description', 'wpautop',                           15 );
+add_filter( 'get_the_archive_description', 'shortcode_unautop',                 15 );
+add_filter( 'get_the_archive_description', 'prepend_attachment',                15 );
+add_filter( 'get_the_archive_description', 'wp_make_content_images_responsive', 15 );
+
+/** Common *****************************************************************/
+
 /**
  * Adds custom classes to the array of body classes.
  *
