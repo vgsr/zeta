@@ -380,6 +380,11 @@ require( get_template_directory() . '/inc/extras.php' );
 require( get_template_directory() . '/inc/customizer.php' );
 
 /**
+ * Custom functions for displaying post media.
+ */
+require( get_template_directory() . '/inc/media.php' );
+
+/**
  * Load plugin compatibility files.
  */
 require( get_template_directory() . '/inc/buddypress.php' );
