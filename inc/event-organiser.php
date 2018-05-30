@@ -456,35 +456,37 @@ function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
 		$aqv = $wp_query->query_vars;
 		$aqv['paged'] = false;
 
-		// Define adjacent archive link args
+		// Yearly archives
 		if ( eo_is_event_archive( 'year' ) ) {
-			$type = 'year';
-			$label = sprintf( esc_html_x( 'Events in %s', 'For yearly archives', 'zeta' ), date( 'Y', $date ) );
+			$type  = 'year';
+			$label = sprintf( esc_html_x( '%s', 'For yearly archives', 'zeta' ), date_i18n( 'Y', $date ) );
 
 			// Pagination query
 			$aqv['ondate']             = date( 'Y', $date );
 			$aqv['event_start_before'] = date( 'Y-12-31 00:00:00', $date );
 			$aqv['event_end_after']    = date( 'Y-01-01 00:00:00', $date );
 
+		// Monthly archives
 		} elseif ( eo_is_event_archive( 'month' ) ) {
-			$type = 'month';
-			$label = sprintf( esc_html_x( 'Events in %s', 'For monthly archives', 'zeta' ), date( 'F', $date ) );
+			$type  = 'month';
+			$label = sprintf( esc_html_x( '%s', 'For monthly archives', 'zeta' ), date_i18n( 'F Y', $date ) );
 
 			// Pagination query
 			$aqv['ondate']             = date( 'Y/m', $date );
 			$aqv['event_start_before'] = date( 'Y-m-t 00:00:00',  $date );
 			$aqv['event_end_after']    = date( 'Y-m-01 00:00:00', $date );
 
+		// Daily archives
 		} elseif ( eo_is_event_archive( 'day' ) ) {
-			$type = 'day';
-			$label = sprintf( esc_html_x( 'Events on %s', 'For daily archives', 'zeta' ), date( get_option( 'date_format' ), $date ) );
+			$type  = 'day';
+			$label = sprintf( esc_html_x( '%s', 'For daily archives', 'zeta' ), date_i18n( get_option( 'date_format' ), $date ) );
 
 			// Pagination query
 			$aqv['ondate']             = date( 'Y/m/d', $date );
 			$aqv['event_start_before'] = date( 'Y-m-d 00:00:00', $date );
 			$aqv['event_end_after']    = date( 'Y-m-d 00:00:00', $date );
 
-		// Default to daily archives
+		// Default to generic daily archives
 		} else {
 			$type  = 'day';
 			$label = $previous ? esc_html__( 'Older events', 'zeta' ) : esc_html__( 'Newer events', 'zeta' );
