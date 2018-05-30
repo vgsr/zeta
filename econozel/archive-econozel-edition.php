@@ -30,7 +30,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php econozel_the_posts_navigation(); ?>
+			<?php zeta_the_posts_navigation(); ?>
 
 		<?php else : ?>
 

@@ -181,26 +181,27 @@ function zeta_event_organiser_the_posts_navigation() {
 		$second = 'next';		
 	}
 
-	?>
-	<nav class="navigation posts-navigation" role="navigation">
-		<h2 class="screen-reader-text"><?php _e( 'Events navigation', 'zeta' ); ?></h2>
-		<div class="nav-links">
+	// Setup links
+	$navigation = '';
 
-			<?php if ( call_user_func( "get_{$first}_posts_link" ) ) : ?>
-			<div class="nav-previous"><?php call_user_func_array( "{$first}_posts_link", array( esc_html__( 'Older events', 'zeta' ) ) ); ?></div>
-			<?php elseif ( $archives[ $first ] ) : ?>
-			<div class="nav-previous"><?php echo $archives[ $first ]; ?></div>
-			<?php endif; ?>
+	// Previous link
+	if ( $link = call_user_func_array( "get_{$first}_posts_link", array( esc_html__( 'Older events', 'zeta' ) ) ) ) {
+		$navigation .= '<div class="nav-previous">' . $link . '</div>';
+	} elseif ( $archives[ $first ] ) {
+		$navigation .= '<div class="nav-previous">' . $archives[ $first ] . '</div>';
+	}
 
-			<?php if ( call_user_func( "get_{$second}_posts_link" ) ) : ?>
-			<div class="nav-next"><?php call_user_func_array( "{$second}_posts_link", array( esc_html__( 'Newer events', 'zeta' ) ) ); ?></div>
-			<?php elseif ( $archives[ $second ] ) : ?>
-			<div class="nav-next"><?php echo $archives[ $second ]; ?></div>
-			<?php endif; ?>
+	// Next link
+	if ( $link = call_user_func_array( "get_{$second}_posts_link", array( esc_html__( 'Newer events', 'zeta' ) ) ) ) {
+		$navigation .= '<div class="nav-next">' . $link . '</div>';
+	} elseif ( $archives[ $second ] ) {
+		$navigation .= '<div class="nav-next">' . $archives[ $second ] . '</div>';
+	}
 
-		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
-	<?php
+	// Output navigation
+	if ( ! empty( $navigation ) ) {
+		echo _navigation_markup( $navigation, 'posts-navigation', esc_html__( 'Events navigation', 'zeta' ) );
+	}
 }
 
 if ( ! function_exists( 'get_adjacent_event' ) ) :

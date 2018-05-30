@@ -114,6 +114,27 @@ function zeta_before_content() {
 }
 
 /**
+ * Output the context-aware posts navigation markup
+ *
+ * @since 1.0.0
+ */
+function zeta_the_posts_navigation() {
+
+	// Econozel pages
+	if ( function_exists( 'econozel' ) && is_econozel() ) {
+		econozel_the_posts_navigation();
+
+	// Event Organiser pages
+	} elseif ( is_post_type_archive( 'event' ) ) {
+		zeta_event_organiser_the_posts_navigation();
+
+	// Default
+	} else {
+		the_posts_navigation();
+	}
+}
+
+/**
  * Run a dedicated hook after the page's content
  *
  * @since 1.0.0

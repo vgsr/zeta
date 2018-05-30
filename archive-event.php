@@ -41,7 +41,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php zeta_event_organiser_the_posts_navigation(); ?>
+			<?php zeta_the_posts_navigation(); ?>
 
 		<?php else : ?>
 
