@@ -2339,8 +2339,7 @@ body.menu-toggled {
 	.posts-navigation .nav-next a:before,
 	.post-navigation .nav-previous a:before,
 	.post-navigation .nav-next a:before {
-		float: left;
-		width: 100%;
+		display: block;
 		color: #ddd;
 		font-family: 'Montserrat', Arial, sans-serif;
 		pointer-events: none;
