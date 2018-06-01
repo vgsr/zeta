@@ -459,7 +459,8 @@ function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
 		// Yearly archives
 		if ( eo_is_event_archive( 'year' ) ) {
 			$type  = 'year';
-			$label = sprintf( esc_html_x( '%s', 'For yearly archives', 'zeta' ), date_i18n( 'Y', $date ) );
+			/* translators: %s: Year */
+			$label = sprintf( esc_html_x( '%s', 'Yearly archives posts navigation', 'zeta' ), date_i18n( 'Y', $date ) );
 
 			// Pagination query
 			$aqv['ondate']             = date( 'Y', $date );
@@ -469,7 +470,8 @@ function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
 		// Monthly archives
 		} elseif ( eo_is_event_archive( 'month' ) ) {
 			$type  = 'month';
-			$label = sprintf( esc_html_x( '%s', 'For monthly archives', 'zeta' ), date_i18n( 'F Y', $date ) );
+			/* translators: %s: Month Year */
+			$label = sprintf( esc_html_x( '%s', 'Monthly archives posts navigation', 'zeta' ), ucfirst( date_i18n( 'F Y', $date ) ) );
 
 			// Pagination query
 			$aqv['ondate']             = date( 'Y/m', $date );
@@ -479,7 +481,8 @@ function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
 		// Daily archives
 		} elseif ( eo_is_event_archive( 'day' ) ) {
 			$type  = 'day';
-			$label = sprintf( esc_html_x( '%s', 'For daily archives', 'zeta' ), date_i18n( get_option( 'date_format' ), $date ) );
+			/* translators: %s: Date */
+			$label = sprintf( esc_html_x( '%s', 'Daily archives posts navigation', 'zeta' ), date_i18n( get_option( 'date_format' ), $date ) );
 
 			// Pagination query
 			$aqv['ondate']             = date( 'Y/m/d', $date );
