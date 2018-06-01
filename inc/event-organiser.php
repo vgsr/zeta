@@ -53,57 +53,6 @@ function zeta_event_organiser_page_title( $title ) {
 add_filter( 'document_title_parts', 'zeta_event_organiser_page_title' );
 
 /**
- * Filter the archive title for events
- *
- * @since 1.0.0
- *
- * @param string $title Archive title
- * @return string Archive title
- */
-function zeta_event_organiser_archive_title( $title ) {
-
-	// When displaying an event category
-	if ( is_tax( 'event-category' ) ) {
-		$title = sprintf( __( 'Events: %s', 'zeta' ), single_term_title( '', false ) );
-	}
-
-	// When displaying an event tag
-	if ( is_tax( 'event-tag' ) ) {
-		$title = sprintf( __( 'Events by tag: %s', 'zeta' ), single_term_title( '', false ) );
-	}
-
-	// When displaying an event venue
-	if ( is_tax( 'event-venue' ) ) {
-		$title = sprintf( __( 'Events at %s', 'zeta' ), single_term_title( '', false ) );
-	}
-
-	// When displaying event archives of a certain period
-	if ( is_post_type_archive( 'event' ) ) {
-		$title = __( 'Events: %s', 'zeta' );
-
-		// Year archives
-		if ( eo_is_event_archive( 'year' ) ) {
-			$title = sprintf( $title, eo_get_event_archive_date( _x( 'Y', 'Event archives title: Year', 'zeta' ) ) );
-
-		// Month archives
-		} elseif ( eo_is_event_archive( 'month' ) ) {
-			$title = sprintf( $title, eo_get_event_archive_date( _x( 'F Y', 'Event archives title: Month', 'zeta' ) ) );
-
-		// Day archives
-		} elseif ( eo_is_event_archive( 'day' ) ) {
-			$title = sprintf( $title, eo_get_event_archive_date( _x( 'jS F Y', 'Event archives title: Day', 'zeta' ) ) );
-
-		// Fallback
-		} else {
-			$title = __( 'Events', 'zeta' );
-		}
-	}
-
-	return $title;
-}
-add_filter( 'get_the_archive_title', 'zeta_event_organiser_archive_title' );
-
-/**
  * Return the date's event archive url
  *
  * @since 1.0.0
