@@ -125,7 +125,7 @@ function zeta_the_posts_navigation() {
 		econozel_the_posts_navigation();
 
 	// Event Organiser pages
-	} elseif ( is_post_type_archive( 'event' ) ) {
+	} elseif ( 'event' === get_post_type() ) {
 		zeta_event_organiser_the_posts_navigation();
 
 	// Default
