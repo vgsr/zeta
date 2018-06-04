@@ -15,7 +15,7 @@ global $eo_event_loop;
 		<header class="section-header">
 			<span class="section-title">
 				<a href="<?php echo esc_url( zeta_event_organiser_get_archive_url( 'month' ) ); ?>">
-					<?php eo_the_start( _x( 'F Y', 'Monthly event section header', 'zeta' ) ); ?>
+					<?php echo ucfirst( eo_get_the_start( esc_html_x( 'F Y', 'Monthly event section header', 'zeta' ) ) ); ?>
 				</a>
 			</span>
 		</header>

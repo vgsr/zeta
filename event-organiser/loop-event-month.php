@@ -13,10 +13,10 @@
 		<header class="section-header">
 			<span class="section-title">
 				<a href="<?php echo esc_url( zeta_event_organiser_get_archive_url( 'month' ) ); ?>">
-					<?php eo_the_start( is_tax()
-						? _x( 'F Y', 'Monthly event section header with year context', 'zeta' )
-						: _x( 'F', 'Monthly event section header', 'zeta' )
-					); ?>
+					<?php echo ucfirst( eo_get_the_start( is_tax()
+						? esc_html_x( 'F Y', 'Monthly event section header with year context', 'zeta' )
+						: esc_html_x( 'F', 'Monthly event section header', 'zeta' )
+					) ); ?>
 				</a>
 			</span>
 		</header>
