@@ -34,25 +34,6 @@ function zeta_event_organiser_template_stack( $stack ) {
 add_filter( 'eventorganiser_template_stack', 'zeta_event_organiser_template_stack' );
 
 /**
- * Filter the document page title for event pages
- *
- * Available since WP 4.4.0 in `wp_get_document_title()`.
- *
- * @since 1.0.0
- *
- * @param string $title Page title
- * @return string Page title
- */
-function zeta_event_organiser_page_title( $title ) {
-
-	// Run page title through our archive title filter
-	$title['title'] = zeta_event_organiser_archive_title( $title['title'] );
-
-	return $title;
-}
-add_filter( 'document_title_parts', 'zeta_event_organiser_page_title' );
-
-/**
  * Return the date's event archive url
  *
  * @since 1.0.0
