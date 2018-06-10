@@ -56,9 +56,10 @@
 	13.1 Captions
 	13.2 Galleries
 14.0 Plugins
-	14.1 VGSR Entity
-	14.2 VGSR Widgets
-	14.3 Column Shortcodes
+	14.1 Column Shortcodes
+	14.2 VGSR
+	14.3 VGSR Entity
+	14.4 VGSR Widgets
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -3859,7 +3860,54 @@ object {
 14.0 Plugins
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
-14.1 VGSR Entity
+14.1 Column Shortcodes
+--------------------------------------------------------------*/
+
+.entry-content .content-column {
+	margin: 1.5em 0px 0px;
+	padding: 0px 17.5px;
+}
+
+	.entry-content .content-column.full_width {
+		padding: 0px;
+	}
+
+	.entry-content p + .content-column,
+	.entry-content .clear_column + .content-column {
+		padding-left: 0px;
+	}
+
+	.entry-content .content-column.last_column {
+		padding-right: 0px;
+	}
+
+/* Breakpoint in the plugin: .entry-content { max-width: 444px; } */
+@media all and (max-width: 600px), (min-width: 741px) and (max-width: 904px) {
+	.entry-content .content-column {
+		clear: both;
+		width: 100%;
+		padding: 0px;
+	}
+}
+
+/*--------------------------------------------------------------
+14.2 VGSR
+--------------------------------------------------------------*/
+
+.vgsr-eo-start-date {
+	display: block;
+}
+
+.vgsr-eo-start-date ~ p + p {
+	margin-top: 0px;
+}
+
+.vgsr-eo-permalink {
+	margin-left: 10px;
+}
+
+/*--------------------------------------------------------------
+14.3 VGSR Entity
 --------------------------------------------------------------*/
 
 .entry-content .entity-details {
@@ -3967,7 +4015,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-14.2 VGSR Widgets
+14.4 VGSR Widgets
 --------------------------------------------------------------*/
 
 .entry-content .vgsr-subpages {
@@ -4036,35 +4084,4 @@ object {
 		.entry-content .vgsr-subpages .hentry.even {
 			padding-left: 35px;
 		}
-}
-
-/*--------------------------------------------------------------
-14.3 Column Shortcodes
---------------------------------------------------------------*/
-
-.entry-content .content-column {
-	margin: 1.5em 0px 0px;
-	padding: 0px 17.5px;
-}
-
-	.entry-content .content-column.full_width {
-		padding: 0px;
-	}
-
-	.entry-content p + .content-column,
-	.entry-content .clear_column + .content-column {
-		padding-left: 0px;
-	}
-
-	.entry-content .content-column.last_column {
-		padding-right: 0px;
-	}
-
-/* Breakpoint in the plugin: .entry-content { max-width: 444px; } */
-@media all and (max-width: 600px), (min-width: 741px) and (max-width: 904px) {
-	.entry-content .content-column {
-		clear: both;
-		width: 100%;
-		padding: 0px;
-	}
 }
