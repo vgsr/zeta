@@ -14,28 +14,34 @@
 
 /* Event archives */
 
-.event-section.section-month > .section-header {
-	padding-bottom: 35px;
-}
-
 .event-section.section-day {
 	display: flex;
 	flex-direction: column;
 }
 
-.event-section.section-month .section-day:not(:last-child) {
-	margin-bottom: 1.5em;
+.entry-content .month-event-days,
+.event-section.section-month .month-event-days {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
 }
 
+.entry-content .month-event-days {
+	margin-top: -1.5em;
+}
 	.event-section.section-day .section-header {
 		width: 100%;
 		flex: 1 0 auto;
 	}
 
-	.post-type-archive-event .entry-title, /* Daily archives */
-	.event-section .section-title,
+	.event-section.section-day .section-title,
 	.event-section .entry-title {
 		font-size: 1em;
+	}
+
+	.event-section .section-title {
+		margin: 1.5em 0px 0px;
+		line-height: inherit;
 	}
 
 	.event-section.section-day .entry-title {
@@ -49,11 +55,14 @@
 
 	.event-section .section-content {
 		width: 100%;
-		margin-top: 1.5em;
 	}
 
 	.event-section .section-content .event {
 		margin-top: 0px;
+	}
+
+	.event-section .section-content .event ~ .event {
+		margin-top: -1.5em;
 	}
 
 	.event-section .section-content .entry-title {
@@ -76,7 +85,6 @@
 
 		.event-section .section-content {
 			width: calc( 100% - 5em );
-			padding-left: 35px;
 		}
 
 		.event-section .section-content {

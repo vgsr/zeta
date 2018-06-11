@@ -25,24 +25,37 @@ get_header(); ?>
 				?>
 			</header><!-- .page-header -->
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php if ( eo_is_event_archive( 'year' ) || is_tax() ) : ?>
 
-				<?php if ( eo_is_event_archive( 'year' ) || is_tax() ) : ?>
+				<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php eo_get_template_part( 'loop', 'event-month' ); ?>
+					<?php eo_get_template_part( 'loop', 'event-month' ); ?>
 
-				<?php elseif ( eo_is_event_archive( 'month' ) ) : ?>
+				<?php endwhile; ?>
 
-				<?php eo_get_template_part( 'loop', 'event-day' ); ?>
+			<?php elseif ( eo_is_event_archive( 'month' ) ) : ?>
 
-				<?php else : ?>
+				<div class="entry-content">
+					<ul class="month-event-days">
 
-				<?php get_template_part( 'content', 'event' ); ?>
+						<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php endif; ?>
+							<li><?php eo_get_template_part( 'loop', 'event-day' ); ?></li>
 
-			<?php endwhile; ?>
+						<?php endwhile; ?>
+
+					</ul>
+				</div>
+
+			<?php else : ?>
+
+				<?php while ( have_posts() ) : the_post(); ?>
+
+					<?php get_template_part( 'content', 'event' ); ?>
+
+				<?php endwhile; ?>
+
+			<?php endif; ?>
 
 			<?php zeta_the_posts_navigation(); ?>
 

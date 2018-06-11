@@ -9,25 +9,25 @@
 
 ?>
 
-	<section class="event-section section-day">
-		<header class="section-header">
-			<span class="section-title">
-				<a href="<?php echo esc_url( zeta_event_organiser_get_archive_url() ); ?>">
-					<?php eo_the_start( _x( 'D jS', 'Daily event section header', 'zeta' ) ); ?>
-				</a>
-			</span>
-		</header>
+<section class="event-section section-day">
+	<header class="section-header">
+		<h3 class="section-title">
+			<a href="<?php echo esc_url( zeta_event_organiser_get_archive_url() ); ?>">
+				<?php echo ucfirst( eo_get_the_start( _x( 'D jS', 'Daily event section header', 'zeta' ) ) ); ?>
+			</a>
+		</h3>
+	</header>
 
-		<main class="section-content">
+	<main class="section-content">
 
-			<?php eo_get_template_part( 'loop', 'single-event' ); ?>
+		<?php eo_get_template_part( 'loop', 'single-event' ); ?>
 
-			<?php while ( zeta_has_posts() && zeta_event_organiser_is_date_same_day() ) : the_post(); ?>
+		<?php while ( zeta_has_posts() && zeta_event_organiser_is_date_same_day() ) : the_post(); ?>
 
-			<?php eo_get_template_part( 'loop', 'single-event' ); ?>
+		<?php eo_get_template_part( 'loop', 'single-event' ); ?>
 
-			<?php endwhile; ?>
+		<?php endwhile; ?>
 
-		</main>
+	</main>
 
-	</section>
+</section>

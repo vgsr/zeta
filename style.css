@@ -3142,7 +3142,7 @@ body.front-page .entry-content {
 }
 	.entry-title,
 	.page-title,
-	.event-section.section-month > .section-header > .section-title {
+	.section-title {
 		font-size: 2em;
 	}
 
