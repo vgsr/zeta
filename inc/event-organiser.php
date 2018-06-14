@@ -486,6 +486,8 @@ function zeta_event_organiser_is_date_same_day( $query = false, $check = 'next' 
  *
  * @since 1.0.0
  *
+ * @global WP_Post $post
+ *
  * @param string             $format Date format. Used to check the date equality.
  * @param bool|WP_Query      $query  Optional. Query object. Defaults to main query global.
  * @param string|int|WP_Post $check  Optional. Which post to check against. Either 'prev'
@@ -495,63 +497,63 @@ function zeta_event_organiser_is_date_same_day( $query = false, $check = 'next' 
  * @return bool Event is of the same date format
  */
 function zeta_event_organiser_is_date_same( $format = 'Y-m-d', $query = false, $check = 'next' ) {
+	global $post;
 
-	// Bail when this isn't an event query
-	if ( 'event' !== get_post_type() )
-		return false;
+	// Use VGSR logic
+	if ( function_exists( 'vgsr_eo_is_new_date' ) ) {
+		$checks   = array( 'next' => false, 'prev' => true );
+		$previous = isset( $checks[ $check ] ) ? $checks[ $check ] : $check;
 
-	// Default the query context to the global main query
-	if ( ! $query || ! is_a( $query, 'WP_Query' ) ) {
+		return ! vgsr_eo_is_new_date( $format, $query, $previous );
+	}
+
+	// Default to the main query
+	if ( ! is_a( $query, 'WP_Query' ) ) {
 		$query = $GLOBALS['wp_query'];
 	}
 
-	// Default to check the next query item
-	if ( ! $check ) {
-		$check = 'next';
+	// Bail when we're not in the event loop
+	if ( ! $query->in_the_loop || 'event' !== $query->post->post_type ) {
+		return false;
 	}
 
-	// Bail when there are no next or previous posts in the query
-	if (   ( 'next' === $check && ! zeta_has_posts( $query ) )
-		|| ( 'prev' === $check && 0 === $query->current_post )
-	)
-		return false;
+	// Get the post to compare from input
+	if ( is_numeric( $previous ) || is_a( $previous, 'WP_Post' ) ) {
+		$cmp_post = get_post( $previous );
 
-	/**
-	 * To compare dates, we're using `eo_get_the_start()`, but it needs
-	 * to use the global `$post`. So we set it apart here to override it.
-	 */
-	$_post = $GLOBALS['post'];
-
-	// Use event start date from the post to compare from
-	$GLOBALS['post'] = $query->post;
-	$date1 = eo_get_the_start( $format, $query->post->ID );
-
-	// Get the post to compare to
-	if ( 'next' === $check ) {
-		$post2 = $query->posts[ $query->current_post + 1 ];
-	} elseif ( 'prev' === $check ) {
-		$post2 = $query->posts[ $query->current_post - 1 ];
+	// Get the post to copmare from the loop
 	} else {
-		$post2 = get_post( $check );
+		$which    = $previous ? $query->current_post - 1 : $query->current_post + 1;
+		$cmp_post = isset( $query->posts[ $which ] ) ? $query->posts[ $which ] : false;
 	}
 
-	// Bail when a post wasn't found
-	if ( ! $post2 ) {
-		$GLOBALS['post'] = $_post;
-		return false;
+	// Define return value
+	$retval = is_bool( $previous ) ? $previous : false;
+
+	if ( $cmp_post ) {
+		/**
+		 * To compare dates, we're using `eo_get_the_start()`, which requires
+		 * the global `$post`. So we set it apart here to override it.
+		 */
+		$_post = $post;
+
+		// Get date to compare
+		$post     = $cmp_post;
+		$cmp_date = eo_get_the_start( $format );
+
+		// Get post date
+		$post      = $query->post;
+		$post_date = eo_get_the_start( $format );
+
+		// Compare dates
+		$retval = $cmp_date !== $post_date;
+
+		// Restore post global
+		$post = $_post;
+		unset( $_post );
 	}
 
-	// Use event start date from the post to compare to
-	$GLOBALS['post'] = $post2;
-	$date2 = eo_get_the_start( $format, $post2->ID );
-
-	// Restore the global `$post`
-	$GLOBALS['post'] = $_post;
-
-	// Check for equality in dates
-	$equal = ( $date1 === $date2 );
-
-	return $equal;
+	return ! $retval;
 }
 
 /**
