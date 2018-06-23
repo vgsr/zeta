@@ -3154,13 +3154,15 @@ body.front-page .entry-content {
 	}
 
 .site-content p a,
-.site-content td a {
+.site-content td a,
+.site-content dl a {
 	text-decoration: none;
 	border-bottom: 1px solid rgba(64, 64, 64, .5);
 }
 
 	.site-content p a:not(.comment-author):hover,
-	.site-content td a:hover {
+	.site-content td a:hover,
+	.site-content dl a:hover {
 		text-decoration: none;
 		border-color: #404040;
 		color: #fff;
