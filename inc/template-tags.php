@@ -150,6 +150,17 @@ function zeta_after_content() {
 }
 
 /**
+ * Return the post's content context.
+ *
+ * @since 1.0.0
+ *
+ * @return string Post context. Post format for posts, else post type.
+ */
+function zeta_get_post_context() {
+	return 'post' === get_post_type() ? get_post_format() : get_post_type();
+}
+
+/**
  * Returns true if a blog has more than 1 category.
  *
  * @return bool
