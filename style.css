@@ -3070,6 +3070,17 @@ input.search-field {
 	display: inline;
 }
 
+.entry-image {
+	margin: -25px -25px 25px;
+	height: 200px;
+}
+
+.entry-image img {
+	object-fit: cover;
+	width: 100%;
+	height: 200px;
+}
+
 .entry-content {
 	margin: 0px;
 }
@@ -3303,6 +3314,12 @@ body.front-page .entry-content {
 				content: '\f469'; /* dashicons-clock */
 				margin-right: 3px;
 			}
+
+@media screen and (min-width: 561px) {
+	.entry-image {
+		margin: -35px -35px 35px;
+	}
+}
 
 /* Breakpoint 2 */
 @media screen and (min-width: 741px) {
