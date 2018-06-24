@@ -3968,20 +3968,38 @@ object {
 		text-align: left;
 	}
 
-.entity-details .bestuur-positions h4 {
+.entry-content .bestuur-positions .detail-title {
 	display: none;
+}
+
+.entry-content .bestuur-positions dl {
+	display: -ms-grid; /* IE 10+ */
+	display: grid;
+	-ms-grid-columns: auto 1fr; /* IE 10+ */
+	grid-auto-columns: auto 1fr;
+	-ms-grid-gap: 0px 25px; /* IE 10+ */
+	grid-gap: 0px 25px;
+}
+
+.entry-content .bestuur-positions dt {
+	-ms-grid-column: 1; /* IE 10+ */
+	grid-column: 1;
+}
+
+.entry-content .bestuur-positions dd {
+	-ms-grid-column: 2; /* IE 10+ */
+	grid-column: 2;
+	margin: 0px;
 }
 
 @media screen and (min-width: 480px) and (max-width: 674px), (min-width: 741px) and (max-width: 779px) {
 	.entity-details .entity-logo {
 		float: left;
-		width: 50%;
-		padding-right: 35px;
+		margin-right: 25px;
 	}
 
 	.entity-details .entity-logo ~ div {
 		float: left;
-		width: 50%;
 	}
 }
 
