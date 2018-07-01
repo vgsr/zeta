@@ -2392,11 +2392,13 @@ body.menu-toggled {
 
 	/* Home icon */
 	.yoast-breadcrumb span[typeof="v:Breadcrumb"]:not([rel="v:child"]) > a:hover,
+	.yoast-breadcrumb > span > span > a:hover,
 	.bbp-breadcrumb .bbp-breadcrumb-home:hover {
 		text-decoration: none;
 	}
 
 		.yoast-breadcrumb span[typeof="v:Breadcrumb"]:not([rel="v:child"]) > a:before,
+		.yoast-breadcrumb > span > span > a:before,
 		.bbp-breadcrumb .bbp-breadcrumb-home:before {
 			content: '\f102'; /* dashicons-admin-home */
 			font-family: dashicons;
@@ -2405,6 +2407,7 @@ body.menu-toggled {
 		}
 
 	.yoast-breadcrumb span[rel="v:child"]:before,
+	.yoast-breadcrumb > span > span span:before,
 	.yoast-breadcrumb .breadcrumb_last:before,
 	.bbp-breadcrumb > span:not(:last-child):after {
 		content: '\f345'; /* dashicons-arrow-right-alt2 */
