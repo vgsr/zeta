@@ -5,7 +5,7 @@
  * @subpackage GravityForms
  */
 
-.entry-content .gform_wrapper {
+body:not(.gfp-form) .entry-content .gform_wrapper {
 	margin: 1.5em 0px 0px;
 	padding-bottom: 1.5em;
 	border: 1px solid #f9f9f9;
