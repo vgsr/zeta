@@ -33,7 +33,7 @@ function zeta_vgsr_entity_template_include( $template ) {
 
 	return $template;
 }
-add_filter( 'template_include', 'zeta_vgsr_entity_template_include' );
+add_filter( 'vgsr_entity_template_include', 'zeta_vgsr_entity_template_include' );
 
 /** Entry ******************************************************************/
 
