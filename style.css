@@ -3097,6 +3097,8 @@ input.search-field {
 	margin: 1.5em 0px 0px;
 }
 
+.archive-description ul,
+.archive-description ol,
 .entry-content ul,
 .entry-content ol {
 	margin-left: 0px;
