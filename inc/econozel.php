@@ -21,7 +21,7 @@ function zeta_econozel_entry_meta() {
 	if ( econozel_is_article() ) {
 
 		// Author(s)
-		printf( '<span class="author">%s</span>', implode( ' ', econozel_get_article_author_link() ) );
+		printf( '<span class="author">%s</span>', sprintf( esc_html__( 'Written by %s', 'zeta' ), econozel_get_article_author_link( 0, true ) ) );
 
 		// Edition
 		if ( ! econozel_is_edition() ) {
