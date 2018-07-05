@@ -15,6 +15,8 @@
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
-		<?php econozel_the_edition_content(); ?>
+		<?php econozel_the_edition_description(); ?>
+
+		<?php econozel_the_edition_toc(); ?>
 	</div><!-- .entry-content -->
 </article><!-- #term-## -->
