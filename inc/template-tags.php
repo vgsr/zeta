@@ -128,6 +128,10 @@ function zeta_the_posts_navigation() {
 	} elseif ( 'event' === get_post_type() ) {
 		zeta_event_organiser_the_posts_navigation();
 
+	// Gravity Forms Pages pages
+	} elseif ( function_exists( 'gf_pages' ) && is_gf_pages() ) {
+		gf_pages_the_posts_navigation();
+
 	// VGSR Entity pages
 	} elseif ( vgsr_is_entity() ) {
 		vgsr_entity_the_posts_navigation();

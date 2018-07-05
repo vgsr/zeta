@@ -125,3 +125,51 @@ function zeta_gf_enqueue_scripts( $form, $ajax = false ) {
 	}
 }
 add_action( 'gform_enqueue_scripts', 'zeta_gf_enqueue_scripts', 10, 2 );
+
+/** GF Pages ***************************************************************/
+
+/**
+ * Print entry meta for form pages
+ *
+ * @since 1.0.0
+ */
+function zeta_gfp_entry_meta() {
+
+	// Form
+	if ( gf_pages_is_form() ) {
+
+		// Form is temporal
+		if ( gf_pages_get_form_close_date() ) {
+
+			// Open date
+			echo '<span class="form-date">' . gf_pages_get_form_open_date( get_option( 'date_format' ) ) . '</span>';
+
+			// Closing timespan
+			echo sprintf( '<span class="form-closing" title="%s">%s</span>',
+				gf_pages_get_form_close_date( get_option( 'date_format' ) ),
+				/* translators: time difference */
+				sprintf( esc_html__( 'Closing in %s', 'zeta' ), human_time_diff( time(), gf_pages_get_form_close_date( 'U' ) ) )
+			);
+		}
+
+		// User can edit forms
+		if ( GFCommon::current_user_can_any( 'gforms_edit_forms' ) ) {
+
+			// View count
+			$count = gf_pages_get_form_view_count();
+			echo '<span class="view-count">' . sprintf( _n( '%d View', '%d Views', $count, 'zeta' ), $count ) . '</span>';
+
+			// Entry count
+			$count = gf_pages_get_form_entry_count();
+			$link = $count > 0 ? '<a href="' . gf_pages_get_view_form_entries_url() . '">%s</a>' : '%s';
+			echo '<span class="entry-count">' . sprintf( $link, sprintf( _n( '%d Entry', '%d Entries', $count, 'zeta' ), $count ) ) . '</span>';
+
+			// Edit link
+			gf_pages_the_form_edit_link( array(
+				'link_before' => '<span class="edit-link">',
+				'link_after'  => '</span>'
+			) );
+		}
+	}
+}
+add_action( 'zeta_entry_meta', 'zeta_gfp_entry_meta' );
