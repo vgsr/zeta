@@ -133,7 +133,7 @@ function zeta_the_posts_navigation() {
 		gf_pages_the_posts_navigation();
 
 	// VGSR Entity pages
-	} elseif ( vgsr_is_entity() ) {
+	} elseif ( function_exists( 'vgsr_entity' ) && vgsr_is_entity() ) {
 		vgsr_entity_the_posts_navigation();
 
 	// Default
