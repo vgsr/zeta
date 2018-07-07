@@ -138,14 +138,30 @@ function zeta_gfp_entry_meta() {
 	// Form
 	if ( function_exists( 'gf_pages_is_form' ) && gf_pages_is_form() ) {
 
+		// Form is inactive
+		if ( gf_pages_is_form_inactive() ) {
+			echo '<span class="form-status">' . esc_html_x( 'Inactive', 'Form status', 'zeta' ) . '</span>';
+
+		// Form is not open yet
+		} elseif ( ! gf_pages_is_form_open() ) {
+			printf( '<span class="form-status" title="%s">%s</span>',
+				gf_pages_get_form_open_date( get_option( 'date_format' ) ),
+				/* translators: time difference */
+				sprintf( esc_html__( 'Opening in %s', 'zeta' ), human_time_diff( time(), gf_pages_get_form_open_date( 'U' ) ) )
+			);
+
+		// Form is closed
+		} elseif ( gf_pages_is_form_closed() ) {
+			echo '<span class="form-status">' . esc_html_x( 'Closed', 'Form status', 'zeta' ) . '</span>';
+
 		// Form is temporal
-		if ( gf_pages_get_form_close_date() ) {
+		} elseif ( gf_pages_get_form_close_date() ) {
 
 			// Open date
 			echo '<span class="form-date">' . gf_pages_get_form_open_date( get_option( 'date_format' ) ) . '</span>';
 
 			// Closing timespan
-			echo sprintf( '<span class="form-closing" title="%s">%s</span>',
+			printf( '<span class="form-status" title="%s">%s</span>',
 				gf_pages_get_form_close_date( get_option( 'date_format' ) ),
 				/* translators: time difference */
 				sprintf( esc_html__( 'Closing in %s', 'zeta' ), human_time_diff( time(), gf_pages_get_form_close_date( 'U' ) ) )
