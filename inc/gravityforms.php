@@ -136,7 +136,7 @@ add_action( 'gform_enqueue_scripts', 'zeta_gf_enqueue_scripts', 10, 2 );
 function zeta_gfp_entry_meta() {
 
 	// Form
-	if ( gf_pages_is_form() ) {
+	if ( function_exists( 'gf_pages_is_form' ) && gf_pages_is_form() ) {
 
 		// Form is temporal
 		if ( gf_pages_get_form_close_date() ) {

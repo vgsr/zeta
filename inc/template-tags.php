@@ -129,11 +129,11 @@ function zeta_the_posts_navigation() {
 		zeta_event_organiser_the_posts_navigation();
 
 	// Gravity Forms Pages pages
-	} elseif ( function_exists( 'gf_pages' ) && is_gf_pages() ) {
+	} elseif ( function_exists( 'is_gf_pages' ) && is_gf_pages() ) {
 		gf_pages_the_posts_navigation();
 
 	// VGSR Entity pages
-	} elseif ( function_exists( 'vgsr_entity' ) && vgsr_is_entity() ) {
+	} elseif ( function_exists( 'vgsr_is_entity' ) && vgsr_is_entity() ) {
 		vgsr_entity_the_posts_navigation();
 
 	// Default
