@@ -74,7 +74,7 @@ add_filter( 'body_class', 'zeta_body_classes' );
 function zeta_editor_body_classes( $mce ) {
 
 	// For the front page, add a class to the editor body
-	if ( zeta_is_static_front_page() ) {
+	if ( zeta_is_static_front_page() && isset( $mce['body_class'] ) ) {
 		$mce['body_class'] .= ' front-page';
 	}
 
