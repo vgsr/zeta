@@ -305,11 +305,8 @@ function zeta_comment_form( $post_id ) {
 	if ( ! is_user_logged_in() )
 		return;
 
-	// Unhook temp filter. See ../comments.php
-	remove_filter( 'cancel_comment_reply_link', '__return_empty_string' );
-
 	/**
-	 * Hack to add markup _after_ the comment form.
+	 * Hack to add markup *after* the comment form.
 	 *
 	 * There are no hooks provided to insert markup after the comment form, so
 	 * we're using the last hook for appending markup within the comment form.
@@ -317,6 +314,9 @@ function zeta_comment_form( $post_id ) {
 	 * closing form tag in `comment_form()` will be preceded by a hidden form tag
 	 * which has no other purpose than to provide a matching opening tag.
 	 */
+
+	// Unhook temp filter. See ../comments.php
+	remove_filter( 'cancel_comment_reply_link', '__return_empty_string' );
 
 	?>
 	</form>
