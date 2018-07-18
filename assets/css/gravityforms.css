@@ -249,7 +249,7 @@ body:not(.single-form) .entry-content .gform_wrapper {
 .gform_wrapper .gfield_date_day label,
 .gform_wrapper .gfield_date_year label,
 .gform_wrapper .instruction {
-	display: inline-block;
+	display: block;
 }
 
 .gform_wrapper .ginput_complex label,
@@ -260,7 +260,7 @@ body:not(.single-form) .entry-content .gform_wrapper {
 .gform_wrapper .gfield_date_day label,
 .gform_wrapper .gfield_date_year label,
 .gform_wrapper .instruction {
-	margin: .2em 0px 0px;
+	margin: .5em 0px 0px;
 }
 
 .gform_wrapper .field_sublabel_above .ginput_complex label,
@@ -365,16 +365,6 @@ body:not(.single-form) .entry-content .gform_wrapper {
 	width: 1px;
 	overflow: hidden;
  }
-
-.gform_wrapper .top_label input.small,
-.gform_wrapper .top_label select.small {
-	width: 25%;
-}
-
-.gform_wrapper .top_label input.medium,
-.gform_wrapper .top_label select.medium {
-	width: 50%;
-}
 
 .gform_wrapper .top_label input.large,
 .gform_wrapper .top_label select.large,
@@ -1292,4 +1282,16 @@ body #content .entry-content .gform_wrapper form .gform_body .gform_fields .gfie
 
 .gform_wrapper table.recaptchatable {
 	table-layout: auto;
+}
+
+@media screen and (min-width: 741px) {
+	.gform_wrapper .top_label input.small,
+	.gform_wrapper .top_label select.small {
+		width: 25%;
+	}
+
+	.gform_wrapper .top_label input.medium,
+	.gform_wrapper .top_label select.medium {
+		width: 50%;
+	}
 }
