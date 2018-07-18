@@ -64,7 +64,7 @@ body:not(.single-form) .entry-content .gform_wrapper {
 	counter-reset: form-field;
 }
 
-	.gform_wrapper .gform_fields .gfield:not(.gsection):not(.gfield_html) {
+	.gform_wrapper .gfield:not(.gsection):not(.gfield_html):not(.gfield_visibility_hidden) {
 		counter-increment: form-field;
 	}
 
@@ -601,6 +601,7 @@ div.gf_page_steps+div.validation_error {
 	overflow: hidden;
 }
 
+.gform_wrapper .gfield_visibility_hidden,
 .gform_wrapper .gf_invisible {
 	visibility: hidden;
 	position: absolute;

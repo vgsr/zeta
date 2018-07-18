@@ -109,7 +109,7 @@ function zeta_gf_enqueue_scripts( $form, $ajax = false ) {
 		foreach ( $form['fields'] as $field ) {
 
 			// Increment counter for regular fields
-			if ( ! in_array( GFFormsModel::get_input_type( $field ), array( 'page', 'section', 'html' ) ) ) {
+			if ( ! in_array( GFFormsModel::get_input_type( $field ), array( 'page', 'section', 'html' ) ) && 'visible' === $field->visibility ) {
 				$counter++;
 
 			// Add counter increment for page field. Don't reset `$counter`
