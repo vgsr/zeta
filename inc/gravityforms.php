@@ -126,6 +126,37 @@ function zeta_gf_enqueue_scripts( $form, $ajax = false ) {
 }
 add_action( 'gform_enqueue_scripts', 'zeta_gf_enqueue_scripts', 10, 2 );
 
+/**
+ * Modify the form field content
+ *
+ * @since 1.0.0
+ *
+ * @param string $content Field content
+ * @param object $field Field object
+ * @param mixed $value Raw field value
+ * @param int $form_id Form ID
+ * @return string Field content
+ */
+function zeta_gf_form_field_content( $content, $field, $value, $form_id ) {
+
+	// Consider field type
+	switch ( $field->type ) {
+
+		// HTML field
+		case 'html':
+			$content = wptexturize( $content );
+			$content = convert_chars( $content );
+			$content = make_clickable( $content );
+			$content = force_balance_tags( $content );
+			$content = convert_smilies( $content );
+			$content = wpautop( $content );
+			break;
+	}
+
+	return $content;
+}
+add_filter( 'gform_field_content', 'zeta_gf_form_field_content', 10, 4 );
+
 /** GF Pages ***************************************************************/
 
 /**
