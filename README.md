@@ -1,12 +1,10 @@
 # Zeta #
 
-Custom theme designed for vgsr.nl
+Theme for vgsr.nl since 2016.
 
 ## Description ##
 
 > This WordPress theme requires at least [WordPress](https://wordpress.org) 4.0 and [BuddyPress](https://buddypress.org) 2.6.
-
-The online presence of VGSR reimagined. This second installment of VGSR WordPress themes focuses on images and readability, for all screen sizes. A large screen area is reserved to present the best of VGSR imagery, while a single white content column gives easy focus on the important message, and nothing more. It's time to shine.
 
 ## Installation ##
 
