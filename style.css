@@ -2184,6 +2184,7 @@ body.menu-toggled {
 
 		.main-navigation ul ul a {
 			width: 200px;
+			font-size: 1.1em;
 		}
 
 	.main-navigation ul li:hover > ul {
