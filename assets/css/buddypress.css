@@ -928,13 +928,23 @@
 /*--------------------------------------------------------------
 2.3 Item list (members/groups)
 --------------------------------------------------------------*/
+.avatar-block,
+.bp-item-list {
+	list-style: none;
+	display: -ms-grid; /* IE 10+ */
+	display: grid;
+	-ms-grid-columns: repeat( auto-fill, minmax( 50px, 1fr ) ); /* IE 10+ */
+	grid-template-columns: repeat( auto-fill, minmax( 50px, 1fr ) );
+	-ms-grid-gap: 6px; /* IE 10+ */
+	grid-gap: 6px;
+}
+
 .avatar-block .item-avatar,
 .bp-item-list li {
 	position: relative;
 	display: inline-block; /* no floating */
 	width: 50px;
 	height: 50px;
-	margin: 0px 3px 7px 0px; /* 4px space in between */
 }
 
 	.avatar-block .item-avatar a:before,

@@ -3982,25 +3982,8 @@ object {
 
 .entity-details .bp-item-list {
 	width: 100%;
-	list-style: none;
-	margin: 10px 0px -7px;
 	padding: 0px;
 }
-
-.entity-list {
-	letter-spacing: -5px; /* Remove spacing between children */
-}
-
-	.entity-list .hentry {
-		width: 100%;
-		display: inline-block;
-		text-align: center;
-		letter-spacing: 0.02em; /* Put back letter-spacing */
-	}
-
-	.entity-list .entry-content {
-		text-align: left;
-	}
 
 .entry-content .bestuur-positions .detail-title {
 	display: none;
@@ -4026,62 +4009,12 @@ object {
 	margin: 0px;
 }
 
-@media screen and (min-width: 480px) and (max-width: 674px), (min-width: 741px) and (max-width: 779px) {
-	.entity-details .entity-logo {
-		float: left;
-		margin-right: 25px;
-	}
-
-	.entity-details .entity-logo ~ div {
-		float: left;
-	}
-}
-
-@media screen and (min-width: 480px) {
-	.entity-details .entity-logo ~ div:nth-child(2n-1) {
-		clear: both;
-		padding-right: 35px;
-	}
-
-	.entity-list .hentry:not(.type-dispuut) {
-		width: calc( ( 100% - 35px ) / 2 );
-		margin-right: 35px;
-	}
-
-	.entity-list .hentry:not(.type-dispuut):nth-child( 2n ) {
-		margin-right: 0px;
-	}
-}
-
 /* Content width 518px */
 @media screen and (min-width: 675px) and (max-width: 740px), (min-width: 780px) {
 	.entry-content .entity-details {
 		float: right;
-		width: auto;
-		max-width: 30%;
+		width: 30%;
 		margin: 0px 0px 1.5em 1.5em;
-		padding: 0px;
-	}
-
-	.entity-list .hentry.type-dispuut {
-		width: calc( ( 100% - 35px ) / 2 );
-		margin-right: 35px;
-	}
-
-	.entity-list .hentry.type-dispuut:nth-child( 2n ) {
-		margin-right: 0px;
-	}
-
-	.entity-list .hentry:not(.type-dispuut) {
-		width: calc( ( 100% - 70px ) / 3 );
-	}
-
-	.entity-list .hentry:not(.type-dispuut):nth-child( 2n ) {
-		margin-right: 35px;
-	}
-
-	.entity-list .hentry:not(.type-dispuut):nth-child( 3n ) {
-		margin-right: 0px;
 	}
 }
 
