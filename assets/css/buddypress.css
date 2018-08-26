@@ -1474,7 +1474,8 @@
 	#buddypress .activity .activity-header {
 	}
 
-		#buddypress .activity .activity-header a {
+		#buddypress .activity .activity-header a:first-of-type,
+		#buddypress .activity .activity-header a:last-of-type {
 			font-family: 'Montserrat', Arial, sans-serif;
 			font-size: .8em;
 			color: rgba(64, 64, 64, .5); /* Don't use `opacity`, as it cannot be overriden positively */
@@ -1493,6 +1494,10 @@
 				margin-right: 4px;
 				border-radius: 50%;
 			}
+
+		#buddypress .activity .new_econozel .activity-header a:nth-of-type(2) {
+			font-style: italic;
+		}
 
 	#buddypress #latest-update,
 	#buddypress .activity .activity-inner {
@@ -1527,7 +1532,9 @@
 			#buddypress .notification-actions .icon:hover,
 			#buddypress .thread-options .icon:hover,
 			#buddypress .activity .button:hover,
-			#buddypress .activity a:hover {
+			#buddypress .activity .activity-header a:first-of-type:hover,
+			#buddypress .activity .activity-header a:last-of-type:hover,
+			#buddypress .activity .activity-meta a:hover {
 				background: none;
 				color: inherit;
 				color: rgba(64, 64, 64, .9);
