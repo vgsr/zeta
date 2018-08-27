@@ -995,6 +995,9 @@
 		bottom: 100%;
 	}
 
+	.avatar-block .item-avatar a:focus:before,
+	.avatar-block .item-avatar a:focus:after,
+	.bp-item-list li:focus-within .item-title,
 	.avatar-block .item-avatar a:hover:before,
 	.avatar-block .item-avatar a:hover:after,
 	.bp-item-list li:hover .item-title {
@@ -1574,9 +1577,12 @@
 				display: none;
 			}
 
+				#buddypress .activity-item:focus-within div .activity-meta a ~ a,
 				#buddypress .activity-item > div:hover ~ div .activity-meta a ~ a,
 				#buddypress .activity-item .activity-content:hover .activity-meta a ~ a,
+				#buddypress .activity-comments li > div:focus-within ~ .acomment-options a ~ a,
 				#buddypress .activity-comments li > div:hover ~ .acomment-options a ~ a,
+				#buddypress .activity-comments li > .acomment-options:focus-within a ~ a,
 				#buddypress .activity-comments li > .acomment-options:hover a ~ a {
 					display: inline-block;
 				}
@@ -2204,6 +2210,7 @@
 		transition: background .2s ease-in, color .2s ease-in;
 	}
 
+		#buddypress .generic-button a:focus,
 		#buddypress .generic-button a:hover {
 			background: rgba(191, 38, 105, .8);
 		}
@@ -2251,17 +2258,26 @@
 				color: #404040;
 			}
 
+				#buddypress .button:focus:before,
 				#buddypress .button:hover:before,
+				#buddypress .notification-actions .icon:focus:before,
 				#buddypress .notification-actions .icon:hover:before,
+				#buddypress .thread-options .icon:focus:before,
 				#buddypress .thread-options .icon:hover:before,
+				#buddypress .acomment-options a:focus:before,
 				#buddypress .acomment-options a:hover:before {
 					color: inherit;
 				}
 
+			#buddypress .generic-button a:focus:before,
 			#buddypress .generic-button a:hover:before,
+			#buddypress .button:focus:before,
 			#buddypress .button:hover:before,
+			#buddypress .notification-actions .icon:focus:before,
 			#buddypress .notification-actions .icon:hover:before,
+			#buddypress .thread-options .icon:focus:before,
 			#buddypress .thread-options .icon:hover:before,
+			#buddypress .acomment-options a:focus:before,
 			#buddypress .acomment-options a:hover:before {
 				opacity: .9;
 			}
@@ -2315,6 +2331,7 @@
 				content: '\f487'; /* dashicons-heart */
 			}
 
+				#buddypress .button.fav:focus:before,
 				#buddypress .button.fav:hover:before,
 				#buddypress .button.unfav:before {
 					color: #f00;
@@ -2327,8 +2344,11 @@
 				margin-right: 2px;
 			}
 
+				#buddypress .button.delete-activity:focus,
 				#buddypress .button.delete-activity:hover,
+				#buddypress .button.delete-activity-single:focus,
 				#buddypress .button.delete-activity-single:hover,
+				#buddypress a.acomment-delete:focus,
 				#buddypress a.acomment-delete:hover {
 					color: #a00;
 				}
