@@ -36,7 +36,8 @@ function zeta_econozel_background_slider_slides( $slides, $args ) {
 					$article_slides[] = zeta_setup_background_slider_slide( array(
 						'attachment_id' => get_post_thumbnail_id(),
 						'title'         => get_the_title(),
-						'url'           => get_permalink()
+						'url'           => get_permalink(),
+						'byline'        => econozel_get_article_date() . ' / ' . econozel_get_article_author( 0, true )
 					) );
 				}
 			endwhile;
@@ -96,6 +97,18 @@ function zeta_econozel_background_slider_slides( $slides, $args ) {
 				'attachment_id' => econozel_get_edition_cover_photo()
 			) )
 		);
+
+	// Article archives
+	} elseif ( econozel_is_article_archive() ) {
+
+		// Walk slides
+		foreach ( $slides as &$slide ) {
+
+			// Add slide byline for article
+			if ( $slide['post_id'] && ! $slide['byline'] ) {
+				$slide['byline'] = econozel_get_article_date( $slide['post_id'] ) . ' / ' . econozel_get_article_author( $slide['post_id'], true );
+			}
+		}
 	}
 
 	return $slides;
