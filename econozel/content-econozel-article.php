@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The template used for displaying Econozel Article content in single editions.
+ * The template for displaying Econozel Article content in single editions.
  * 
  * @package Zeta
  * @subpackage Econozel

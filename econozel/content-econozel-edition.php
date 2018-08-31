@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The template used for displaying Econozel Edition content in edition archives or single volumes.
+ * The template for displaying Econozel Edition content in edition archives or single volumes.
  * 
  * @package Zeta
  * @subpackage Econozel
@@ -18,5 +18,10 @@
 		<?php econozel_the_edition_description(); ?>
 
 		<?php econozel_the_edition_toc(); ?>
+
+		<?php if ( econozel_has_edition_document() ) : ?>
+			<p><a href="<?php echo esc_url( econozel_get_edition_document_url() ); ?>" target="_blank" rel="nofollow"><?php esc_html_e( "Download the Edition's document file", 'econozel' ); ?></a></p>
+		<?php endif; ?>
+
 	</div><!-- .entry-content -->
 </article><!-- #term-## -->
