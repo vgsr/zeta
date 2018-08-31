@@ -15,6 +15,8 @@
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
+		<?php econozel_the_volume_description(); ?>
+
 		<?php econozel_the_volume_content(); ?>
 	</div><!-- .entry-content -->
 </article><!-- #term-## -->
