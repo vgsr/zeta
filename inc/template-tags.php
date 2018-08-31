@@ -405,37 +405,73 @@ function zeta_tools_content() {
 		) );
 	}
 
+/** Background Slider *********************************************************/
+
 /**
- * Display the background slider
+ * Return the slides as arguments for the background slider
  *
  * @since 1.0.0
  *
- * @uses apply_filters() Calls 'zeta_background_slider_slide'
- * @uses apply_filters() Calls 'zeta_background_slider_slides'
+ * @uses apply_filters() Calls 'zeta_get_background_slider_slides'
+ *
+ * @param array $args Optional. Slider arguments
+ * @return array Slider slides as arguments
  */
-function zeta_background_slider() {
-	/**
-	 * Images typically are served as arrays containing the following elements
-	 *  - src    The image source to display as background
-	 *  - post_id Optional. The image's linked post ID.
-	 *  - href    Optional. The image anchor url. Defaults to the post permalink
-	 *  - title   Optional. The title of the image/post. Defaults to the post title or the image's title.
-	 *  - byline  Optional. The contents for the subtitle of the image/post. Requires a value for the `title` param
-	 */
+function zeta_get_background_slider_slides( $args = array() ) {
 
-	// Define images, posts, and slides collection
-	$images = $posts = $slides = array();
+	// Parse arguments
+	$r = wp_parse_args( $args, array(
+		'size' => ''
+	) );
 
-	// Define the slider's required image dimensions
-	$image_size = array( 1200, 900 );
+	// Get slider items
+	$items  = zeta_get_background_slider_items( $r['size'] );
+	$slides = array();
 
-	//
-	// Get images (and posts) of the current page
-	// 
+	foreach ( $items['images'] as $k => $image ) {
+
+		// Skip non-existent images
+		if ( ! $image )
+			continue;
+
+		// Setup slide
+		$slide = is_numeric( $image ) ? array( 'attachment_id' => $image ) : array( 'src' => $image );
+
+		// Get existing post with image
+		if ( isset( $items['posts'][ $k ] ) && $post = get_post( $items['posts'][ $k ] ) ) {
+			$slide['post_id'] = $post->ID;
+		}
+
+		// Parse single slide
+		$slide = zeta_setup_background_slider_slide( $slide, $r );
+
+		// Add slide to collection
+		if ( $slide && ! empty( $slide['src'] ) ) {
+			$slides[] = $slide;
+		}
+	}
+
+	return (array) apply_filters( 'zeta_get_background_slider_slides', $slides, $r );
+}
+
+/**
+ * Return the images and posts for the background slider
+ *
+ * @since 1.0.0
+ *
+ * @uses apply_filters() Calls 'zeta_get_background_slider_items'
+ *
+ * @param string|array $size Optional. Requested image size. Defaults to empty.
+ * @return array Background slider images and posts
+ */
+function zeta_get_background_slider_items( $size = '' ) {
+
+	// Define return variables
+	$images = $posts = array();
 
 	// This is a single post/page/etc.
 	if ( is_singular() ) {
-		$images = zeta_get_post_images( get_queried_object(), $image_size );
+		$images = zeta_get_post_images( get_queried_object(), $size );
 
 	// This is a post collection
 	} elseif ( ( is_home() || is_archive() || is_search() ) && have_posts() ) {
@@ -446,7 +482,7 @@ function zeta_background_slider() {
 		foreach ( $posts as $post_id ) {
 
 			// Get each post's first usable image
-			$images[] = zeta_get_first_post_image( $post_id, $image_size );
+			$images[] = zeta_get_first_post_image( $post_id, $size );
 		}
 
 	// This is the front page or a not-found page
@@ -469,11 +505,20 @@ function zeta_background_slider() {
 		foreach ( $posts as $post_id ) {
 
 			// Get each post's first usable image
-			$images[] = zeta_get_first_post_image( $post_id, $image_size );
+			$images[] = zeta_get_first_post_image( $post_id, $size );
 		}
 	}
 
 	$images = array_filter( array_values( $images ) );
+	$retval = (array) apply_filters( 'zeta_get_background_slider_items', array( 'images' => $images, 'posts' => $posts ), $size );
+
+	// Assume only images when no posts are provided
+	if ( ! isset( $retval['images'] ) && ! isset( $retval['posts'] ) ) {
+		$images = $retval;
+	} else {
+		$images = $retval['images'];
+		$posts  = $retval['posts'];
+	}
 
 	// Default to Background Image(s)
 	if ( empty( $images ) ) {
@@ -492,147 +537,222 @@ function zeta_background_slider() {
 		}
 	}
 
-	//
-	// Process images with post data
-	// 
+	// Ensure presence of array keys
+	$retval = array(
+		'images' => $images,
+		'posts'  => $posts
+	);
 
-	// Walk all found images
-	foreach ( $images as $i => $image ) {
+	return $retval;
+}
 
-		// Skip slide when there is no image
-		if ( ! $image )
-			continue;
+/**
+ * Setup and return a slide for the background slider
+ *
+ * Slides typically are served as arrays containing the following elements:
+ *  - src     The image source to display as background
+ *  - post_id Optional. The image's linked post ID.
+ *  - url     Optional. The image anchor url. Defaults to the post permalink
+ *  - title   Optional. The title of the image/post. Defaults to the post title or the image's title.
+ *  - byline  Optional. The contents for the subtitle of the image/post. Requires a value for the `title` param
+ *
+ * @since 1.0.0
+ *
+ * @uses apply_filters() Calls 'zeta_background_slider_image_url'
+ * @uses apply_filters() Calls 'zeta_background_slider_image_title'
+ * @uses apply_filters() Calls 'zeta_background_slider_image_credits'
+ * @uses apply_filters() Calls 'zeta_setup_background_slider_slide'
+ *
+ * @param array $args Optional. Slide construction arguments
+ * @param array $slider_args Optional. Slider arguments
+ * @return array Slide arguments
+ */
+function zeta_setup_background_slider_slide( $args = array(), $slider_args = array() ) {
 
-		// Define slide details
-		$slide = array(
-			'post_id' => false,
-			'att_id'  => false,
-			'src'     => $image,
-			'href'    => false,
-			'title'   => false,
-			'byline'  => false
-		);
+	// Parse arguments
+	$slide = $r = zeta_parse_background_slider_args( $args );
+	$sr = wp_parse_args( $slider_args, array(
+		'size' => ''
+	) );
 
-		// Get data from the associated post
-		if ( $posts ) {
+	// Setup post data
+	if ( $r['post_id'] && $post = get_post( $r['post_id'] ) ) {
+		$slide['url']   = get_permalink( $post->ID );
+		$slide['title'] = get_the_title( $post->ID );
 
-			// Skip slide when the post does not exist
-			if ( ! $post = get_post( $posts[ $i ] ) )
-				continue;
-
-			// Setup post data
-			$slide['post_id'] = $post->ID;
-			$slide['href']    = get_permalink( $post->ID );
-			$slide['title']   = get_the_title( $post->ID );
-
-			// 'Posted on' only for posts
-			if ( 'post' == $post->post_type ) {
-				$slide['byline']  = sprintf( __( '<span class="screen-reader-text">Posted on </span>%s', 'zeta' ), get_the_date( '', $post->ID ) );
-			}
+		// 'Posted on' only for posts
+		if ( 'post' === $post->post_type ) {
+			$slide['byline']  = sprintf( __( '<span class="screen-reader-text">Posted on </span>%s', 'zeta' ), get_the_date( '', $post->ID ) );
 		}
+	}
 
-		// Get data from the image attachment
-		if ( is_numeric( $image ) ) {
-			$slide['att_id'] = (int) $image;
-			$_image = wp_get_attachment_image_src( $image, $image_size );
+	// Setup image data
+	if ( $r['attachment_id'] && $attachment = get_post( $r['attachment_id'] ) ) {
 
-			// Skip slide when image isn't found
-			if ( ! $_image )
-				continue;
+		// When image was found
+		if ( $image = wp_get_attachment_image_src( $attachment->ID, $sr['size'] ) ) {
 
-			$slide['src'] = $_image[0];
+			// Get image source
+			$slide['src'] = $image[0];
 
-			if ( ! $posts ) {
-				$metadata = wp_get_attachment_metadata( $image );
+			// Use image data when there's no post
+			if ( ! $r['post_id'] ) {
+				$metadata = wp_get_attachment_metadata( $attachment->ID );
 
-				// Get original image file link
-				if ( apply_filters( 'zeta_background_slider_image_url', false, $image ) ) {
+				// Get attachment file url
+				if ( apply_filters( 'zeta_background_slider_image_url', false, $attachment->ID, $r ) ) {
 					$upload_dir = wp_upload_dir();
-					$slide['href'] = trailingslashit( $upload_dir['baseurl'] ) . $metadata['file'];
+					$slide['url'] = trailingslashit( $upload_dir['baseurl'] ) . $metadata['file'];
 				}
 
 				// Get attachment title
-				if ( apply_filters( 'zeta_background_slider_image_title', false, $image ) 
-					&& ( $att_title = get_the_title( $image ) ) && ! empty( $att_title ) ) {
-					$slide['title'] = $att_title;
+				if ( apply_filters( 'zeta_background_slider_image_title', false, $attachment->ID, $r ) ) {
+					$slide['title'] = get_the_title( $attachment->ID );
 				}
 
-				// Get attachment details
-				if ( apply_filters( 'zeta_background_slider_image_credits', false, $image ) 
-					&& ! empty( $metadata['image_meta']['credit'] ) ) {
-					$slide['byline'] = sprintf( __( 'Created by %s', 'zeta' ), $metadata['image_meta']['credit'] );
+				// Get attachment credits
+				if ( apply_filters( 'zeta_background_slider_image_credits', false, $attachment->ID, $r ) ) {
+					if ( $credit = $metadata['image_meta']['credit'] ) {
+						$slide['byline'] = sprintf( __( 'Created by %s', 'zeta' ), $credit );
+					}
 				}
 			}
 		}
-
-		// If we made it this far, add to slides collection
-		$slides[] = $slide;
 	}
 
-	// When no valid images were found, default to the theme's default background
-	if ( empty( $slides ) ) {
-		$slides[] = array( 
-			'post_id' => false,
-			'att_id'  => false,
-			'src'     => 'https://source.unsplash.com/random/1600x900/', // Unsplash API
-			'href'    => false,
-			'title'   => false,
-			'byline'  => false,
+	$slide = (array) apply_filters( 'zeta_setup_background_slider_slide', $slide, $r, $sr );
+
+	// Ensure presence of array keys
+	$slide = zeta_parse_background_slider_args( $slide );
+
+	return $slide;
+}
+
+/**
+ * Output the markup for the background slider slide
+ *
+ * @since 1.0.0
+ *
+ * @param array $args Optional. Slide arguments
+ */
+function zeta_the_background_slider_slide( $args = array() ) {
+	echo zeta_get_background_slider_slide( $args );
+}
+
+/**
+ * Return the markup for the background slider slide
+ *
+ * @since 1.0.0
+ *
+ * @uses apply_filters() Calls 'zeta_get_background_slider_slide'
+ *
+ * @param array $args Optional. Slide arguments
+ * @return string Slide markup
+ */
+function zeta_get_background_slider_slide( $args = array() ) {
+
+	// Parse arguments
+	$r = zeta_parse_background_slider_args( $args );
+
+	// Define image container tag. Use anchor when a url is provided
+	$tag    = ! empty( $r['url'] ) ? 'a' : 'div'; 
+	$header = '';
+
+	// Handle post/image title
+	if ( $r['title'] ) {
+		$header = sprintf( '<header class="slide-details"><h2 class="slide-title">%s</h2>%s</header>',
+			esc_html( $r['title'] ),
+			$r['byline'] ? '<span class="byline">' . $r['byline'] . '</span>' : ''
 		);
 	}
 
-	// Build the slides
-	foreach ( $slides as $i => $args ) {
-		$slide = '';
-
-		// Define image container tag. Use anchor when a link is provided
-		$tag = ! empty( $args['href'] ) ? 'a' : 'div'; 
-
-		// Start image container
-		$slide = '<' . $tag . ' class="slide-inner" style="background-image: url(' . esc_url( $args['src'] ) . ');"';
-
-		// Add link to the element
-		if ( 'a' === $tag ) {
-			$slide .= ' href="' . esc_attr( $args['href'] ) . '"';
-		}
-		$slide .= '>';
-
-		// Handle post/image title
-		if ( $args['title'] ) {
-			$slide .= '<header class="slide-details"><h2>' . esc_html( $args['title'] ) . '</h2>';
-
-			// Append byline
-			if ( $args['byline'] ) {
-				$slide .= '<span class="byline">' . $args['byline'] . '</span>';
-			}
-
-			$slide .= '</header>';
-		}
-
-		// Display image's associated users
-		if ( $args['att_id'] ) {
-			$slide .= zeta_media_users( $args['att_id'], false );
-		}
-
-		// Close image container
-		$slide .= '</' . $tag . '>';
-
-		// Filter and add slide content to the slides collection
-		$slides[ $i ] = apply_filters( 'zeta_background_slider_slide', $slide, $args, $tag, $i );
+	// Display image's associated users
+	if ( $r['attachment_id'] ) {
+		$header .= zeta_media_users( $r['attachment_id'], false );
 	}
 
-	// Filter all the slides
-	$slides      = apply_filters( 'zeta_background_slider_slides', $slides ); 
-	$slide_count = count( $slides ); ?>
+	// Build image container
+	$slide = sprintf( '<%s class="slide-inner" style="background-image: url(%s);" %s>%s</%s>',
+		$tag,
+		esc_url( $r['src'] ),
+		'a' === $tag ? ' href="' . esc_url( $r['url'] ) . '"' : '',
+		$header,
+		$tag
+	);
+
+	return apply_filters( 'zeta_get_background_slider_slide', $slide, $r, $tag );
+}
+
+/**
+ * Return the parsed arguments for a background slider slide
+ *
+ * @since 1.0.0
+ *
+ * @param array $args Optional. Slide arguments to parse
+ * @return array Parsed arguments
+ */
+function zeta_parse_background_slider_args( $args = array() ) {
+	return wp_parse_args( $args, array(
+		'attachment_id' => 0,
+		'post_id'       => 0,
+		'src'           => '',
+		'url'           => '',
+		'title'         => '',
+		'byline'        => '',
+	) );
+}
+
+/**
+ * Return the default image for the background slider
+ *
+ * @since 1.0.0
+ *
+ * @uses apply_filters() Calls 'zeta_get_background_slider_default_image
+ *
+ * @return string Image src
+ */
+function zeta_get_background_slider_default_image() {
+
+	// Unsplash API
+	$default = 'https://source.unsplash.com/random/1600x900/';
+
+	return apply_filters( 'zeta_get_background_slider_default_image', $default );
+}
+
+/**
+ * Display the background slider
+ *
+ * @since 1.0.0
+ */
+function zeta_background_slider() {
+
+	// Define the slider's required image dimensions
+	$image_size = array( 1200, 900 );
+
+	// Get images and posts
+	$slides = zeta_get_background_slider_slides( array( 'size' => $image_size ) );
+
+	// When no valid image was found, default to the theme's default background
+	if ( empty( $slides ) && $default = zeta_get_background_slider_default_image() ) {
+		$slides[] = zeta_parse_background_slider_args( array(
+			'src' => $default
+		) );
+	}
+
+	?>
 
 	<div class="slider flexslider loading">
 		<ul class="slides">
-			<?php foreach ( array_values( $slides ) as $i => $slide ) : 
-			?><li class="slide" style="z-index: <?php echo $slide_count - $i; ?>;"><?php echo $slide; ?></li>
+			<?php foreach ( array_values( $slides ) as $k => $slide ) : ?>
+
+			<li class="slide" style="z-index: <?php echo count( $slides ) - $k; ?>;">
+				<?php zeta_the_background_slider_slide( $slide ); ?>
+			</li>
+
 			<?php endforeach; ?>
 		</ul>
 
-		<?php if ( $slide_count > 1 ) : ?>
+		<?php if ( count( $slides ) > 1 ) : ?>
 
 		<script>
 			jQuery(document).ready( function( $ ) {
