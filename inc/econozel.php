@@ -58,7 +58,8 @@ function zeta_econozel_background_slider_slides( $slides, $args ) {
 					$edition_slides[] = zeta_setup_background_slider_slide( array(
 						'attachment_id' => econozel_get_edition_cover_photo( $edition_id ),
 						'title'         => econozel_get_edition_title( $edition_id ),
-						'url'           => econozel_get_edition_url( $edition_id )
+						'url'           => econozel_get_edition_url( $edition_id ),
+						'byline'        => econozel_edition_article_count( $edition_id, false )
 					) );
 				}
 			}
@@ -78,7 +79,8 @@ function zeta_econozel_background_slider_slides( $slides, $args ) {
 				$edition_slides[] = zeta_setup_background_slider_slide( array(
 					'attachment_id' => econozel_get_edition_cover_photo(),
 					'title'         => econozel_get_edition_title(),
-					'url'           => econozel_get_edition_url()
+					'url'           => econozel_get_edition_url(),
+					'byline'        => econozel_edition_article_count( 0, false )
 				) );
 			}
 		endwhile;
