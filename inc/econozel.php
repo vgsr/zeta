@@ -100,8 +100,8 @@ function zeta_econozel_background_slider_slides( $slides, $args ) {
 			) )
 		);
 
-	// Article archives
-	} elseif ( econozel_is_article_archive() ) {
+	// Any other Econozel pages, but not single Articles
+	} elseif ( is_econozel() && ! econozel_is_article( true ) ) {
 
 		// Walk slides
 		foreach ( $slides as &$slide ) {
