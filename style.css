@@ -2800,6 +2800,7 @@ input[type="radio"] {
 		padding: 0px;
 	}
 
+	.widget li.current_page_item > a,
 	.widget li.current-menu-item > a {
 		color: #404040;
 		font-weight: bold;
