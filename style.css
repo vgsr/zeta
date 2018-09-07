@@ -3467,6 +3467,7 @@ body.front-page .entry-content {
 			display: none;
 		}
 
+		.comment-body:focus-within > .comment-actions span ~ span,
 		.comment-body:hover > .comment-actions span ~ span {
 			display: inline-block;
 		}
