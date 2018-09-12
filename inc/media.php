@@ -45,7 +45,8 @@ function zeta_get_post_images( $post = 0, $size = false ) {
 		return array();
 
 	// Passing a non-empty array will effectively short ciruit the default logic
-	if ( ! $collection = (array) apply_filters( 'zeta_pre_get_post_images', array(), $post, $size ) ) {
+	$collection = (array) apply_filters( 'zeta_pre_get_post_images', array(), $post, $size );
+	if ( ! $collection ) {
 
 		// 1. Featured image
 		if ( has_post_thumbnail( $post->ID ) ) {
@@ -93,8 +94,10 @@ function zeta_get_post_images( $post = 0, $size = false ) {
 			}
 		}
 
-		// 4. Attached images
-		$collection += array_filter( wp_list_pluck( (array) get_attached_media( 'image', $post->ID ), 'ID' ) );
+		// 4. Attached images. Make sure the post is real before pulling in all images from post 0.
+		if ( $post->ID ) {
+			$collection += array_filter( wp_list_pluck( (array) get_attached_media( 'image', $post->ID ), 'ID' ) );
+		}
 	}
 
 	// Filter image collection
