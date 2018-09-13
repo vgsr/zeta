@@ -319,7 +319,7 @@
 /*--------------------------------------------------------------
 2.2 Single item
 --------------------------------------------------------------*/
-.bp-user:not(.activity-permalink):not(.error404) .site-main .hentry {
+.bp-user:not(.activity-permalink):not(.error404) .site-main > .hentry {
 	padding-top: 35px;
 }
 
@@ -684,12 +684,14 @@
 
 /* Breakpoint 2 */
 @media screen and (min-width: 741px) {
-	.buddypress .entry-header {
+	/* Maybe groups too? */
+	.bp-user:not(.activity-permalink):not(.error404) .site-main > .page > .entry-header {
 		min-height: 84px;
+		padding-left: 75px;
 	}
 
-	.bp-user:not(.activity-permalink):not(.error404) .entry-header {
-		padding-left: 75px;
+	.buddypress .entry-header {
+		text-align: left;
 	}
 
 	#buddypress #item-header-avatar {
@@ -714,7 +716,7 @@
 
 /* 174 + (126 - 25) + 640 = 949px + 17 for the scrollbar = 962px */
 @media screen and (min-width: 932px) {
-	.bp-user:not(.activity-permalink):not(.error404) .entry-header {
+	.bp-user:not(.activity-permalink):not(.error404) .site-main > .page > .entry-header {
 		padding-left: 0px;
 	}
 
@@ -732,7 +734,7 @@
 /* Avatar positioning when with sidebar */
 
 @media screen and (min-width: 998px) {
-	body.with-sidebar.bp-user:not(.activity-permalink):not(.error404) .entry-header {
+	body.with-sidebar.bp-user:not(.activity-permalink):not(.error404) .site-main > .page > .entry-header {
 		padding-left: 75px;
 	}
 
@@ -749,7 +751,7 @@
 
 /* 174 + (126 - 25) + 640 + 290 = 1205 + 17 for the scrollbar = 1222px */
 @media screen and (min-width: 1222px) {
-	body.with-sidebar.bp-user:not(.activity-permalink):not(.error404) .entry-header {
+	body.with-sidebar.bp-user:not(.activity-permalink):not(.error404) .site-main > .page > .entry-header {
 		padding-left: 0px;
 	}
 
@@ -766,7 +768,7 @@
 
 /* Up to Breakpoint 2. .fixed-bp-single-item only for small screens! */
 @media screen and (max-width: 740px) {
-	body.fixed-bp-single-item .entry-header {
+	body.fixed-bp-single-item .site-main > .page > .entry-header {
 		position: fixed;
 		top: 62px;
 		left: 0px;
@@ -784,21 +786,21 @@
 		z-index: 10; /* along with #item-header-avatar */
 	}
 
-	body.fixed-bp-single-item .entry-title {
+	body.fixed-bp-single-item .site-main > .page > .entry-header .entry-title {
 		font-size: 1em;
 	}
 
-	body.fixed-bp-single-item .entry-meta {
+	body.fixed-bp-single-item .site-main > .page > .entry-header .entry-meta {
 		margin-top: -4px;
 		font-size: .8em;
 	}
 
-		body.fixed-bp-single-item .entry-meta > span {
+		body.fixed-bp-single-item .site-main > .page > .entry-header .entry-meta > span {
 			display: inline;
 		}
 
-	body.fixed-bp-single-item .entry-title,
-	body.fixed-bp-single-item .entry-meta {
+	body.fixed-bp-single-item .site-main > .page > .entry-header .entry-title,
+	body.fixed-bp-single-item .site-main > .page > .entry-header .entry-meta {
 		text-align: left;
 		white-space: nowrap;
 		overflow: hidden;
@@ -844,7 +846,7 @@
 		}
 
 	/* Animation */
-	body.fixed-bp-single-item .entry-header,
+	body.fixed-bp-single-item .site-main > .page > .entry-header,
 	body.fixed-bp-single-item #buddypress #item-header-avatar,
 	body.fixed-bp-single-item #buddypress .item-actions-toggle {
 		-webkit-animation: slide-bp-fixed-entry-header .3s ease;
@@ -864,7 +866,7 @@
 
 /* Allowance for larger avatars */
 @media screen and (min-width: 440px) and (max-width: 740px) {
-	body.fixed-bp-single-item .entry-header {
+	body.fixed-bp-single-item .site-main > .page > .entry-header {
 		padding-left: 100px;
 	}
 
@@ -875,7 +877,7 @@
 
 /* Breakpoint 1 up to Breakpoint 2 */
 @media screen and (min-width: 561px) and (max-width: 740px) {
-	body.fixed-bp-single-item .entry-header {
+	body.fixed-bp-single-item .site-main > .page > .entry-header {
 		top: 76px;
 		padding: 13px 91px 11px 145px;
 	}
@@ -907,7 +909,7 @@
 
 /* Up to Breakpoint 2 with fixed .admin-bar */
 @media screen and (min-width: 601px) and (max-width: 740px) {
-	body.fixed-bp-single-item .entry-header {
+	body.fixed-bp-single-item .site-main > .page > .entry-header {
 		top: 122px;
 	}
 

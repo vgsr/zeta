@@ -12,8 +12,8 @@
 
 	// Get the body element
 	var $body = $( 'body' ), w = window, d = document, e = d.documentElement, b = d.body,
-	    fixEntryHeader, width, height, _entryHeader = $( '.entry-header' ),
-	    _entryContent = $( '.entry-content' ), setEntryContentMargin, margin, _style;
+	    fixEntryHeader, width, height, _entryHeader = $( '.entry-header' ).eq(0),
+	    _entryContent = $( '.entry-content' ).eq(0), setEntryContentMargin, margin, _style;
 
 	// This logic is only needed for BuddyPress single items
 	if ( ! $body.hasClass( 'bp-user' ) )
@@ -78,12 +78,12 @@
 			margin = h;
 
 			// Define margin-top in the <style> tag
-			_style.text( '@media screen and (max-width: 740px) { body.fixed-bp-single-item .entry-content { margin-top: ' + margin + 'px; } }' );
+			_style.text( '@media screen and (max-width: 740px) { body.fixed-bp-single-item .site-main > .page > .entry-content { margin-top: ' + margin + 'px; } }' );
 		}
 	}
 
 	// Run on scroll & resize
-	$(document).on( 'scroll resize', fixEntryHeader );
+	$( document ).on( 'scroll resize', fixEntryHeader );
 
 	// Run on first load
 	fixEntryHeader();
