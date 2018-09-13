@@ -49,7 +49,7 @@
 	width: 60%;
 }
 
-.site-content #buddypress *:not(p) > a:hover {
+.site-content #buddypress li a:hover {
 	border: 0px;
 }
 
