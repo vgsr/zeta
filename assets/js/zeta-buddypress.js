@@ -16,8 +16,9 @@
 	    _entryContent = $( '.entry-content' ).eq(0), setEntryContentMargin, margin, _style;
 
 	// This logic is only needed for BuddyPress single items
-	if ( ! $body.hasClass( 'bp-user' ) )
+	if ( ! $body.hasClass( 'bp-user' ) ) {
 		return;
+	}
 
 	/**
 	 * Runs logic to fix the entry header
@@ -26,8 +27,9 @@
 		width = ( w.innerWidth || e.clientWidth || b.clientWidth );
 
 		// Bail when window is larger than 740px
-		if ( width >= 741 )
+		if ( width >= 741 ) {
 			return;
+		}
 
 		height = _entryContent.offset().top - 55;
 
@@ -59,7 +61,7 @@
 		} else if ( w.pageYOffset <= height && $body.hasClass( 'fixed-bp-single-item' ) ) {
 			$body.removeClass( 'fixed-bp-single-item' );
 		}
-	}
+	};
 
 	/**
 	 * Runs logic to define the entry content margin top
@@ -80,7 +82,7 @@
 			// Define margin-top in the <style> tag
 			_style.text( '@media screen and (max-width: 740px) { body.fixed-bp-single-item .site-main > .page > .entry-content { margin-top: ' + margin + 'px; } }' );
 		}
-	}
+	};
 
 	// Run on scroll & resize
 	$( document ).on( 'scroll resize', fixEntryHeader );
@@ -138,7 +140,7 @@
 	// For all dir-list items
 	$( '.dir-list' ).on( 'click', '.item-list > li button.action-toggle', function( e ) {
 		var $button = $( e.target ),
-		    $item = $button.parents( 'li' ).first();
+		    $item = $button.parents( 'li' ).first(),
 		    $actions = $item.find( '.action' );
 
 		e.preventDefault();
@@ -180,7 +182,7 @@
 		}
 	});
 
-} )( jQuery );
+})( jQuery );
 
 /**
  * Handles toggling the thread messages collapsed state

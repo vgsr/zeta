@@ -49,11 +49,13 @@
  *
  * Handles toggling submenus for small screens.
  * Code comes from TwentyFifteen.
+ *
+ * @global screenReaderText
  */
 ( function( $ ) {
 
 	// Get the main navigation element
-	$nav = $( '.main-navigation' );
+	var $nav = $( '.main-navigation' );
 
 	// Add dropdown toggle that display child menu items.
 	$nav.find( '.menu-item-has-children > a, .page_item_has_children > a' ).after( '<button class="dropdown-toggle" aria-expanded="false">' + screenReaderText.expand + '</button>' );
@@ -71,7 +73,7 @@
 		_this.html( _this.html() === screenReaderText.expand ? screenReaderText.collapse : screenReaderText.expand );
 	} );
 
-} )( jQuery );
+})( jQuery );
 
 /**
  * Navigation
@@ -85,8 +87,9 @@
 	    fixHeader, width;
 
 	// This logic is only needed with the Admin Bar
-	if ( ! $body.hasClass( 'admin-bar' ) )
+	if ( ! $body.hasClass( 'admin-bar' ) ) {
 		return;
+	}
 
 	/**
 	 * Runs logic to fix the header
@@ -95,8 +98,9 @@
 		width = ( w.innerWidth || e.clientWidth || b.clientWidth );
 
 		// Bail when window is larger than 740px
-		if ( width >= 741 )
+		if ( width >= 741 ) {
 			return;
+		}
 
 		// Add body class beyond 46px scroll top
 		// 46 is the height of the admin bar on smaller screens
@@ -107,7 +111,7 @@
 		} else if ( w.pageYOffset <= 46 && $body.hasClass( 'fixed-header' ) ) {
 			$body.removeClass( 'fixed-header' );
 		}
-	}
+	};
 
 	// Run on scroll & resize
 	$(document).on( 'scroll resize', fixHeader );
@@ -115,7 +119,7 @@
 	// Run on first load
 	fixHeader();
 
-} )( jQuery );
+})( jQuery );
 
 /**
  * Front Page: animate scroll down to bring .widget-area in view
@@ -127,8 +131,9 @@
 	    width, height;
 
 	// Bail when this is not the front page
-	if ( ! $body.hasClass( 'home' ) )
+	if ( ! $body.hasClass( 'home' ) ) {
 		return;
+	}
 
 	// When clicking the scroll-down button
 	$( '#page-scroll-down button' ).on( 'click', function( e ) {
@@ -158,9 +163,9 @@
 
 		// Animate scrolling with 35px top margin
 		$( 'html, body' ).animate({ scrollTop: height - 35 + 'px' }, 500 );
-	})
+	});
 
-} )( jQuery );
+})( jQuery );
 
 /**
  * Tools
@@ -176,10 +181,10 @@
 
 	// Walk all tool elements and toggle their active state
 	$toolsNav.each( function() {
-		var _nav  = $(this),
-		    _tool = $toolsContainer.find( '#site-tool-' + _nav.data( 'tool' ) );
+		var $nav  = $(this),
+		    $tool = $toolsContainer.find( '#site-tool-' + $nav.data( 'tool' ) );
 
-		_nav.on( 'click', 'a', function( e ) {
+		$nav.on( 'click', 'a', function( e ) {
 			e.preventDefault();
 
 			// Tools have been toggled
@@ -187,39 +192,31 @@
 				$toolsNav.removeClass( 'toggled' );
 
 				// Close opened tool
-				if ( _tool.is( ':visible' ) ) {
+				if ( $tool.is( ':visible' ) ) {
 					$body.removeClass( 'tools-toggled' );
-					_tool.hide();
+					$tool.hide();
 
 				// Open new tool
 				} else {
-					_nav.addClass( 'toggled' );
-					_tool.show()
-						.siblings()
-							.hide()
-							.end()
-						.find( 'input[type!="hidden"], textarea' )
-							.first()
-								.focus();
+					$nav.addClass( 'toggled' );
+					$tool.show()
+						.siblings().hide().end()
+						.find( 'input[type!="hidden"], textarea' ).first().focus();
 
 					// Hide navigation menu
 					$body.removeClass( 'menu-toggled' );
 				}
 
-			// Toggle tool
+			// Toggle tool and hide navigation menu
 			} else {
-				$body.addClass( 'tools-toggled' )
-					// Hide navigation menu
-					.removeClass( 'menu-toggled');
-				_nav.addClass( 'toggled' );
+				$body.addClass( 'tools-toggled' ).removeClass( 'menu-toggled');
+				$nav.addClass( 'toggled' );
 
 				// Focus on the first focusable input field
-				_tool.show()
-					.find( 'input[type!="hidden"], textarea' )
-						.first()
-							.focus();
+				$tool.show()
+					.find( 'input[type!="hidden"], textarea' ).first().focus();
 			}
-		} );
-	} );
+		});
+	});
 
-} )( jQuery );
+})( jQuery );
