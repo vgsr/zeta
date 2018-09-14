@@ -3247,9 +3247,12 @@ body.front-page .entry-content {
 		display: inline-block;
 	}
 
+	.comment-actions a {
+		font-size: .8em;
+	}
+
 		.entry-footer > span:not(:last-child),
-		.entry-footer > a:not(:last-child),
-		.comment-actions > span:not(:last-child) {
+		.entry-footer > a:not(:last-child) {
 			padding-right: 10px; /* 6px + 'space' between elements */
 		}
 
@@ -3263,6 +3266,11 @@ body.front-page .entry-content {
 		padding: 7px;
 		color: rgba(64, 64, 64, .5);
 		text-decoration: none;
+	}
+
+	.comment-actions a,
+	.comment-actions a:visited {
+		margin: -7px 7px -7px -7px;
 	}
 
 	#colophon a,
@@ -3363,8 +3371,8 @@ body.front-page .entry-content {
 
 	#comments ol ol,
 	#comments ol > li:not(:first-child) {
-		margin: 1.5em 0px 0px 52px;
-		padding-top: 1.5em;
+		margin: 20px 0px 0px 52px;
+		padding-top: 20px;
 		border-top: 1px solid #f4f4f4;
 	}
 
