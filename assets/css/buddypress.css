@@ -49,6 +49,7 @@
 	width: 60%;
 }
 
+/* Counter link style in style.css */
 .site-content #buddypress li a:hover {
 	border: 0px;
 }
@@ -1117,9 +1118,6 @@
 /*--------------------------------------------------------------
 3.1 User Profile
 --------------------------------------------------------------*/
-.bp-user .entry-content {
-	margin-top: 0px;
-}
 
 #buddypress .item-list-tabs + form > label:first-child {
 	margin-top: 35px;
@@ -1128,6 +1126,53 @@
 #buddypress .item-list-tabs + form > label {
 	margin: 1.5em 0px .5em;
 	display: inline-block;
+}
+
+.bp-user .entry-content {
+	margin-top: 0px;
+}
+
+.bp-user .entry-content [class$="-pagination"] {
+	margin: 1.5em -25px 0px;
+	padding: 0px 25px 25px;
+	border-bottom: 1px dashed #ddd;
+}
+
+.bp-user .entry-content .hentry {
+	margin: 0px -25px;
+	padding: 25px;
+}
+
+.bp-user .entry-content .posts-navigation {
+	margin: 0px -25px;
+	padding: 25px 25px 0px;
+}
+
+.bp-user .entry-content .hentry ~ .hentry,
+.bp-user .entry-content .posts-navigation {
+	border-top: 1px dashed #ddd;
+}
+
+.bp-user .entry-content .hentry h2 {
+	display: block;
+	margin: 0px;
+}
+
+@media screen and (min-width: 561px) {
+	.bp-user .entry-content [class$="-pagination"] {
+		margin: 1.5em -35px 0px;
+		padding: 0px 35px 35px;
+	}
+
+	.bp-user .entry-content .hentry {
+		margin: 0px -35px;
+		padding: 35px;
+	}
+
+	.bp-user .entry-content .posts-navigation {
+		margin: 0px -35px;
+		padding: 35px 35px 0px;
+	}
 }
 
 /*--------------------------------------------------------------
@@ -1476,18 +1521,17 @@
 		margin-right: 3px;
 	}
 
-	#buddypress .activity .activity-header {
-	}
-
-		#buddypress .activity .activity-header a:first-of-type,
-		#buddypress .activity .activity-header a:last-of-type {
+		#buddypress .activity .activity-header p > a.article-author,
+		#buddypress .activity .activity-header p > a:first-of-type,
+		#buddypress .activity .activity-header p > a:last-of-type,
+		#buddypress .activity .activity-header p > .time-since {
 			font-family: 'Montserrat', Arial, sans-serif;
 			font-size: .8em;
 			color: rgba(64, 64, 64, .5); /* Don't use `opacity`, as it cannot be overriden positively */
 			border: 0px;
 		}
 
-			#buddypress .activity .activity-header a:hover {
+			#buddypress .activity .activity-header p > a:hover {
 				border-bottom: 1px solid;
 			}
 
@@ -1534,11 +1578,18 @@
 			transition: none;
 		}
 
+		#buddypress .activity .activity-meta .button,
+		#buddypress .activity .acomment-options a {
+			margin: -7px 3px -7px -7px;
+			padding: 7px;
+		}
+
 			#buddypress .notification-actions .icon:hover,
 			#buddypress .thread-options .icon:hover,
 			#buddypress .activity .button:hover,
-			#buddypress .activity .activity-header a:first-of-type:hover,
-			#buddypress .activity .activity-header a:last-of-type:hover,
+			#buddypress .activity .activity-header p > a.article-author:hover,
+			#buddypress .activity .activity-header p > a:first-of-type:hover,
+			#buddypress .activity .activity-header p > a:last-of-type:hover,
 			#buddypress .activity .activity-meta a:hover {
 				background: none;
 				color: inherit;
@@ -1549,7 +1600,6 @@
 			#buddypress .activity .button:focus,
 			#buddypress .activity .button:active {
 				background: none;
-				padding: 0px 5px 0px 0px;
 				color: inherit;
 				-moz-box-shadow: none;
 				-webkit-box-shadow: none;
@@ -1557,14 +1607,9 @@
 			}
 
 			/* Hide activity comment count when without comments */
-			#buddypress .activity .activity-item:not(.has-comments) .button.acomment-reply {
-				margin-right: -3px;
+			#buddypress .activity .activity-item:not(.has-comments) .button.acomment-reply span {
+				display: none;
 			}
-
-				/* Hide activity comment count when without comments */
-				#buddypress .activity .activity-item:not(.has-comments) .button.acomment-reply span {
-					display: none;
-				}
 
 			#buddypress .activity .activity-meta .button.acomment-reply span:before {
 				content: '(';
@@ -2346,12 +2391,12 @@
 				margin-right: 2px;
 			}
 
-				#buddypress .button.delete-activity:focus,
-				#buddypress .button.delete-activity:hover,
-				#buddypress .button.delete-activity-single:focus,
-				#buddypress .button.delete-activity-single:hover,
-				#buddypress a.acomment-delete:focus,
-				#buddypress a.acomment-delete:hover {
+				#buddypress .activity .button.delete-activity:focus,
+				#buddypress .activity .button.delete-activity:hover,
+				#buddypress .activity .button.delete-activity-single:focus,
+				#buddypress .activity .button.delete-activity-single:hover,
+				#buddypress .activity a.acomment-delete:focus,
+				#buddypress .activity a.acomment-delete:hover {
 					color: #a00;
 				}
 
