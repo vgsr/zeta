@@ -1726,7 +1726,7 @@
 				}
 
 				#buddypress .activity .activity-comments .ac-reply-content button:before {
-					content: '\f519';
+					content: '\f522'; /* dashicons-controls-play */
 					font-family: dashicons;
 					margin-top: 2px;
 					vertical-align: bottom;
