@@ -128,7 +128,7 @@ function zeta_econozel_entry_meta() {
 	if ( econozel_is_article() ) {
 
 		// Author(s)
-		printf( '<span class="author">%s</span>', sprintf( esc_html__( 'Written by %s', 'zeta' ), econozel_get_article_author_link( 0, true ) ) );
+		printf( '<span class="author">%s</span>', sprintf( esc_html__( 'Written by %s', 'zeta' ), econozel_get_article_author_link( array( 'concat' => true ) ) ) );
 
 		// Edition
 		if ( ! econozel_is_edition() ) {
@@ -143,3 +143,23 @@ function zeta_econozel_entry_meta() {
 	}
 }
 add_action( 'zeta_entry_meta', 'zeta_econozel_entry_meta' );
+
+/**
+ * Modify filters when the template content will be created
+ *
+ * @since 1.0.0
+ */
+function zeta_econozel_before_bp_template_content_modify_filters() {
+	remove_filter( 'zeta_entry_meta', 'zeta_bp_entry_meta' );
+}
+add_action( 'bp_template_content', 'zeta_econozel_before_bp_template_content_modify_filters', -1 );
+
+/**
+ * Modify filters when the template content was created
+ *
+ * @since 1.0.0
+ */
+function zeta_econozel_after_bp_template_content_modify_filters() {
+	add_filter( 'zeta_entry_meta', 'zeta_bp_entry_meta' );
+}
+add_action( 'bp_template_content', 'zeta_econozel_after_bp_template_content_modify_filters', 99 );
