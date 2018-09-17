@@ -26,6 +26,8 @@
 5.0 Change Photo
 6.0 Buttons
 7.0 Accessibility
+8.0 Plugins
+	8.1 Econozel
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -1544,10 +1546,6 @@
 				border-radius: 50%;
 			}
 
-		#buddypress .activity .new_econozel .activity-header a:nth-of-type(2) {
-			font-style: italic;
-		}
-
 	#buddypress #latest-update,
 	#buddypress .activity .activity-inner {
 		padding: 10px;
@@ -2456,4 +2454,19 @@
 	top: 5px;
 	width: auto;
 	z-index: 100000; /* Above WP toolbar. */
+}
+
+/*--------------------------------------------------------------
+8.0 Plugins
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+8.1 Econozel
+--------------------------------------------------------------*/
+
+#buddypress .activity .new_econozel .activity-header a.article-title {
+	font-style: italic;
+}
+
+.bp-user #econozel-articles > .entry-title {
+	display: none;
 }
