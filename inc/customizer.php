@@ -84,7 +84,10 @@ function zeta_customize_register( $wp_customize ) {
 				'label'       => __( 'Background Image', 'zeta' ),
 				'section'     => 'background_image',
 				'min_width'   => 1200,
-				'min_height'  => 900
+				'min_height'  => 900,
+				'button_labels' => array(
+					'frame_title' => __( 'Background images', 'zeta' )
+				)
 			)
 		) );
 
