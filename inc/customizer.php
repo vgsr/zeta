@@ -69,20 +69,20 @@ function zeta_customize_register( $wp_customize ) {
 	if ( function_exists( 'featured_images' ) ) {
 
 		// Add control section
-		$wp_customize->add_section( 'background_image', array(
+		$wp_customize->add_section( 'default_background', array(
 			'title'       => __( 'Default Background', 'zeta' ),
 			'description' => __( 'Select images that serve as a background fallback when the current page has no images or slides to show. By default all selected images will be shown in the image slider in random order.', 'zeta' ),
 			'priority'    => 80
 		) );
 
 		// Add Images control setting
-		$wp_customize->add_setting( 'background_image', array( 'capability' => 'edit_theme_options' ) );
+		$wp_customize->add_setting( 'default_background', array( 'capability' => 'edit_theme_options' ) );
 		$wp_customize->add_control( new Customize_Featured_Images_Control(
 			$wp_customize,
-			'background_image',
+			'default_background',
 			array(
 				'label'       => __( 'Background Image', 'zeta' ),
-				'section'     => 'background_image',
+				'section'     => 'default_background',
 				'min_width'   => 1200,
 				'min_height'  => 900,
 				'button_labels' => array(
@@ -92,10 +92,10 @@ function zeta_customize_register( $wp_customize ) {
 		) );
 
 		// Add Rotate All checkbox control setting
-		$wp_customize->add_setting( 'background_image_single', array( 'capability' => 'edit_theme_options' ) );
-		$wp_customize->add_control( 'background_image_single', array(
+		$wp_customize->add_setting( 'default_background_single', array( 'capability' => 'edit_theme_options' ) );
+		$wp_customize->add_control( 'default_background_single', array(
 			'label'   => __( 'Display only a single image', 'zeta' ),
-			'section' => 'background_image',
+			'section' => 'default_background',
 			'type'    => 'checkbox'
 		) );
 	}

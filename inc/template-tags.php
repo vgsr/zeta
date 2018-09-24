@@ -520,16 +520,16 @@ function zeta_get_background_slider_items( $size = '' ) {
 		$posts  = $retval['posts'];
 	}
 
-	// Default to Background Image(s)
+	// Default to background image(s)
 	if ( empty( $images ) ) {
-		$images = get_theme_mod( 'background_image', array() );
+		$images = get_theme_mod( 'default_background', array() );
 		$posts = array();
 
 		if ( ! empty( $images ) ) {
 			shuffle( $images );
 
 			// Get only a single image
-			if ( get_theme_mod( 'background_image_single' ) ) {
+			if ( get_theme_mod( 'default_background_single' ) ) {
 				$images = array_slice( $images, 0, 1 );
 			}
 		} else {
