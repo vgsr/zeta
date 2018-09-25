@@ -4,7 +4,7 @@ Theme for vgsr.nl since 2016.
 
 ## Description ##
 
-> This WordPress theme requires at least [WordPress](https://wordpress.org) 4.0 and [BuddyPress](https://buddypress.org) 2.6.
+> This WordPress theme requires at least [WordPress](https://wordpress.org) 4.5 and [BuddyPress](https://buddypress.org) 2.6.
 
 ## Installation ##
 

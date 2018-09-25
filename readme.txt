@@ -1,9 +1,9 @@
 === Zeta ===
 Contributors: Offereins
 Tags: vgsr, green, white, single-column, fixed-layout, responsive-layout, custom-background, custom-header, custom-menu, featured-images, flexible-header, post-formats, translation-ready, buddypress
-Requires at least: 4.0, BP 2.6
-Tested up to: WP 4.9.7, BP 3.1
-Stable tag: 0.9.2
+Requires at least: 4.5, BP 2.6
+Tested up to: WP 4.9.8, BP 3.1
+Stable tag: 0.9.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
