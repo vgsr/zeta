@@ -25,6 +25,11 @@ if ( ! function_exists( 'zeta_setup' ) ) :
  */
 function zeta_setup() {
 
+	/**
+	 * Run theme updates when needed
+	 */
+	add_action( 'admin_init', 'zeta_setup_updater', 999 );
+
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
@@ -383,6 +388,11 @@ require( get_template_directory() . '/inc/customizer.php' );
  * Custom functions for displaying post media.
  */
 require( get_template_directory() . '/inc/media.php' );
+
+/**
+ * Update functions.
+ */
+require( get_template_directory() . '/inc/update.php' );
 
 /**
  * Load plugin compatibility files.
