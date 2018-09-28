@@ -185,6 +185,22 @@
 })( jQuery );
 
 /**
+ * Handles linking member tiles to their data-permalink uri
+ */
+( function( $ ) {
+
+	$( '#buddypress' ).on( 'click', '#members-list [data-permalink]', function( e ) {
+		var $this = $( e.target );
+
+		// Only act when we're not clicking an `<a>` or `<button>` tag
+		if ( ! $this.is( 'a, button' ) && ! $this.parents( 'a, button' ).length ) {
+			window.location = this.attributes[ 'data-permalink' ].value;
+		}
+	});
+
+})( jQuery );
+
+/**
  * Handles toggling the thread messages collapsed state
  */
 ( function( $ ) {
