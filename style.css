@@ -3263,7 +3263,8 @@ body.front-page .entry-content {
 	.entry-footer a:visited,
 	.comment-actions a,
 	.comment-actions a:visited {
-		margin: 0 -7px;
+		display: inline-block;
+		margin: -7px;
 		padding: 7px;
 		color: rgba(64, 64, 64, .5);
 		text-decoration: none;
