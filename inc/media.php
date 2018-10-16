@@ -140,16 +140,12 @@ function zeta_get_featured_images( $images, $post, $size ) {
 	// When using Featured Images plugin
 	if ( function_exists( 'featured_images' ) ) {
 
-		// When the post has featured images
-		if ( $featured = get_featured_images( $post->ID ) ) {
+		// Get featured images of the post
+		$featured = get_featured_images( $post->ID );
 
-			// Prepend post thumbnail
-			if ( has_post_thumbnail( $post->ID ) ) {
-				$images[] = get_post_thumbnail_id( $post->ID );
-			}
-
-			// Get other featured images
-			$images = array_merge( $images, $featured );
+		// Use featured images when found
+		if ( $featured ) {
+			$images = $featured;
 		}
 	}
 
