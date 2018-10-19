@@ -381,13 +381,14 @@
 		border-radius: 50%;
 	}
 
+	/* Hide when without actions */
 	#buddypress #item-actions:empty,
 	#buddypress #item-actions:empty + .item-actions-toggle,
 	.no-js #buddypress .item-actions-toggle,
 	#buddypress .item-list .action:empty,
 	#buddypress .item-list .action:empty + .action-toggle,
 	.no-js #buddypress .item-list .action-toggle {
-		display: none; /* Hide when without actions */
+		display: none;
 	}
 
 	.no-js #buddypress #item-actions,
@@ -714,6 +715,16 @@
 
 	#buddypress #item-header-content {
 		text-align: left;
+	}
+
+	/* Hide toggle untill hovered */
+	#buddypress .item-list .action-toggle {
+		display: none;
+	}
+
+	#buddypress .item-list li:hover .action-toggle,
+	#buddypress .item-list li.actions-toggled .action-toggle {
+		display: block;
 	}
 }
 
