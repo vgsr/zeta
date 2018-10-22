@@ -211,6 +211,33 @@
 })( jQuery );
 
 /**
+ * Handles loading state for dir lists
+ *
+ * @component Members
+ */
+( function( $ ) {
+
+	var $list = $( '.dir-list' );
+
+	// Setup mutation observer. Modern browsers only
+	var observer = new MutationObserver( function( mutations ) {
+		mutations.forEach( function( record ) {
+			// Sync list loading class
+			$list[ record.target.classList.contains( 'loading' ) ? 'addClass' : 'removeClass' ]( 'loading' );
+		});
+	});
+
+	// Observe 'class' changes in list tabs
+	$( '.item-list-tabs li' ).each( function() {
+		observer.observe( this, {
+			attributes: true,
+			attributeFilter: ['class']
+		});
+	});
+
+})( jQuery );
+
+/**
  * Handles toggling the thread messages collapsed state
  * 
  * @component Messages

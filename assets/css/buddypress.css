@@ -577,6 +577,28 @@
  * Item list
  */
 
+#buddypress .dir-list.loading {
+	position: relative;
+	opacity: .5;
+}
+
+#buddypress .dir-list.loading:before {
+	top: 23px;
+	left: 50%;
+	font-size: 2em;
+	z-index: 1;
+	transform: translateX(-50%);
+}
+
+#buddypress .dir-list.loading:after {
+	content: '';
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+}
+
 #buddypress .item-list {
 	list-style: none;
 	margin-top: 0px;
@@ -1511,6 +1533,7 @@ body.js #buddypress #members-list [data-permalink] {
 					background: #f1f1f1;
 				}
 
+				#buddypress .dir-list.loading:before,
 				#buddypress .activity .item-list .load-newest.loading a:before,
 				#buddypress .activity .item-list .load-more.loading a:before {
 					content: '\f463'; /* dashicons-update */
