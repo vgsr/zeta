@@ -7,6 +7,8 @@
 
 /**
  * Handles toggling fixed entry header for single items.
+ *
+ * @component Members
  */
 ( function( $ ) {
 
@@ -94,6 +96,9 @@
 
 /**
  * Handles toggling the single item actions menu for all screens.
+ *
+ * @component Members
+ * @component Groups
  */
 ( function() {
 	var container, button, actions;
@@ -134,6 +139,9 @@
 
 /**
  * Handles toggling the dir list item actions menu for all screens.
+ *
+ * @component Members
+ * @component Groups
  */
 ( function( $ ) {
 
@@ -186,6 +194,8 @@
 
 /**
  * Handles linking member tiles to their data-permalink uri
+ *
+ * @component Members
  */
 ( function( $ ) {
 
@@ -202,6 +212,8 @@
 
 /**
  * Handles toggling the thread messages collapsed state
+ * 
+ * @component Messages
  */
 ( function( $ ) {
 

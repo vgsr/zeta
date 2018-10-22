@@ -256,7 +256,7 @@ function zeta_scripts() {
 
 		// Load script conditionally
 		if ( is_buddypress() ) {
-			wp_enqueue_script( 'zeta-buddypress', $assets_url . 'js/zeta-buddypress.js', array( 'jquery' ), '0.9.0', true );
+			wp_enqueue_script( 'zeta-buddypress', $assets_url . 'js/buddypress.js', array( 'jquery' ), '0.9.0', true );
 		}
 	}
 
