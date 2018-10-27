@@ -86,6 +86,8 @@ do_action( 'bp_before_members_loop' ); ?>
 
 			</div>
 
+			<button class="action-toggle" aria-controls="actions" aria-expanded="false"><?php esc_html_e( 'Actions', 'zeta' ); ?></button>
+
 			<div class="action"><?php
 
 				/**
@@ -96,8 +98,6 @@ do_action( 'bp_before_members_loop' ); ?>
 				do_action( 'bp_directory_members_actions' );
 
 			?></div>
-
-			<button class="action-toggle" aria-controls="actions" aria-expanded="false"><?php _e( 'Actions', 'zeta' ); ?></button>
 		</li>
 
 	<?php endwhile; ?>

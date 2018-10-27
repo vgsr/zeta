@@ -385,8 +385,8 @@
 	#buddypress #item-actions:empty,
 	#buddypress #item-actions:empty + .item-actions-toggle,
 	.no-js #buddypress .item-actions-toggle,
-	#buddypress .item-list .action:empty,
-	#buddypress .item-list .action:empty + .action-toggle,
+	#buddypress .item-list li:not(.has-actions) .action,
+	#buddypress .item-list li:not(.has-actions) .action-toggle,
 	.no-js #buddypress .item-list .action-toggle {
 		display: none;
 	}
@@ -488,6 +488,11 @@
 		right: 5px;
 		top: 5px;
 	}
+
+		#buddypress .item-actions-toggle:focus,
+		#buddypress .item-list .action-toggle:focus {
+			outline: thin dotted;
+		}
 
 		#buddypress .item-actions-toggle:hover,
 		.item-actions-toggled #buddypress .item-actions-toggle,
@@ -744,6 +749,7 @@
 		display: none;
 	}
 
+	#buddypress .item-list li:focus-within .action-toggle,
 	#buddypress .item-list li:hover .action-toggle,
 	#buddypress .item-list li.actions-toggled .action-toggle {
 		display: block;

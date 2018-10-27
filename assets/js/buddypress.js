@@ -146,18 +146,12 @@
 ( function( $ ) {
 
 	// For all dir-list items
-	$( '.dir-list' ).on( 'click', '.item-list > li button.action-toggle', function( e ) {
+	$( '.dir-list' ).on( 'click', '.item-list > li.has-actions .action-toggle', function( e ) {
 		var $button = $( e.target ),
 		    $item = $button.parents( 'li' ).first(),
 		    $actions = $item.find( '.action' );
 
 		e.preventDefault();
-
-		// Bail when no actions are present
-		if ( $actions.is( ':empty' ) ) {
-			$button.hide();
-			return;
-		}
 
 		// Toggle item actions
 		if ( $item.hasClass( 'actions-toggled' ) ) {
