@@ -248,3 +248,19 @@
 	});
 
 })( jQuery );
+
+/**
+ * Misc UI modifications
+ *
+ * @component Messages
+ */
+( function( $ ) {
+
+	/**
+	 * Remove the Members default bp-legacy search box. This is needed to help
+	 * BP's bp-legacy js to find the right .dir-search element. Zeta has replaced
+	 * the .dir-search element with another one added in the secondary list tabs.
+	 */
+	$( 'body.members #buddypress > .dir-search' ).remove();
+
+})( jQuery );

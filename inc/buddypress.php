@@ -199,8 +199,10 @@ function zeta_bp_members_dir_search() {
 
 	?>
 
-	<li id="members-dir-search" class="dir-search" role="search">
-		<?php bp_directory_members_search_form(); ?>
+	<li id="members-dir-search" role="search">
+		<div class="dir-search"><!-- Require `<div>` because BP's bp-legacy js picks the search box parent by element -->
+			<?php bp_directory_members_search_form(); ?>
+		</div>
 	</li>
 
 	<?php

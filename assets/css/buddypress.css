@@ -253,7 +253,7 @@
 /*--------------------------------------------------------------
 2.1 Directories
 --------------------------------------------------------------*/
-#buddypress .dir-search {
+#buddypress > .dir-search {
 	position: relative;
 	margin-top: 1.5em;
 }
