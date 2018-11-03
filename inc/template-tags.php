@@ -231,8 +231,11 @@ if ( ! function_exists( 'zeta_post_type' ) ) :
  * @since 1.0.0
  */
 function zeta_post_type() {
-	$type = get_post_type();
-	printf( '<span class="post-type %1$s">%2$s</span>', $type, get_post_type_object( $type )->labels->singular_name );
+
+	// Get the post type
+	if ( $type = get_post_type() ) {
+		printf( '<span class="post-type %1$s">%2$s</span>', $type, get_post_type_object( $type )->labels->singular_name );
+	}
 }
 endif;
 
