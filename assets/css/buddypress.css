@@ -979,8 +979,13 @@
 	display: grid;
 	-ms-grid-columns: repeat( auto-fill, minmax( 50px, 1fr ) ); /* IE 10+ */
 	grid-template-columns: repeat( auto-fill, minmax( 50px, 1fr ) );
-	-ms-grid-gap: 6px; /* IE 10+ */
-	grid-gap: 6px;
+	-ms-grid-gap: 10px; /* IE 10+ */
+	grid-gap: 10px;
+}
+
+.entry-content .bp-item-list {
+	width: 100%;
+	padding: 0px;
 }
 
 .avatar-block .item-avatar,

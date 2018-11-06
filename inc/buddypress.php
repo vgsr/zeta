@@ -188,7 +188,210 @@ function zeta_bp_activity_comment_options() {
 }
 add_action( 'bp_activity_comment_options', 'zeta_bp_activity_comment_options' );
 
-/** Directory **************************************************************/
+/** Members ****************************************************************/
+
+/**
+ * Prepend BuddyPress profiles search results on a search page
+ *
+ * @since 1.0.0
+ *
+ * @global BP_Core_Members_Template $members_template
+ *
+ * @param array $posts Queried posts
+ * @param WP_Query $posts_query Query object
+ * @return array Queried posts
+ */
+function zeta_bp_members_search_results_posts( $posts, $posts_query ) {
+	global $members_template;
+
+	// When in the main search query, the first page, for vgsr users only
+	if ( $posts_query->is_main_query() && is_search() && ! $posts_query->is_paged() && ! zeta_get_search_context() && zeta_check_access() ) {
+
+		// Perform BP user query
+		$search_terms = implode( ' ', $posts_query->get( 'search_terms' ) );
+		$query_args   = apply_filters( 'zeta_bp_members_search_results_query_args', array(
+			'search_terms'    => $search_terms,
+			'type'            => '', // Query $wpdb->users, sort by ID
+			'per_page'        => 18, // List limit
+			'populate_extras' => false,
+			'count_total'     => false,
+			'vgsr'            => true
+		) );
+
+		// Users found
+		if ( bp_has_members( $query_args ) ) {
+			$count = $members_template->total_member_count;
+
+			// Setup custom dummy post
+			$post = new WP_Post( (object) array(
+				'ID'                    => -9999,
+				'post_status'           => 'publish',
+				'post_author'           => 0,
+				'post_parent'           => 0,
+				'post_type'             => false,
+				'post_date'             => 0,
+				'post_date_gmt'         => 0,
+				'post_modified'         => 0,
+				'post_modified_gmt'     => 0,
+				'post_content'          => '',
+				'post_title'            => sprintf( _n( 'Profiles: %d member', 'Profiles: %d members', $count, 'zeta' ), $count ),
+				'post_excerpt'          => '',
+				'post_content_filtered' => '',
+				'post_mime_type'        => '',
+				'post_password'         => '',
+				'post_name'             => '',
+				'guid'                  => '',
+				'menu_order'            => 0,
+				'pinged'                => '',
+				'to_ping'               => '',
+				'ping_status'           => '',
+				'comment_status'        => 'closed',
+				'comment_count'         => 0,
+				'filter'                => 'raw',
+
+				// Custom
+				'zeta_id'               => 'zeta_bp_members_search',
+				'zeta_permalink'        => add_query_arg( array(
+					bp_core_get_component_search_query_arg( 'members' ) => $search_terms
+				), bp_get_members_directory_permalink() ),
+			) );
+
+			// Redefine the post global
+			$old_post = $GLOBALS['post'];
+			$GLOBALS['post'] = $post;
+
+			// Generate post content, relies on post global
+			$post->post_content = bp_buffer_template_part( 'content', 'profiles', false );
+
+			// Prepend post and make sure array keys are correct
+			$posts = array_values( array_merge( array( $post ), $posts ) );
+
+			// Reset post global
+			$GLOBALS['post'] = $old_post;
+		}
+	}
+
+	return $posts;
+}
+add_action( 'the_posts', 'zeta_bp_members_search_results_posts', 99, 2 );
+
+/**
+ * Modify the excerpt when displaying the search results for members
+ *
+ * This is to circumvent the markup restrictions in `wp_trim_excerpt` that
+ * remove the necessary content of the search results.
+ *
+ * @since 1.0.0
+ *
+ * @param string $excerpt Post excerpt
+ * @return string Post excerpt
+ */
+function zeta_bp_members_search_results_the_excerpt( $excerpt ) {
+	global $post;
+
+	// The members search results post
+	if ( is_search() && isset( $post->zeta_id ) && 'zeta_bp_members_search' === $post->zeta_id ) {
+		$excerpt = $post->post_content;
+	}
+
+	return $excerpt;
+}
+add_filter( 'get_the_excerpt', 'zeta_bp_members_search_results_the_excerpt', 99 );
+
+/**
+ * Modify the post's permalink
+ *
+ * @since 1.0.0
+ *
+ * @param string $permalink Post permalink
+ * @param WP_Post $post Post object
+ * @return string Post permalink
+ */
+function zeta_bp_members_global_search_permalink( $permalink, $post ) {
+
+	// Apply Zeta's custom permalink
+	if ( isset( $post->zeta_permalink ) ) {
+		$permalink = $post->zeta_permalink;
+	}
+
+	return $permalink;
+}
+add_filter( 'post_link', 'zeta_bp_members_global_search_permalink', 99, 2 );
+
+/**
+ * Return whether the profiles list limit is applied
+ *
+ * @since 1.0.0
+ *
+ * @global BP_Core_Members_Template $members_template
+ *
+ * @param int|bool $limit Optional. Custom limit value to check against. Defaults to the member count.
+ * @return bool Is list limit applied?
+ */
+function zeta_bp_members_profiles_list_is_limited( $limit = null ) {
+	global $members_template;
+
+	// Define return variable
+	$retval = false;
+	$limit  = null === $limit ? $members_template->member_count : (int) $limit;
+
+	// Determine whether the limit is applied
+	if ( $limit > 0 ) {
+		$retval = $members_template->total_member_count > $limit;
+	}
+
+	return $retval;
+}
+
+/**
+ * Return whether the profiles list limit is reached
+ *
+ * @since 1.0.0
+ *
+ * @global BP_Core_Members_Template $members_template
+ *
+ * @param int|bool $limit Optional. Custom limit value to check against. Defaults to the member count.
+ * @return bool Is list limit reached?
+ */
+function zeta_bp_members_profiles_list_limiting( $limit = null ) {
+	global $members_template;
+
+	// Define return variable
+	$retval = true;
+	$limit  = null === $limit ? $members_template->member_count : (int) $limit;
+
+	// Determine limit reached by current loop iteration
+	if ( $limit > 0 && zeta_bp_members_profiles_list_is_limited( $limit ) ) {
+		$retval = $members_template->current_member < ( $limit - 2 );
+	}
+
+	return $retval;
+}
+
+/**
+ * Return the limited count for the profiles list
+ *
+ * @since 1.0.0
+ *
+ * @global BP_Core_Members_Template $members_template
+ *
+ * @param int|bool $limit Optional. Custom limit value to check against. Defaults to the member count.
+ * @return int Limited list count
+ */
+function zeta_bp_members_profiles_list_limited_count( $limit = null ) {
+	global $members_template;
+
+	// Define return variable
+	$retval = 0;
+	$limit  = null === $limit ? $members_template->member_count : (int) $limit;
+
+	// Determine whether to limit hte
+	if ( $limit > 0 && zeta_bp_members_profiles_list_is_limited( $limit ) ) {
+		$retval = $members_template->total_member_count - $limit + 1;
+	}
+
+	return $retval;
+}
 
 /**
  * Display the members directory search in the sub navigation
@@ -218,6 +421,8 @@ add_action( 'bp_members_directory_member_sub_types', 'zeta_bp_members_dir_search
  *
  * @since 1.0.0
  *
+ * @global BP_Core_Members_Template $members_template
+ *
  * @uses do_action() Calls 'bp_directory_members_actions'
  *
  * @param array $classes Collection of classes
@@ -242,6 +447,8 @@ function zeta_bp_member_class( $classes ) {
 	return $classes;
 }
 add_filter( 'bp_get_member_class', 'zeta_bp_member_class' );
+
+/** Groups *****************************************************************/
 
 /**
  * Filter the group classes in the loop
