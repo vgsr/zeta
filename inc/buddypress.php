@@ -10,6 +10,10 @@
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
+// Bail when plugin is not active
+if ( ! function_exists( 'buddypress' ) )
+	return;
+
 /** Entry ******************************************************************/
 
 /**

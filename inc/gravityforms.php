@@ -10,6 +10,10 @@
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
+// Bail when plugin is not active
+if ( ! class_exists( 'GFForms' ) )
+	return;
+
 /**
  * Short-circuit the setting to disable plugin styles
  *
