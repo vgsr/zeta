@@ -335,61 +335,82 @@ add_action( 'comment_form', 'zeta_comment_form', 99 );
 /** Search *****************************************************************/
 
 /**
- * Append a context filter element to the search form
+ * Return the current search context
+ *
+ * @since 1.0.0
+ *
+ * @return string|bool Search context
+ */
+function zeta_get_search_context() {
+	return is_search() && ! empty( $_GET['c'] ) ? $_GET['c'] : false;
+}
+
+/**
+ * Return the available search contexts
  *
  * @since 1.0.0
  *
  * @uses apply_filters() Calls 'zeta_search_contexts'
- * 
+ *
+ * @return array Search contexts
+ */
+function zeta_get_search_contexts() {
+
+	// Define return value
+	$contexts = array(
+		'post' => get_post_type_object( 'post' )->labels->name,
+		'page' => get_post_type_object( 'page' )->labels->name
+	);
+
+	$post_type = get_post_type();
+
+	// Add current post type
+	if ( ! isset( $context[ $post_type ] ) && post_type_exists( $post_type ) ) {
+		$contexts[ $post_type ] = get_post_type_object( $post_type )->labels->name;
+	}
+
+	// Get the current context
+	$current_context = zeta_get_search_context();
+
+	// Add requested post type
+	if ( $current_context && post_type_exists( $current_context ) ) {
+		$contexts[ $current_context ] = get_post_type_object( $current_context )->labels->name;
+	}
+
+	return (array) apply_filters( 'zeta_search_contexts', $contexts );
+}
+
+/**
+ * Append a context filter element to the search form
+ *
+ * @since 1.0.0
+ *
  * @param string $form Search form markup
  * @return string Search form markup
  */
 function zeta_search_context_select( $form ) {
-	$contexts = array();
 
-	// Get the requested context
-	$_context = isset( $_GET['context'] ) ? $_GET['context'] : false;
-
-	// Current post's post type
-	if ( $post_type = get_post_type() ) {
-		$contexts[ $post_type ] = get_post_type_object( $post_type )->labels->name;
-	}
-
-	// Make requested post type context available
-	if ( $_context && post_type_exists( $_context ) ) {
-		$contexts[ $_context ] = get_post_type_object( $_context )->labels->name;
-	}
-
-	// Consider BuddyPress 
-	if ( function_exists( 'buddypress' ) ) {
-
-		// Remove the post type (page) context
-		if ( is_buddypress() ) {
-			unset( $contexts[ $post_type ] );
-		}
-
-		// Search members
-		if ( zeta_check_access() ) {
-			$contexts['bp-members'] = __( 'Members', 'zeta' );
-		}
-
-		// Search groups
-		if ( zeta_check_access() && bp_is_active( 'groups' ) && 0 < groups_get_total_group_count() ) {
-			$contexts['bp-groups'] = __( 'Groups', 'zeta' );
-		}
-	}
-
-	$contexts = (array) apply_filters( 'zeta_search_contexts', $contexts );
+	// Get the current context
+	$current_context = zeta_get_search_context();
+	$contexts        = zeta_get_search_contexts();
 
 	// Setup <select> element with available contexts
 	if ( ! empty( $contexts ) ) {
-		$options = "\t<option>" . _x( 'All', 'Search context', 'zeta' ) . '</option>';
+
+		// Initial option
+		$options = "\t<option value=\"\">" . _x( 'All', 'Search context', 'zeta' ) . '</option>';
+
+		// Custom options
 		foreach ( $contexts as $context => $label ) {
-			$options .= sprintf( "\t<option value=\"%s\" %s>%s</option>", esc_attr( $context ), selected( ( is_search() && $context === $_context ), true, false ), esc_html( $label ) );
+			$options .= sprintf( "\t<option value=\"%s\" %s>%s</option>",
+				esc_attr( $context ),
+				selected( ( is_search() && $context === $current_context ), true, false ),
+				esc_html( $label )
+			);
 		}
 
 		// Append element to the form
-		$form = str_replace( '</form>', '<select class="zeta-search-context" name="context">' . $options .'</select></form>', $form );
+		$form = str_replace( '</form>', '<select class="zeta-search-context" name="c">' . $options .'</select></form>', $form );
 
 		// Add a context-aware form class
 		$form = str_replace( 'class="search-form', 'class="search-form with-context', $form );
@@ -401,7 +422,7 @@ function zeta_search_context_select( $form ) {
 add_filter( 'get_search_form', 'zeta_search_context_select' );
 
 /**
- * Redirect the search request to the context's specific results page
+ * Redirect the contexted search request to their related results page
  *
  * @since 1.0.0
  *
@@ -409,37 +430,12 @@ add_filter( 'get_search_form', 'zeta_search_context_select' );
  */
 function zeta_search_context_redirect() {
 
-	// Bail when this is not a search request and no context is provided
-	if ( ! is_search() || ! isset( $_GET['context'] ) )
+	// Bail when there is no contexted search happening
+	if ( ! $context = zeta_get_search_context() )
 		return;
 
-	// Define local variable(s)
-	$location = false;
-	$context  = esc_attr( $_GET['context'] );
-	$s        = esc_attr( $_GET['s'] );
-	$bp       = function_exists( 'buddypress' ) ? buddypress() : false;
-
-	if ( $bp ) {
-		$page_ids = bp_core_get_directory_page_ids( 'all' );
-	}
-
-	switch ( $context ) {
-		case 'bp-members' :
-			if ( $bp && zeta_check_access() ) {
-				$location = add_query_arg( 's', $s, get_permalink( $page_ids['members'] ) ); // Members index page
-			}
-			break;
-
-		case 'bp-groups' :
-			if ( $bp && zeta_check_access() && bp_is_active( 'groups' ) ) {
-				$location = add_query_arg( 's', $s, get_permalink( $page_ids['groups'] ) ); // Groups index page
-			}
-			break;
-
-		default :
-			$location = apply_filters( 'zeta_search_context_redirect', $location, $context, $s );
-			break;
-	}
+	// Define redirect location
+	$location = apply_filters( 'zeta_search_context_redirect', false, $context, esc_attr( $_GET['s'] ) );
 
 	// Redirect to valid location
 	if ( $location ) {
@@ -457,13 +453,15 @@ add_action( 'template_redirect', 'zeta_search_context_redirect' );
  */
 function zeta_search_context_parse_query( $query ) {
 
-	// Bail when this is not the main query and a search request and no context is provided
-	if ( ! $query->is_main_query() || ! $query->is_search() || ! isset( $_GET['context'] ) )
+	// Bail when this is not the main query or a search request
+	if ( ! $query->is_main_query() || ! $query->is_search() )
 		return;
 
+	$context = esc_attr( zeta_get_search_context() );
+
 	// Set the post type query var when given as context
-	if ( post_type_exists( esc_attr( $_GET['context'] ) ) ) {
-		$query->query_vars[ 'post_type' ] = esc_attr( $_GET['context'] );
+	if ( post_type_exists( $context ) ) {
+		$query->query_vars[ 'post_type' ] = $context;
 	}
 }
 add_action( 'parse_query', 'zeta_search_context_parse_query' );

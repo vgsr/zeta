@@ -582,3 +582,67 @@ function zeta_bp_notifications_delete_link( $link ) {
 	return $link;
 }
 add_filter( 'bp_get_the_notification_delete_link', 'zeta_bp_notifications_delete_link' );
+
+/** Misc *******************************************************************/
+
+/**
+ * Modify the search contexts for BuddyPress
+ *
+ * @since 1.0.0
+ *
+ * @param array $contexts Search contexts
+ * @return array Search contexts
+ */
+function zeta_bp_search_contexts( $contexts ) {
+
+	// Members
+	if ( zeta_check_access() ) {
+		$contexts['bp-members'] = __( 'Members', 'zeta' );
+	}
+
+	// Groups
+	if ( zeta_check_access() && bp_is_active( 'groups' ) && 0 < groups_get_total_group_count() ) {
+		$contexts['bp-groups'] = __( 'Groups', 'zeta' );
+	}
+
+	return $contexts;
+}
+add_filter( 'zeta_search_contexts', 'zeta_bp_search_contexts' );
+
+/**
+ * Modify the redirect location for the given search context
+ *
+ * @since 1.0.0
+ *
+ * @param string|bool $location Search context redirect
+ * @param string $context Search context
+ * @param string $search_terms Search terms
+ * @return string|bool Search context redirect
+ */
+function zeta_bp_search_context_redirect( $location, $context, $search_terms ) {
+
+	// What is the context?
+	switch ( $context ) {
+
+		// Members
+		case 'bp-members' :
+			if ( zeta_check_access() ) {
+				$location = add_query_arg( array(
+					bp_core_get_component_search_query_arg( 'members' ) => $search_terms
+				), bp_get_members_directory_permalink() );
+			}
+			break;
+
+		// Groups
+		case 'bp-groups' :
+			if ( zeta_check_access() && bp_is_active( 'groups' ) ) {
+				$location = add_query_arg( array(
+					bp_core_get_component_search_query_arg( 'groups' ) => $search_terms
+				), bp_get_groups_directory_permalink() );
+			}
+			break;
+	}
+
+	return $location;
+}
+add_filter( 'zeta_search_context_redirect', 'zeta_bp_search_context_redirect', 10, 3 );
