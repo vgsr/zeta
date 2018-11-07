@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zeta v0.7.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-05 16:35+0000\n"
-"PO-Revision-Date: 2018-03-05 16:37+0000\n"
+"POT-Creation-Date: 2018-11-07 16:59+0000\n"
+"PO-Revision-Date: 2018-11-07 17:05+0000\n"
 "Last-Translator: Laurens Offereins <lmoffereins@gmail.com>\n"
-"Language-Team: Dutch\n"
+"Language-Team: Nederlands\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,11 +22,11 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "Language: nl_NL"
 
-#: 404.php:18
+#: ../../../../src/wp-content/themes/zeta/404.php:18
 msgid "Oops! That page can&rsquo;t be found."
 msgstr "Vervelend! Die pagina kunnen we niet vinden."
 
-#: 404.php:22
+#: ../../../../src/wp-content/themes/zeta/404.php:22
 msgid ""
 "It looks like nothing was found at this location. Maybe try one of the links "
 "below or a search?"
@@ -34,7 +34,7 @@ msgstr ""
 "Het lijkt er op dat we hier niets hebben gevonden. Misschien kan je een van "
 "de onderstaande links proberen of een zoekopdracht?"
 
-#: comments.php:30
+#: ../../../../src/wp-content/themes/zeta/comments.php:30
 #, php-format
 msgctxt "comments title"
 msgid "One thought on &ldquo;%2$s&rdquo;"
@@ -42,48 +42,42 @@ msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] "Een reactie op &ldquo;%2$s&rdquo;"
 msgstr[1] "%1$s reacties op &ldquo;%2$s&rdquo;"
 
-#: comments.php:37 comments.php:60
+#: ../../../../src/wp-content/themes/zeta/comments.php:37
+#: ../../../../src/wp-content/themes/zeta/comments.php:60
 msgid "Comment navigation"
 msgstr "Blader door reacties"
 
-#: comments.php:40 comments.php:63
+#: ../../../../src/wp-content/themes/zeta/comments.php:40
+#: ../../../../src/wp-content/themes/zeta/comments.php:63
 msgid "Older Comments"
 msgstr "Oudere reacties"
 
-#: comments.php:41 comments.php:64
+#: ../../../../src/wp-content/themes/zeta/comments.php:41
+#: ../../../../src/wp-content/themes/zeta/comments.php:64
 msgid "Newer Comments"
 msgstr "Nieuwere reacties"
 
-#: comments.php:76
+#: ../../../../src/wp-content/themes/zeta/comments.php:76
 msgid "Comments are closed."
 msgstr "Je kunt niet meer reageren."
 
-#: comments.php:84
-#, php-format
-msgid "Reply as %s"
-msgstr "Reageer als %s"
-
-#: comments.php:85
+#: ../../../../src/wp-content/themes/zeta/comments.php:86
+#: ../../../../src/wp-content/themes/zeta/inc/extras.php:325
 msgid "Cancel"
 msgstr "Annuleer"
 
-#: comments.php:86
-msgctxt "noun"
-msgid "Post"
-msgstr "Reageer"
-
-#: content-none.php:15
+#: ../../../../src/wp-content/themes/zeta/content-none.php:15
 msgid "Nothing Found"
 msgstr "Niets gevonden"
 
-#: content-none.php:21
+#: ../../../../src/wp-content/themes/zeta/content-none.php:21
 #, php-format
 msgid ""
 "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 "Klaar om je eerste bericht te schrijven? <a href=\"%1$s\">Begin hier</a>."
 
-#: content-none.php:25
+#: ../../../../src/wp-content/themes/zeta/content-none.php:25
 msgid ""
 "Sorry, but nothing matched your search terms. Please try again with some "
 "different keywords."
@@ -91,7 +85,8 @@ msgstr ""
 "Vervelend, je zoekwoorden konden we niet matchen. Probeer het anders opnieuw "
 "met andere woorden."
 
-#: content-none.php:29
+#: ../../../../src/wp-content/themes/zeta/content-none.php:29
+#: ../../../../src/wp-content/themes/zeta/event-organiser/content-event-none.php:25
 msgid ""
 "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
 "searching can help."
@@ -99,175 +94,224 @@ msgstr ""
 "Het lijkt er op dat we niet gevonden hebben waar je voor kwam. Misschien "
 "helpt een zoekopdracht."
 
-#: content-page.php:20 content-single.php:24 content.php:32
+#: ../../../../src/wp-content/themes/zeta/content-page.php:20
+#: ../../../../src/wp-content/themes/zeta/content-single.php:24
+#: ../../../../src/wp-content/themes/zeta/content.php:36
 msgid "Pages:"
 msgstr "Pagina's:"
 
 #. translators: 1. Name of current post 2. Arrow
-#: content.php:24
+#: ../../../../src/wp-content/themes/zeta/content.php:28
 #, php-format
 msgid "Continue reading %1$s %2$s"
 msgstr "%1$s Verder lezen %2$s"
 
-#: content.php:26
+#: ../../../../src/wp-content/themes/zeta/content.php:30
 msgctxt "Continue reading arrow"
 msgid "&rarr;"
 msgstr "&rarr;"
 
-#: footer.php:24
+#: ../../../../src/wp-content/themes/zeta/footer.php:24
 #, php-format
 msgid "Built with %s"
 msgstr "Gemaakt met %s"
 
-#: footer.php:25
+#: ../../../../src/wp-content/themes/zeta/footer.php:25
 #, php-format
 msgid "<a href=\"%2$s\">Design</a> by %1$s"
 msgstr "<a href=\"%2$s\">Design</a> door %1$s"
 
-#: front-page.php:29
+#: ../../../../src/wp-content/themes/zeta/front-page.php:29
 msgid "Scroll down"
 msgstr "Scroll naar beneden"
 
-#: functions.php:54
+#: ../../../../src/wp-content/themes/zeta/functions.php:61
 msgid "Primary Menu"
 msgstr "Hoofdmenu"
 
-#: functions.php:55
+#: ../../../../src/wp-content/themes/zeta/functions.php:62
 msgid "Social Links Menu"
 msgstr "Sociale-linksmenu"
 
-#: functions.php:136
+#: ../../../../src/wp-content/themes/zeta/functions.php:146
 msgid "Sidebar"
 msgstr "Zijbalk"
 
-#: functions.php:147
+#: ../../../../src/wp-content/themes/zeta/functions.php:157
 msgid "Front Page"
 msgstr "Voorpagina"
 
-#: functions.php:158
+#: ../../../../src/wp-content/themes/zeta/functions.php:168
 msgid "Footer"
 msgstr "Voettekst"
 
-#: functions.php:186
+#: ../../../../src/wp-content/themes/zeta/functions.php:196
 msgctxt "Noto Sans font: on or off"
 msgid "on"
 msgstr "on"
 
-#: functions.php:194
+#: ../../../../src/wp-content/themes/zeta/functions.php:204
 msgctxt "Noto Serif font: on or off"
 msgid "on"
 msgstr "on"
 
-#: functions.php:202
+#: ../../../../src/wp-content/themes/zeta/functions.php:212
 msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
 msgid "no-subset"
 msgstr "no-subset"
 
-#: functions.php:256
+#: ../../../../src/wp-content/themes/zeta/functions.php:277
 msgid "Expand child menu"
 msgstr "Submenu openklappen"
 
-#: functions.php:257
+#: ../../../../src/wp-content/themes/zeta/functions.php:278
 msgid "Collapse child menu"
 msgstr "Submenu dichtklappen"
 
-#: functions.php:300
+#: ../../../../src/wp-content/themes/zeta/functions.php:322
 msgid "Previous"
 msgstr "Vorige"
 
-#: functions.php:301
+#: ../../../../src/wp-content/themes/zeta/functions.php:323
 msgid "Next"
 msgstr "Volgende"
 
-#: header.php:24
+#: ../../../../src/wp-content/themes/zeta/header.php:24
 msgid "Skip to content"
 msgstr "Ga verder naar de inhoud"
 
-#: header.php:50
+#: ../../../../src/wp-content/themes/zeta/header.php:50
 msgid "Menu"
 msgstr "Menu"
 
-#: search.php:19
+#: ../../../../src/wp-content/themes/zeta/search.php:19
 #, php-format
 msgid "Search Results for: %s"
 msgstr "Zoekresultaten voor: %s"
 
-#: event-organiser/loop-event-day.php:16 event-organiser/loop-list-day.php:18
+#: ../../../../src/wp-content/themes/zeta/event-organiser/content-event-none.php:14
+msgid "Events"
+msgstr "Activiteiten"
+
+#: ../../../../src/wp-content/themes/zeta/event-organiser/loop-event-day.php:16
+#: ../../../../src/wp-content/themes/zeta/event-organiser/loop-list-day.php:18
 msgctxt "Daily event section header"
 msgid "D jS"
 msgstr "D j"
 
-#: event-organiser/loop-event-month.php:17
+#: ../../../../src/wp-content/themes/zeta/event-organiser/loop-event-month.php:17
+#: ../../../../src/wp-content/themes/zeta/event-organiser/loop-none-month.php:19
 msgctxt "Monthly event section header with year context"
 msgid "F Y"
 msgstr "F Y"
 
-#: event-organiser/loop-event-month.php:18
+#: ../../../../src/wp-content/themes/zeta/event-organiser/loop-event-month.php:18
+#: ../../../../src/wp-content/themes/zeta/event-organiser/loop-none-month.php:20
 msgctxt "Monthly event section header"
 msgid "F"
 msgstr "F"
 
 #. translators: 1. Event title 2. Event time
-#: event-organiser/loop-list-event.php:16
-#: event-organiser/loop-single-event.php:18 inc/event-organiser.php:673
+#: ../../../../src/wp-content/themes/zeta/event-organiser/loop-list-event.php:16
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:584
 #, php-format
 msgid "%2$s &mdash; %1$s"
 msgstr "%2$s &mdash; %1$s"
 
-#: event-organiser/loop-list-month.php:18
+#: ../../../../src/wp-content/themes/zeta/event-organiser/loop-list-month.php:18
 msgctxt "Monthly event section header"
 msgid "F Y"
 msgstr "F Y"
 
-#: event-organiser/shortcode-event-list.php:32
+#: ../../../../src/wp-content/themes/zeta/event-organiser/loop-single-event.php:15
+#, php-format
+msgid "%2$s &ndash; %1$s"
+msgstr "%2$s &ndash; %1$s"
+
+#: ../../../../src/wp-content/themes/zeta/event-organiser/shortcode-event-list.php:34
 msgid "There are no events found."
 msgstr "Er zijn geen activiteiten gevonden."
 
-#: inc/buddypress.php:127
+#: ../../../../src/wp-content/themes/zeta/gravityforms/content-gf-pages-form.php:30
+msgid "Complete the form &rarr;"
+msgstr "Vul het formulier in &rarr;"
+
+#: ../../../../src/wp-content/themes/zeta/inc/buddypress.php:119
 msgid "Edit this profile field group"
 msgstr "Deze profielgroep bewerken"
 
-#: inc/buddypress.php:561
+#: ../../../../src/wp-content/themes/zeta/inc/buddypress.php:137
+#, php-format
+msgid ""
+"You have not yet published any profile information about yourself. Please <a "
+"href=\"%s\">update your profile</a> so we can get to know you a little "
+"better."
+msgstr ""
+"Je hebt nog geen informatie over jezelf gepubliceerd. Als je <a href=\"%s\">"
+"je profiel bijwerkt</a> kunnen we je wat beter leren kennen."
+
+#: ../../../../src/wp-content/themes/zeta/inc/buddypress.php:141
+msgid ""
+"This person has not yet published any profile information about themselves."
+msgstr "Deze persoon heeft geen informatie over zichzelf gepubliceerd."
+
+#: ../../../../src/wp-content/themes/zeta/inc/buddypress.php:237
+#, php-format
+msgid "Profiles: %d member"
+msgid_plural "Profiles: %d members"
+msgstr[0] "Profielen: %s (oud-)lid"
+msgstr[1] "Profielen: %d (oud-)leden"
+
+#: ../../../../src/wp-content/themes/zeta/inc/buddypress.php:746
 msgid "Mark notification as read"
-msgstr ""
+msgstr "Markeer notificatie als gelezen"
 
-#: inc/buddypress.php:583
+#: ../../../../src/wp-content/themes/zeta/inc/buddypress.php:766
 msgid "Mark notification as unread"
-msgstr ""
+msgstr "Markeer notificatie als niet-gelezen"
 
-#: inc/buddypress.php:605
+#: ../../../../src/wp-content/themes/zeta/inc/buddypress.php:786
 msgid "Delete notification"
-msgstr ""
+msgstr "Verwijder notificatie"
 
-#: inc/customizer.php:39 inc/extras.php:1054
+#: ../../../../src/wp-content/themes/zeta/inc/buddypress.php:807
+msgid "Members"
+msgstr "Profielen"
+
+#: ../../../../src/wp-content/themes/zeta/inc/buddypress.php:812
+msgid "Groups"
+msgstr "Groepen"
+
+#: ../../../../src/wp-content/themes/zeta/inc/customizer.php:39
+#: ../../../../src/wp-content/themes/zeta/inc/extras.php:484
 msgid "Theme Settings"
 msgstr "Thema-instellingen"
 
-#: inc/customizer.php:57
+#: ../../../../src/wp-content/themes/zeta/inc/customizer.php:57
 msgid "Default Layout"
 msgstr "Standaard Layout"
 
-#: inc/customizer.php:58
+#: ../../../../src/wp-content/themes/zeta/inc/customizer.php:58
 msgid "This setting can be overridden on a per-page basis."
 msgstr "Deze instelling kan op elke pagina worden overschreven."
 
-#: inc/customizer.php:61
+#: ../../../../src/wp-content/themes/zeta/inc/customizer.php:61
 msgid "Sidebar - Content"
 msgstr "Zijbalk - Inhoud"
 
-#: inc/customizer.php:62
+#: ../../../../src/wp-content/themes/zeta/inc/customizer.php:62
 msgid "Single Column"
 msgstr "Enkele Kolom"
 
-#: inc/customizer.php:63
+#: ../../../../src/wp-content/themes/zeta/inc/customizer.php:63
 msgid "Content - Sidebar"
 msgstr "Inhoud - Zijbalk"
 
-#: inc/customizer.php:73
+#: ../../../../src/wp-content/themes/zeta/inc/customizer.php:73
 msgid "Default Background"
 msgstr "Standaard Achtergrond"
 
-#: inc/customizer.php:74
+#: ../../../../src/wp-content/themes/zeta/inc/customizer.php:74
 msgid ""
 "Select images that serve as a background fallback when the current page has "
 "no images or slides to show. By default all selected images will be shown in "
@@ -277,143 +321,172 @@ msgstr ""
 "afbeeldingen heeft om te tonen. De afbeeldingen worden standaard in "
 "willekeurige volgorde getoond."
 
-#: inc/customizer.php:84
+#: ../../../../src/wp-content/themes/zeta/inc/customizer.php:84
 msgid "Background Image"
 msgstr "Achtergrondafbeelding"
 
-#: inc/customizer.php:94
+#: ../../../../src/wp-content/themes/zeta/inc/customizer.php:89
+msgid "Background images"
+msgstr "Achtergrondafbeeldingen"
+
+#: ../../../../src/wp-content/themes/zeta/inc/customizer.php:97
 msgid "Display only a single image"
 msgstr "Alleen een enkele afbeelding tonen"
 
-#: inc/event-organiser.php:75 inc/event-organiser.php:90
+#: ../../../../src/wp-content/themes/zeta/inc/econozel.php:135
 #, php-format
-msgid "Events: %s"
-msgstr "Activiteiten: %s"
+msgid "Written by %s"
+msgstr "Geschreven door %s"
 
-#: inc/event-organiser.php:80
-#, php-format
-msgid "Events by tag: %s"
-msgstr "Activiteiten per tag: %s"
-
-#: inc/event-organiser.php:85
-#, php-format
-msgid "Events at %s"
-msgstr "Activiteiten in %s"
-
-#: inc/event-organiser.php:94
-msgctxt "Event archives title: Year"
-msgid "Y"
-msgstr "Y"
-
-#: inc/event-organiser.php:98
-msgctxt "Event archives title: Month"
-msgid "F Y"
-msgstr "F Y"
-
-#: inc/event-organiser.php:102
-msgctxt "Event archives title: Day"
-msgid "jS F Y"
-msgstr "j F Y"
-
-#: inc/event-organiser.php:106
-msgid "Events"
-msgstr "Activiteiten"
-
-#: inc/event-organiser.php:204
-msgid "Events navigation"
-msgstr "Activiteitennavigatie"
-
-#: inc/event-organiser.php:208 inc/event-organiser.php:517
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:118
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:434
 msgid "Older events"
 msgstr "Oudere activiteiten"
 
-#: inc/event-organiser.php:214 inc/event-organiser.php:517
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:125
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:434
 msgid "Newer events"
 msgstr "Nieuwere activiteiten"
 
-#: inc/event-organiser.php:380
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:133
+msgid "Events navigation"
+msgstr "Activiteitennavigatie"
+
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:288
 #, php-format
 msgctxt "Adjacent post navigation label"
 msgid "%1$s \\a\\t %2$s"
 msgstr "%1$s \\o\\m %2$s"
 
-#: inc/event-organiser.php:489
+#. %s: Year
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:402
 #, php-format
-msgctxt "For yearly archives"
-msgid "Events in %s"
-msgstr "Activiteiten in %s"
+msgctxt "Yearly archives posts navigation"
+msgid "%s"
+msgstr "%s"
 
-#: inc/event-organiser.php:498
+#. %s: Month Year
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:413
 #, php-format
-msgctxt "For monthly archives"
-msgid "Events in %s"
-msgstr "Activiteiten in %s"
+msgctxt "Monthly archives posts navigation"
+msgid "%s"
+msgstr "%s"
 
-#: inc/event-organiser.php:507
+#. %s: Date
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:424
 #, php-format
-msgctxt "For daily archives"
-msgid "Events on %s"
-msgstr "Activiteiten op %s"
+msgctxt "Daily archives posts navigation"
+msgid "%s"
+msgstr "%s"
 
 #. translators: 1. date format 2. time format. Please slash any other characters
-#: inc/event-organiser.php:705
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:603
 #, php-format
 msgctxt "Event meta date"
 msgid "%1$s \\a\\t %2$s"
 msgstr "%1$s \\o\\m %2$s"
 
-#: inc/event-organiser.php:720
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:618
 msgctxt "Reoccuring event status"
 msgid "Passed"
 msgstr "Geweest"
 
-#: inc/event-organiser.php:732
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:630
 msgid "Reoccurring"
 msgstr "Herhalend"
 
 #. translators: venue directive
-#: inc/event-organiser.php:738
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:636
 #, php-format
 msgid "@ <a href=\"%s\">%s</a>"
 msgstr "@ <a href=\"%s\">%s</a>"
 
 #. translators: 1. date format 2. time format. Please slash any other characters
-#: inc/event-organiser.php:788
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:676
 #, php-format
 msgctxt "Upcoming events date"
 msgid "%1$s \\a\\t %2$s"
 msgstr "%1$s \\o\\m %2$s"
 
-#: inc/event-organiser.php:791
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:679
 msgid "Upcoming Dates"
 msgstr "Geplande data"
 
-#: inc/event-organiser.php:808
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:696
 msgid "There are no more following occurrences scheduled of this event."
 msgstr "Er zijn geen verdere geplande data voor deze activiteit."
 
 #. translators: used between list items, there is a space after the comma
-#: inc/event-organiser.php:831 inc/event-organiser.php:837
-#: inc/template-tags.php:143 inc/template-tags.php:149
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:717
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:723
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:83
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:89
 msgid ", "
 msgstr ", "
 
-#: inc/event-organiser.php:833 inc/template-tags.php:145
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:719
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:85
 #, php-format
 msgid "Posted in %s"
 msgstr "Geplaatst in %s"
 
-#: inc/event-organiser.php:839 inc/template-tags.php:151
+#: ../../../../src/wp-content/themes/zeta/inc/event-organiser.php:725
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:91
 #, php-format
 msgid "Tagged %s"
 msgstr "Getagd met %s"
 
-#: inc/extras.php:112
+#: ../../../../src/wp-content/themes/zeta/inc/extras.php:280
 #, php-format
-msgid "Page %s"
-msgstr "Pagina %s"
+msgid "Reply as %s"
+msgstr "Reageer als %s"
 
-#: inc/extras.php:591
+#: ../../../../src/wp-content/themes/zeta/inc/extras.php:401
+msgctxt "Search context"
+msgid "All"
+msgstr "Alles"
+
+#: ../../../../src/wp-content/themes/zeta/inc/extras.php:491
+msgid "Use the full content width for this widget on larger screens."
+msgstr "Gebruik de volledige breedte voor widgets op grotere schermen."
+
+#: ../../../../src/wp-content/themes/zeta/inc/gravityforms.php:178
+msgctxt "Form status"
+msgid "Inactive"
+msgstr "Inactief"
+
+#. time difference
+#: ../../../../src/wp-content/themes/zeta/inc/gravityforms.php:185
+#, php-format
+msgid "Opening in %s"
+msgstr "Wordt geopend over %s"
+
+#: ../../../../src/wp-content/themes/zeta/inc/gravityforms.php:190
+msgctxt "Form status"
+msgid "Closed"
+msgstr "Gesloten"
+
+#. time difference
+#: ../../../../src/wp-content/themes/zeta/inc/gravityforms.php:202
+#, php-format
+msgid "Closing in %s"
+msgstr "Wordt gesloten over %s"
+
+#: ../../../../src/wp-content/themes/zeta/inc/gravityforms.php:211
+#, php-format
+msgid "%d View"
+msgid_plural "%d Views"
+msgstr[0] "%d View"
+msgstr[1] "%d Views"
+
+#: ../../../../src/wp-content/themes/zeta/inc/gravityforms.php:216
+#, php-format
+msgid "%d Entry"
+msgid_plural "%d Entries"
+msgstr[0] "%d Reactie"
+msgstr[1] "%d Reacties"
+
+#: ../../../../src/wp-content/themes/zeta/inc/media.php:279
 #, php-format
 msgctxt "Gallery post-format image count"
 msgid "%d Image"
@@ -421,264 +494,124 @@ msgid_plural "%d Images"
 msgstr[0] "%d Foto"
 msgstr[1] "%d Foto's"
 
-#: inc/extras.php:931
-msgid "Members"
-msgstr "Profielen"
-
-#: inc/extras.php:936
-msgid "Groups"
-msgstr "Groepen"
-
-#: inc/extras.php:944
-msgctxt "Search context"
-msgid "All"
-msgstr "Alles"
-
-#: inc/extras.php:1061
-msgid "Use the full content width for this widget on larger screens."
-msgstr "Gebruik de volledige breedte voor widgets op grotere schermen."
-
-#: inc/template-tags.php:23
-msgid "Posts navigation"
-msgstr "Berichtennavigatie"
-
-#: inc/template-tags.php:27
-msgid "Older posts"
-msgstr "Oudere berichten"
-
-#: inc/template-tags.php:31
-msgid "Newer posts"
-msgstr "Nieuwere berichten"
-
-#: inc/template-tags.php:56
-msgid "Post navigation"
-msgstr "Berichtnavigatie"
-
-#: inc/template-tags.php:87
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:32
 #, php-format
 msgctxt "post author"
 msgid "Posted by %s"
 msgstr "Geplaatst door %s"
 
-#: inc/template-tags.php:91
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:35
 #, php-format
 msgctxt "post date"
 msgid "<span class=\"screen-reader-text\">Posted on </span>%s"
 msgstr "<span class=\"screen-reader-text\">Geplaatst op </span>%s"
 
-#: inc/template-tags.php:124
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:66
 msgid "Leave a comment"
 msgstr "Schrijf een reactie"
 
-#: inc/template-tags.php:124
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:66
 msgid "1 Comment"
 msgstr "1 Reactie"
 
-#: inc/template-tags.php:124
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:66
 msgid "% Comments"
 msgstr "% Reacties"
 
-#: inc/template-tags.php:129
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:71
 msgid "Edit"
 msgstr "Bewerken"
 
-#: inc/template-tags.php:179
-#, php-format
-msgid "Category: %s"
-msgstr "Categorie: %s"
-
-#: inc/template-tags.php:181
-#, php-format
-msgid "Tag: %s"
-msgstr "Tag: %s"
-
-#: inc/template-tags.php:183
-#, php-format
-msgid "Author: %s"
-msgstr "Auteur: %s"
-
-#: inc/template-tags.php:185
-#, php-format
-msgid "Year: %s"
-msgstr "Jaar: %s"
-
-#: inc/template-tags.php:185
-msgctxt "yearly archives date format"
-msgid "Y"
-msgstr "Y"
-
-#: inc/template-tags.php:187
-#, php-format
-msgid "Month: %s"
-msgstr "Maand: %s"
-
-#: inc/template-tags.php:187
-msgctxt "monthly archives date format"
-msgid "F Y"
-msgstr "F Y"
-
-#: inc/template-tags.php:189
-#, php-format
-msgid "Day: %s"
-msgstr "Dag: %s"
-
-#: inc/template-tags.php:189
-msgctxt "daily archives date format"
-msgid "F j, Y"
-msgstr "j F Y"
-
-#: inc/template-tags.php:192
-msgctxt "post format archive title"
-msgid "Asides"
-msgstr "Zijdelings"
-
-#: inc/template-tags.php:194
-msgctxt "post format archive title"
-msgid "Galleries"
-msgstr "Galerijen"
-
-#: inc/template-tags.php:196
-msgctxt "post format archive title"
-msgid "Images"
-msgstr "Afbeeldingen"
-
-#: inc/template-tags.php:198
-msgctxt "post format archive title"
-msgid "Videos"
-msgstr "Video's"
-
-#: inc/template-tags.php:200
-msgctxt "post format archive title"
-msgid "Quotes"
-msgstr "Citaten"
-
-#: inc/template-tags.php:202
-msgctxt "post format archive title"
-msgid "Links"
-msgstr "Links"
-
-#: inc/template-tags.php:204
-msgctxt "post format archive title"
-msgid "Statuses"
-msgstr "Statussen"
-
-#: inc/template-tags.php:206
-msgctxt "post format archive title"
-msgid "Audio"
-msgstr "Audio"
-
-#: inc/template-tags.php:208
-msgctxt "post format archive title"
-msgid "Chats"
-msgstr "Gesprekken"
-
-#: inc/template-tags.php:211
-#, php-format
-msgid "Archives: %s"
-msgstr "Archieven: %s"
-
-#. translators: 1: Taxonomy singular name, 2: Current taxonomy term
-#: inc/template-tags.php:215
-#, php-format
-msgid "%1$s: %2$s"
-msgstr ""
-
-#: inc/template-tags.php:217
-msgid "Archives"
-msgstr "Archieven"
-
-#: inc/template-tags.php:479 inc/template-tags.php:480
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:354
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:355
 msgid "Username"
 msgstr "Gebruikersnaam"
 
-#: inc/template-tags.php:482 inc/template-tags.php:483
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:357
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:358
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: inc/template-tags.php:485 inc/template-tags.php:532
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:360
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:404
 msgid "Log In"
 msgstr "Inloggen"
 
-#: inc/template-tags.php:486
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:361
 msgid "Lost Password?"
 msgstr "Wachtwoord vergeten?"
 
-#: inc/template-tags.php:489
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:364
 #, php-format
 msgid "<a href=\"%s\" title=\"Register for a new account\">Register</a>"
 msgstr ""
 "<a href=\"%s\" title=\"Registreer voor een nieuw account\">Registreren</a>"
 
-#: inc/template-tags.php:525
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:397
 msgid "Search the site"
 msgstr "Doorzoek de site"
 
-#: inc/template-tags.php:532
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:404
 msgid "Log Out"
 msgstr "Uitloggen"
 
-#: inc/template-tags.php:666
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:588
 #, php-format
 msgid "<span class=\"screen-reader-text\">Posted on </span>%s"
 msgstr "<span class=\"screen-reader-text\">Geplaatst op </span>%s"
 
-#: inc/template-tags.php:699
+#: ../../../../src/wp-content/themes/zeta/inc/template-tags.php:619
 #, php-format
 msgid "Created by %s"
 msgstr "Gemaakt door %s"
 
-#: buddypress/groups/groups-loop.php:105
-#: buddypress/members/members-loop.php:105
-#: buddypress/groups/single/admin.php:300
-#: buddypress/groups/single/admin.php:346
-#: buddypress/groups/single/admin.php:443
-#: buddypress/groups/single/group-header.php:104
-#: buddypress/groups/single/members.php:102
-#: buddypress/members/single/member-header.php:78
+#: ../../../../src/wp-content/themes/zeta/buddypress/groups/groups-loop.php:106
+#: ../../../../src/wp-content/themes/zeta/buddypress/members/members-loop.php:89
+#: ../../../../src/wp-content/themes/zeta/buddypress/groups/single/admin.php:300
+#: ../../../../src/wp-content/themes/zeta/buddypress/groups/single/admin.php:346
+#: ../../../../src/wp-content/themes/zeta/buddypress/groups/single/admin.php:443
+#: ../../../../src/wp-content/themes/zeta/buddypress/groups/single/group-header.php:104
+#: ../../../../src/wp-content/themes/zeta/buddypress/groups/single/members.php:103
+#: ../../../../src/wp-content/themes/zeta/buddypress/members/single/member-header.php:78
 msgid "Actions"
 msgstr "Acties"
 
-#: buddypress/members/single/member-header.php:39
+#: ../../../../src/wp-content/themes/zeta/buddypress/members/single/member-header.php:39
 msgid "Change your profile photo"
 msgstr "Wijzig je profielfoto"
 
-#: buddypress/members/single/settings/general.php:26
+#: ../../../../src/wp-content/themes/zeta/buddypress/members/single/settings/general.php:26
 msgid "Current Password"
 msgstr "Huidig wachtwoord"
 
-#: buddypress/members/single/settings/general.php:29
+#: ../../../../src/wp-content/themes/zeta/buddypress/members/single/settings/general.php:29
 msgid "Required to update email or change current password."
 msgstr "Nodig om je e-mail of wachtwoord te kunnen wijzigen."
 
-#: buddypress/members/single/settings/general.php:42
+#: ../../../../src/wp-content/themes/zeta/buddypress/members/single/settings/general.php:42
 msgid "Change Password"
 msgstr "Wijzig wachtwoord"
 
-#: buddypress/members/single/settings/general.php:45
+#: ../../../../src/wp-content/themes/zeta/buddypress/members/single/settings/general.php:45
 msgid "Leave blank for no change."
 msgstr "Laat leeg om niets te wijzigen."
 
 #. Name of the theme
 msgid "Zeta"
-msgstr ""
+msgstr "Zeta"
 
 #. Description of the theme
-msgid ""
-"The online presence of VGSR reimagined. This second installment of VGSR "
-"WordPress themes focuses on images and readability, for all screen sizes. A "
-"large screen area is reserved to present the best of VGSR imagery, while a "
-"single white content column gives easy focus on the important message, and "
-"nothing more. It's time to shine."
-msgstr ""
+msgid "Theme for vgsr.nl since 2016."
+msgstr "Thema voor vgsr.nl sinds 2016."
 
 #. URI of the theme
 msgid "https://github.com/vgsr/zeta"
-msgstr ""
+msgstr "https://github.com/vgsr/zeta"
 
 #. Author of the theme
 msgid "Laurens Offereins"
-msgstr ""
+msgstr "Laurens Offereins"
 
 #. Author URI of the theme
 msgid "https://github.com/lmoffereins"
-msgstr ""
+msgstr "https://github.com/lmoffereins"
