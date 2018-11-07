@@ -627,9 +627,9 @@
 
 		#buddypress .dir-list .item-list > li .item-avatar {
 			position: absolute;
-			top: 10px;
+			top: 4px;
 			left: -10px;
-			width: 54px;
+			width: 66px;
 		}
 
 			#buddypress .dir-list .item-list > li .item-avatar a {
@@ -648,7 +648,7 @@
 				}
 
 		#buddypress .dir-list .item-list > li .item {
-			padding: 0px 5px 0px 44px;
+			padding: 0px 5px 0px 64px;
 		}
 
 		/* Set .dir-list li as min-width 225px */
@@ -663,6 +663,15 @@
 
 			#buddypress .dir-list .item-list > li:nth-child(2n) {
 				margin-left: 1.5em;
+			}
+
+			#buddypress .dir-list .item-list > li .item-avatar {
+				top: 8px;
+				width: 58px;
+			}
+
+			#buddypress .dir-list .item-list > li .item {
+				padding: 0px 5px 0px 50px;
 			}
 		}
 
