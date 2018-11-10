@@ -250,13 +250,16 @@ function zeta_scripts() {
 	// BuddyPress
 	if ( function_exists( 'buddypress' ) ) {
 
-		// Always load styles. Item (members) loops can exist everywhere.
+		// Always load styles. Item (members) loops can exist everywhere
 		wp_dequeue_style( 'bp-legacy-css' );
 		wp_enqueue_style( 'zeta-buddypress', $assets_url . 'css/buddypress.css', array(), '0.9.0' );
 
+		// Register script
+		wp_register_script( 'zeta-buddypress', $assets_url . 'js/buddypress.js', array( 'jquery' ), '0.9.0', true );
+
 		// Load script conditionally
 		if ( is_buddypress() ) {
-			wp_enqueue_script( 'zeta-buddypress', $assets_url . 'js/buddypress.js', array( 'jquery' ), '0.9.0', true );
+			wp_enqueue_script( 'zeta-buddypress' );
 		}
 	}
 

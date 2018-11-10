@@ -212,7 +212,7 @@ function zeta_bp_members_search_results_posts( $posts, $posts_query ) {
 		$query_args   = apply_filters( 'zeta_bp_members_search_results_query_args', array(
 			'search_terms'    => $search_terms,
 			'type'            => '', // Query $wpdb->users, sort by ID
-			'per_page'        => 18, // List limit
+			'per_page'        => 6,  // List limit
 			'populate_extras' => false,
 			'count_total'     => false,
 			'vgsr'            => true
@@ -233,7 +233,7 @@ function zeta_bp_members_search_results_posts( $posts, $posts_query ) {
 				'post_date_gmt'         => 0,
 				'post_modified'         => 0,
 				'post_modified_gmt'     => 0,
-				'post_content'          => '',
+				'post_content'          => '', // Will be generated through 'the_excerpt' filter
 				'post_title'            => sprintf( _n( 'Profiles: %d member', 'Profiles: %d members', $count, 'zeta' ), $count ),
 				'post_excerpt'          => '',
 				'post_content_filtered' => '',
@@ -256,18 +256,8 @@ function zeta_bp_members_search_results_posts( $posts, $posts_query ) {
 				), bp_get_members_directory_permalink() ),
 			) );
 
-			// Redefine the post global
-			$old_post = $GLOBALS['post'];
-			$GLOBALS['post'] = $post;
-
-			// Generate post content, relies on post global
-			$post->post_content = bp_buffer_template_part( 'content', 'profiles', false );
-
 			// Prepend post and make sure array keys are correct
 			$posts = array_values( array_merge( array( $post ), $posts ) );
-
-			// Reset post global
-			$GLOBALS['post'] = $old_post;
 		}
 	}
 
@@ -277,9 +267,6 @@ add_action( 'the_posts', 'zeta_bp_members_search_results_posts', 99, 2 );
 
 /**
  * Modify the excerpt when displaying the search results for members
- *
- * This is to circumvent the markup restrictions in `wp_trim_excerpt` that
- * remove the necessary content of the search results.
  *
  * @since 1.0.0
  *
@@ -291,12 +278,17 @@ function zeta_bp_members_search_results_the_excerpt( $excerpt ) {
 
 	// The members search results post
 	if ( is_search() && isset( $post->zeta_id ) && 'zeta_bp_members_search' === $post->zeta_id ) {
-		$excerpt = $post->post_content;
+
+		// Generate and use profiles template
+		$excerpt = bp_buffer_template_part( 'content', 'profiles', false );
+
+		// Load template script
+		wp_enqueue_script( 'zeta-buddypress' );
 	}
 
 	return $excerpt;
 }
-add_filter( 'get_the_excerpt', 'zeta_bp_members_search_results_the_excerpt', 99 );
+add_filter( 'the_excerpt', 'zeta_bp_members_search_results_the_excerpt', 99 );
 
 /**
  * Modify the post's permalink
