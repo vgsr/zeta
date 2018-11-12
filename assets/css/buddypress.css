@@ -651,6 +651,11 @@
 			padding: 0px 5px 0px 64px;
 		}
 
+			#buddypress .dir-list .item-list > li .item span + span:before {
+				content: '\2022';
+				margin: 4px;
+			}
+
 		/* Set .dir-list li as min-width 225px */
 		@media only screen and (min-width: 552px) and (max-width: 560px), (min-width: 643px) and (max-width: 740px), (min-width: 748px) {
 			#buddypress .dir-list .item-list > li {
