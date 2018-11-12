@@ -43,7 +43,10 @@ function zeta_bp_entry_meta() {
 				if ( ! $member_type = bp_get_member_type_object( $member_type ) )
 					continue;
 
-				printf( '<span class="member-type member-type-%s">%s</span>', esc_attr( $member_type->name ), esc_html( $member_type->labels['singular_name'] ) );
+				printf( '<span class="member-type member-type-%s">%s</span>',
+					esc_attr( $member_type->name ),
+					esc_html( $member_type->labels['singular_name']
+				) );
 			endforeach;
 		}
 
@@ -439,6 +442,30 @@ function zeta_bp_member_class( $classes ) {
 	return $classes;
 }
 add_filter( 'bp_get_member_class', 'zeta_bp_member_class' );
+
+/**
+ * Display members directory loop item meta
+ *
+ * @since 1.0.0
+ */
+function zeta_bp_directory_members_item() {
+
+	// User member types
+	if ( $member_types = bp_get_member_type( bp_get_member_user_id(), false ) ) {
+		foreach ( (array) $member_types as $member_type ) :
+
+			// Skip when the member type does not exist
+			if ( ! $member_type = bp_get_member_type_object( $member_type ) )
+				continue;
+
+			printf( '<span class="member-type member-type-%s">%s</span>',
+				esc_attr( $member_type->name ),
+				esc_html( $member_type->labels['singular_name']
+			) );
+		endforeach;
+	}
+}
+add_action( 'bp_directory_members_item', 'zeta_bp_directory_members_item' );
 
 /** Groups *****************************************************************/
 
