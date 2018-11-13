@@ -207,6 +207,10 @@ add_action( 'bp_activity_comment_options', 'zeta_bp_activity_comment_options' );
 function zeta_bp_members_search_results_posts( $posts, $posts_query ) {
 	global $members_template;
 
+	// Bail when hiding BP for the current user
+	if ( function_exists( 'vgsr_bp_hide_for_user' ) && vgsr_bp_hide_for_user() )
+		return $posts;
+
 	// When in the main search query, the first page, for vgsr users only
 	if ( $posts_query->is_main_query() && is_search() && ! $posts_query->is_paged() && ! zeta_get_search_context() && zeta_check_access() ) {
 
