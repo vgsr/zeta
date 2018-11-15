@@ -242,7 +242,7 @@ function zeta_scripts() {
 	$assets_url = get_template_directory_uri() . '/assets/';
 
 	// Load theme's main styles
-	wp_enqueue_style( 'zeta-style', get_stylesheet_uri(), array( 'tiled-gallery', 'dashicons' ), '0.9.0' );
+	wp_enqueue_style( 'zeta-style', get_stylesheet_uri(), array( 'tiled-gallery', 'dashicons' ), zeta_get_version() );
 
 	// Add custom fonts, used in the main stylesheet.
 	wp_enqueue_style( 'zeta-fonts', zeta_fonts_url(), array(), null );
@@ -252,10 +252,10 @@ function zeta_scripts() {
 
 		// Always load styles. Item (members) loops can exist everywhere
 		wp_dequeue_style( 'bp-legacy-css' );
-		wp_enqueue_style( 'zeta-buddypress', $assets_url . 'css/buddypress.css', array(), '0.9.0' );
+		wp_enqueue_style( 'zeta-buddypress', $assets_url . 'css/buddypress.css', array(), zeta_get_version() );
 
 		// Register script
-		wp_register_script( 'zeta-buddypress', $assets_url . 'js/buddypress.js', array( 'jquery' ), '0.9.0', true );
+		wp_register_script( 'zeta-buddypress', $assets_url . 'js/buddypress.js', array( 'jquery' ), zeta_get_version(), true );
 
 		// Load script conditionally
 		if ( is_buddypress() ) {
@@ -266,16 +266,16 @@ function zeta_scripts() {
 	// Contact Card
 	if ( function_exists( 'contact_card' ) ) {
 		wp_deregister_style( 'contact-card' );
-		wp_register_style( 'contact-card', $assets_url . 'css/contact-card.css', array(), '0.9.0' );
+		wp_register_style( 'contact-card', $assets_url . 'css/contact-card.css', array(), zeta_get_version() );
 	}
 
 	// Event Organiser
 	if ( defined( 'EVENT_ORGANISER_VER' ) ) {
-		wp_enqueue_style( 'zeta-event-organiser', $assets_url . 'css/event-organiser.css', array(), '0.9.0' );
+		wp_enqueue_style( 'zeta-event-organiser', $assets_url . 'css/event-organiser.css', array(), zeta_get_version() );
 	}
 
 	// Navigation menu for small screens
-	wp_enqueue_script( 'zeta-navigation', $assets_url . 'js/navigation.js', array( 'jquery' ), '0.9.0', true );
+	wp_enqueue_script( 'zeta-navigation', $assets_url . 'js/navigation.js', array( 'jquery' ), zeta_get_version(), true );
 	wp_localize_script( 'zeta-navigation', 'screenReaderText', array(
 		'expand'   => '<span class="screen-reader-text">' . __( 'Expand child menu',   'zeta' ) . '</span>',
 		'collapse' => '<span class="screen-reader-text">' . __( 'Collapse child menu', 'zeta' ) . '</span>',
