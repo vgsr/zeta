@@ -130,6 +130,7 @@
 		#buddypress .item-list-tabs ul li.filter select,
 		#buddypress .item-list-tabs ul li.last select {
 			width: auto;
+			max-width: 110px;
 			padding: 8.5px 0px;
 			margin-left: 5px;
 			background: none;
