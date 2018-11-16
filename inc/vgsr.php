@@ -11,7 +11,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // Bail when plugin is not active
-if ( ! function_exists( 'vgsr' ) || version_compare( vgsr()->version, '0.1.2', '<' ) )
+if ( ! function_exists( 'vgsr' ) )
 	return;
 
 /** BuddyPress *************************************************************/
