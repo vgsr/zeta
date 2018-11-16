@@ -14,6 +14,37 @@ defined( 'ABSPATH' ) || exit;
 if ( ! function_exists( 'vgsr_entity' ) )
 	return;
 
+/**
+ * Modify the background slider slide for VGSR Entity items
+ *
+ * @since 1.0.0
+ *
+ * @param array $slide Slide details
+ * @param array $args Original slide arguments
+ * @param array $slider_args Slides arguments
+ * @return array Slide details
+ */
+function zeta_vgsr_entity_background_slider_slide( $slide, $args, $slider_args ) {
+
+	// Get the slide's post
+	$post = get_post( $args['post_id'] );
+
+	// Entity
+	if ( $post && vgsr_is_entity( $post ) ) {
+
+		// Entity type
+		$slide['byline'] = get_post_type_object( $post->post_type )->labels->singular_name;
+
+		// Collect and display meta values
+		$slide['byline'] .= ' &#8226; ' . implode( ' &#8226; ', array_map( function( $args ) {
+			return vsprintf( $args['label'], (array) $args['value'] );
+		}, vgsr_entity_get_meta( $post ) ) );
+	}
+
+	return $slide;
+}
+add_filter( 'zeta_setup_background_slider_slide', 'zeta_vgsr_entity_background_slider_slide', 10, 3 );
+
 /** Template ***************************************************************/
 
 /**
