@@ -65,7 +65,7 @@ function zeta_customize_register( $wp_customize ) {
 		)
 	) );
 
-	/* Background Image using Featured Images plugin */
+	/* Background images using Featured Images plugin */
 	if ( function_exists( 'featured_images' ) ) {
 
 		// Add control section

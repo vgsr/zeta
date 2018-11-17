@@ -200,6 +200,8 @@ add_action( 'bp_activity_comment_options', 'zeta_bp_activity_comment_options' );
  *
  * @global BP_Core_Members_Template $members_template
  *
+ * @uses appply_filters() Calls 'zeta_bp_members_search_results_query_args'
+ *
  * @param array $posts Queried posts
  * @param WP_Query $posts_query Query object
  * @return array Queried posts
@@ -216,7 +218,7 @@ function zeta_bp_members_search_results_posts( $posts, $posts_query ) {
 
 		// Perform BP user query
 		$search_terms = implode( ' ', $posts_query->get( 'search_terms' ) );
-		$query_args   = apply_filters( 'zeta_bp_members_search_results_query_args', array(
+		$query_args   = (array) apply_filters( 'zeta_bp_members_search_results_query_args', array(
 			'search_terms'    => $search_terms,
 			'type'            => '', // Query $wpdb->users, sort by ID
 			'per_page'        => 6,  // List limit

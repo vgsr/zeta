@@ -433,7 +433,7 @@ function zeta_event_organiser_get_adjacent_archive_link( $previous = true ) {
 		}
 
 		/**
-		 * Filter the anchor tag attributes for the next posts page link.
+		 * Filter the anchor tag attributes for the next or previous posts page link.
 		 *
 		 * @since 2.7.0 WordPress
 		 *

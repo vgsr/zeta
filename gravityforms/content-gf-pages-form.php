@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The template used for displaying Gravityforms Form content in volume archives.
+ * The template for displaying Gravityforms Form content in volume archives.
  * 
  * @package Zeta
  * @subpackage Gravity Forms Pages
